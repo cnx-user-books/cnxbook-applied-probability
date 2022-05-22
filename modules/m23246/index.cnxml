@@ -1,0 +1,989 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Interpretations</title>
+  <metadata>
+  <md:content-id>m23246</md:content-id><md:title>Interpretations</md:title>
+  <md:abstract>The formal probability system is a model whose usefulness can only be established by examining its structure and determining whether patterns of uncertainty and likelihood in any practical situation can be represented adequately.
+This system is consistent with many probability assignments, just as the notion of mass is consistent with many different mass assignments to sets in the basic space. The defining properties (P1), (P2), P(3) and  a number of derived properties provide consistency rules for making probability assignments. One cannot assign negative probabilities or probabilities greater than one. The sure event is assigned probability one. If two or more events are mutually exclusive, the total probability assigned to the union must equal the sum of the probabilities of the separate events. Any assignment of probability consistent with these conditions is allowed. One may not know the probability assignment to every event. A typical applied problem provides the probabilities of members of a class of events (perhaps only a few) from which to determine the probabilities of other events of interest.
+Early work on probability began with a study of relative frequencies of occurrence of an event under repeated but independent trials. This approach has not been entirely successful mathematically. In the model we adopt, there is a fundamental limit theorem, known as Borel's theorem, which may be interpreted “if a trial is performed a large number of times in an independent manner, the fraction of times that event  occurs approaches as a limit the value P(A). Establishing this result (which we do not do) provides a formal validation of the intuitive frequency notion that lay behind early attempts to formulate probabilities. However, there are many applications of probability in which the relative frequency point of view is not feasible, involving unique non repeatable trials.</md:abstract>
+  <md:uuid>db57af06-ce61-44a3-984d-b26367842994</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title> What is Probability?</title>
+      <para id="id304674">The formal probability system is a <emphasis effect="italics">model</emphasis>
+whose usefulness can only be established by examining its structure
+and determining whether patterns of uncertainty and likelihood in
+any practical situation can be represented adequately. With the
+exception of the sure event and the impossible event, the model does
+not tell us how to assign probability to any given event. The
+formal system is consistent with many probability assignments, just as
+the notion of mass is consistent with many different mass assignments
+to sets in the basic space.</para>
+      <para id="id304686">The defining properties <link document="m23244" target-id="uid7">(P1)</link>, <link document="m23244" target-id="uid8">(P2)</link>, <link document="m23244" target-id="uid9">(P3)</link> and derived properties provide
+<emphasis effect="italics">consistency rules</emphasis> for making probability assignments. One cannot
+assign negative probabilities or probabilities greater than one. The
+sure event is assigned probability one. If two or
+more events are mutually exclusive, the total probability assigned to the
+union must equal the sum of the probabilities of the separate events.
+Any assignment of probability consistent with these conditions is
+allowed.</para>
+      <para id="id304699">One may not know the probability assignment to every event. Just
+as the defining conditions put constraints on allowable probability
+assignments, they also provide important structure. <emphasis effect="italics">A typical applied
+problem provides the probabilities of members of a class of events (perhaps only a
+few) from which to determine the probabilities of other events of interest</emphasis>.
+We consider an important class of such problems in the next chapter.</para>
+      <para id="id304711">There is a variety of points of view as to how probability should be
+interpreted. These impact the manner in which probabilities are assigned
+(or assumed). One important dichotomy among practitioners.</para>
+      <list id="id304716" display="block" list-type="bulleted">
+        <item id="uid1">One group believes probability is <emphasis effect="italics">objective</emphasis> in the sense that it is something
+inherent in the nature of things. It is to be discovered, if possible, by analysis
+and experiment. Whether we can determine it or not, “it is there.”
+</item>
+        <item id="uid2">Another group insists that probability is a
+<emphasis effect="italics">condition of the mind</emphasis> of the person making the probability assessment. From this
+point of view, the laws of probability simply impose rational consistency upon the way
+one assigns probabilities to events. Various attempts have been made to find objective
+ways to measure the <emphasis effect="italics">strength of one's belief</emphasis> or <emphasis effect="italics">degree of certainty</emphasis> that an
+event will occur. The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> expresses the degree of certainty one feels
+that event <emphasis effect="italics">A</emphasis> will occur.
+One approach to characterizing an individual's degree of certainty is to
+equate his assessment of <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> with the amount <emphasis effect="italics">a</emphasis> he is willing to
+pay to play a game which returns one unit of money if <emphasis effect="italics">A</emphasis> occurs,
+for a gain of <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow></m:math>, and returns zero if <emphasis effect="italics">A</emphasis> does not occur,
+for a gain of <m:math overflow="scroll"><m:mrow><m:mo>-</m:mo><m:mi>a</m:mi></m:mrow></m:math>. Behind this formulation is the notion of a <emphasis effect="italics">fair game</emphasis>,
+in which the “expected” or “average” gain is zero.
+</item>
+      </list>
+      <para id="id304875">The early work on probability began with a study of <emphasis effect="italics">relative frequencies</emphasis>
+of occurrence of an event under repeated but independent trials. This idea is so imbedded
+in much intuitive thought about probability that some probabilists
+have insisted that it must be built into the definition of probability.
+This approach has not been entirely successful mathematically and has not
+attracted much of a following among either theoretical or applied probabilists.
+In the model we adopt, there is a fundamental limit theorem, known as <emphasis effect="italics">Borel's theorem</emphasis>,
+which may be interpreted “if a trial is performed a large number of times in an
+independent manner, the <emphasis effect="italics">fraction</emphasis> of times that event <emphasis effect="italics">A</emphasis> occurs <emphasis effect="italics">approaches as
+a limit the value </emphasis><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Establishing this result (which we do not do
+in this treatment) provides a formal validation of the intuitive notion that lay behind
+the early attempts to formulate probabilities. Inveterate gamblers had noted long-run
+statistical regularities, and sought explanations from their mathematically gifted
+friends. From this point of view, probability is meaningful only in repeatable situations.
+Those who hold this view usually assume an objective view of probability. It is a number
+determined by the nature of reality, to be discovered by repeated experiment.</para>
+      <para id="id304933">There are many applications of probability in which the relative frequency point
+of view is not feasible. Examples include predictions of the weather, the outcome of a
+game or a horse race, the performance of an individual on a particular job, the success
+of a newly designed computer. These are unique, nonrepeatable trials. As the popular
+expression has it, “You only go around once.” Sometimes, probabilities in
+these situations may be quite subjective. As a matter of fact, those who take a
+subjective view tend to think in terms of such problems, whereas those
+who take an objective view usually emphasize the frequency interpretation.</para>
+<example id="fs-id4053630"><title>Subjective probability and a football game</title><para id="id304955">The probability that one's favorite football team will win the next Superbowl
+Game may well be only a subjective probability of the bettor. This is certainly
+not a probability that can be determined by a large number of repeated trials.
+The game is only played once. However, the subjective assessment of probabilities
+may be based on intimate knowledge of relative strengths and weaknesses of the teams
+involved, as well as factors such as weather, injuries, and experience. There may
+be a considerable objective basis for the subjective assignment of probability. In
+fact, there is often a hidden “frequentist” element in the subjective evaluation.
+There is an assessment (perhaps unrealized) that in <emphasis effect="italics">similar situations</emphasis> the
+frequencies tend to coincide with the value subjectively assigned.</para></example>
+<example id="fs-id6894380"><title>The probability of rain</title><para id="id304995">Newscasts often report that the probability of rain of is 20 percent or 60 percent
+or some other figure. There are several difficulties here.</para>
+      <list id="id305000" display="block" list-type="bulleted">
+        <item id="uid3">To use the formal mathematical model, there must be precision in
+determining an event. An event either occurs or it does not. How do we
+determine whether it has rained or not? Must there be a measurable amount?
+Where must this rain fall to be counted? During what time period?
+Even if there is agreement on the area, the amount, and the time period, there
+remains ambiguity: one cannot say with logical certainty the event did occur or
+it did not occur. Nevertheless, in this and other similar situations,
+use of the concept of an event may be helpful even if the description is not
+definitive. There is usually enough practical agreement for the concept to be useful.
+</item>
+        <item id="uid4">What does a 30 percent probability of rain mean?
+Does it mean that if the prediction is correct, 30 percent of the area
+indicated will get rain (in an agreed amount) during the specified time period?
+Or does it mean that 30 percent of the occasions on which such a
+prediction is made there will be significant rainfall in the area during
+the specified time period? Again, the latter alternative may well hide a
+frequency interpretation. Does the statement mean that it rains 30 percent of
+the times when conditions are <emphasis effect="italics">similar</emphasis> to current conditions?
+</item>
+      </list>
+      <para id="id305042">Regardless of the interpretation, there is some ambiguity about the event
+and whether it has occurred. And there is some difficulty with knowing
+how to interpret the probability figure. While the precise meaning of
+a 30 percent probability of rain may be difficult to determine, it is
+generally useful to know whether the conditions lead to a 20 percent or a 30
+percent or a 40 percent probability assignment. And there is no doubt that as
+weather forecasting technology and methodology continue to improve the
+weather probability assessments will become increasingly useful.</para>
+      </example>
+      <para id="id305063">Another common type of probability situation involves determining the distribution
+of some characteristic over a population—usually by a survey. These
+data are used to answer the question: What is the probability (likelihood) that
+a member of the population, chosen “at random” (i.e., on an equally
+likely basis) will have a certain characteristic?</para>
+      
+<example id="fs-id9416777"><title> Empirical probability based on survey data</title><para id="id305080">A survey asks two questions of 300 students: Do you live on campus?
+Are you satisfied with the recreational facilities in the student center?
+Answers to the latter question were categorized “reasonably satisfied,”
+“unsatisfied,” or “no definite opinion.” Let <emphasis effect="italics">C</emphasis> be the event “on campus;”
+<emphasis effect="italics">O</emphasis> be the event “off campus;” <emphasis effect="italics">S</emphasis> be the event “reasonably satisfied;”
+<emphasis effect="italics">U</emphasis> be the event ”unsatisfied;” and <emphasis effect="italics">N</emphasis> be the event “no definite
+opinion.” Data are shown in the following table.</para>
+      <para id="id305132">Survey Data</para>
+      <table id="id305137" summary="three by four table of survey data"><title>Survey Data</title>
+<tgroup cols="4"><colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <colspec colnum="4" colname="c4"/>
+          <tbody>
+            <row>
+              <entry/>
+              <entry>S</entry>
+              <entry>U</entry>
+              <entry>N</entry>
+            </row>
+            <row>
+              <entry>C</entry>
+              <entry>127</entry>
+              <entry> 31</entry>
+              <entry> 42</entry>
+            </row>
+            <row>
+              <entry>O</entry>
+              <entry>46</entry>
+              <entry> 43</entry>
+              <entry> 11</entry>
+            </row>
+          </tbody>
+        
+
+</tgroup>
+</table>
+      <!--empty paragraphs get left behind.-->
+      <para id="id305255">If an individual is selected on an equally likely basis from this group of 300, the
+probability of any of the events is taken to be the relative frequency of respondents in
+each category corresponding to an event. There are 200 on campus members in the population,
+so <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>200</m:mn><m:mo>/</m:mo><m:mn>300</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>O</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>100</m:mn><m:mo>/</m:mo><m:mn>300</m:mn></m:mrow></m:math>. The probability that a student
+selected is on campus and satisfied is taken to be <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mi>S</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>127</m:mn><m:mo>/</m:mo><m:mn>300</m:mn></m:mrow></m:math>. The probability
+a student is either on campus and satisfied or off campus and not satisfied is</para>
+      <equation id="id305515">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>C</m:mi>
+            <m:mi>S</m:mi>
+            <m:mo>⋁</m:mo>
+            <m:mi>O</m:mi>
+            <m:mi>U</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>C</m:mi>
+            <m:mi>S</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>O</m:mi>
+            <m:mi>U</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>127</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>300</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>43</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>300</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>170</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>300</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id305592">If there is reason to believe that the population sampled is representative of the
+entire student body, then the same probabilities would be applied to any student
+selected at random from the entire student body.</para>
+      </example>
+      <para id="id305612">It is fortunate that we do not have to declare a single
+position to be the “correct” viewpoint and interpretation.
+The formal model is consistent with <emphasis effect="italics">any</emphasis> of the views
+set forth. We are free in any situation to make the <emphasis effect="italics">interpretation
+most meaningful and natural to the problem at hand</emphasis>. It is not
+necessary to fit all problems into one conceptual mold; nor is it
+necessary to change mathematical model each time a different point
+of view seems appropriate.</para>
+    </section>
+    <section id="cid2">
+      <title> Probability and odds</title>
+      <para id="id305641">Often we find it convenient to work with a ratio of probabilities. If <emphasis effect="italics">A</emphasis> and <emphasis effect="italics">B</emphasis> are
+events with positive probability the <emphasis effect="italics">odds</emphasis> favoring <emphasis effect="italics">A</emphasis> over <emphasis effect="italics">B</emphasis> is the
+probability ratio <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>/</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>. If not otherwise specified, <emphasis effect="italics">B</emphasis> is taken to be <emphasis effect="italics">A<sup>c</sup></emphasis> and
+we speak of the <emphasis effect="italics">odds</emphasis> favoring <emphasis effect="italics">A</emphasis></para>
+      <equation id="id305741">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>O</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>A</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id305816">This expression may be solved algebraically to determine the probability from the
+odds</para>
+      <equation id="id305822">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>O</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>+</m:mo>
+                <m:mi>O</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id305868">In particular, if <m:math overflow="scroll"><m:mrow><m:mi>O</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>a</m:mi><m:mo>/</m:mo><m:mi>b</m:mi></m:mrow></m:math> then
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>a</m:mi><m:mo>/</m:mo><m:mi>b</m:mi></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>a</m:mi><m:mo>/</m:mo><m:mi>b</m:mi></m:mrow></m:mfrac><m:mo>=</m:mo><m:mfrac><m:mi>a</m:mi><m:mrow><m:mi>a</m:mi><m:mo>+</m:mo><m:mi>b</m:mi></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math> . </para>
+      <para id="id305978"><m:math overflow="scroll"><m:mrow><m:mi>O</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>7</m:mn><m:mo>/</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>=</m:mo><m:mn>7</m:mn><m:mo>/</m:mo><m:mn>3</m:mn></m:mrow></m:math>.  If the odds favoring <emphasis effect="italics">A</emphasis> is
+5/3, then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>5</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>+</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>5</m:mn><m:mo>/</m:mo><m:mn>8</m:mn></m:mrow></m:math>.</para>
+    </section>
+
+
+    <section id="cid3">
+      <title> Partitions and Boolean combinations of events</title>
+      <para id="id306082">The countable additivity property <link document="m23244" target-id="uid9">(P3)</link> places a premium on appropriate partitioning of
+events.</para>
+    
+    
+          <para id="id306096">
+<emphasis effect="bold">Definition.</emphasis>
+A <emphasis effect="italics">partition</emphasis> is a mutually exclusive class</para>
+      <equation id="id306104">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mi>i</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>J</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>such</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Ω</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi>J</m:mi>
+                </m:mrow>
+                <m:mrow/>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id306202">A <emphasis effect="italics">partition of event </emphasis><emphasis effect="italics">A</emphasis> is a mutually exclusive class</para>
+      <equation id="id306220">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mi>i</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>J</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>such</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi>J</m:mi>
+                </m:mrow>
+                <m:mrow/>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id306318"><emphasis effect="italics">Remarks</emphasis>.</para>
+      <list id="id306328" display="block" list-type="bulleted"><item id="uid5">A partition is a mutually exclusive class of events such that one (and only one)
+must occur on each trial.
+</item>
+        <item id="uid6">A partition of event <emphasis effect="italics">A</emphasis> is a mutually exclusive class of events such that <emphasis effect="italics">A</emphasis>
+occurs iff one (and only one) of the <emphasis effect="italics">A<sub>i</sub></emphasis> occurs.
+</item>
+        <item id="uid7">A partition (no qualifier) is taken to be a partition of the sure event <emphasis effect="italics">Ω</emphasis>.
+</item>
+        <item id="uid8">If class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mo>ı</m:mo><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+ is mutually exclusive and 
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi><m:mo>=</m:mo><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi></m:mrow><m:mrow/></m:munderover></m:mrow><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math>, then the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mo>ı</m:mo><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> is
+a partition of <emphasis effect="italics">A</emphasis> and <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi></m:mrow><m:mrow/></m:munderover></m:mrow><m:mi>A</m:mi><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math>.
+</item>
+      </list>
+      <para id="id306608">We may begin with a sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> and determine a mutually exclusive (disjoint)
+sequence
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> as follows:</para>
+      <equation id="id306670">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>any</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>i</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋯</m:mo>
+            <m:msubsup>
+              <m:mi>A</m:mi>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id306797">Thus each <emphasis effect="italics">B<sub>i</sub></emphasis> is the set of those elements of <emphasis effect="italics">A<sub>i</sub></emphasis> not in any of the previous members of
+the sequence.</para>
+      <para id="id306832">This representation is used to show that subadditivity <link document="m23244" target-id="uid16">(P9)</link> follows from countable additivity
+and property <link document="m23244" target-id="uid13">(P6)</link>. Since each <m:math overflow="scroll"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>⊂</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, by <link document="m23244" target-id="uid13">(P6)</link> <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>≤</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. Now</para>
+      <equation id="id306902"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:munderover>
+                <m:mo>⋃</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mspace width="0.166667em"/>
+              <m:mrow>
+                <m:munderover>
+                  <m:mo>⋁</m:mo>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>∞</m:mi>
+                </m:munderover>
+                </m:mrow>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>≤</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id307063">The representation of a union as a disjoint union points to an important <emphasis effect="italics">strategy</emphasis> in the
+solution of probability problems. If an event can be expressed as a countable disjoint
+union of events, each of whose probabilities is known, then the probability of the combination
+is the sum of the individual probailities. In in the module on <link document="m23247" target-id="cid2">Partitions and Minterms</link>,
+we show that <emphasis effect="italics">any</emphasis> Boolean
+combination of a <emphasis effect="italics">finite</emphasis> class of events can be expressed as a disjoint union in a manner
+that often facilitates systematic determination of the probabilities.</para>
+    </section>
+    <section id="cid5">
+      <title> The indicator function</title>
+      <para id="id307105">One of the most useful tools for dealing with set combinations (and hence with event
+combinations) is the <emphasis effect="italics">indicator function </emphasis><emphasis effect="italics">I<sub>E</sub></emphasis> for a set <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>⊂</m:mo><m:mi>Ω</m:mi></m:mrow></m:math>.
+It is defined very simply as follows:</para>
+      <equation id="id307145">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>E</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>ω</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="{" close="">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mi>ω</m:mi>
+                      <m:mo>∈</m:mo>
+                      <m:mi>E</m:mi>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mi>ω</m:mi>
+                      <m:mo>∈</m:mo>
+                      <m:msup>
+                        <m:mi>E</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id307247"><emphasis effect="italics">Remark</emphasis>.  Indicator fuctions may be defined on any domain. We have occasion
+in various cases to define them on the real line and on higher dimensional
+Euclidean spaces. For example, if <emphasis effect="italics">M</emphasis> is the interval <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow></m:math> on the real line
+then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> for each <emphasis effect="italics">t</emphasis> in the interval (and is zero otherwise). Thus
+we have a step function with unit value over the interval <emphasis effect="italics">M</emphasis>. In the abstract
+basic space <emphasis effect="italics">Ω</emphasis> we cannot draw a graph so easily. However, with the representation
+of sets on a Venn diagram, we can give a schematic representation, as in <link target-id="uid9"/>.</para>
+      <figure id="uid9"><media id="uid9_media" alt="A cylinder with an E on both circular bases. The cylinder is setting on a square inclined plane with an 'I' in the top right corner.">
+          <image mime-type="image/png" src="../../media/fig1_4_1.png" id="uid9_onlineimage" width="500"><!-- NOTE: attribute width changes image size online (pixels). original width is 144. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig1_4_1.eps" id="uid9_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      <caption>Representation of the indicator function <emphasis effect="italics">I<sub>E</sub></emphasis> for event <emphasis effect="italics">E</emphasis>.</caption></figure>
+      
+      <!--empty paragraphs get left behind.-->
+      <para id="id307388">Much of the usefulness of the indicator function comes from the following properties.</para>
+      <list id="id307394" display="block" list-type="labeled-item"><item id="uid10"><label>(IF1)</label><m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>≤</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi></m:mrow></m:math>. 
+If <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>≤</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>A</m:mi></m:mrow></m:math> implies <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>, so
+<m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>B</m:mi></m:mrow></m:math>.
+If <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> implies <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>A</m:mi></m:mrow></m:math> implies <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>B</m:mi></m:mrow></m:math>
+implies <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid11"><label>(IF2)</label><m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:mi>B</m:mi></m:mrow></m:math><equation id="id307705"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:mi>B</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>iff</m:mtext><m:mspace width="4.pt"/><m:mtext>both</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>B</m:mi><m:mo>⊂</m:mo><m:mi>A</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>iff</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>≤</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>≤</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>iff</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub></m:mrow></m:math></equation></item>
+      <item id="uid12"><label>(IF3)</label><m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup></m:msub><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub></m:mrow></m:math>
+This follows from the fact <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid13"><label>(IF4)</label><m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mi>A</m:mi><m:mi>B</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math>  (extends to any class)
+An element <emphasis effect="italics">ω</emphasis> belongs to the intersection iff it belongs to all iff the indicator function
+for each event is one iff the product of the indicator functions is one.
+</item>
+        <item id="uid14"><label>(IF5)</label><m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math>  (the maximum rule extends to
+any class)
+The maximum rule follows from the fact that <emphasis effect="italics">ω</emphasis> is in the union iff it is in any one or more
+of the events in the union iff any one or more of the individual indicator function has value one
+iff the maximum is one. The sum rule for two events is established by DeMorgan's rule and
+properties (IF2), (IF3), and (IF4).
+<equation id="id308200"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:msub><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mrow><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub></m:mrow></m:math></equation></item>
+        <item id="uid15"><label>(IF6)</label>If the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> is disjoint, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mi>A</m:mi><m:mo>⋁</m:mo><m:mi>B</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub></m:mrow></m:math> (extends to
+any disjoint class)
+</item>
+      </list>
+      
+      <para id="id308414">The following example illustrates the use of indicator functions in establishing relationships
+between set combinations. Other uses and techniques are established in the module on
+<link document="m23247" target-id="cid2">Partitions and Minterms</link>.</para>
+<example id="fs-id6374858"><title>Indicator functions and set combinations</title><para id="id308432">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a partition.</para>
+      <equation id="id308469">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mtext>If</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>B</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>then</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>C</m:mi>
+              <m:mi>i</m:mi>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id308618">VERIFICATION</para>
+      <para id="id308624">Utilizing properties of the indicator function established above, we have</para>
+      <equation id="id308628"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>B</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id308689">Note that since the <emphasis effect="italics">A<sub>i</sub></emphasis> form a partition, we have <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:mstyle></m:math>,  so that the indicator function for the complementary event is</para>
+      <equation id="id308756"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:msub>
+                  <m:mi>C</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msubsup>
+                <m:mi>C</m:mi>
+                <m:mi>i</m:mi>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id309002">The last sum is the indicator function for   <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mspace width="0.166667em"/><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover></m:mrow><m:mspace width="0.166667em"/><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:msubsup><m:mi>C</m:mi><m:mi>i</m:mi><m:mi>c</m:mi></m:msubsup></m:mrow></m:mstyle></m:math>.</para>
+      </example>
+    </section>
+    <section id="cid6">
+      <title> A technical comment on the class of events</title>
+      <para id="id309097">The class of events plays a central role in the intuitive background, the application, and the
+formal mathematical structure. Events have been modeled as subsets of the basic space of
+all possible outcomes of the trial or experiment. In the case of a finite number of outcomes,
+<emphasis effect="italics">any</emphasis> subset can be taken as an event. In the general theory, involving infinite possibilities,
+there are some technical mathematical reasons for limiting the class of subsets to be
+considered as events. The practical needs are these:</para>
+      <list id="id309110" display="block" list-type="enumerated">
+        <item id="uid16">If <emphasis effect="italics">A</emphasis> is an event, its complementary set must also be an event.
+</item>
+        <item id="uid17">If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a finite or countable class of events, the union
+and the intersection of members of the class need to be events.
+</item>
+      </list>
+      <para id="id309177">A simple argument based on DeMorgan's rules shows that if the class contains complements
+of all its sets and countable unions, then it
+contains countable intersections. Likewise, if it contains complements of all its sets and
+countable intersections, then it contains countable unions. A class of sets closed
+under complements and countable unions is known as a <emphasis effect="italics">sigma algebra</emphasis> of sets. In
+a formal, measure-theoretic treatment, a basic assumption is that the class of events
+is a sigma algebra and the probability measure assigns probabilities to members of that class. Such
+a class is so general that it takes very sophisticated arguments to establish the fact
+that such a class does not contain all subsets. But precisely because the class is
+so general and inclusive <emphasis effect="italics">in ordinary applications we need not be concerned about which sets
+are permissible as events</emphasis></para>
+      <para id="id309197">A primary task in formulating a probability problem is identifying the appropriate events
+and the relationships between them. The theoretical treatment shows that we may work with
+great freedom in forming events, with the assurrance that in most applications a set
+so produced is a mathematically valid event. The so called <emphasis effect="italics">measurability</emphasis> question only
+comes into play in dealing with random processes with continuous parameters. Even there,
+under reasonable assumptions, the sets produced will be events.</para>
+    </section>
+  </content>
+</document>

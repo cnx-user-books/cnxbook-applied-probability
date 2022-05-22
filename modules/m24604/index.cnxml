@@ -1,0 +1,2495 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Problems on Conditional Independence, Given a Random Vector</title>
+  <metadata>
+  <md:content-id>m24604</md:content-id><md:title>Problems on Conditional Independence, Given a Random Vector</md:title>
+  <md:abstract/>
+  <md:uuid>5e5f391f-b884-478d-bed3-7314bda662ec</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of useful matlab files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+
+
+<exercise id="fs-id3452246" print-placement="end">
+<problem id="fs-id4083778">
+    <para id="id135200">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>H</m:mi></m:mrow></m:math>. <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>/</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math>, given <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi></m:mrow></m:math>;
+<m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>/</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>, given <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi></m:mrow></m:math>; and <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> uniform <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>]</m:mo></m:mrow></m:math>. Determine a
+general formula for <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then evaluate for <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>10</m:mn></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id7557430">
+
+    <!--empty paragraphs get left behind.-->
+    <equation id="id336318">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mi>r</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>u</m:mi>
+              <m:mi>r</m:mi>
+              <m:mo>/</m:mo>
+              <m:mn>3</m:mn>
+            </m:mrow>
+          </m:msup>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>u</m:mi>
+              <m:mi>s</m:mi>
+              <m:mo>/</m:mo>
+              <m:mn>5</m:mn>
+            </m:mrow>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>a</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:msup>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mi>r</m:mi>
+            <m:mn>3</m:mn>
+          </m:mfrac>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mi>s</m:mi>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id336619">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mi>r</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>∫</m:mo>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>a</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:msup>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>H</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mo>=</m:mo>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>a</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mi>a</m:mi>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>a</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>2</m:mn>
+                <m:mi>a</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id336761">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mtext>For</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>r</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mi>s</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>10</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>3</m:mn>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>3</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>6</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0158</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id4376718" print-placement="end"><problem id="fs-id4622423">
+    <para id="id135583">A small random sample of size <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>12</m:mn></m:mrow></m:math> is taken to determine the proportion of
+the student body which favors a proposal to expand the student Honor Council by adding two
+additional members “at large.” Prior information
+indicates that this proportion is about 0.6 = 3/5. From a Bayesian point of view, the population
+proportion is taken to be the value of a random variable <emphasis effect="italics">H</emphasis>. It seems reasonable to assume a
+<emphasis effect="italics">prior</emphasis> distribution <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math>, giving a maximum of the density at <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>/</m:mo><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>+</m:mo><m:mn>3</m:mn><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>5</m:mn></m:mrow></m:math>. Seven of the twelve interviewed favor the proposition. What is
+the best mean-square estimate of the proportion, given this result? What is the conditional
+distribution of <emphasis effect="italics">H</emphasis>, given this result?</para>
+</problem>
+<solution id="fs-id3816221">
+ <para id="id336887"><m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>12</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>7</m:mn></m:mrow></m:math></para>
+    <equation id="id336966"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>S</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>k</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>r</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mn>7</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>4</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mn>12</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>3</m:mn>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>11</m:mn>
+            <m:mn>19</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+   </solution>
+</exercise>
+
+
+<exercise id="fs-id4370422" print-placement="end"><problem id="fs-id8358266">
+    <para id="id135703">Let <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> be a random sample, given <emphasis effect="italics">H</emphasis>.  Set
+<m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>. Suppose <emphasis effect="italics">X</emphasis> conditionally geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>, given
+<m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u;  </m:mi></m:mrow></m:math> i.e., suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>u</m:mi><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mi>k</m:mi></m:msup></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>. If <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math>
+uniform <newline/>on [0, 1], determine the best mean square estimator for <emphasis effect="italics">H</emphasis>, given <emphasis effect="italics">W</emphasis>.</para>
+</problem>
+<solution id="fs-id3619266">
+
+    <!--empty paragraphs get left behind.-->
+    <equation id="id337056">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>{</m:mo>
+                  <m:mi>k</m:mi>
+                  <m:mo>}</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>W</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>{</m:mo>
+                  <m:mi>k</m:mi>
+                  <m:mo>}</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>W</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>{</m:mo>
+              <m:mi>H</m:mi>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mrow>
+                    <m:mo>{</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>}</m:mo>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>W</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>{</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mrow>
+                    <m:mo>{</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>}</m:mo>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>W</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id337231">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mo>∫</m:mo>
+              <m:mi>u</m:mi>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>W</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>f</m:mi>
+                <m:mi>H</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>∫</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>W</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>f</m:mi>
+                <m:mi>H</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>k</m:mi>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>k</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>k</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>⋯</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>k</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id337403"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∏</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>i</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:mi>u</m:mi>
+          <m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>k</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mi>n</m:mi>
+          </m:msup>
+          <m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>k</m:mi>
+              <m:mo>*</m:mo>
+            </m:msup>
+          </m:msup>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msup>
+            <m:mi>k</m:mi>
+            <m:mo>*</m:mo>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>i</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:msub>
+            <m:mi>k</m:mi>
+            <m:mi>i</m:mi>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id337551">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>0</m:mn>
+                <m:mn>1</m:mn>
+              </m:msubsup>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>-</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msup>
+                  <m:mi>k</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+              </m:msup>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>0</m:mn>
+                <m:mn>1</m:mn>
+              </m:msubsup>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mi>n</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>-</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msup>
+                  <m:mi>k</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+              </m:msup>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>k</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>k</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>k</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>k</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id337815">
+      <m:math overflow="scroll" mode="display">
+        <m:mfrac>
+          <m:mrow>
+            <m:mi>n</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+          <m:mrow>
+            <m:mi>n</m:mi>
+            <m:mo>+</m:mo>
+            <m:msup>
+              <m:mi>k</m:mi>
+              <m:mo>*</m:mo>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+          </m:mrow>
+        </m:mfrac>
+      </m:math>
+    </equation>
+    </solution>
+</exercise>
+
+<exercise id="fs-id2834823" print-placement="end">
+<problem id="fs-id4669633">
+    <para id="id135922">Let <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> be a random sample, given <emphasis effect="italics">H</emphasis>.  Set
+<m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>. Suppose <emphasis effect="italics">X</emphasis> conditionally Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>, given
+<m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u; </m:mi></m:mrow></m:math> i.e., suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>u</m:mi></m:mrow></m:msup><m:msup><m:mi>u</m:mi><m:mi>k</m:mi></m:msup><m:mo>/</m:mo><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:math>. If <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>,
+determine the best mean square estimator for <emphasis effect="italics">H</emphasis>, given <emphasis effect="italics">W</emphasis>.</para>
+</problem>
+<solution id="fs-id7330650">
+
+    <!--empty paragraphs get left behind.-->
+    <equation id="id337857">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mo>∫</m:mo>
+              <m:mi>u</m:mi>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>W</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>f</m:mi>
+                <m:mi>H</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>∫</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>W</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>f</m:mi>
+                <m:mi>H</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id337986"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∏</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>i</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:msup>
+          <m:mfrac>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:msub>
+                <m:mi>k</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msup>
+            <m:mrow>
+              <m:msub>
+                <m:mi>k</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>!</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>n</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:msup>
+          <m:mfrac>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:msup>
+                <m:mi>k</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+            </m:msup>
+            <m:mi>A</m:mi>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msup>
+            <m:mi>k</m:mi>
+            <m:mo>*</m:mo>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>i</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:msub>
+            <m:mi>k</m:mi>
+            <m:mi>i</m:mi>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id338146">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>H</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:msup>
+                <m:mi>λ</m:mi>
+                <m:mi>m</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mrow>
+                  <m:mi>m</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mi>u</m:mi>
+                </m:mrow>
+              </m:msup>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>m</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id338218">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>0</m:mn>
+                <m:mi>∞</m:mi>
+              </m:msubsup>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mrow>
+                  <m:msup>
+                    <m:mi>k</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>+</m:mo>
+                  <m:mi>m</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>)</m:mo>
+                  <m:mi>u</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>0</m:mn>
+                <m:mi>∞</m:mi>
+              </m:msubsup>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mrow>
+                  <m:msup>
+                    <m:mi>k</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>+</m:mo>
+                  <m:mi>m</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>)</m:mo>
+                  <m:mi>u</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mspace width="0.166667em"/>
+              <m:mi>d</m:mi>
+              <m:mi>u</m:mi>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>m</m:mi>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>k</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>k</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>+</m:mo>
+                <m:mi>m</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>k</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>+</m:mo>
+                <m:mi>m</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>m</m:mi>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>k</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>m</m:mi>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>k</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>λ</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>n</m:mi>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    
+    </solution>
+</exercise>
+
+
+<exercise id="fs-id3665648" print-placement="end">
+<problem id="fs-id8380681">
+    <para id="id136145">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>H</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent and <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>H</m:mi></m:mrow></m:math>.  Use properties
+of conditional expectation and conditional independence to show that</para>
+    <equation id="id136197">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>N</m:mi>
+          <m:mo>)</m:mo>
+          <m:mi>h</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>H</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>N</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>]</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>h</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>H</m:mi>
+          <m:mo>]</m:mo>
+          <m:mspace width="4pt"/>
+          <m:mi mathvariant="normal">a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi mathvariant="normal">s</m:mi>
+          <m:mo>.</m:mo>
+          <m:mspace width="0.166667em"/>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id8277417">
+<para id="id338511"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>H</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>]</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>]</m:mo><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math> by <link document="m24003" target-id="uid6">(CI6)</link> and</para>
+    <para id="id338608"><m:math overflow="scroll">
+<m:mrow>
+<m:mi>E</m:mi>
+<m:mo>[</m:mo>
+<m:mi>g</m:mi>
+<m:mo>(</m:mo>
+<m:mi>N</m:mi>
+<m:mo>)</m:mo>
+<m:mo>|</m:mo>
+<m:mi>H</m:mi>
+<m:mo>]</m:mo>
+<m:mo>=</m:mo>
+<m:mi>E</m:mi>
+<m:mo>[</m:mo>
+<m:mi>g</m:mi>
+<m:mo>(</m:mo>
+<m:mi>N</m:mi>
+<m:mo>)</m:mo>
+<m:mo>]</m:mo>
+<m:mi mathvariant="normal">a</m:mi>
+<m:mo>.</m:mo>
+<m:mi mathvariant="normal">s</m:mi>
+<m:mo>.</m:mo>
+</m:mrow>
+</m:math> 
+by <link document="m24001" target-id="uid5">(CE5)</link>.
+</para>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1167968117423" print-placement="end">
+<problem id="fs-id8580011">
+    <para id="id136288">Consider the composite demand <emphasis effect="italics">D</emphasis> introduced in the section on <link document="m23652" target-id="cid2">Random Sums</link> in "Random Selecton"</para>
+    <equation id="id136299"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>D</m:mi>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+            </m:mrow>
+            <m:mi>∞</m:mi>
+          </m:munderover>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>N</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msub>
+            <m:mi>X</m:mi>
+            <m:mi>n</m:mi>
+          </m:msub>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>where</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msub>
+            <m:mi>X</m:mi>
+            <m:mi>n</m:mi>
+          </m:msub>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>k</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:msub>
+            <m:mi>Y</m:mi>
+            <m:mi>k</m:mi>
+          </m:msub>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msub>
+            <m:mi>Y</m:mi>
+            <m:mn>0</m:mn>
+          </m:msub>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id136426">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>H</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent, <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>H</m:mi></m:mrow></m:math> for all <emphasis effect="italics">i</emphasis>, and
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>e</m:mi><m:mrow><m:mo>(</m:mo><m:mi>H</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, invariant with <emphasis effect="italics">i</emphasis>. Show that <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>N</m:mi><m:mo>]</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>]</m:mo><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>.
+</para>
+</problem>
+<solution id="fs-id5301004">
+
+    <!--empty paragraphs get left behind.-->
+    <equation id="id338678"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>∞</m:mi>
+          </m:munderover>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mspace width="4pt"/>
+          <m:mi mathvariant="normal">a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi mathvariant="normal">s</m:mi>
+          <m:mo>.</m:mo>
+          <m:mspace width="0.166667em"/>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id338777"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>k</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>k</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>n</m:mi>
+          </m:munderover>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>N</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>N</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>n</m:mi>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mspace width="4pt"/>
+          <m:mi mathvariant="normal">a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi mathvariant="normal">s</m:mi>
+          <m:mo>.</m:mo>
+          <m:mspace width="0.166667em"/>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id338979"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:munderover>
+            <m:mrow><m:mo>∑</m:mo></m:mrow>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mi>∞</m:mi>
+          </m:munderover>
+          <m:mi>n</m:mi>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>N</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>N</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>H</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mspace width="4pt"/>
+          <m:mi mathvariant="normal">a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi mathvariant="normal">s</m:mi>
+          <m:mo>.</m:mo>
+          <m:mspace width="0.166667em"/>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id2705924" print-placement="end">
+<problem id="fs-id1534807">
+    <para id="id136601">The transition matrix <emphasis effect="italics">P</emphasis> for a homogeneous Markov chain is as follows (in
+m-file <link window="new" document="m24179" target-id="eip-704">npr16_07.m</link>):</para>
+    <equation id="id136618">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfenced separators="" open="[" close="]">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>23</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>32</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>02</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>22</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>21</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>29</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>41</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>10</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>08</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>12</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>22</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>07</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>31</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>14</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>26</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>32</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>15</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>05</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>33</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>15</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>08</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>23</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>31</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>09</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>29</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <list id="id136864" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1">Obtain the absolute values of the eigenvalues, then consider increasing powers
+of <emphasis effect="italics">P</emphasis> to observe the convergence to the long run distribution.
+</item>
+      <item id="uid2">Take an arbitrary initial distribution <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mn>0</m:mn></m:mrow></m:math> (as a row matrix). The product
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mn>0</m:mn><m:mo>*</m:mo><m:msup><m:mi>P</m:mi><m:mi>k</m:mi></m:msup></m:mrow></m:math> is the distribution for stage <emphasis effect="italics">k</emphasis>. Note what happens as <emphasis effect="italics">k</emphasis> becomes
+large enough to give convergence to the long run transition matrix. Does the end
+result change with change of initial distribution <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mn>0</m:mn></m:mrow></m:math>?
+
+</item>
+    </list>
+
+</problem>
+<solution id="fs-id6690868">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id339102" display="block">ev = abs(eig(P))'
+ev = 1.0000    0.0814    0.0814    0.3572    0.2429
+a = ev(4).^[2 4 8 16 24]
+a = 0.1276    0.0163    0.0003    0.0000    0.0000
+% By P^16 the rows agree to four places
+p0 = [0.5 0 0 0.3 0.2];     % An arbitrarily chosen p0
+p4 = p0*P^4
+p4 =    0.2297    0.2622    0.1444    0.1644    0.1992
+p8 = p0*P^8
+p8 =    0.2290    0.2611    0.1462    0.1638    0.2000
+p16 = p0*P^16
+p16 =   0.2289    0.2611    0.1462    0.1638    0.2000
+p0a = [0 0 0 0 1];          % A second choice of p0
+p16a = p0a*P^16
+p16a =  0.2289    0.2611    0.1462    0.1638    0.2000
+</code>
+    
+    </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id6596690" print-placement="end">
+<problem id="fs-id4547029">
+    <para id="id136969">The transition matrix <emphasis effect="italics">P</emphasis> for a homogeneous Markov chain is as follows (in
+m-file <emphasis effect="bold">npr16_08.m</emphasis>):</para>
+    <equation id="id136986">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfenced separators="" open="[" close="]">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>3</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>6</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>3</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>7</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>6</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>4</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>3</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <list id="id137305" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid3">Note that the chain has two subchains, with states <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>}</m:mo></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>}</m:mo></m:mrow></m:math>. Draw a transition diagram to display the two separate chains. Can
+any state in one subchain be reached from any state in the other?
+</item>
+      <item id="uid4">Check the convergence as in part (a) of <link target-id="fs-id2705924"/>. What happens
+to the state probabilities for states 6 and 7 in the long run? What does that
+signify for these states? Can these states be reached from any state in either
+of the subchains? How would you classify these states?
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id3468132">
+ <para id="id339245">Increasing power <emphasis effect="italics">P<sup>n</sup></emphasis> show the probability of being in states 6, 7 go to zero.
+These states cannot be reached from any of the other states.</para>
+   </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1167968054072" print-placement="end">
+<problem id="fs-id6774553">
+    <para id="id137390">The transition matrix <emphasis effect="italics">P</emphasis> for a homogeneous Markov chain is as follows (in
+m-file <link window="new" document="m24179" target-id="cid73">npr16_09.m</link>):</para>
+    <equation id="id137409">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfenced separators="" open="[" close="]">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>3</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>6</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>4</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>3</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>6</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>3</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>7</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mn>0</m:mn>
+                </m:mtd>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <list id="id137735" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid5">Check the transition matrix <emphasis effect="italics">P</emphasis> for convergence, as in part (a) of
+<link target-id="fs-id2705924"/>. How many steps does it take to reach convergence to four or more
+decimal places? Does this agree with the theoretical result?
+</item>
+      <item id="uid6">Examine the long run transition matrix. Identify transient states.
+</item>
+      <item id="uid7">The convergence does not make all rows the same. Note, however, that
+there are two subgroups of similar rows. Rearrange rows and columns in the long
+run Matrix so that identical rows are grouped. This suggests subchains. Rearrange
+the rows and columns in the transition matrix <emphasis effect="italics">P</emphasis> and see that this gives a
+pattern similar to that for the matrix in <link target-id="fs-id6596690"/>. Raise the rearranged
+transition matrix to the power for convergence.
+</item>
+    </list>
+</problem>
+<solution id="fs-id7864091">
+<para id="id339263">Examination of <emphasis effect="italics">P<sup>16</sup></emphasis> suggests sets <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>}</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>}</m:mo></m:mrow></m:math> of states
+form subchains. Rearrangement of <emphasis effect="italics">P</emphasis> may be done as follows:</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id339331" display="block">PA = P([2 7 3 4 6 1 5], [2 7 3 4 6 1 5])
+PA =
+    0.6000    0.4000         0         0         0         0         0
+    0.5000    0.5000         0         0         0         0         0
+         0         0    0.2000    0.5000    0.3000         0         0
+         0         0    0.6000    0.1000    0.3000         0         0
+         0         0    0.2000    0.7000    0.1000         0         0
+    0.2000    0.1000    0.1000    0.3000         0    0.1000    0.2000
+    0.2000    0.2000    0.1000    0.2000    0.1000    0.2000         0
+PA16 = PA^16
+PA16 =
+    0.5556    0.4444         0         0         0         0         0
+    0.5556    0.4444         0         0         0         0         0
+         0         0    0.3571    0.3929    0.2500         0         0
+         0         0    0.3571    0.3929    0.2500         0         0
+         0         0    0.3571    0.3929    0.2500         0         0
+    0.2455    0.1964    0.1993    0.2193    0.1395    0.0000    0.0000
+    0.2713    0.2171    0.1827    0.2010    0.1279    0.0000    0.0000
+</code>
+    <para id="id339497">It is clear that original states 1 and 5 are transient.
+</para>
+    
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id6196876" print-placement="end">
+<problem id="fs-id8217066">
+    <para id="id137806">Use the m-procedure inventory1 (in m-file <emphasis effect="bold">inventory1.m</emphasis>) to obtain
+the transition matrix for maximum stock <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>=</m:mo><m:mn>8, </m:mn></m:mrow></m:math> reorder point <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math>, and demand <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson(4). </para>
+    
+    <!--empty paragraphs get left behind.-->
+    <list id="id137866" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid8">Suppose initial stock is six. What will the distribution for <emphasis effect="italics">X<sub>n</sub></emphasis>, <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn></m:mrow></m:math>
+(i.e., the stock at the end of periods 1, 3, 5, before restocking)?
+</item>
+      <item id="uid9">What will the long run distribution be?
+</item>
+    </list>
+</problem>
+<solution id="fs-id7290557">
+ 
+    <!--empty paragraphs get left behind.-->
+    <code id="id339512" display="block">inventory1
+Enter value M of maximum stock  8
+Enter value m of reorder point  3
+Enter row vector of demand values  0:20
+Enter demand probabilities  ipoisson(4,0:20)
+Result is in matrix P
+p0 = [0 0 0 0 0 0 1 0 0];
+p1 = p0*P
+p1 =
+  Columns 1 through 7
+    0.2149    0.1563    0.1954    0.1954    0.1465    0.0733    0.0183
+  Columns 8 through 9
+         0         0
+p3 = p0*P^3
+p3 =
+  Columns 1 through 7
+    0.2494    0.1115    0.1258    0.1338    0.1331    0.1165    0.0812
+  Columns 8 through 9
+    0.0391    0.0096
+p5 = p0*P^5
+p5 =
+  Columns 1 through 7
+    0.2598    0.1124    0.1246    0.1311    0.1300    0.1142    0.0799
+  Columns 8 through 9
+    0.0386    0.0095
+a = abs(eig(P))'
+a =
+  Columns 1 through 7
+    1.0000    0.4427    0.1979    0.0284    0.0058    0.0005    0.0000
+  Columns 8 through 9
+    0.0000    0.0000
+a(2)^16
+ans =
+   2.1759e-06       % Convergence to at least five decimals for P^16
+pinf = p0*P^16      % Use arbitrary p0,  pinf approx p0*P^16
+pinf =  Columns 1 through 7
+    0.2622    0.1132    0.1251    0.1310    0.1292    0.1130    0.0789
+  Columns 8 through 9
+    0.0380    0.0093
+</code>
+</solution>
+</exercise>
+
+
+  </content>
+</document>

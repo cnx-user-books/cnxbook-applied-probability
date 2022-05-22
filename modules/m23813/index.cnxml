@@ -1,0 +1,3132 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Conditional Independence, Given a Random Vector</title>
+  <metadata>
+  <md:content-id>m23813</md:content-id><md:title>Conditional Independence, Given a Random Vector</md:title>
+  <md:abstract>The notion of conditional independence is extended to random variables by considering appropriate indicator functions, then extending to more general random vectors.  A variety of equivalent conditions provide a basis for practical analysis and interpretation.  An important application is the Bayesian approach to statistics. The essential idea  is that an unknown parameter about which there is uncertainty is modeled as the value of a random variable. The name Bayesian comes from the role of Bayesian reversal in the analysis.  The Bayesian estimate often seems preferable for small samples, and it has the advantage that prior information may be utilized. The sampling procedure upgrades the prior distribution.</md:abstract>
+  <md:uuid>bf0d692e-8cee-4435-bc9b-cf96931534d8</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="id185810">In the unit on <link document="m23258">Conditional Independence</link> , the concept of conditional
+independence of events is examined and
+used to model a variety of common situations. In this unit, we investigate a
+more general concept of conditional independence, based on the theory of conditional
+expectation. This concept lies at the foundations of Bayesian statistics, of many
+topics in decision theory, and of the theory of Markov systems. We examine in this unit, very
+briefly, the first of these. In the unit on <link document="m23824">Markov Sequences</link>, we provide
+an introduction to the third.</para>
+    <section id="cid1"><title>The concept</title><para id="id185829">The definition of conditional independence of events is based on a product rule which
+may be expressed in terms of conditional expectation, given an event. The pair
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> is conditionally independent, given <emphasis effect="italics">C</emphasis>, iff</para>
+      <equation id="id185863">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>A</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>B</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>A</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>B</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id186166">If we let <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo><m:msup><m:mi>Y</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  It would be reasonable to consider the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> conditionally independent,
+given event <emphasis effect="italics">C</emphasis>, iff the product rule</para>
+      <equation id="id186321">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id186427">holds for all reasonable <emphasis effect="italics">M</emphasis> and <emphasis effect="italics">N</emphasis> (technically, all Borel <emphasis effect="italics">M</emphasis> and <emphasis effect="italics">N</emphasis>).
+This suggests a possible extension to conditional expectation, given a random vector.
+We examine the following concept.</para>
+      <para id="id186465"><emphasis effect="bold">Definition</emphasis>.  The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is <emphasis effect="italics">conditionally independent, given</emphasis><emphasis effect="italics">Z</emphasis>,
+designated <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math>, iff</para>
+      <equation id="id186539">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Borel</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>M</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>N</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id186682"><emphasis effect="italics">Remark</emphasis>.  Since it is not necessary that <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>Y</m:mi></m:mrow></m:math>, or <emphasis effect="italics">Z</emphasis> be real valued, we
+understand that the sets <emphasis effect="italics">M</emphasis> and <emphasis effect="italics">N</emphasis> are on the codomains for <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis>, respectively.
+For example, if <emphasis effect="italics">X</emphasis> is a three dimensional random vector, then <emphasis effect="italics">M</emphasis> is a subset of <emphasis effect="italics">R<sup>3</sup></emphasis>.</para>
+      <para id="id186779">As in the case of other concepts, it is useful to identify some key
+properties, which we refer to by the numbers used in the table in Appendix G. We note two
+kinds of equivalences. For example, the following are equivalent.</para>
+      <para id="eip-id13876413">
+          <emphasis effect="bold">(CI1) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>N</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>N</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>sets</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>M</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>N</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+        <para id="eip-id13155372">
+          <emphasis effect="bold">(CI5) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>h</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>h</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>functions</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>g</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>h</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+      <para id="id187127">Because the indicator functions are special Borel functions, <link target-id="eip-id7004533">(CI1)</link> is a special case of <link target-id="eip-id13155372">(CI5)</link>.
+To show that <link target-id="eip-id7004533">(CI1)</link> implies <link target-id="eip-id13155372">(CI5)</link>, we need to use linearity, monotonicity, and monotone
+convergence in a manner similar to that used in extending properties <link document="m23634" target-id="id268018">(CE1)</link> to <link document="m23634" target-id="id270318">(CE6)</link> for
+conditional expectation.
+A second kind of equivalence involves various patterns. The properties <link target-id="eip-id7004533">(CI1)</link>, <link target-id="eip-id7440047">(CI2)</link>, <link target-id="eip-id4241559">(CI3)</link>,
+and <link target-id="eip-id5980744">(CI4)</link> are equivalent, with <link target-id="eip-id7004533">(CI1)</link> being the defining condition for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math>.</para>
+      <para id="eip-id7004533">
+          <emphasis effect="bold">(CI1) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>N</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>N</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>sets</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>M</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>N</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+        <para id="eip-id7440047">
+          <emphasis effect="bold">(CI2) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>Y</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>sets</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>M</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+        <para id="eip-id4241559">
+          <emphasis effect="bold">(CI3) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>Q</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Z</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>Y</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>Q</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Z</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>sets</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>M</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>Q</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+        <para id="eip-id5980744">
+          <emphasis effect="bold">(CI4) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>M</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>Q</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Z</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:mi>M</m:mi>
+                  </m:msub>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:mi>Q</m:mi>
+                  </m:msub>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mi>Z</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mi>Z</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>sets</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>M</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>Q</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+      <para id="id187795">As an example of the kinds of argument needed to verify these equivalences, we show the
+equivalence of <link target-id="eip-id7004533">(CI1)</link> and <link target-id="eip-id7440047">(CI2)</link>.</para>
+      <list id="id187800" display="block" list-type="bulleted"><item id="uid7"><link target-id="eip-id7004533">(CI1)</link> implies <link target-id="eip-id7440047">(CI2)</link>.  Set <m:math overflow="scroll"><m:mrow><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>e</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math>.  If we show
+<equation id="id187937"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi/></m:mrow><m:mrow><m:mo/><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>e</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>for</m:mtext><m:mspace width="4.pt"/><m:mtext>all</m:mtext><m:mspace width="4.pt"/><m:mtext>Borel</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>N</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Q</m:mi></m:mrow></m:math></equation>
+then by the uniqueness property <link document="m23998" target-id="uid11">(E5b)</link> for expectation we may assert  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>e</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>  Using the defining property <link document="m23634" target-id="id268018">(CE1)</link> for conditional
+expectation, we have
+<equation id="id188189"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+On the other hand, use of <link document="m23634" target-id="id268018">(CE1)</link>, <link document="m23634" target-id="id270955">(CE8)</link>, <link target-id="eip-id7004533">(CI1)</link>, and <link document="m23634" target-id="id268018">(CE1)</link> yields
+<equation id="id188328"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id188480"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id188634"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:math></equation>
+which establishes the desired equality.
+</item>
+        <item id="uid8"><link target-id="eip-id7440047">(CI2)</link> implies <link target-id="eip-id7004533">(CI1)</link>.  Using <link document="m23634" target-id="id271036">(CE9)</link>, <link document="m23634" target-id="id270955">(CE8)</link>, <link target-id="eip-id7440047">(CI2)</link>, and <link document="m23634" target-id="id270955">(CE8)</link>, we have
+<equation id="id188715"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id188827"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id188953"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id189020">Use of property <link document="m23634" target-id="id270955">(CE8)</link> shows that <link target-id="eip-id7440047">(CI2)</link> and <link target-id="eip-id4241559">(CI3)</link> are equivalent. Now just as <link target-id="eip-id7004533">(CI1)</link> extends
+to <link target-id="eip-id13155372">(CI5)</link>, so also <link target-id="eip-id4241559">(CI3)</link> is equivalent to</para>
+      <para id="eip-id5413982">
+          <emphasis effect="bold">(CI6) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>functions</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>g</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+      <para id="id189158">Property <link target-id="eip-id5413982">(CI6)</link> provides an important <emphasis effect="italics">interpretation</emphasis> of conditional independence:</para>
+      <para id="id189168"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> is the best mean-square estimator for <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow></m:math>, given knowledge of
+<emphasis effect="italics">Z</emphasis>.  The condition <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math> implies that additional knowledge about
+<emphasis effect="italics">Y</emphasis> does not modify that best estimate. This interpretation is often the most useful
+as a modeling assumption.</para>
+      <para id="id189287">Similarly, property <link target-id="eip-id5980744">(CI4)</link> is equivalent to</para>
+      <para id="eip-id1167127505082">
+          <emphasis effect="bold">(CI8) </emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+              <m:mo>=</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>{</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Z</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>}</m:mo>
+              <m:mspace width="4pt"/>
+              <m:mi mathvariant="normal">a</m:mi>
+              <m:mo>.</m:mo>
+              <m:mi mathvariant="normal">s</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>for</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>all</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>Borel</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>functions</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mi>g</m:mi>
+            </m:mrow>
+          </m:math>
+        </para>
+      <para id="id189431">Property <link document="m24003" target-id="uid7">(CI7)</link> is an alternate way of expressing <link target-id="eip-id5413982">(CI6)</link>.
+Property <link document="m24003" target-id="uid9">(CI9)</link> is just a convenient way of expressing the other conditions.</para>
+      <para id="id189436">The additional properties in <link document="m24003">Appendix G</link> are useful in a variety of contexts, particularly
+in establishing properties of Markov systems. We refer to them as needed.</para>
+    </section>
+    <section id="cid2"><title>The Bayesian approach to statistics</title><para id="id189451">In the <emphasis effect="italics">classical</emphasis> approach to statistics, a fundamental problem is to obtain
+information about the population distribution from the distribution in a simple
+random sample. There is an inherent difficulty with this approach.
+Suppose it is desired to determine the population mean <emphasis effect="italics">μ</emphasis>. Now <emphasis effect="italics">μ</emphasis> is an unknown
+quantity about which there is uncertainty. However, since it is a constant, we cannot
+assign a probability such as <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>&lt;</m:mo><m:mi>μ</m:mi><m:mo>≤</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  This has no meaning.</para>
+      <para id="id189507">The <emphasis effect="italics">Bayesian</emphasis> approach makes a fundamental change of viewpoint. Since the
+population mean is a quantity about which there is uncertainty, it is <emphasis effect="italics">modeled as
+a random variable</emphasis> whose value is to be determined by experiment. In this view,
+the population distribution is conceived as randomly selected from a class of such
+distributions. One way of expressing this idea is to refer to a <emphasis effect="italics">state of nature</emphasis>.  The population distribution has been “selected by nature” from a class of distributions.
+The mean value is thus a random variable whose value is determined by this selection. To
+implement this point of view, we assume</para>
+      <list id="id189534" display="block" list-type="enumerated"><item id="uid11">The value of the parameter (say <emphasis effect="italics">μ</emphasis> in the discussion above) is a “realization”
+of a <emphasis effect="italics">parameter random variable</emphasis> <emphasis effect="italics">H</emphasis>.  If two or more parameters are sought
+(say the mean and variance), they may be considered components of a parameter random
+vector.
+</item>
+        <item id="uid12">The population distribution is a <emphasis effect="italics">conditional distribution</emphasis>, given the
+value of <emphasis effect="italics">H</emphasis>.
+</item>
+      </list>
+    
+      <para id="fs-id6092596"><emphasis effect="bold"> The Bayesian model</emphasis></para>
+      
+      <para id="id189616">If <emphasis effect="italics">X</emphasis> is a random variable whose distribution is the population distribution and
+<emphasis effect="italics">H</emphasis> is the parameter random variable, then <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>H</m:mi><m:mo>}</m:mo></m:mrow></m:math> have a joint distribution.</para>
+      <list id="id189660" display="block" list-type="enumerated">
+        <item id="uid13">For each <emphasis effect="italics">u</emphasis> in the range of <emphasis effect="italics">H</emphasis>, we have a <emphasis effect="italics">conditional distribution</emphasis> for <emphasis effect="italics">X</emphasis>,
+given <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi></m:mrow></m:math>.
+</item>
+        <item id="uid14">We assume a <emphasis effect="italics">prior distribution</emphasis> for <emphasis effect="italics">H</emphasis>. This is based on previous experience.
+</item>
+        <item id="uid15">We have a <emphasis effect="italics">random sampling process</emphasis>, given <emphasis effect="italics">H</emphasis>:
+ i.e., <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is conditionally iid, given <emphasis effect="italics">H</emphasis>.
+Let <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> and consider the joint conditional distribution function
+<equation id="id189878"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>W</m:mi><m:mo>|</m:mo><m:mi>H</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>|</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>≤</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>≤</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>≤</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id190035"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mfenced separators="" open="[" close="]"><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>]</m:mo></m:mrow></m:mfenced><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mo>|</m:mo><m:mi>H</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+If <emphasis effect="italics">X</emphasis> has conditional density, given <emphasis effect="italics">H</emphasis>, then a similar product rule holds.
+</item>
+      </list>
+    
+      <para id="fs-id2662118"><emphasis effect="bold"> Population proportion</emphasis></para>
+      <para id="id190276">We illustrate these ideas with one of the simplest, but most important, statistical
+problems: that of determining the proportion of a population which has a particular
+characteristic. Examples abound. We mention only a few to indicate the importance.</para>
+      <list id="id190282" display="block" list-type="enumerated">
+        <item id="uid16">The proportion of a population of voters who plan to vote for a certain candidate.
+</item>
+        <item id="uid17">The proportion of a given population which has a certain disease.
+</item>
+        <item id="uid18">The fraction of items from a production line which meet specifications.
+</item>
+        <item id="uid19">The fraction of women between the ages eighteen and fifty five who hold full time jobs.
+</item>
+      </list>
+      <para id="id190336">The parameter in this case is the proportion <emphasis effect="italics">p</emphasis> who meet the criterion. If sampling is
+at random, then the sampling process is equivalent to a sequence of Bernoulli trials. If
+<emphasis effect="italics">H</emphasis> is the parameter random variable and <emphasis effect="italics">S<sub>n</sub></emphasis> is the number of “successes”
+in a sample of size <emphasis effect="italics">n</emphasis>, then the conditional distribution for <emphasis effect="italics">S<sub>n</sub></emphasis>, given <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u,</m:mi></m:mrow> </m:math>
+is binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>. To see this, consider</para>
+      <equation id="id190434">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id190548">Anaysis is carried out for each fixed <emphasis effect="italics">u</emphasis> as in the ordinary Bernoulli case. If</para>
+      <equation id="id190564"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>number</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>successes</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>in</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>n</m:mi>
+            <m:mspace width="4.pt"/>
+            <m:mtext>component</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>trials</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id190694">we have the result</para>
+      <equation id="id190700">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>{</m:mo>
+                  <m:mi>k</m:mi>
+                  <m:mo>}</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>S</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id190883">
+        <emphasis effect="italics">The objective</emphasis>
+      </para>
+      <para id="id190892">We seek to determine the best mean-square estimate of <emphasis effect="italics">H</emphasis>, given <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi></m:mrow></m:math>.  Two
+steps must be taken:</para>
+      <list id="id190925" display="block" list-type="enumerated">
+        <item id="uid20">If <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi></m:mrow></m:math>, we know <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>n</m:mi><m:mi>u</m:mi></m:mrow></m:math>. Sampling gives <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi></m:mrow></m:math>. We
+make a <emphasis effect="italics">Bayesian reversal</emphasis> to get an exression for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>H</m:mi><m:mo>|</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid21">To complete the task, we must assume a prior distribution for <emphasis effect="italics">H</emphasis> on the basis
+of prior knowledge, if any.
+</item>
+      </list>
+      <para id="id191069">
+        <emphasis effect="italics">The Bayesian reversal</emphasis>
+      </para>
+      <para id="id191075">Since <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an event with positive probability, we use the definition of the
+conditional expectation, given an event, and the law of total probability <link document="m23634" target-id="id268018">(CE1b)</link> to obtain</para>
+      <equation id="id191104">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mo>[</m:mo>
+                <m:mi>H</m:mi>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mrow>
+                    <m:mo>{</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>}</m:mo>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mrow>
+                    <m:mo>{</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>}</m:mo>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mo>{</m:mo>
+                <m:mi>H</m:mi>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:mrow>
+                      <m:mo>{</m:mo>
+                      <m:mi>k</m:mi>
+                      <m:mo>}</m:mo>
+                    </m:mrow>
+                  </m:msub>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>n</m:mi>
+                    </m:msub>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mi>H</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>}</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mo>{</m:mo>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:mrow>
+                      <m:mo>{</m:mo>
+                      <m:mi>k</m:mi>
+                      <m:mo>}</m:mo>
+                    </m:mrow>
+                  </m:msub>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>n</m:mi>
+                    </m:msub>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mi>H</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mo>∫</m:mo>
+                <m:mi>u</m:mi>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:mrow>
+                      <m:mo>{</m:mo>
+                      <m:mi>k</m:mi>
+                      <m:mo>}</m:mo>
+                    </m:mrow>
+                  </m:msub>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>n</m:mi>
+                    </m:msub>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mi>H</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>∫</m:mo>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msub>
+                    <m:mi>I</m:mi>
+                    <m:mrow>
+                      <m:mo>{</m:mo>
+                      <m:mi>k</m:mi>
+                      <m:mo>}</m:mo>
+                    </m:mrow>
+                  </m:msub>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>n</m:mi>
+                    </m:msub>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mi>H</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id191451">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>C</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>k</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>∫</m:mo>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>k</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>k</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>C</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>k</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>∫</m:mo>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mi>k</m:mi>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>k</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id191617">
+        <emphasis effect="italics">A prior distribution for</emphasis>
+        <emphasis effect="italics">H</emphasis>
+      </para>
+      <para id="id191635">The beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r, s)</m:mi><m:mo/><m:mspace width="0.166667em"/><m:mi/><m:mo/></m:mrow></m:math> distribution (see <link document="m24003">Appendix G</link>), proves to be a “natural” choice
+for this purpose. Its range is the unit interval, and by proper choice of parameters <m:math overflow="scroll"><m:mrow><m:mi>r, s,</m:mi><m:mo> </m:mo><m:mspace width="0.277778em"/><m:mi> </m:mi></m:mrow></m:math>
+the density function can be given a variety of forms (see Figures <link target-id="uid22">1</link> and <link target-id="uid23">2</link>).</para>
+      <figure id="uid22"><media id="uid22_media" alt="Figure one is a graph labeled Beta (r, s) density -- r = 2. The horizontal axis is labeled as t, and the vertical axis as Density. The values on the horizontal axis range from 0 to 1 in increments of 0.1, and the values on the vertical axis range from 0 to 4.5 in increments of 0.5. There are three plotted shapes on this graph. The most simple is a linear path beginning at the origin in the bottom-left corner of the graph that continues with a constant positive slope across the graph and halfway up the vertical axis, terminating at (1, 2). It is labeled as s = 1. The second is a curve that begins at the origin with a positive, decreasing slope. It continues increasing across the page until it flattens at (0.5, 1.5), where it begins decreasing at an increasing rate. It meets the bottom-right corner. The shape is symmetrical, and looks more like a small portion of a circle than a bell curve. This plot is labeled as s = 2.The third is a distribution, again beginning at the origin, that starts out with a sharply positive slope. The distribution increases at a decreasing rate very quickly, where at (0.1, 4.25) it peaks, and begins decreasing at an increasing rate until approximately (0.25, 2), where it begins decreasing at a decreasing rate until it tails off to a horizontal line at approximately (0.6, 0) where it is essentially a horizontal line that continues to the bottom-right edge of the graph. This plot is labeled as s = 10.">
+          <image mime-type="image/png" src="../../media/fig7_4_3.png" id="uid22_onlineimage" width="414"><!-- NOTE: attribute width changes image size online (pixels). original width is 414. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_3-b1dc.eps" id="uid22_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The Beta(r,s) density for <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>10</m:mn></m:mrow></m:math>.</caption></figure>
+      <figure id="uid23"><media id="uid23_media" alt="Figure two is a graph labeled Beta (r, s) density -- r = 5. The horizontal axis is labeled as t, and the vertical axis as Density. The values on the horizontal axis range from 0 to 1 in increments of 0.1, and the values on the vertical axis range from 0 to 3.5 in increments of 0.5. There are three plotted distributions on the graph. All three maintain some sort of shape that resembles a distorted bell curve, with tapering tails on both sides and a large peak. One plot, labeled s = 5, resembles a symmetrical bell curve, with tails leading to both the bottom-right and bottom-left of the graph, and a peak at approximately (0.5, 2.5) in the middle of the figure. A second plot, labeled s = 10, is not as centered as the previously described plot, as its peak is located at approximately (0.3, 3.25). This distribution is slightly skewed right as a result, and its bell is more slender in shape than the standard normal distribution. The third plot, labeled s = 2, is strongly skewed left, with its peak located at approximately (0.8, 2.5)">
+          <image mime-type="image/png" src="../../media/fig7_4_4.png" id="uid23_onlineimage" width="414"><!-- NOTE: attribute width changes image size online (pixels). original width is 414. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_4-c253.eps" id="uid23_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The Beta(r,s) density for <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>10</m:mn></m:mrow></m:math>.</caption></figure>
+      <para id="id191778">Its analysis is based on the integrals</para>
+      <equation id="id191781">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mrow>
+                <m:mi>r</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>)</m:mo>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Γ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>a</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>Γ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>a</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id191929">For <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:math>, the density is given by</para>
+      <equation id="id191970">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>H</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>)</m:mo>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mrow>
+                <m:mi>r</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mrow>
+                <m:mi>r</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>&lt;</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>&lt;</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id192138">For <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>≥</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>≥</m:mo><m:mn>2</m:mn></m:mrow></m:math>,  <emphasis effect="italics">f<sub>H</sub></emphasis> has a maximum at <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  For
+<m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi></m:mrow></m:math> positive integers, <emphasis effect="italics">f<sub>H</sub></emphasis> is a polynomial on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>, so that determination
+of the distribution function is easy. In any case, straightforward integration, using
+the integral formula above, shows</para>
+      <equation id="id192275">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>r</m:mi>
+              <m:mrow>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>r</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mi>r</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>s</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>r</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id192397">If the prior distribution for <emphasis effect="italics">H</emphasis> is beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>),</m:mo></m:mrow></m:math> we may complete the determination
+of <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>H</m:mi><m:mo>|</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>]</m:mo></m:mrow></m:math> as follows.</para>
+      <equation id="id192464">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>A</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>r</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mn>1</m:mn>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>k</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>k</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>r</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>s</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>A</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>r</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mn>1</m:mn>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mi>k</m:mi>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>k</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>r</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>s</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mn>1</m:mn>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>k</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>r</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>s</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mn>1</m:mn>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>k</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>r</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>s</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id192839">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>r</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id192989">We may adapt the analysis above to show that <emphasis effect="italics">H</emphasis> is conditionally beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>+</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>),</m:mo></m:mrow></m:math> given
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi></m:mrow></m:math>.</para>
+      <equation id="id193060">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>S</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mi>t</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>H</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mrow>
+                    <m:mo>{</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>}</m:mo>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:mrow>
+                    <m:mo>{</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>}</m:mo>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>t</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      
+<para id="id193240">The analysis goes through exactly as for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>H</m:mi><m:mo>|</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>]</m:mo></m:mrow></m:math>, except that <emphasis effect="italics">H</emphasis> is replaced by
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>t</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>H</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. In the integral expression for the numerator, one factor <emphasis effect="italics">u</emphasis> is replaced by
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>t</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. For<m:math overflow="scroll"><m:mrow><m:mspace width="0.166667em"/><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:math>, we get</para>
+
+      <equation id="id193378">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>S</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>S</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id193578">The integrand is the density for beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id193619">Any prior information on the distribution for <emphasis effect="italics">H</emphasis> can be utilized to select suitable
+<m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s. </m:mi></m:mrow> </m:math> If there is no prior information, we simply take <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>1, </m:mn></m:mrow></m:math> which
+corresponds to</para>
+      <para id="id193675"><m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> uniform on <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>. The value is as likely to be in any
+subinterval of a given length as in any other of the same length. The information in the sample serves
+to modify the distribution for <emphasis effect="italics">H</emphasis>, conditional upon that information.</para>
+
+<example id="fs-id3187130"><title>Population proportion with a beta prior</title><para id="id193732">It is desired to estimate the portion of the student body which favors a proposed increase
+in the student blanket tax to fund the campus radio station. A sample of size <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>20</m:mn></m:mrow></m:math> is taken.
+Fourteen respond in favor of the increase. Assuming prior ignorance (i.e., that<m:math overflow="scroll"><m:mrow><m:mspace width="0.166667em"/><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> beta (1,1)), what is the conditional distribution given <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mn>20</m:mn></m:msub><m:mo>=</m:mo><m:mn>14</m:mn></m:mrow></m:math>? After the
+first sample is taken, a second sample of size <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>20</m:mn></m:mrow></m:math> is taken, with thirteen
+favorable responses. Analysis is made using the conditional distribution for the
+first sample as the prior for the second. Make a new estimate of <emphasis effect="italics">H</emphasis>.</para>
+      <figure id="uid24"><media id="uid24_media" alt="Figure three is a graph labeled, Condition densities beta (15, 7) and beta (28, 14). The horizontal axis is labeled as t, and the vertical axis is labeled, conditional density. The values on the horizontal axis range from 0 to 1 in increments of 0.1, and the values on the vertical axis range from 0 to 6 in increments of one. There are two plots in this figure. Both are similar in shape, reflecting two beta distributions, with long tails, relatively symmetric in structure, and reaching only one peak of distribution. The first distribution, labeled beta (15, 7), is centered horizontally at 0.7, and reaches a vertical value of conditional density of four. It is slightly skewed to the left, but there is no visible vertical significance further to the left on the horizontal axis past  the value 0.3. Likewise, there is no vertical significance past approximately 0.92 in the tail on the right. The second plot, labeled beta (28, 14), is a stronger distribution, centered at approximately 0.68, but reaching a conditional density in respect to the vertical axis of approximately 5.5. The plot again is slightly skewed left, and no significant portion of the graph can be seen in the tails past 0.4 to the left and 0.88 to the right.">
+          <image mime-type="image/png" src="../../media/fig16_2_1.png" id="uid24_onlineimage" width="405"><!-- NOTE: attribute width changes image size online (pixels). original width is 405. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig16_2_1.eps" id="uid24_printimage" print-width="3.8in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Conditional densities for repeated sampling, <link target-id="fs-id3187130"/>.</caption></figure>
+      <para id="id193827">SOLUTION</para>
+      <para id="id193830">For the <emphasis effect="italics">first sample</emphasis> the parameters are <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  According the treatment above,
+<emphasis effect="italics">H</emphasis> is conditionally beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>+</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo>(</m:mo><m:mn>15</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>. The density has a maximum at
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>+</m:mo><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>/</m:mo><m:mi>n</m:mi></m:mrow></m:math>. The conditional expecation, however, is
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>+</m:mo><m:mi>n</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>15</m:mn><m:mo>/</m:mo><m:mn>22</m:mn><m:mo>≈</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6818</m:mn></m:mrow></m:math>.</para>
+      <para id="id194032">For the <emphasis effect="italics">second sample</emphasis>, with the conditional distribution as the new prior, we
+should expect more sharpening of the density about the new mean-square estimate. For
+the new sample, <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>20</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>13</m:mn></m:mrow></m:math>, and the prior <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>15</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+The new conditional distribution has parameters
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>r</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:mn>15</m:mn><m:mo>+</m:mo><m:mn>13</m:mn><m:mo>=</m:mo><m:mn>28</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>s</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:mn>20</m:mn><m:mo>+</m:mo><m:mn>7</m:mn><m:mo>-</m:mo><m:mn>13</m:mn><m:mo>=</m:mo><m:mn>14</m:mn></m:mrow></m:math>. The density has a maximum at
+<m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mn>28</m:mn><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>/</m:mo><m:mo>(</m:mo><m:mn>28</m:mn><m:mo>+</m:mo><m:mn>14</m:mn><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>27</m:mn><m:mo>/</m:mo><m:mn>40</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6750</m:mn></m:mrow></m:math>. The best estimate of <emphasis effect="italics">H</emphasis> is
+<m:math overflow="scroll"><m:mrow><m:mn>28</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mn>28</m:mn><m:mo>+</m:mo><m:mn>14</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:mn>3</m:mn></m:mrow></m:math>. The conditonal densities in the two cases may be
+plotted with MATLAB (see Figure 1).</para>
+      <code id="id194264" display="block">t = 0:0.01:1;
+plot(t,beta(15,7,t),'k-',t,beta(28,14,t),'k--')
+</code>
+      <para id="id194298">As expected, the maximum for the second is somewhat larger and occurs at
+a slightly smaller <emphasis effect="italics">t</emphasis>, reflecting the smaller <emphasis effect="italics">k</emphasis>. And the density in the second
+case shows less spread, resulting from the fact that prior information from the
+first sample is incorporated into the analysis of the second sample.</para>
+      <para id="id194323">The same
+result is obtained if the two samples are combined into one sample of size 40.</para>
+      </example>
+      <para id="id194342">It may be well to compare the result of Bayesian analysis with that for classical
+statistics. Since, in the latter, case prior information is not utilized, we make the comparison
+with the case of no prior knowledge (<m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>). For the classical case, the
+estimator for <emphasis effect="italics">μ</emphasis> is the sample average; for the Bayesian case with beta prior, the
+estimate is the conditional expectation of <emphasis effect="italics">H</emphasis>, given <emphasis effect="italics">S<sub>n</sub></emphasis>.</para>
+      <equation id="id194399">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mtext>If</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+            </m:mrow>
+            <m:mtext>:</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Classical</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>estimate</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>=</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:mi>k</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>n</m:mi>
+            </m:mrow>
+            <m:mspace width="4.pt"/>
+            <m:mspace width="4.pt"/>
+            <m:mspace width="4.pt"/>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Bayesian</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>estimate</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>=</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+              <m:mo>/</m:mo>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id194514">For large sample size <emphasis effect="italics">n</emphasis>, these do not differ significantly. For small samples, the
+difference may be quite important. The Bayesian estimate is often referred to as
+the <emphasis effect="italics">small sample</emphasis> estimate, although there is nothing in the Bayesian procedure
+which calls for small samples. In any event, the Bayesian estimate seems preferable
+for small samples, and it has the advantage that <emphasis effect="italics">prior information may be utilized</emphasis>.  The sampling procedure upgrades the prior distribution.</para>
+      <para id="id194544">The essential <emphasis effect="italics">idea</emphasis> of the Bayesian approach is the view that an unknown parameter about
+which there is uncertainty is modeled as the value of a random variable. The <emphasis effect="italics">name</emphasis>
+Bayesian comes from the role of Bayesian reversal in the analysis.</para>
+      <para id="id194559">The application of Bayesian analysis to the population proportion required Bayesian
+reversal in the case of discrete <emphasis effect="italics">S<sub>n</sub></emphasis>. We consider, next, this reversal process
+when all random variables are absolutely continuous.</para>
+    
+      <para id="fs-id7157157"><emphasis effect="bold"> The Bayesian reversal for a joint absolutely continuous pair</emphasis></para>
+      <para id="id194590">In the treatment above, we utilize the fact that the conditioning random variable
+<emphasis effect="italics">S<sub>n</sub></emphasis> is discrete. Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>W</m:mi><m:mo>,</m:mo><m:mi>H</m:mi><m:mo>}</m:mo></m:mrow></m:math> is jointly absolutely continuous, and
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>W</m:mi><m:mo>|</m:mo><m:mi>H</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>|</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>H</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> are specified. To determine</para>
+      <equation id="id194682">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>W</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:mi>u</m:mi>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>W</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id194748">we need <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>H</m:mi><m:mo>|</m:mo><m:mi>W</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>|</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  This requires a Bayesian reversal of the conditional
+densities. Now by definition</para>
+      <equation id="id194787">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>W</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mrow>
+                    <m:mi>W</m:mi>
+                    <m:mi>H</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>W</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>W</m:mi>
+                <m:mi>H</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>W</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>H</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id194957">Since by the rule for determining the marginal density</para>
+      <equation id="id194963">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>W</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>W</m:mi>
+                <m:mi>H</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>W</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>H</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id195077">we have</para>
+      <equation id="id195083">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>W</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mrow>
+                    <m:mi>W</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>H</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>|</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>∫</m:mo>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mrow>
+                    <m:mi>W</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>H</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>|</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>W</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mo>∫</m:mo>
+                <m:mi>u</m:mi>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mrow>
+                    <m:mi>W</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>H</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>|</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>∫</m:mo>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mrow>
+                    <m:mi>W</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>H</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>|</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>H</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+<example id="fs-id1165228672878"><title>A Bayesian reversal</title><para id="id195368">Suppose <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> and the <emphasis effect="italics">X<sub>i</sub></emphasis> are conditionally iid,
+exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>, given <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mi>u. </m:mi></m:mrow></m:math> 
+
+A sample of size <emphasis effect="italics">n</emphasis> is taken. Put
+<m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>t</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>+</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mo>+</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math>. Determine
+the best mean-square estimate of <emphasis effect="italics">H</emphasis>, given <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math>.</para>
+<para id="eip-id8136936">SOLUTION</para>
+      <equation id="id195639"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mi>H</m:mi>
+                </m:mrow>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>u</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>W</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∏</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>u</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id195819">Hence</para>
+      <equation id="id195824">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>W</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:mi>u</m:mi>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>W</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mi>∞</m:mi>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:msup>
+                      <m:mi>t</m:mi>
+                      <m:mo>*</m:mo>
+                    </m:msup>
+                  </m:mrow>
+                </m:msup>
+                <m:mi>λ</m:mi>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mi>u</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mi>∞</m:mi>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msup>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>u</m:mi>
+                    <m:msup>
+                      <m:mi>t</m:mi>
+                      <m:mo>*</m:mo>
+                    </m:msup>
+                  </m:mrow>
+                </m:msup>
+                <m:mi>λ</m:mi>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mi>u</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id196023"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mi>∞</m:mi>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mo>(</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:msup>
+                      <m:mi>t</m:mi>
+                      <m:mo>*</m:mo>
+                    </m:msup>
+                    <m:mo>)</m:mo>
+                    <m:mi>u</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mi>∞</m:mi>
+                </m:msubsup>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msup>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mo>(</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:msup>
+                      <m:mi>t</m:mi>
+                      <m:mo>*</m:mo>
+                    </m:msup>
+                    <m:mo>)</m:mo>
+                    <m:mi>u</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mspace width="0.166667em"/>
+                <m:mi>d</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+                <m:mo>!</m:mo>
+              </m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:msup>
+                    <m:mi>t</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>2</m:mn>
+                </m:mrow>
+              </m:msup>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:msup>
+                    <m:mi>t</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mo>+</m:mo>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mo>*</m:mo>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+    </section>
+  </content>
+</document>

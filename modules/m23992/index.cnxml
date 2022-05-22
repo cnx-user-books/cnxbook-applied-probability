@@ -1,0 +1,659 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Appendix C: Data on some common distributions</title>
+  <metadata>
+  <md:content-id>m23992</md:content-id><md:title>Appendix C: Data on some common distributions</md:title>
+  <md:abstract>Data are provided on some commonly used discrete and absolutely continuous distributions. Matlab procedures are provided for some.</md:abstract>
+  <md:uuid>55e48a0b-5af6-4e1e-95f2-89a8a8dbe88a</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1">
+      <title> Discrete distributions</title>
+      <list id="id90180" display="block" list-type="enumerated"><item id="uid1">
+          
+          <emphasis effect="bold">Indicator functions</emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>E</m:mi>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>E</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>p</m:mi>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>q</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>p</m:mi>
+            </m:mrow>
+          </m:math>
+          <equation id="id89663">
+            <m:math overflow="scroll" mode="display">
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mi>p</m:mi>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mi> Var </m:mi>
+                <m:mspace width="0.166667em"/>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mi>p</m:mi>
+                <m:mi>q</m:mi>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mi>q</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>p</m:mi>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mi>s</m:mi>
+                </m:msup>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:msub>
+                  <m:mi>g</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mi>q</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>p</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:math>
+          </equation>
+        </item>
+        <item id="uid2">
+          
+          <emphasis effect="bold">Simple random variable</emphasis>
+          <m:math overflow="scroll">
+            <m:mstyle scriptlevel="0" displaystyle="true">
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mo>=</m:mo>
+                <m:munderover>
+                  <m:mo>∑</m:mo>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>n</m:mi>
+                </m:munderover>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>I</m:mi>
+                  <m:msub>
+                    <m:mi>A</m:mi>
+                    <m:mi>i</m:mi>
+                  </m:msub>
+                </m:msub>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mtext>(a</m:mtext>
+                <m:mspace width="4.pt"/>
+                <m:mtext>primitive</m:mtext>
+                <m:mspace width="4.pt"/>
+                <m:mtext>form)</m:mtext>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mi>P</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>A</m:mi>
+                    <m:mi>i</m:mi>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:msub>
+                  <m:mi>p</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:mstyle>
+          </m:math>
+          <equation id="id90729"><m:math overflow="scroll" mode="display">
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:munderover>
+                  <m:mrow><m:mo>∑</m:mo></m:mrow>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>n</m:mi>
+                </m:munderover>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>p</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mi> Var </m:mi>
+                <m:mspace width="0.166667em"/>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:munderover>
+                  <m:mrow><m:mo>∑</m:mo></m:mrow>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>n</m:mi>
+                </m:munderover>
+                <m:msubsup>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msubsup>
+                <m:msub>
+                  <m:mi>p</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>q</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:mn>2</m:mn>
+                <m:munder>
+                  <m:mo>∑</m:mo>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>&lt;</m:mo>
+                    <m:mi>j</m:mi>
+                  </m:mrow>
+                </m:munder>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>p</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>p</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:munderover>
+                  <m:mrow><m:mo>∑</m:mo></m:mrow>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>n</m:mi>
+                </m:munderover>
+                <m:msub>
+                  <m:mi>p</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mi>s</m:mi>
+                    <m:msub>
+                      <m:mi>t</m:mi>
+                      <m:mi>i</m:mi>
+                    </m:msub>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+            </m:math>
+          </equation>
+        </item>
+        <item id="uid3"><emphasis effect="bold">Binomial</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>with</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mo>:</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mtext>iid</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:mstyle></m:math><equation id="id91118"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>p</m:mi><m:mi>k</m:mi></m:msup><m:msup><m:mi>q</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:msup></m:mrow></m:math></equation><equation id="id91180"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>n</m:mi><m:mi>p</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>n</m:mi><m:mi>p</m:mi><m:mi>q</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>q</m:mi><m:mo>+</m:mo><m:mi>p</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>n</m:mi></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>q</m:mi><m:mo>+</m:mo><m:mi>p</m:mi><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mi>n</m:mi></m:msup></m:mrow></m:math></equation><emphasis effect="italics">MATLAB</emphasis>:          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mtext>ibinom</m:mtext><m:mspace width="0.166667em"/><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mtext>cbinom</m:mtext><m:mspace width="0.166667em"/><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math></item>
+        <item id="uid4"><emphasis effect="bold">Geometric</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:msup><m:mi>q</m:mi><m:mi>k</m:mi></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math><equation id="id91525"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>q</m:mi><m:mo>/</m:mo><m:mi>p</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>q</m:mi><m:mo>/</m:mo><m:msup><m:mi>p</m:mi><m:mn>2</m:mn></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:mi>s</m:mi></m:mrow></m:mfrac></m:mrow></m:math></equation>
+If <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:msup><m:mi>q</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn> 1  </m:mn></m:mrow></m:math>, then
+<equation id="id91781"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>p</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>q</m:mi><m:mo>/</m:mo><m:msup><m:mi>p</m:mi><m:mn>2</m:mn></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>p</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>p</m:mi><m:mi>s</m:mi></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:mi>s</m:mi></m:mrow></m:mfrac></m:mrow></m:math></equation></item>
+        <item id="uid5"><emphasis effect="bold">Negative binomial</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>. <emphasis effect="italics">X</emphasis> is the number of failures
+before the <emphasis effect="italics">m</emphasis>th success.
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:msup><m:mi>p</m:mi><m:mi>m</m:mi></m:msup><m:msup><m:mi>q</m:mi><m:mi>k</m:mi></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+<equation id="id92098"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>m</m:mi><m:mi>q</m:mi><m:mo>/</m:mo><m:mi>p</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>m</m:mi><m:mi>q</m:mi><m:mo>/</m:mo><m:msup><m:mi>p</m:mi><m:mn>2</m:mn></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow></m:mfrac></m:mfenced><m:mi>m</m:mi></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:mi>s</m:mi></m:mrow></m:mfrac></m:mfenced><m:mi>m</m:mi></m:msup></m:mrow></m:math></equation>
+For <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>m</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mo>+</m:mo><m:mi>m</m:mi></m:mrow></m:math>, the number of the trial on which <emphasis effect="italics">m</emphasis>th success occurs.
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:msup><m:mi>p</m:mi><m:mi>m</m:mi></m:msup><m:msup><m:mi>q</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mi>m</m:mi></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>≥</m:mo><m:mi>m</m:mi></m:mrow></m:math>.
+<equation id="id92420"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>m</m:mi><m:mo>/</m:mo><m:mi>p</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>m</m:mi><m:mi>q</m:mi><m:mo>/</m:mo><m:msup><m:mi>p</m:mi><m:mn>2</m:mn></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:mi>p</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow></m:mfrac></m:mfenced><m:mi>m</m:mi></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:mi>p</m:mi><m:mi>s</m:mi></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:mi>s</m:mi></m:mrow></m:mfrac></m:mfenced><m:mi>m</m:mi></m:msup></m:mrow></m:math></equation><emphasis effect="italics">MATLAB</emphasis>:          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mtext>nbinom</m:mtext><m:mspace width="0.166667em"/><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math></item>
+        <item id="uid6"><emphasis effect="bold">Poisson</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mfrac><m:msup><m:mi>μ</m:mi><m:mi>k</m:mi></m:msup><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:mstyle></m:math><equation id="id92787"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>μ</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>μ</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup></m:mrow></m:math></equation><emphasis effect="italics">MATLAB</emphasis>:          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mtext>ipoisson</m:mtext><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mtext>cpoisson</m:mtext><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>, </m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math></item>
+       </list>
+    </section>
+    <section id="cid2">
+      <title> Absolutely continuous distributions</title>
+      <list id="id93055" display="block" list-type="enumerated">
+        <item id="uid7"><emphasis effect="bold">Uniform</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mrow><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>a</m:mi><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mi>b</m:mi></m:mrow></m:mstyle></m:math>  (zero elsewhere)
+<equation id="id93156"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>b</m:mi><m:mo>+</m:mo><m:mi>a</m:mi></m:mrow><m:mn>2</m:mn></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:msup><m:mrow><m:mo>(</m:mo><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mn>12</m:mn></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>b</m:mi></m:mrow></m:msup><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>a</m:mi></m:mrow></m:msup></m:mrow><m:mrow><m:mi>s</m:mi><m:mo>(</m:mo><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac></m:mrow></m:math></equation></item>
+        <item id="uid8">
+          
+          <emphasis effect="bold">Symmetric triangular</emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>a</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>a</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:math>
+          <m:math overflow="scroll">
+            <m:mstyle scriptlevel="0" displaystyle="true">
+              <m:mrow>
+                <m:msub>
+                  <m:mi>f</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mfenced separators="" open="{" close="">
+                  <m:mtable>
+                    <m:mtr>
+                      <m:mtd columnalign="left">
+                        <m:mrow>
+                          <m:mrow>
+                            <m:mo>(</m:mo>
+                            <m:mi>a</m:mi>
+                            <m:mo>+</m:mo>
+                            <m:mi>t</m:mi>
+                            <m:mo>)</m:mo>
+                          </m:mrow>
+                          <m:mo>/</m:mo>
+                          <m:msup>
+                            <m:mi>a</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msup>
+                        </m:mrow>
+                      </m:mtd>
+                      <m:mtd columnalign="left">
+                        <m:mrow>
+                          <m:mo>-</m:mo>
+                          <m:mi>a</m:mi>
+                          <m:mo>≤</m:mo>
+                          <m:mi>t</m:mi>
+                          <m:mo>&lt;</m:mo>
+                          <m:mn>0</m:mn>
+                        </m:mrow>
+                      </m:mtd>
+                    </m:mtr>
+                    <m:mtr>
+                      <m:mtd columnalign="left">
+                        <m:mrow>
+                          <m:mrow>
+                            <m:mo>(</m:mo>
+                            <m:mi>a</m:mi>
+                            <m:mo>-</m:mo>
+                            <m:mi>t</m:mi>
+                            <m:mo>)</m:mo>
+                          </m:mrow>
+                          <m:mo>/</m:mo>
+                          <m:msup>
+                            <m:mi>a</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msup>
+                        </m:mrow>
+                      </m:mtd>
+                      <m:mtd columnalign="left">
+                        <m:mrow>
+                          <m:mspace width="0.277778em"/>
+                          <m:mspace width="0.277778em"/>
+                          <m:mspace width="0.277778em"/>
+                          <m:mn>0</m:mn>
+                          <m:mo>≤</m:mo>
+                          <m:mi>t</m:mi>
+                          <m:mo>≤</m:mo>
+                          <m:mi>a</m:mi>
+                        </m:mrow>
+                      </m:mtd>
+                    </m:mtr>
+                  </m:mtable>
+                </m:mfenced>
+              </m:mrow>
+            </m:mstyle>
+          </m:math>
+          <equation id="id93490">
+            <m:math overflow="scroll" mode="display">
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mi> Var </m:mi>
+                <m:mspace width="0.166667em"/>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mfrac>
+                  <m:msup>
+                    <m:mi>a</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msup>
+                  <m:mn>6</m:mn>
+                </m:mfrac>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mfrac>
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>e</m:mi>
+                      <m:mrow>
+                        <m:mi>a</m:mi>
+                        <m:mi>s</m:mi>
+                      </m:mrow>
+                    </m:msup>
+                    <m:mo>+</m:mo>
+                    <m:msup>
+                      <m:mi>e</m:mi>
+                      <m:mrow>
+                        <m:mo>-</m:mo>
+                        <m:mi>a</m:mi>
+                        <m:mi>s</m:mi>
+                      </m:mrow>
+                    </m:msup>
+                    <m:mo>-</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>a</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>s</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                  </m:mrow>
+                </m:mfrac>
+                <m:mo>=</m:mo>
+                <m:mfrac>
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>e</m:mi>
+                      <m:mrow>
+                        <m:mi>a</m:mi>
+                        <m:mi>s</m:mi>
+                      </m:mrow>
+                    </m:msup>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>a</m:mi>
+                    <m:mi>s</m:mi>
+                  </m:mrow>
+                </m:mfrac>
+                <m:mo>·</m:mo>
+                <m:mfrac>
+                  <m:mrow>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:msup>
+                      <m:mi>e</m:mi>
+                      <m:mrow>
+                        <m:mo>-</m:mo>
+                        <m:mi>a</m:mi>
+                        <m:mi>s</m:mi>
+                      </m:mrow>
+                    </m:msup>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>a</m:mi>
+                    <m:mi>s</m:mi>
+                  </m:mrow>
+                </m:mfrac>
+              </m:mrow>
+            </m:math>
+          </equation>
+        </item>
+        <item id="uid9">
+          
+          <emphasis effect="bold">Exponential</emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>λ</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:math>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:msub>
+                <m:mi>f</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>λ</m:mi>
+              <m:mspace width="0.166667em"/>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mi>t</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>t</m:mi>
+              <m:mo>≥</m:mo>
+              <m:mn>0</m:mn>
+            </m:mrow>
+          </m:math>
+          <equation id="id93785">
+            <m:math overflow="scroll" mode="display">
+              <m:mrow>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mfrac>
+                  <m:mn>1</m:mn>
+                  <m:mi>λ</m:mi>
+                </m:mfrac>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mi> Var </m:mi>
+                <m:mspace width="0.166667em"/>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mfrac>
+                  <m:mn>1</m:mn>
+                  <m:msup>
+                    <m:mi>λ</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msup>
+                </m:mfrac>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mfrac>
+                  <m:mi>λ</m:mi>
+                  <m:mrow>
+                    <m:mi>λ</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>s</m:mi>
+                  </m:mrow>
+                </m:mfrac>
+              </m:mrow>
+            </m:math>
+          </equation>
+        </item>
+        <item id="uid10"><emphasis effect="bold">Gamma</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:msup><m:mi>λ</m:mi><m:mi>α</m:mi></m:msup><m:msup><m:mi>t</m:mi><m:mrow><m:mi>α</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup></m:mrow><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:mstyle></m:math><equation id="id94037"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>α</m:mi><m:mi>λ</m:mi></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>α</m:mi><m:msup><m:mi>λ</m:mi><m:mn>2</m:mn></m:msup></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mi>λ</m:mi><m:mrow><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac></m:mfenced><m:mi>α</m:mi></m:msup></m:mrow></m:math></equation><emphasis effect="italics">MATLAB</emphasis>:          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mtext>gammadbn</m:mtext><m:mspace width="0.166667em"/><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math></item>
+        <item id="uid11"><emphasis effect="bold">Normal</emphasis><m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mrow><m:mi>σ</m:mi><m:msqrt><m:mrow><m:mn>2</m:mn><m:mi>π</m:mi></m:mrow></m:msqrt></m:mrow></m:mfrac><m:mspace width="0.166667em"/><m:mo form="prefix">exp</m:mo><m:mfenced separators="" open="(" close=")"><m:mo>-</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow><m:mi>σ</m:mi></m:mfrac></m:mfenced><m:mn>2</m:mn></m:msup></m:mfenced></m:mrow></m:mstyle></m:math><equation id="id94359"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>μ</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mo form="prefix">exp</m:mo><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:msup><m:mi>s</m:mi><m:mn>2</m:mn></m:msup></m:mrow><m:mn>2</m:mn></m:mfrac><m:mo>+</m:mo><m:mi>μ</m:mi><m:mi>s</m:mi></m:mfenced></m:mrow></m:math></equation><emphasis effect="italics">MATLAB</emphasis>:          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mtext>gaussian</m:mtext><m:mspace width="0.166667em"/><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+        <item id="uid12"><emphasis effect="bold">Beta</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:math><equation id="id94597"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>)</m:mo><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:msup><m:mi>t</m:mi><m:mrow><m:mi>r</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>r</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math></equation><equation id="id94742"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>r</m:mi><m:mrow><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>Var</m:mtext><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>r</m:mi><m:mi>s</m:mi></m:mrow><m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:mfrac></m:mrow></m:math></equation><emphasis effect="italics">MATLAB</emphasis>:    <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mtext>beta</m:mtext><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mtext>betadbn</m:mtext><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+        <item id="uid13"><emphasis effect="bold">Weibull</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>,</m:mo><m:mi>ν</m:mi><m:mo>)</m:mo></m:mrow></m:math><equation id="id95000"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:msup><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>ν</m:mi><m:mo>)</m:mo></m:mrow><m:mi>α</m:mi></m:msup></m:mrow></m:msup><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>α</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>λ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>ν</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mi>ν</m:mi></m:mrow></m:math></equation><equation id="id95119"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>λ</m:mi><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>α</m:mi></m:mrow></m:msup></m:mfrac><m:mspace width="0.166667em"/><m:mi>Γ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>α</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>ν</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>Var</m:mtext><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>λ</m:mi><m:mrow><m:mn>2</m:mn><m:mo>/</m:mo><m:mi>α</m:mi></m:mrow></m:msup></m:mfrac><m:mspace width="0.166667em"/><m:mfenced separators="" open="[" close="]"><m:mi>Γ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:msup><m:mi>Γ</m:mi><m:mn>2</m:mn></m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:mfenced></m:mrow></m:math></equation><emphasis effect="italics">MATLAB</emphasis>:   <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>ν</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> only)
+<equation id="id95310"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mtext>weibull</m:mtext><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>l</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mtext>weibulld</m:mtext><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>l</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+      </list>
+    </section>
+    <section id="cid3">
+      <title> Relationship between gamma and Poisson distributions</title>
+      <list id="id95427" display="block" list-type="bulleted">
+        <item id="uid14">If <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≥</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:math> where
+<m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid15">If <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≥</m:mo><m:mi>n</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> where
+<m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+      </list>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,4055 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Appendix A to Applied Probability: Directory of m-functions and m-procedures</title>
+  <metadata>
+  <md:content-id>m23942</md:content-id><md:title>Appendix A to Applied Probability: Directory of m-functions and m-procedures</md:title>
+  <md:abstract>User-defined functions as distinct from the basic MATLAB functions which are part of the MATLAB package.  An m-procedure (or sometimes a procedure) is an m-file containing a set of MATLAB commands which carry out a prescribed set of operation</md:abstract>
+  <md:uuid>4188f713-680b-466c-9b2f-a3fdc965ad5b</md:uuid>
+</metadata>
+
+<content>
+    <para id="id140890">We use the term <emphasis effect="italics">m-function</emphasis> to designate a user-defined function as distinct
+from the basic MATLAB functions which are part of the MATLAB package. For example,
+the m-function <emphasis effect="italics">minterm</emphasis> produces the specified minterm vector. An <emphasis effect="italics">m-procedure</emphasis> (or
+sometimes a <emphasis effect="italics">procedure</emphasis>) is an m-file containing a set of MATLAB commands which carry out
+a prescribed set of operations. Generally, these will prompt for (or assume) certain data upon which
+the procedure is carried out. We use the term <emphasis effect="italics">m-program</emphasis> to refer to either an m-function
+or an m-procedure.</para>
+    <para id="id140927">In addition to the m-programs there is a collection of m-files with properly formatted data which
+can be entered into the workspace by calling the file.</para>
+    <para id="id140931">Although the m-programs were written for MATLAB version 4.2, they work for
+versions 5.1, 5.2, and 7.04. The latter versions offer some new features which may make more efficient
+implementation of some of the m-programs, and which make possible some new ones.
+With one exception (so noted), these are not explored in this collection.</para>
+    <section id="cid1">
+      <title> MATLAB features</title>
+      <para id="id140946">Utilization of MATLAB resources is made possible by a systematic analysis of some
+features of the basic probability model. In particular, the minterm analysis of
+logical (or Boolean) combinations of events and the analysis of the structure
+of simple random variables with the aid of indicator functions and minterm analysis
+are exploited.</para>
+      <para id="id140952">A number of standard features of MATLAB are utilized extensively. In addition to
+standard matrix algebra, we use:</para>
+      <list id="id140956" display="block" list-type="enumerated"><item id="uid1">Array arithmetic. This involves element by element calculations. For example,
+if <code display="inline">a, b</code> are matrices of the same size, then <code display="inline">a.*b</code> is the matrix obtained
+by multiplying corresponding elements in the two matrices to obtain a new matrix of
+the same size.
+</item>
+        <item id="uid2">Relational operations, such as less than, equal, etc. to obtain zero-one matrices with ones 
+at element positions where the conditions are met.
+</item>
+        <item id="uid3">Logical operations on zero-one matrices utilizing logical operators <emphasis effect="italics">and</emphasis>, <emphasis effect="italics">or</emphasis>,
+and <emphasis effect="italics">not</emphasis>, as well as certain related functions such as <emphasis effect="italics">any</emphasis>, <emphasis effect="italics">all</emphasis>, <emphasis effect="italics">not</emphasis>,
+<emphasis effect="italics">find</emphasis>, etc.
+<emphasis effect="italics">Note</emphasis>. Relational operations and logical operations produce zero-one arrays, called <emphasis effect="italics">logical
+arrays</emphasis>, which MATLAB treats differently from zero-one <emphasis effect="italics">numeric arrays</emphasis>. A rectangular array
+in which some rows are logical arrays but others are not is treated as a numeric array.
+Any zero-one rectangular array can be converted to a numeric array (matrix) by the command
+<code display="inline">A = ones(size(A)).*A</code>,
+
+</item>
+        <item id="uid4">Certain MATLAB functions, such as <emphasis effect="italics">meshgrid, sum, cumsum, prod, cumprod</emphasis> are used
+repeatedly. The function <emphasis effect="italics">dot</emphasis> for dot product does not work if either array is a logical array.
+If one of the pair is numeric, the command C = A*B'
+ will work.
+</item>
+      </list>
+    </section>
+    <section id="cid2"><title>Auxiliary user-defined building blocks</title><exercise id="eip-576" print-placement="here" type="Code Example"><label>csort.m</label>
+<problem id="eip-574" type="description"><label>Description of Code</label>
+  <para id="eip-12">
+ One of the most useful is a special sorting and consolidation operation implemented in the
+m-function <emphasis effect="italics">csort</emphasis>.   A standard problem arises when each of a non distinct set of
+values has an associated probability. To obtain the distribution, it is necessary to
+sort the values and add the probabilities associated with each distinct value. The
+following m-function achieves these operations:
+function [t,p] = csort(T,P).
+
+<emphasis effect="bold">T</emphasis> and <emphasis effect="bold">P</emphasis> are matrices with the same number
+of elements. Values of <emphasis effect="bold">T</emphasis> are sorted and identical values are consolidated; values of
+<emphasis effect="bold">P</emphasis> corresponding to identical values of <emphasis effect="bold">T</emphasis> are added.
+ A number of derivative functions and procedures utilize csort. The following two
+are useful.
+  </para>
+</problem>
+
+<solution id="eip-425" type="code">
+<label>Code</label>
+  <code id="eip-id7362198" display="block">
+function [t,p] = csort(T,P)
+% CSORT  [t,p] = csort(T,P) Sorts T, consolidates P
+% Version of 4/6/97
+% Modified to work with Versions 4.2 and 5.1, 5.2
+% T and P matrices with the same number of elements
+% The vector T(:)' is sorted:
+%   * Identical values in T are consolidated;
+%   * Corresponding values in P are added.
+T = T(:)';
+n = length(T);
+[TS,I] = sort(T);
+d  = find([1,TS(2:n) - TS(1:n-1) &gt;1e-13]); % Determines distinct values
+t  = TS(d);                                % Selects the distinct values
+m  = length(t) + 1;
+P  = P(I);                                 % Arranges elements of P
+F  = [0 cumsum(P(:)')];
+Fd = F([d length(F)]);                     % Cumulative sums for distinct values
+p  = Fd(2:m) - Fd(1:m-1);                  % Separates the sums for these values
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id9476048" print-placement="here" type="Code Example"><label>distinct.m</label>
+<problem id="eip-id9396600" type="description"><label>Description of Code</label>
+  <para id="eip-id19028519"><emphasis effect="bold">distinct.m</emphasis>
+<code display="inline">function y = distinct(T)</code>  determines and sorts the distinct
+members of matrix <emphasis effect="italics">T</emphasis>.
+
+  </para>
+</problem>
+
+<solution id="eip-id19922913" type="code">
+<label>Code</label>
+  <code id="eip-id21356735" display="block">
+function y = distinct(T)
+% DISTINCT y = distinct(T) Disinct* members of T
+% Version of 5/7/96  Rev 4/20/97 for version 4 &amp; 5.1, 5.2
+% Determines distinct members of matrix T.
+% Members which differ by no more than 10^{-13}
+% are considered identical.  y is a row
+% vector of the distinct members.
+TS = sort(T(:)');
+n  = length(TS);
+d  = [1  abs(TS(2:n) - TS(1:n-1)) &gt;1e-13];
+y  = TS(find(d));
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id9898382" print-placement="here" type="Code Example"><label>freq.m</label>
+<problem id="eip-id7430491" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id19819180"><emphasis effect="bold">freq.m</emphasis> sorts the distinct members of a matrix,
+counts the number of occurrences of each value, and calculates the cumulative relative
+frequencies.
+
+  </para>
+</problem>
+
+<solution id="eip-id19213470" type="code">
+<label>Code</label>
+  <code id="eip-id1164770815218" display="block">
+% FREQ file freq.m Frequencies of members of matrix
+% Version of 5/7/96
+% Sorts the distinct members of a matrix, counts
+% the number of occurrences of each value, and
+% calculates the cumulative relative frequencies.
+T  = input('Enter matrix to be counted  ');
+[m,n] = size(T);
+[t,f] = csort(T,ones(m,n));
+p = cumsum(f)/(m*n);
+disp(['The number of entries is  ',num2str(m*n),])
+disp(['The number of distinct entries is  ',num2str(length(t)),] )
+disp(' ')
+dis = [t;f;p]';
+disp('    Values     Count   Cum Frac')
+disp(dis)
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id20123264" print-placement="here" type="Code Example"><label>dsum.m</label>
+<problem id="eip-id18838603" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id19122320"><emphasis effect="bold">dsum.m</emphasis><code display="inline">function y = dsum(v,w)</code>  determines and sorts the distinct
+elements among the sums of pairs of elements of row vectors <emphasis effect="bold">v</emphasis> and
+<emphasis effect="bold">w</emphasis>.
+
+  </para>
+</problem>
+
+<solution id="eip-id19301591" type="code">
+<label>Code</label>
+  <code id="eip-id7427298" display="block">
+function y = dsum(v,w)
+% DSUM y = dsum(v,w) Distinct pair sums of elements
+% Version of 5/15/97
+% y is a row vector of distinct
+% values among pair sums of elements
+% of matrices v, w.
+% Uses m-function distinct
+[a,b] = meshgrid(v,w);
+t = a+b;
+y = distinct(t(:)');
+</code>
+</solution>
+</exercise>
+
+
+
+
+
+<exercise id="eip-id1949941" print-placement="here" type="Code Example"><label>rep.m</label>
+<problem id="eip-id1164159880448" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164168961285"><emphasis effect="bold">rep.m</emphasis><code display="inline">function y = rep(A,m,n)</code>  replicates matrix <emphasis effect="bold">A</emphasis>, <emphasis effect="italics">m</emphasis> times
+vertically and <emphasis effect="italics">n</emphasis> times horizontally. Essentially the same as the function <emphasis effect="italics">repmat</emphasis> in
+MATLAB version 5, released December, 1996.
+  </para>
+</problem>
+
+<solution id="eip-id1164159549932" type="code">
+<label>Code</label>
+  <code id="fs-id1170125608124" display="block">
+function y = rep(A,m,n)
+% REP y = rep(A,m,n) Replicates matrix A
+% Version of 4/21/96
+% Replicates A,
+% m times vertically,
+% n times horizontally
+% Essentially the same as repmat in version 5.1, 5.2
+[r,c] = size(A);
+R = [1:r]';
+C = [1:c]';
+v = R(:,ones(1,m));
+w = C(:,ones(1,n));
+y = A(v,w);
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1164166715064" print-placement="here" type="Code Example"><label>elrep.m</label>
+<problem id="eip-id1164166685500" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164169698433"><emphasis effect="bold">elrep.m</emphasis><code display="inline">function y = elrep(A,m,n)</code>  replicates each element of
+<emphasis effect="bold">A</emphasis>, <emphasis effect="italics">m</emphasis> times vertically and <emphasis effect="italics">n</emphasis> times horizontally.
+
+  </para>
+</problem>
+
+<solution id="eip-id1164169001239" type="code">
+<label>Code</label>
+  <code id="fs-id1170124092731" display="block">
+function y = elrep(A,m,n)
+% ELREP y = elrep(A,m,n) Replicates elements of A
+% Version of 4/21/96
+% Replicates each element,
+% m times vertically,
+% n times horizontally
+[r,c] = size(A);
+R = 1:r;
+C = 1:c;
+v = R(ones(1,m),:);
+w = C(ones(1,n),:);
+y = A(v,w);
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id3351094" print-placement="here" type="Code Example"><label>kronf.m</label>
+<problem id="eip-id1164172009381" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id4446075"><emphasis effect="bold">kronf.m</emphasis><code display="inline">function y = kronf(A,B)</code>  determines the Kronecker product
+of matrices <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">A</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi mathvariant="bold">B</m:mi></m:mrow></m:math>. Achieves the same result for full matrices as the MATLAB function
+<emphasis effect="italics">kron</emphasis>.
+
+  </para>
+</problem>
+
+<solution id="eip-id1164170647442" type="code">
+<label>Code</label>
+<code id="id137741" display="block">function y = kronf(A,B)
+% KRONF y = kronf(A,B) Kronecker product
+% Version of 4/21/96
+% Calculates Kronecker product of full matrices.
+% Uses m-functions elrep and rep
+% Same result for full matrices as kron for version 5.1, 5.2
+[r,c] = size(B);
+[m,n] = size(A);
+y = elrep(A,r,c).*rep(B,m,n);
+</code></solution>
+</exercise>
+
+<exercise id="eip-id1164165905599" print-placement="here" type="Code Example"><label>colcopy.m</label>
+<problem id="eip-id1164169064340" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id8600182"><emphasis effect="bold">colcopy.m</emphasis><code display="inline">function y = colcopy(v,n)</code>  treats row or column vector
+<emphasis effect="bold">v</emphasis> as a column vector and makes a matrix with <emphasis effect="italics">n</emphasis> columns of <emphasis effect="bold">v</emphasis>.
+
+  </para>
+</problem>
+
+<solution id="eip-id1164169391603" type="code">
+<label>Code</label>
+  <code id="id137869" display="block">function y = colcopy(v,n)
+% COLCOPY y = colcopy(v,n)  n columns of v
+% Version of 6/8/95 (Arguments reversed 5/7/96)
+% v a row or column vector
+% Treats v as column vector
+% and makes n copies
+% Procedure based on "Tony's trick"
+[r,c] = size(v);
+if r == 1
+  v = v';
+end
+y = v(:,ones(1,n));
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id1164169402536" print-placement="here" type="Code Example"><label>colcopyi.m</label>
+<problem id="eip-id1164171955854" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164170705098"><emphasis effect="bold">colcopyi.m</emphasis><code display="inline">function y = colcopyi(v,n)</code>  treats row or column
+vector <emphasis effect="bold">v</emphasis> as a column vector, reverses the order of the elements, and makes a
+matrix with <emphasis effect="italics">n</emphasis> columns of the reversed vector.
+  </para>
+</problem>
+
+<solution id="eip-id1164160305202" type="code">
+<label>Code</label>
+<code id="id138017" display="block">function y = colcopyi(v,n)
+% COLCOPYI y = colcopyi(v,n) n columns in reverse order
+% Version of 8/22/96
+% v a row or column vector.
+% Treats v as column vector,
+% reverses the order of the
+% elements, and makes n copies.
+% Procedure based on "Tony's trick"
+N = ones(1,n);
+[r,c] = size(v);
+if r == 1
+  v = v(c:-1:1)';
+else
+  v = v(r:-1:1);
+end
+y = v(:,N);
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1164170405498" print-placement="here" type="Code Example"><label>rowcopy.m</label>
+<problem id="eip-id1164163732649" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164165974828"><emphasis effect="bold">rowcopy.m</emphasis><code display="inline">function y = rowcopy(v,n)</code>  treats row or column vector
+<emphasis effect="bold">v</emphasis> as a row vector and makes a matrix with <emphasis effect="italics">n</emphasis> rows of <emphasis effect="bold">v</emphasis>.
+</para>
+</problem>
+
+<solution id="eip-id1164162784936" type="code">
+<label>Code</label>
+<code id="id138222" display="block">function y = rowcopy(v,n)
+% ROWCOPY y = rowcopy(v,n)  n rows of v
+% Version of 5/7/96
+% v a row or column vector
+% Treats v as row vector
+% and makes n copies
+% Procedure based on "Tony's trick"
+[r,c] = size(v);
+if c == 1
+  v = v';
+end
+y = v(ones(1,n),:);
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id1164169155093" print-placement="here" type="Code Example"><label>repseq.m</label>
+<problem id="eip-id1164158505483" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id4246764"><emphasis effect="bold">repseq.m</emphasis><code display="inline">function y = repseq(V,n)</code>  replicates vector <emphasis effect="italics">V</emphasis><emphasis effect="italics"> n</emphasis>
+times—horizontally if <emphasis effect="italics">V</emphasis> is a row vector and vertically if <emphasis effect="italics">V</emphasis> is a column vector.
+</para>
+</problem>
+
+<solution id="eip-id1164166807474" type="code">
+<label>Code</label>
+<code id="id138394" display="block">function y = repseq(V,n);
+% REPSEQ y = repseq(V,n) Replicates vector V n times
+% Version of 3/27/97
+% n replications of vector V
+% Horizontally if V a row vector
+% Vertically if V a column vector
+m = length(V);
+s = rem(0:n*m-1,m)+1;
+y = V(s);
+</code></solution>
+</exercise>
+
+<exercise id="eip-id1164170139463" print-placement="here" type="Code Example"><label>total.m</label>
+<problem id="eip-id1164169070233" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164169902322"><emphasis effect="bold">total.m</emphasis>   Total of all elements in a matrix, calculated by:
+ <code display="inline">total(x) = sum(sum(x))</code>.
+
+</para>
+</problem>
+
+<solution id="eip-id1164168702730" type="code">
+<label>Code</label>
+  <code id="fs-id1170126749682" display="block">
+function y = total(x)
+% TOTAL y = total(x)
+% Version of 8/1/93
+% Total of all elements in matrix x.
+y = sum(sum(x));
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id3322216" print-placement="here" type="Code Example"><label>dispv.m</label>
+<problem id="eip-id1164170228120" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164168761792"><emphasis effect="bold">dispv.m</emphasis> Matrices <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi></m:mrow> </m:math> are transposed and displayed 
+side by side.
+
+</para>
+</problem>
+
+<solution id="eip-id6823809" type="code">
+<label>Code</label>
+  <code id="fs-id1170133703674" display="block">
+function y = dispv(A,B)
+% DISPV y = dispv(A,B) Transpose of A, B side by side
+% Version of 5/3/96
+% A, B are matrices of the same size
+% They are transposed and displayed
+% side by side.
+y  = [A;B]';
+</code>
+
+</solution>
+</exercise>
+
+<exercise id="eip-id1164166948392" print-placement="here" type="Code Example"><label>roundn.m</label>
+<problem id="eip-id1164173941783" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164168078328"><emphasis effect="bold">roundn.m</emphasis><code display="inline">function y = roundn(A,n)</code>  rounds matrix <emphasis effect="bold">A</emphasis> to <emphasis effect="italics">n</emphasis>
+decimal places.
+
+</para>
+</problem>
+
+<solution id="eip-id1164168783602" type="code">
+<label>Code</label>
+  <code id="fs-id1170125585016" display="block">
+function y = roundn(A,n);
+% ROUNDN y = roundn(A,n)
+% Version of 7/28/97
+% Rounds matrix A to n decimals
+y = round(A*10^n)/10^n;
+</code>
+
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1164170047261" print-placement="here" type="Code Example"><label>arrep.m</label>
+<problem id="eip-id1164165923560" type="description"><label>Description of Code</label>
+  
+
+<para id="eip-id1164168844696"><emphasis effect="bold">arrep.m</emphasis><code display="inline">function y = arrep(n,k)</code>  forms all arrangements, with
+repetition, of <emphasis effect="italics">k</emphasis> elements from the sequence <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>:</m:mo><m:mi>n</m:mi></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id1164170006932" type="code">
+<label>Code</label>
+  <code id="fs-id1170126091405" display="block">
+function y = arrep(n,k);
+% ARREP  y = arrep(n,k);
+% Version of 7/28/97
+% Computes all arrangements of k elements of 1:n,
+% with repetition allowed. k may be greater than n.
+% If only one input argument n, then k = n.
+% To get arrangements of column vector V, use
+% V(arrep(length(V),k)).
+N = 1:n;
+if nargin == 1
+  k = n;
+end
+y = zeros(k,n^k);
+for i = 1:k
+  y(i,:) = rep(elrep(N,1,n^(k-i)),1,n^(i-1));
+end
+</code>
+
+</solution>
+</exercise>
+</section>
+<section id="fs-id1861923"><title>Minterm vectors and probabilities</title><para id="id141953">The analysis of logical combinations of events (as sets) is systematized by the use of
+the minterm expansion. This leads naturally to the notion of minterm vectors. These are
+zero-one vectors which can be combined by logical operations. Production of the basic
+minterm patterns is essential to a number of operations. The following m-programs are
+key elements of various other programs.</para>
+
+
+      <exercise id="eip-id1165964099035" print-placement="here" type="Code Example"><label>minterm.m</label>
+<problem id="eip-id1165962278581" type="description"><label>Description of Code</label>
+  <para id="eip-id1165962290516">
+<emphasis effect="bold">minterm.m</emphasis><code display="inline">function y = minterm(n,k)</code>  generates the <emphasis effect="italics">k</emphasis>th minterm
+vector in a class of <emphasis effect="italics">n</emphasis>.  </para>
+</problem>
+
+<solution id="eip-id1165963994233" type="code">
+<label>Code</label>
+  <code id="fs-id14482411" display="block">
+function y = minterm(n,k)
+% MINTERM y = minterm(n,k) kth minterm of class of n
+% Version of 5/5/96
+% Generates the kth minterm vector in a class of n
+% Uses m-function rep
+y = rep([zeros(1,2^(n-k)) ones(1,2^(n-k))],1,2^(k-1));
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id1165964146910" print-placement="here" type="Code Example"><label>mintable.m</label>
+<problem id="eip-id1165964123566" type="description"><label>Description of Code</label>
+  <para id="eip-id1165964418461">
+<emphasis effect="bold">mintable.m</emphasis><code display="inline">function y = mintable(n)</code>  generates a table of minterm
+vectors by repeated use of the m-function <emphasis effect="italics">minterm</emphasis>.
+</para>
+</problem>
+
+<solution id="eip-id1165975773093" type="code">
+<label>Code</label>
+<code id="fs-id14394782" display="block">
+function y = mintable(n)
+% MINTABLE y = mintable(n)  Table of minterms vectors
+% Version of 3/2/93
+% Generates a table of minterm vectors
+% Uses the m-function minterm
+y = zeros(n,2^n);
+for i = 1:n
+    y(i,:) = minterm(n,i);
+end
+
+</code>
+
+</solution>
+</exercise>
+
+<exercise id="eip-id1165968374240" print-placement="here" type="Code Example"><label>minvec3.m</label>
+<problem id="eip-id1165975587598" type="description"><label>Description of Code</label>
+  <para id="eip-id1165964209432">
+<emphasis effect="bold">minvec3.m</emphasis>   sets basic minterm vectors <m:math overflow="scroll"><m:mrow><m:mi mathvariant="bold">A</m:mi><m:mo>,</m:mo><m:mi mathvariant="bold">B</m:mi><m:mo>,</m:mo><m:mi mathvariant="bold">C</m:mi><m:mo>,</m:mo><m:msup><m:mi mathvariant="bold">A</m:mi><m:mi mathvariant="bold">c</m:mi></m:msup><m:mo>,</m:mo><m:msup><m:mi mathvariant="bold">B</m:mi><m:mi mathvariant="bold">c</m:mi></m:msup><m:mo>,</m:mo><m:msup><m:mi mathvariant="bold">C</m:mi><m:mi mathvariant="bold">c</m:mi></m:msup></m:mrow></m:math> for the
+class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math>. (Similarly for <emphasis effect="italics">minvec4.m, minvec5.m</emphasis>, etc.)</para>
+</problem>
+
+<solution id="eip-id1165963509770" type="code">
+<label>Code</label>
+  <code id="fs-id4883968" display=" block">
+% MINVEC3  file minvec3.m Basic minterm vectors
+% Version of 1/31/95
+A = minterm(3,1);
+B = minterm(3,2);
+C = minterm(3,3);
+Ac = ~A;
+Bc = ~B;
+Cc = ~C;
+disp('Variables are A, B, C, Ac, Bc, Cc')
+disp('They may be renamed, if desired.')
+
+</code>
+
+</solution>
+</exercise>
+
+<exercise id="eip-id1165964219060" print-placement="here" type="Code Example"><label>minmap</label>
+<problem id="eip-id1165964224860" type="description"><label>Description of Code</label>
+  <para id="eip-id1165964098223">
+<emphasis effect="bold">minmap</emphasis><code display="inline">function y = minmap(pm)</code>  reshapes a row or column vector
+<emphasis effect="bold">pm</emphasis> of minterm probabilities into minterm map format.
+</para>
+</problem>
+
+<solution id="eip-id1165963486833" type="code">
+<label>Code</label>
+  <code id="fs-id9441710" display="block">
+function y = minmap(pm)
+% MINMAP y = minmap(pm) Reshapes vector of minterm probabilities 
+% Version of 12/9/93 
+% Reshapes a row or column vector pm of minterm 
+% probabilities into minterm map format
+m = length(pm);
+n = round(log(m)/log(2));
+a = fix(n/2);
+if m ~= 2^n
+  disp('The number of minterms is incorrect')
+else
+  y = reshape(pm,2^a,2^(n-a));
+end
+</code>
+
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1165975804836" print-placement="here" type="Code Example"><label>binary.m</label>
+<problem id="eip-id1165970199988" type="description"><label>Description of Code</label>
+  <para id="eip-id1165968308074">
+<emphasis effect="bold">binary.m</emphasis><code display="inline">function y = binary(d,n)</code>  converts a matrix <emphasis effect="italics">d</emphasis> of
+floating point nonnegative integers to a matrix of binary equivalents, one on each row.
+Adapted from m-functions written by Hans Olsson and by Simon Cooke. Each matrix row may
+be converted to an unspaced string of zeros and ones by the device   ys = setstr(y + '0').
+</para>
+</problem>
+
+<solution id="eip-id1165975634308" type="code">
+<label>Code</label>
+  <code id="fs-id8078910" display="block">
+function y = binary(d,n)
+% BINARY y = binary(d,n) Integers to binary equivalents
+% Version of 7/14/95 
+% Converts a matrix d of floating point, nonnegative
+% integers to a matrix of binary equivalents. Each row
+% is the binary equivalent (n places) of one number.
+% Adapted from the programs dec2bin.m, which shared
+% first prize in an April 95 Mathworks contest. 
+% Winning authors: Hans Olsson from Lund, Sweden,
+% and Simon Cooke from Glasgow, UK.
+% Each matrix row may be converted to an unspaced string 
+% of zeros and ones by the device:  ys = setstr(y + '0').
+if nargin &lt; 2,  n = 1; end     % Allows omission of argument n
+[f,e] = log2(d); 
+n = max(max(max(e)),n);      
+y = rem(floor(d(:)*pow2(1-n:0)),2);
+</code>
+
+</solution>
+</exercise>
+
+<exercise id="eip-id1165962287800" print-placement="here" type="Code Example"><label>mincalc.m</label>
+<problem id="eip-id1165974760362" type="description"><label>Description of Code</label>
+  <para id="eip-id1165975154506">
+<emphasis effect="bold">mincalc.m</emphasis>  The m-procedure <emphasis effect="italics">mincalc</emphasis> determines minterm probabilities
+from suitable data. For a discussion of the data formatting and certain problems, see 2.6.
+</para>
+</problem>
+
+<solution id="eip-id1165964265927" type="code">
+<label>Code</label>
+<code id="fs-id1163983002694" display="block">
+% MINCALC file mincalc.m Determines minterm probabilities
+% Version of 1/22/94 Updated for version 5.1 on  6/6/97
+% Assumes a data file which includes
+%  1. Call for minvecq to set q basic minterm vectors, each (1 x 2^q)
+%  2. Data vectors DV = matrix of md data Boolean combinations of basic sets--
+%     Matlab produces md minterm vectors-- one on each row.
+%     The first combination is always A|Ac (the whole space)
+%  3. DP = row matrix of md data probabilities.
+%     The first probability is always 1.
+%  4. Target vectors TV = matrix of mt target Boolean combinations.
+%     Matlab produces a row minterm vector for each target combination.
+%     If there are no target combinations, set TV = [];
+[md,nd] = size(DV);
+ND = 0:nd-1;
+ID = eye(nd);                 % Row i is minterm vector i-1
+[mt,nt] = size(TV);
+MT = 1:mt;
+rd = rank(DV);
+if rd &lt; md                    
+   disp('Data vectors are NOT linearly independent')
+  else
+   disp('Data vectors are linearly independent')
+end
+% Identification of which minterm probabilities can be determined from the data
+% (i.e., which minterm vectors are not linearly independent of data vectors)
+AM = zeros(1,nd);
+for i = 1:nd
+  AM(i) = rd == rank([DV;ID(i,:)]);  % Checks for linear dependence of each
+  end   
+am = find(AM);                             % minterm vector
+CAM = ID(am,:)/DV;     % Determination of coefficients for the available minterms
+pma = DP*CAM';                % Calculation of probabilities of available minterms
+PMA = [ND(am);pma]';
+if sum(pma &lt; -0.001) &gt; 0      % Check for data consistency
+   disp('Data probabilities are INCONSISTENT')
+else
+% Identification of which target probabilities are computable from the data
+CT = zeros(1,mt);
+for j = 1:mt
+  CT(j) = rd == rank([DV;TV(j,:)]);
+  end
+ct  = find(CT);
+CCT = TV(ct,:)/DV;            % Determination of coefficients for computable targets
+ctp = DP*CCT';                % Determination of probabilities
+disp(' Computable target probabilities')
+disp([MT(ct); ctp]')
+end                           % end for "if sum(pma &lt; -0.001) &gt; 0"
+disp(['The number of minterms is ',num2str(nd),])
+disp(['The number of available minterms is ',num2str(length(pma)),])
+disp('Available minterm probabilities are in vector pma')
+disp('To view available minterm probabilities, call for PMA')
+
+</code>  
+
+</solution>
+</exercise>
+
+<exercise id="eip-id1165963956713" print-placement="here" type="Code Example"><label>mincalct.m</label>
+<problem id="eip-id1165964420635" type="description"><label>Description of Code</label>
+  <para id="eip-id1165968415854">
+<emphasis effect="bold">mincalct.m</emphasis>  Modification of <emphasis effect="italics">mincalc</emphasis>.  Assumes mincalc
+has been run, calls for new target vectors and performs same calculations as mincalc.
+</para>
+</problem>
+
+<solution id="eip-id1165963517230" type="code">
+<label>Code</label>
+<code id="fs-id12067402" display="block">
+% MINCALCT file mincalct.m  Aditional target probabilities
+% Version of 9/1/93  Updated for version 5 on 6/6/97
+% Assumes a data file which includes
+%  1. Call for minvecq to set q basic minterm vectors.
+%  2. Data vectors DV.  The first combination is always A|Ac.
+%  3. Row matrix DP of data probabilities. The first entry is always 1.
+TV = input('Enter matrix of target Boolean combinations  ');
+[md,nd] = size(DV);
+[mt,nt] = size(TV);
+MT = 1:mt;
+rd = rank(DV);
+CT = zeros(1,mt);   % Identification of computable target probabilities
+for j = 1:mt
+  CT(j) = rd == rank([DV;TV(j,:)]);
+end
+ct  = find(CT);
+CCT = TV(ct,:)/DV;  % Determination of coefficients for computable targets
+ctp = DP*CCT';      % Determination of probabilities
+disp(' Computable target probabilities')
+disp([MT(ct); ctp]')
+
+
+</code>  
+
+
+</solution>
+</exercise>
+
+
+
+</section>
+
+
+
+
+
+<section id="fs-id1166254121605"><title>Independent events       </title><exercise id="eip-id1172005328604" print-placement="here" type="Code Example"><label>minprob.m</label>
+<problem id="eip-id1172003380776" type="description"><label>Description of Code</label>
+<para id="eip-id1172007944282">
+
+<emphasis effect="bold">minprob.m</emphasis><code display="inline">function y = minprob(p)</code>  calculates minterm probabilities
+for the basic probabilities in row or column vector <emphasis effect="bold">p</emphasis>.  Uses the m-functions
+<emphasis effect="italics">mintable, colcopy</emphasis>.
+
+  
+</para>
+</problem>
+
+<solution id="eip-id5624415" type="code">
+<label>Code</label>
+  <code id="fs-id21036779" display="block">
+function y = minprob(p)
+% MINPROB y = minprob(p) Minterm probs for independent events
+% Version of 4/7/96
+% p is a vector [P(A1) P(A2) ... P(An)], with
+% {A1,A2, ... An} independent.
+% y is the row vector of minterm probabilities
+% Uses the m-functions mintable, colcopy
+n = length(p);
+M = mintable(n);
+a = colcopy(p,2^n);          % 2^n columns, each the vector p
+m = a.*M + (1 - a).*(1 - M); % Puts probabilities into the minterm 
+                             % pattern on its side (n by 2^n)
+y = prod(m);                 % Product of each column of m
+
+</code>
+
+</solution>
+</exercise>
+
+<exercise id="eip-id1172009209042" print-placement="here" type="Code Example"><label>imintest.m</label>
+<problem id="eip-id1172003329468" type="description"><label>Description of Code</label>
+<para id="eip-id1172004390132">
+
+<emphasis effect="bold">imintest.m</emphasis><code display="inline">function y = imintest(pm)</code>  checks minterm probabilities
+for independence.
+  
+</para>
+</problem>
+
+<solution id="eip-id1172005153562" type="code">
+<label>Code</label>
+  <code id="fs-id21047660" display="block">
+function y = imintest(pm)
+% IMINTEST y = imintest(pm) Checks minterm probs for independence
+% Version of 1/25//96
+% Checks minterm probabilities for independence
+% Uses the m-functions mintable and minprob
+m = length(pm);
+n = round(log(m)/log(2));
+if m ~= 2^n
+  y = 'The number of minterm probabilities is incorrect';
+else
+P = mintable(n)*pm';
+pt = minprob(P');
+a = fix(n/2);
+s = abs(pm - pt) &gt; 1e-7;
+  if sum(s) &gt; 0
+    disp('The class is NOT independent')
+    disp('Minterms for which the product rule fails')
+    y = reshape(s,2^a,2^(n-a));
+  else
+    y = 'The class is independent';
+  end
+end
+
+</code>
+
+</solution>
+</exercise>
+
+<exercise id="eip-id1172003437113" print-placement="here" type="Code Example"><label>ikn.m</label>
+<problem id="eip-id1172004662504" type="description"><label>Description of Code</label>
+<para id="eip-id7962178">
+
+<emphasis effect="bold">ikn.m</emphasis><code display="inline">function y = ikn(P,k)</code>  determines the probability of the
+occurrence of exactly <emphasis effect="italics">k</emphasis> of the <emphasis effect="italics">n</emphasis> independent events whose probabilities are in row or
+column vector <emphasis effect="bold">P</emphasis>  <newline/>
+(<emphasis effect="italics">k</emphasis> may be a row or column vector of nonnegative integers
+less than or equal to <emphasis effect="italics">n</emphasis>).
+  
+</para>
+</problem>
+
+<solution id="eip-id1172005152986" type="code">
+<label>Code</label>
+  <code id="fs-id11981275" display="block">
+function y = ikn(P,k)
+% IKN y = ikn(P,k) Individual probabilities of k of n successes
+% Version of 5/15/95
+% Uses the m-functions mintable, minprob, csort
+n = length(P);
+T = sum(mintable(n));  % The number of successes in each minterm
+pm = minprob(P);       % The probability of each minterm
+[t,p] = csort(T,pm);   % Sorts and consolidates success numbers
+                       % and adds corresponding probabilities
+y = p(k+1);
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+       
+
+<exercise id="eip-id1172014860213" print-placement="here" type="Code Example"><label>ckn.m</label>
+<problem id="eip-id1172014803694" type="description"><label>Description of Code</label>
+<para id="eip-id1172004662654">
+
+<emphasis effect="bold">ckn.m</emphasis><code display="inline">function y = ckn(P,k)</code>  determines the probability of the
+occurrence of <emphasis effect="italics">k</emphasis> or more of the <emphasis effect="italics">n</emphasis> independent events whose probabilities are in row or
+column vector <emphasis effect="bold">P</emphasis> (<emphasis effect="italics">k</emphasis> may be a row or column vector)
+  
+</para>
+</problem>
+
+<solution id="eip-id1172005037906" type="code">
+<label>Code</label>
+  <code id="fs-id9771604" display="block">
+function y = ckn(P,k)
+% CKN y = ckn(P,k) Probability of k or more successes
+% Version of 5/15/95
+% Probabilities of k or more of n independent events
+% Uses the m-functions mintable, minprob, csort
+n = length(P);
+m = length(k);
+T = sum(mintable(n));  % The number of successes in each minterm
+pm = minprob(P);       % The probability of each minterm
+[t,p] = csort(T,pm);   % Sorts and consolidates success numbers
+                       % and adds corresponding probabilities
+for i = 1:m            % Sums probabilities for each k value
+  y(i) = sum(p(k(i)+1:n+1));
+end
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id6251561" print-placement="here" type="Code Example"><label>parallel.m</label>
+<problem id="eip-id1172006921743" type="description"><label>Description of Code</label>
+<para id="eip-id1172001576583">
+
+<emphasis effect="bold">parallel.m</emphasis><code display="inline">function y = parallel(p)</code>  determines the probability
+of a parallel combination of the independent events whose probabilities are in row or column
+vector <emphasis effect="bold">p</emphasis>.  
+</para>
+</problem>
+
+<solution id="eip-id1172003203586" type="code">
+<label>Code</label>
+  <code id="fs-id11918376" display="block">
+function y = parallel(p)
+% PARALLEL y = parallel(p) Probaaability of parallel combination
+% Version of 3/3/93
+% Probability of parallel combination.
+% Individual probabilities in row matrix p.
+y = 1 - prod(1 - p);
+
+</code>
+</solution>
+</exercise>
+
+
+</section>
+
+
+<section id="fs-id1166253934849"><title>Conditional probability and conditional idependence</title><exercise id="eip-id1166238086644" print-placement="here" type="Code Example"><label>bayes.m</label>
+<problem id="eip-id1166233967589" type="description"><label>Description of Code</label>
+<para id="eip-id1166232861223">
+
+<emphasis effect="bold">bayes.m</emphasis>  produces a Bayesian reversal of conditional probabilities. The
+input consists of <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>E</m:mi><m:mo>|</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> for a disjoint class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+whose union contains <emphasis effect="italics">E</emphasis>. The procedure calculates <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:mi>E</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:msup><m:mi>E</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:math> for
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math>.
+  
+</para>
+</problem>
+
+<solution id="eip-id1166236921425" type="code">
+<label>Code</label>
+<code id="fs-id8949031" display="block">
+% BAYES file bayes.m Bayesian reversal of conditional probabilities
+% Version of 7/6/93 
+% Input P(E|Ai) and P(Ai)
+% Calculates P(Ai|E) and P(Ai|Ec)
+disp('Requires input PEA = [P(E|A1) P(E|A2) ... P(E|An)]')
+disp(' and PA = [P(A1) P(A2) ... P(An)]')
+disp('Determines PAE  = [P(A1|E) P(A2|E) ... P(An|E)]')
+disp('       and PAEc = [P(A1|Ec) P(A2|Ec) ... P(An|Ec)]')
+PEA  = input('Enter matrix PEA of conditional probabilities  ');
+PA   = input('Enter matrix  PA of probabilities  ');
+PE   = PEA*PA';
+PAE  = (PEA.*PA)/PE;
+PAEc = ((1 - PEA).*PA)/(1 -  PE);
+disp(' ')
+disp(['P(E) = ',num2str(PE),])
+disp(' ')
+disp('    P(E|Ai)   P(Ai)     P(Ai|E)   P(Ai|Ec)')
+disp([PEA; PA; PAE; PAEc]')
+disp('Various quantities are in the matrices PEA, PA, PAE, PAEc, named above')
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+
+
+<exercise id="eip-id1166234241143" print-placement="here" type="Code Example"><label>odds.m</label>
+<problem id="eip-id1166234177630" type="description"><label>Description of Code</label>
+<para id="eip-id1166232589903">
+
+<emphasis effect="bold">odds.m</emphasis>  The procedure calculates posterior odds for for a specified profile <emphasis effect="italics">E</emphasis>.
+Assumes data have been entered by the procedure <emphasis effect="italics">oddsf</emphasis> or <emphasis effect="italics">oddsp</emphasis>.
+  
+</para>
+</problem>
+
+<solution id="eip-id1166234270545" type="code">
+<label>Code</label>
+<code id="fs-id1163976097731" display="block">
+% ODDS file odds.m  Posterior odds for profile
+% Version of 12/4/93
+% Calculates posterior odds for profile E
+% Assumes data has been entered by oddsdf or oddsdp
+E = input('Enter profile matrix E  ');
+C =  diag(a(:,E))';       % aa = a(:,E) is an n by n matrix whose ith column
+D =  diag(b(:,E))';       % is the E(i)th column of a.  The elements on the
+                          % diagonal are b(i, E(i)), 1 &lt;= i &lt;= n
+                          % Similarly for b(:,E)
+
+R = prod(C./D)*(p1/p2);   % Calculates posterior odds for profile 
+disp(' ')
+disp(['Odds favoring Group 1:   ',num2str(R),])
+if R &gt; 1
+  disp('Classify in Group 1')
+else
+  disp('Classify in Group 2')
+end
+</code>
+
+
+
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id1166232607772" print-placement="here" type="Code Example"><label>oddsdf.m</label>
+<problem id="eip-id1166234543531" type="description"><label>Description of Code</label>
+<para id="eip-id1166232497889">
+
+<emphasis effect="bold">oddsdf.m</emphasis>  Sets up calibrating frequencies for calculating posterior odds.
+  
+</para>
+</problem>
+
+<solution id="eip-id1166232620208" type="code">
+<label>Code</label>
+  <code id="fs-id1163978934938" display="block">
+% ODDSDF file oddsdf.m Frequencies for calculating odds
+% Version of 12/4/93
+% Sets up calibrating frequencies 
+% for calculating posterior odds
+A = input('Enter matrix A of frequencies for calibration group 1  ');
+B = input('Enter matrix B of frequencies for calibration group 2  ');
+n = length(A(:,1));       % Number of questions (rows of A)
+m = length(A(1,:));       % Number of answers to each question
+p1 = sum(A(1,:));         % Number in calibration group 1
+p2 = sum(B(1,:));         % Number in calibration group 2
+a = A/p1;
+b = B/p2;
+disp(' ')                 % Blank line in presentation
+disp(['Number of questions = ',num2str(n),])  % Size of profile
+disp(['Answers per question = ',num2str(m),]) % Usually 3: yes, no, uncertain
+disp(' Enter code for answers and call for procedure "odds"  ')
+disp(' ')
+</code>
+
+
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id1166231274841" print-placement="here" type="Code Example"><label>oddsdp.m</label>
+<problem id="eip-id1166232611273" type="description"><label>Description of Code</label>
+<para id="eip-id1166234183274">
+
+<emphasis effect="bold">oddsdp.m</emphasis>  Sets up conditional probabilities for odds calculations.
+  
+</para>
+</problem>
+
+<solution id="eip-id1166232593443" type="code">
+<label>Code</label>
+<code id="fs-id8368209" display="block">
+  % ODDSDP file oddsdp.m Conditional probs for calculating posterior odds
+% Version of 12/4/93
+% Sets up conditional probabilities 
+% for odds calculations
+a  = input('Enter matrix A of conditional probabilities for Group 1  ');
+b  = input('Enter matrix B of conditional probabilities for Group 2  ');
+p1 = input('Probability p1 an individual is from Group 1  ');
+n = length(a(:,1));
+m = length(a(1,:));
+p2 = 1 - p1;
+disp(' ')                 % Blank line in presentation
+disp(['Number of questions = ',num2str(n),])  % Size of profile
+disp(['Answers per question = ',num2str(m),]) % Usually 3: yes, no, uncertain
+disp(' Enter code for answers and call for procedure "odds"  ')
+disp(' ')
+
+</code>
+
+</solution>
+</exercise>
+
+</section>
+
+<section id="fs-id1855273"><title>Bernoulli and multinomial trials</title><exercise id="eip-id14391149" print-placement="here" type="Code Example"><label>btdata.m</label>
+<problem id="eip-id14255570" type="description"><label>Description of Code</label>
+<para id="eip-id14497821">
+
+<emphasis effect="bold">btdata.m</emphasis>  Sets parameter <emphasis effect="italics">p</emphasis> and number <emphasis effect="italics">n</emphasis> of trials for generating Bernoulli
+sequences. Prompts for <emphasis effect="italics">bt</emphasis> to generate the trials.
+  
+</para>
+</problem>
+
+<solution id="eip-id7436520" type="code">
+<label>Code</label>
+<code id="fs-id1163985189429" display="block">
+  % BTDATA file btdata.m Parameters for Bernoulli trials
+% Version of 11/28/92
+% Sets parameters for generating Bernoulli trials
+% Prompts for bt to generate the trials
+n = input('Enter n, the number of trials  ');
+p = input('Enter p, the probability of success on each trial  ');
+disp(' ')
+disp(' Call for bt')
+disp(' ')
+
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id7457824" print-placement="here" type="Code Example"><label>bt.m</label>
+<problem id="eip-id15059300" type="description"><label>Description of Code</label>
+<para id="eip-id4684702">
+
+<emphasis effect="bold">bt.m</emphasis>   Generates Bernoulli sequence for parameters set by btdata. Calculates
+relative frequency of “successes.”
+  
+</para>
+</problem>
+
+<solution id="eip-id14005522" type="code">
+<label>Code</label>
+  <code id="fs-id1163977658755" display="block">
+% BT file bt.m Generates Bernoulli sequence
+% version of 8/11/95  Revised 7/31/97 for version 4.2 and 5.1, 5.2
+% Generates Bernoulli sequence for parameters set by btdata
+% Calculates relative frequency of 'successes'
+clear SEQ;
+B  = rand(n,1) &lt;= p;         %  ones for random numbers &lt;= p
+F  = sum(B)/n;               % relative frequency of ones
+N  = [1:n]';                 % display details
+disp(['n = ',num2str(n),'   p = ',num2str(p),])
+disp(['Relative frequency = ',num2str(F),])
+SEQ = [N B];
+clear N;
+clear B;
+disp('To view the sequence, call for SEQ')
+disp(' ')
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id15233410" print-placement="here" type="Code Example"><label>binomial.m</label>
+<problem id="eip-id14185398" type="description"><label>Description of Code</label>
+<para id="eip-id15376194">
+
+<emphasis effect="bold">binomial.m</emphasis>  Uses ibinom and cbinom to generate <emphasis effect="italics">tables</emphasis> of the
+individual and cumulative binomial probabilities for specified parameters. <emphasis effect="italics">Note</emphasis> that
+for calculation in MATLAB it is usually much more convenient and efficient to use
+<emphasis effect="italics">ibinom</emphasis> and/or <emphasis effect="italics">cbinom</emphasis>.
+  
+</para>
+</problem>
+
+<solution id="eip-id9909371" type="code">
+<label>Code</label>
+  <code id="fs-id1163980830373" display="block">
+% BINOMIAL file binomial.m Generates binomial tables
+% Version of 12/10/92  (Display modified 4/28/96)
+% Calculates a TABLE of binomial probabilities
+% for specified n, p, and row vector k,
+% Uses the m-functions ibinom and cbinom.
+n = input('Enter n, the number of trials ');
+p = input('Enter p, the probability of success ');
+k = input('Enter k, a row vector of success numbers ');
+y = ibinom(n,p,k);
+z = cbinom(n,p,k);
+disp(['    n = ',int2str(n),'    p = ' num2str(p)])
+H = ['    k         P(X = k)  P(X &gt;= k)'];
+disp(H)
+disp([k;y;z]')
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id14422771" print-placement="here" type="Code Example"><label>multinom.m</label>
+<problem id="eip-id14396154" type="description"><label>Description of Code</label>
+<para id="eip-id14080396">
+
+<emphasis effect="bold">multinom.m</emphasis>  Multinomial distribution (small <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>m </m:mi></m:mrow></m:math>).
+  
+</para>
+</problem>
+
+<solution id="eip-id3699610" type="code">
+<label>Code</label>
+<code id="fs-id1163978902899" display="block">
+% MULTINOM file multinom.m  Multinomial distribution
+% Version of 8/24/96
+% Multinomial distribution (small N, m)
+N = input('Enter the number of trials  ');
+m = input('Enter the number of types   ');
+p = input('Enter the type probabilities  ');
+M = 1:m;
+T = zeros(m^N,N);
+for i = 1:N
+  a = rowcopy(M,m^(i-1));
+  a = a(:);
+  a = colcopy(a,m^(N-i));
+  T(:,N-i+1) = a(:);        % All possible strings of the types
+end
+MT = zeros(m^N,m);
+for i = 1:m
+ MT(:,i) = sum(T'==i)';
+end
+clear T                     % To conserve memory
+disp('String frequencies for type k are in column matrix MT(:,k)')
+P = zeros(m^N,N);
+for i = 1:N
+  a = rowcopy(p,m^(i-1));
+  a = a(:);
+  a = colcopy(a,m^(N-i));
+  P(:,N-i+1) = a(:);        % Strings of type probabilities
+end
+PS = prod(P');              % Probability of each string
+clear P                     % To conserve memory
+disp('String probabilities are in row matrix PS')
+
+
+</code>
+</solution>
+</exercise>
+
+</section>
+
+<section id="fs-id1166253933693"><title>Some matching problems</title><exercise id="eip-id1172009082314" print-placement="here" type="Code Example"><label>Cardmatch.m</label>
+<problem id="eip-id1172006084053" type="description"><label>Description of Code</label>
+<para id="eip-id8330658">
+
+<emphasis effect="bold">Cardmatch.m</emphasis>   Sampling to estimate the probability
+of one or more matches when one card is drawn from each of <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>d</m:mi></m:mrow></m:math>
+identical decks of <emphasis effect="italics">c</emphasis> cards. The number <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>s</m:mi></m:mrow></m:math> of samples is specified.
+  
+</para>
+</problem>
+
+<solution id="eip-id1172008911907" type="code">
+<label>Code</label>
+<code id="fs-id1163979009967" display="block">
+% CARDMATCH file cardmatch.m Prob of matches in cards from identical decks
+% Version of 6/27/97
+% Estimates the probability of one or more matches
+% in drawing cards from nd decks of c cards each
+% Produces a supersample of size n = nd*ns, where
+% ns is the number of samples
+% Each sample is sorted, and then tested for differences
+% between adjacent elements.  Matches are indicated by
+% zero differences between adjacent elements in sorted sample
+c  = input('Enter the number c  of cards in a deck ');
+nd = input('Enter the number nd of decks ');
+ns = input('Enter the number ns of sample runs ');
+X  = 1:c;                   % Population values
+PX = (1/c)*ones(1,c);       % Population probabilities 
+N  = nd*ns;                 % Length of supersample
+U  = rand(1,N);             % Matrix of n random numbers
+T  = dquant(X,PX,U);        % Supersample obtained with quantile function;
+                            % the function dquant determines quantile
+                            % function values of random number sequence U
+ex = sum(T)/N;              % Sample average
+EX = dot(X,PX);             % Population mean
+vx = sum(T.^2)/N - ex^2;    % Sample variance
+VX = dot(X.^2,PX) - EX^2;   % Population variance
+A  = reshape(T,nd,ns);      % Chops supersample into ns samples of size nd
+DS = diff(sort(A));         % Sorts each sample
+m  = sum(DS==0)&gt;0;          % Differences between elements in each sample
+                            % Zero difference iff there is a match
+pm = sum(m)/ns;             % Fraction of samples with one or more matches
+Pm = 1 - comb(c,nd)*gamma(nd + 1)/c^(nd);  % Theoretical probability of match
+disp('The sample is in column vector T')   % Displays of results
+disp(['Sample average ex = ', num2str(ex),])
+disp(['Population mean E(X) = ',num2str(EX),])
+disp(['Sample variance vx = ',num2str(vx),])
+disp(['Population variance V(X) = ',num2str(VX),])
+disp(['Fraction of samples with one or more matches   pm = ', num2str(pm),])
+disp(['Probability of one or more matches in a sample Pm = ', num2str(Pm),])
+
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id1172010997384" print-placement="here" type="Code Example"><label>trialmatch.m</label>
+<problem id="eip-id5212191" type="description"><label>Description of Code</label>
+<para id="eip-id7974122">
+
+<emphasis effect="bold">trialmatch.m</emphasis>   Estimates the probability of matches in <emphasis effect="italics">n</emphasis> independent
+trials from identical distributions. The sample size and number of trials must
+be kept relateively small to avoid exceeding available memory.
+  
+</para>
+</problem>
+
+<solution id="eip-id1172009109526" type="code">
+<label>Code</label>
+<code id="fs-id1163982356814" display="block">
+% TRIALMATCH file trialmatch.m  Estimates probability of matches 
+% in n independent trials from identical distributions
+% Version of 8/20/97
+% Estimates the probability of one or more matches 
+% in a random selection from n identical distributions
+% with a small number of possible values
+% Produces a supersample of size N = n*ns, where
+% ns is the number of samples.  Samples are separated.
+% Each sample is sorted, and then tested for differences
+% between adjacent elements.  Matches are indicated by
+% zero differences between adjacent elements in sorted sample.
+X  = input('Enter the VALUES in the distribution ');
+PX = input('Enter the PROBABILITIES  ');
+c  = length(X);
+n  = input('Enter the SAMPLE SIZE n ');
+ns = input('Enter the number ns of sample runs ');
+N  = n*ns;                  % Length of supersample
+U  = rand(1,N);             % Vector of N random numbers
+T  = dquant(X,PX,U);        % Supersample obtained with quantile function;
+                            %   the function dquant determines quantile
+                            %   function values for random number sequence U
+ex = sum(T)/N;              % Sample average
+EX = dot(X,PX);             % Population mean
+vx = sum(T.^2)/N - ex^2;    % Sample variance
+VX = dot(X.^2,PX) - EX^2;   % Population variance
+A  = reshape(T,n,ns);       % Chops supersample into ns samples of size n
+DS = diff(sort(A));         % Sorts each sample
+m  = sum(DS==0)&gt;0;          % Differences between elements in each sample
+                            % -- Zero difference iff there is a match
+pm = sum(m)/ns;             % Fraction of samples with one or more matches
+d  = arrep(c,n);
+p  = PX(d);
+p  = reshape(p,size(d));    % This step not needed in version 5.1
+ds = diff(sort(d))==0;
+mm = sum(ds)&gt;0;
+m0 = find(1-mm);
+pm0 = p(:,m0);              % Probabilities for arrangements with no matches
+P0 = sum(prod(pm0));      
+disp('The sample is in column vector T')   % Displays of results
+disp(['Sample average ex = ', num2str(ex),])
+disp(['Population mean E(X) = ',num2str(EX),])
+disp(['Sample variance vx = ',num2str(vx),])
+disp(['Population variance V(X) = ',num2str(VX),])
+disp(['Fraction of samples with one or more matches   pm = ', num2str(pm),])
+disp(['Probability of one or more matches in a sample Pm = ', num2str(1-P0),])
+</code>
+
+</solution>
+</exercise>
+
+
+</section>
+<section id="fs-id1166253934751"><title>Distributions       </title>
+
+<exercise id="eip-id8050158" print-placement="here" type="Code Example"><label>comb.m</label>
+<problem id="eip-id4165968" type="description"><label>Description of Code</label>
+<para id="eip-id4011238">
+
+<emphasis effect="bold">comb.m</emphasis><code display="inline">function y = comb(n,k)</code>  Calculates binomial coefficients.
+<emphasis effect="italics">k</emphasis> may be a matrix of integers between 0 and <emphasis effect="italics">n</emphasis>.  The result <emphasis effect="italics">y</emphasis> is a matrix of the same
+dimensions.
+  
+</para>
+</problem>
+
+<solution id="eip-id15195416" type="code">
+<label>Code</label>
+  <code id="fs-id1165210150440" display="block">
+function y = comb(n,k)
+% COMB y = comb(n,k) Binomial coefficients
+% Version of 12/10/92
+% Computes binomial coefficients C(n,k)
+% k may be a matrix of integers between 0 and n
+% result y is a matrix of the same dimensions
+y = round(gamma(n+1)./(gamma(k + 1).*gamma(n + 1 - k)));
+
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id14416649" print-placement="here" type="Code Example"><label>ibinom.m</label>
+<problem id="eip-id14358828" type="description"><label>Description of Code</label>
+<para id="eip-id15172561">
+
+<emphasis effect="bold">ibinom.m</emphasis>   Binomial distribution — individual terms. We have
+two m-functions <emphasis effect="italics">ibinom</emphasis> and <emphasis effect="italics">cbinom</emphasis> for calculating individual and
+cumulative terms, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math>, respectively.
+<equation id="id143212"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>p</m:mi><m:mi>k</m:mi></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mi>k</m:mi></m:mrow><m:mi>n</m:mi></m:munderover><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>r</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math></equation>
+For these m-functions, we use a modification of a computation strategy employed
+by S. Weintraub: <emphasis effect="smallcaps">Tables of the Cumulative Binomial Probability Distribution
+for Small Values of p</emphasis>, 1963. The book contains a particularly helpful error analysis,
+written by Leo J. Cohen. Experimentation with sums and expectations indicates a
+precision for ibinom and cbinom calculations that is better than <m:math overflow="scroll"><m:msup><m:mn>10</m:mn><m:mrow><m:mo>-</m:mo><m:mn>10</m:mn></m:mrow></m:msup></m:math>
+for <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1000</m:mn></m:mrow></m:math> and <emphasis effect="italics">p</emphasis> from 0.01 to 0.99. A similar precision holds for values of
+<emphasis effect="italics">n</emphasis> up to 5000, provided <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi></m:mrow></m:math> or <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>q</m:mi></m:mrow></m:math> are limited to approximately 500. Above this
+value for <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi></m:mrow></m:math> or <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>q</m:mi></m:mrow></m:math>, the computations break down.
+For individual terms,  <code display="inline">function y = ibinom(n,p,k)</code>  calculates the probabilities
+for <emphasis effect="italics">n</emphasis> a positive integer, <emphasis effect="italics">k</emphasis> a matrix of integers between 0 and <emphasis effect="italics">n</emphasis>.  The output is a matrix of the corresponding binomial probabilities.
+  
+</para>
+</problem>
+
+<solution id="eip-id12045441" type="code">
+<label>Code</label>
+<code id="fs-id1165210537327" display="block">
+
+function y = ibinom(n,p,k)
+% IBINOM  y = ibinom(n,p,k) Individual binomial probabilities
+% Version of 10/5/93
+% n is a positive integer; p is a probability
+% k a matrix of integers between 0 and n
+% y = P(X&gt;=k) (a matrix of probabilities)
+if p &gt; 0.5
+a = [1 ((1-p)/p)*ones(1,n)];
+b = [1 n:-1:1];
+c = [1 1:n];
+br = (p^n)*cumprod(a.*b./c);
+bi = fliplr(br);
+else
+a = [1 (p/(1-p))*ones(1,n)];
+b = [1 n:-1:1];
+c = [1 1:n];
+bi = ((1-p)^n)*cumprod(a.*b./c);
+end
+y = bi(k+1);
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+
+
+
+
+
+<exercise id="eip-id14742128" print-placement="here" type="Code Example"><label>ipoisson.m</label>
+<problem id="eip-id15289375" type="description"><label>Description of Code</label>
+<para id="eip-id14467120">
+
+<emphasis effect="bold">ipoisson.m</emphasis>   Poisson distribution — individual terms. As in the case of the
+binomial distribution, we have an m-function for the individual
+terms and one for the cumulative case. The m-functions <emphasis effect="italics">ipoisson</emphasis> and <emphasis effect="italics">cpoisson</emphasis> use
+a computational strategy similar to that used for the binomial case. Not only does this work
+for large <emphasis effect="italics">μ</emphasis>, but the precision is at least as good as that for the binomial
+m-functions. Experience indicates that the m-functions are good for <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>≤</m:mo><m:mn>700</m:mn></m:mrow></m:math>. They
+breaks down at about 710, largely because of limitations of the MATLAB exponential
+function.
+For individual terms,  <code display="inline">function y = ipoisson(mu,k)</code>  calculates the probabilities
+for <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mi>u</m:mi></m:mrow></m:math> a positive integer, <emphasis effect="italics">k</emphasis> a row or column vector of nonnegative integers.  The output is a row vector of the corresponding Poisson probabilities.
+  
+</para>
+</problem>
+
+<solution id="eip-id3699240" type="code">
+<label>Code</label>
+<code id="fs-id5809560" display="block">
+function y = ipoisson(mu,k)
+% IPOISSON y = ipoisson(mu,k) Individual Poisson probabilities
+% Version of 10/15/93
+% mu = mean value
+% k may be a row or column vector of integer values
+% y = P(X = k) (a row vector of probabilities)
+K = max(k);
+p = exp(-mu)*cumprod([1 mu*ones(1,K)]./[1 1:K]);
+y = p(k+1);
+</code>
+
+</solution>
+</exercise>
+
+
+<exercise id="eip-id15250184" print-placement="here" type="Code Example"><label>cpoisson.m</label>
+<problem id="eip-id6282654" type="description"><label>Description of Code</label>
+<para id="eip-id12850095">
+
+<emphasis effect="bold">cpoisson.m</emphasis>   Poisson distribution—cumulative terms.
+<code display="inline">function y = cpoisson(mu,k)</code>, calculates <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math>, where <emphasis effect="italics">k</emphasis> may be a row or a
+column vector of nonnegative integers. The output is a row vector of the corresponding probabilities.
+  
+</para>
+</problem>
+
+<solution id="eip-id10379983" type="code">
+<label>Code</label>
+  <code id="fs-id984386" display="block">
+function y = cpoisson(mu,k)
+% CPOISSON y = cpoisson(mu,k) Cumulative Poisson probabilities
+% Version of 10/15/93
+% mu = mean value mu 
+% k may be a row or column vector of integer values
+% y = P(X &gt;= k) (a row vector of probabilities)
+K = max(k);
+p = exp(-mu)*cumprod([1 mu*ones(1,K)]./[1 1:K]);
+pc = [1 1 - cumsum(p)];
+y = pc(k+1);
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id14078675" print-placement="here" type="Code Example"><label>nbinom.m</label>
+<problem id="eip-id14370285" type="description"><label>Description of Code</label>
+<para id="eip-id7534600">
+
+<emphasis effect="bold">nbinom.m</emphasis>   Negative binomial — <code display="inline">function y = nbinom(m, p, k)</code>
+calculates the probability that the <emphasis effect="italics">m</emphasis>th success in a Bernoulli sequence occurs on the <emphasis effect="italics">k</emphasis>th trial.
+  
+</para>
+</problem>
+
+<solution id="eip-id14285219" type="code">
+<label>Code</label>
+<code id="fs-id4494634" display="block">
+function y = nbinom(m, p, k)
+% NBINOM y = nbinom(m, p, k) Negative binomial probabilities
+% Version of 12/10/92
+% Probability the mth success occurs on the kth trial
+% m a positive integer;  p a probability
+% k a matrix of integers greater than or equal to m
+% y = P(X=k) (a matrix of the same dimensions as k)
+q = 1 - p;
+y = ((p^m)/gamma(m)).*(q.^(k - m)).*gamma(k)./gamma(k - m + 1);
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id15298814" print-placement="here" type="Code Example"><label>gaussian.m</label>
+<problem id="eip-id3629591" type="description"><label>Description of Code</label>
+<para id="eip-id14253059">
+
+<emphasis effect="bold">gaussian.m</emphasis><code display="inline">function y = gaussian(m, v, t)</code>  calculates the Gaussian (Normal)
+distribution function for mean value <emphasis effect="italics">m</emphasis>, variance <emphasis effect="italics">v</emphasis>, and matrix <emphasis effect="italics">t</emphasis> of values.
+The result <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> is a matrix of the same dimensions as <emphasis effect="italics">t</emphasis>.
+  
+</para>
+</problem>
+
+<solution id="eip-id14443096" type="code">
+<label>Code</label>
+  <code id="fs-id1165209126837" display="block">
+function y = gaussian(m,v,t)
+% GAUSSIAN y = gaussian(m,v,t) Gaussian distribution function
+% Version of 11/18/92
+% Distribution function for X ~ N(m, v)
+% m = mean,  v = variance
+% t is a matrix of evaluation points
+% y = P(X&lt;=t) (a matrix of the same dimensions as t)
+u = (t - m)./sqrt(2*v);
+if u &gt;= 0
+        y = 0.5*(erf(u) + 1);
+else
+        y = 0.5*erfc(-u);
+end
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id14606776" print-placement="here" type="Code Example"><label>gaussdensity.m</label>
+<problem id="eip-id15288109" type="description"><label>Description of Code</label>
+<para id="eip-id5246346">
+
+<emphasis effect="bold">gaussdensity.m</emphasis><code display="inline">function y = gaussdensity(m,v,t)</code>  calculates the
+Gaussian density function <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> for mean value <emphasis effect="italics">m</emphasis>, variance <emphasis effect="italics">t</emphasis>, and matrix <emphasis effect="italics">t</emphasis> of values.
+  
+</para>
+</problem>
+
+<solution id="eip-id14317498" type="code">
+<label>Code</label>
+<code id="fs-id1627354" display="block">
+function y = gaussdensity(m,v,t)
+% GAUSSDENSITY y = gaussdensity(m,v,t) Gaussian density
+% Version of 2/8/96
+% m = mean,  v = variance
+% t is a matrix of evaluation points
+y = exp(-((t-m).^2)/(2*v))/sqrt(v*2*pi);
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id10568549" print-placement="here" type="Code Example"><label>norminv.m</label>
+<problem id="eip-id3866020" type="description"><label>Description of Code</label>
+<para id="eip-id14406328">
+
+<emphasis effect="bold">norminv.m</emphasis><code display="inline">function y = norminv(m,v,p)</code>  calculates the inverse
+(the quantile function) of the Gaussian distribution function for mean value <emphasis effect="italics">m</emphasis>, variance <emphasis effect="italics">v</emphasis>, and
+<emphasis effect="italics">p</emphasis> a matrix of probabilities.
+  
+</para>
+</problem>
+
+<solution id="eip-id15205985" type="code">
+<label>Code</label>
+<code id="fs-id3365085" display="block">
+function y = norminv(m,v,p)
+% NORMINV y = norminv(m,v,p) Inverse gaussian distribution
+% (quantile function for gaussian)
+% Version of 8/17/94
+% m = mean,  v = variance
+% t is a matrix of evaluation points
+if p &gt;= 0
+  u = sqrt(2)*erfinv(2*p - 1);
+else
+  u = -sqrt(2)*erfinv(1 - 2*p);
+end
+y = sqrt(v)*u + m;
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id7593283" print-placement="here" type="Code Example"><label>gammadbn.m</label>
+<problem id="eip-id13055067" type="description"><label>Description of Code</label>
+<para id="eip-id14386759">
+
+<emphasis effect="bold">gammadbn.m</emphasis><code display="inline">function y = gammadbn(alpha, lambda, t)</code>  calculates the
+distribution function for a gamma distribution with parameters alpha, lambda. <emphasis effect="italics">t</emphasis> is a
+matrix of evaluation points. The result is a matrix of the same size.
+  
+</para>
+</problem>
+
+<solution id="eip-id15241328" type="code">
+<label>Code</label>
+  <code id="fs-id1165210115652" display="block">
+function y = gammadbn(alpha, lambda, t)
+% GAMMADBN y = gammadbn(alpha, lambda, t) Gamma distribution
+% Version of 12/10/92
+% Distribution function for X ~ gamma (alpha, lambda)
+% alpha, lambda are positive parameters
+% t may be a matrix of positive numbers
+% y = P(X&lt;= t) (a matrix of the same dimensions as t)
+y = gammainc(lambda*t, alpha);
+   
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id14385744" print-placement="here" type="Code Example"><label>beta.m</label>
+<problem id="eip-id14468398" type="description"><label>Description of Code</label>
+<para id="eip-id15219687">
+
+<emphasis effect="bold">beta.m</emphasis><code display="inline">function y = beta(r,s,t)</code>  calculates the density function for
+the beta distribution with parameters <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>,</m:mo><m:mi>s</m:mi></m:mrow></m:math>.  <emphasis effect="italics">t</emphasis> is a matrix of numbers between zero and one.
+The result is a matrix of the same size.
+  
+</para>
+</problem>
+
+<solution id="eip-id14402547" type="code">
+<label>Code</label>
+  <code id="fs-id6607990" display="block">
+function y = beta(r,s,t)
+% BETA y = beta(r,s,t) Beta density function
+% Version of 8/5/93
+% Density function for Beta (r,s) distribution
+% t is a matrix of evaluation points between 0 and 1
+% y is a matrix of the same dimensions as t
+y = (gamma(r+s)/(gamma(r)*gamma(s)))*(t.^(r-1).*(1-t).^(s-1));
+
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id15195010" print-placement="here" type="Code Example"><label>betadbn.m</label>
+<problem id="eip-id3588982" type="description"><label>Description of Code</label>
+<para id="eip-id12957915">
+
+<emphasis effect="bold">betadbn.m</emphasis><code display="inline">function y = betadbn(r,s,t)</code>  calculates the distribution function
+for the beta distribution with parameters <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>,</m:mo><m:mi>s</m:mi></m:mrow></m:math>.   <emphasis effect="italics">t</emphasis> is a matrix of evaluation points. The
+result is a matrix of the same size.
+  
+</para>
+</problem>
+
+<solution id="eip-id6366430" type="code">
+<label>Code</label>
+  <code id="fs-id1165213676043" display="block">
+function y = betadbn(r,s,t)
+% BETADBN y = betadbn(r,s,t) Beta distribution function
+% Version of 7/27/93
+% Distribution function for X  beta(r,s)
+% y = P(X&lt;=t) (a matrix of the same dimensions as t)
+y = betainc(t,r,s);
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id14508277" print-placement="here" type="Code Example"><label>weibull.m</label>
+<problem id="eip-id15242889" type="description"><label>Description of Code</label>
+<para id="eip-id15051352">
+
+<emphasis effect="bold">weibull.m</emphasis><code display="inline">function y = weibull(alpha,lambda,t)</code>  calculates the density
+function for the Weibull distribution with parameters alpha, lambda. <emphasis effect="italics">t</emphasis> is a matrix of
+evaluation points. The result is a matrix of the same size.
+  
+</para>
+</problem>
+
+<solution id="eip-id3675064" type="code">
+<label>Code</label>
+<code id="fs-id2124303" display="block">
+function y = weibull(alpha,lambda,t)
+% WEIBULL y = weibull(alpha,lambda,t) Weibull density 
+% Version of 1/24/91
+% Density function for X ~ Weibull (alpha, lambda, 0)
+% t is a matrix of positive evaluation points
+% y is a matrix of the same dimensions as t
+y = alpha*lambda*(t.^(alpha - 1)).*exp(-lambda*(t.^alpha));
+
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id15257519" print-placement="here" type="Code Example"><label>weibulld.m</label>
+<problem id="eip-id14452461" type="description"><label>Description of Code</label>
+<para id="eip-id14389473">
+
+<emphasis effect="bold">weibulld.m</emphasis><code display="inline">function y = weibulld(alpha, lambda, t)</code>  calculates the
+distribution function for the Weibull distribution with parameters alpha, lambda. <emphasis effect="italics">t</emphasis> is a matrix of
+evaluation points. The result is a matrix of the same size.
+  
+</para>
+</problem>
+
+<solution id="eip-id11768808" type="code">
+<label>Code</label>
+<code id="fs-id1165209131456" display="block">
+function y = weibulld(alpha, lambda, t)
+% WEIBULLD y = weibulld(alpha, lambda, t) Weibull distribution function
+% Version of 1/24/91
+% Distribution function for X ~ Weibull (alpha, lambda, 0)
+% t is a matrix of positive evaluation points
+% y = P(X&lt;=t) (a matrix of the same dimensions as t)
+y = 1 - exp(-lambda*(t.^alpha));
+
+
+</code>
+</solution>
+</exercise>
+
+
+</section>
+
+
+
+
+      <section id="fs-id9023833"><title>Binomial, Poisson, and Gaussian dstributions</title>
+
+
+<exercise id="eip-id1172002605854" print-placement="here" type="Code Example"><label>bincomp.m</label>
+<problem id="eip-id1172007729411" type="description"><label>Description of Code</label>
+<para id="eip-id1172005696416">
+
+<emphasis effect="bold">bincomp.m</emphasis>  Graphical comparison of the binomial, Poisson, and Gaussian
+distributions. The procedure calls for binomial parameters <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>p</m:mi></m:mrow></m:math>, determines a reasonable range
+of evaluation points and plots on the same graph the binomial distribution function, the
+Poisson distribution function, and the gaussian distribution function with the adjustment called the
+“continuity correction.”
+  
+</para>
+</problem>
+
+<solution id="eip-id6310442" type="code">
+<label>Code</label>
+<code id="fs-id6302846" display="block">
+% BINCOMP file bincomp.m  Approx of binomial by Poisson and gaussian
+% Version of 5/24/96
+% Gaussian adjusted for "continuity correction"
+% Plots distribution functions for specified parameters n, p
+n = input('Enter the parameter n  ');
+p = input('Enter the parameter p  ');
+a = floor(n*p-2*sqrt(n*p));
+a = max(a,1);                         % Prevents zero or negative indices
+b = floor(n*p+2*sqrt(n*p));
+k = a:b; 
+Fb = cumsum(ibinom(n,p,0:n));         % Binomial distribution function
+Fp = cumsum(ipoisson(n*p,0:n));       % Poisson distribution function
+Fg = gaussian(n*p,n*p*(1 - p),k+0.5); % Gaussian distribution function
+stairs(k,Fb(k+1))                     % Plotting details
+hold on
+plot(k,Fp(k+1),'-.',k,Fg,'o') 
+hold off
+xlabel('t values')                    % Graph labeling details
+ylabel('Distribution function')
+title('Approximation of Binomial by Poisson and Gaussian')
+grid 
+legend('Binomial','Poisson','Adjusted Gaussian')
+disp('See Figure for results')
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1172009469828" print-placement="here" type="Code Example"><label>poissapp.m</label>
+<problem id="eip-id1172006019884" type="description"><label>Description of Code</label>
+<para id="eip-id1172007876413">
+
+
+<emphasis effect="bold">poissapp.m</emphasis>  Graphical comparison of the Poisson and Gaussian distributions.
+The procedure calls for a value of the Poisson parameter mu, then calculates and plots the Poisson
+distribution function, the Gaussian distribution function, and the adjusted Gaussian distribution
+function.  
+</para>
+</problem>
+
+<solution id="eip-id1172009122496" type="code">
+<label>Code</label>
+  <code id="fs-id8834935" display="block">
+% POISSAPP file poissapp.m  Comparison of Poisson and gaussian
+% Version of 5/24/96
+% Plots distribution functions for specified parameter mu
+mu = input('Enter the parameter mu  ');
+n = floor(1.5*mu);
+k = floor(mu-2*sqrt(mu)):floor(mu+2*sqrt(mu));              
+FP = cumsum(ipoisson(mu,0:n));
+FG = gaussian(mu,mu,k); 
+FC = gaussian(mu,mu,k-0.5);      
+stairs(k,FP(k))                 
+hold on
+plot(k,FG,'-.',k,FC,'o') 
+hold off
+grid
+xlabel('t values')
+ylabel('Distribution function')
+title('Gaussian Approximation to Poisson Distribution')
+legend('Poisson','Gaussian','Adjusted Gaussian')
+disp('See Figure for results')
+</code>
+
+</solution>
+</exercise>
+
+
+</section>      
+
+<section id="fs-id1166258032772"><title>Setup for simple random variables       </title><para id="id144275">If a simple random variable <emphasis effect="italics">X</emphasis> is in canonical form, the distribution consists of the coefficients
+of the indicator funtions (the values of <emphasis effect="italics">X</emphasis>) and the probabilities of the corresponding events.
+If <emphasis effect="italics">X</emphasis> is in a primitive form other than canonical, the csort operation is applied to the
+coefficients of the indicator functions and the probabilities of the corresponding events to obtain
+the distribution. If <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <emphasis effect="italics">X</emphasis> is in a primitive form, then the value of <emphasis effect="italics">Z</emphasis> on the event
+in the partition associated with <emphasis effect="italics">t<sub>i</sub></emphasis> is <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>. The distribution for <emphasis effect="italics">Z</emphasis> is obtained by
+applying csort to the <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> and the <emphasis effect="italics">p<sub>i</sub></emphasis>.  Similarly, if <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> and the joint distribution
+is available, the value <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is associated with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> . The
+distribution for <emphasis effect="italics">Z</emphasis> is obtained by applying csort to the matrix of values and the corresponding
+matrix of probabilities.</para>
+
+
+
+<exercise id="eip-id7560748" print-placement="here" type="Code Example"><label>canonic.m</label>
+<problem id="eip-id1166501489470" type="description"><label>Description of Code</label>
+<para id="eip-id1312913">
+
+<emphasis effect="bold">canonic.m</emphasis>  The procedure determines the distribution for a simple random variable in
+affine form, when the minterm probabilities are available. Input data are a row vector of coefficients
+for the indicator functions in the affine form (with the constant value last) and a row vector of the
+probabilities of the minterm generated by the events. Results consist of a row vector of values and a
+row vector of the corresponding probabilities.
+
+
+</para>
+</problem>
+
+<solution id="eip-id1166501563036" type="code">
+<label>Code</label>
+  <code id="fs-id13129610" display="block">
+% CANONIC file canonic.m Distribution for simple rv in affine form
+% Version of 6/12/95
+% Determines the distribution for a simple random variable
+% in affine form, when the minterm probabilities are available.
+% Uses the m-functions mintable and csort.
+% The coefficient vector must contain the constant term.
+% If the constant term is zero, enter 0 in the last place.
+c  = input(' Enter row vector of coefficients  ');
+pm = input(' Enter row vector of minterm probabilities  ');
+n  = length(c) - 1;
+if 2^n ~= length(pm)
+   error('Incorrect minterm probability vector length');
+end
+M  = mintable(n);            % Provides a table of minterm patterns
+s  = c(1:n)*M + c(n+1);      % Evaluates X on each minterm
+[X,PX] = csort(s,pm);        % s = values; pm = minterm probabilities
+XDBN = [X;PX]';
+disp('Use row matrices X and PX for calculations')
+disp('Call for XDBN to view the distribution')
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1166509282531" print-placement="here" type="Code Example"><label>canonicf.m</label>
+<problem id="eip-id5616459" type="description"><label>Description of Code</label>
+<para id="eip-id6087429">
+
+<emphasis effect="bold">canonicf.m</emphasis><code display="inline">function [x,px] = canonicf(c,pm)</code>  is a function version of canonic,
+which allows arbitrary naming of variables.
+
+
+</para>
+</problem>
+
+<solution id="eip-id1166509580647" type="code">
+<label>Code</label>
+  <code id="fs-id19017466" display="block">
+function [x,px] = canonicf(c,pm)
+% CANONICF  [x,px] = canonicf(c,pm)  Function version of canonic
+% Version of 6/12/95
+% Allows arbitrary naming of variables
+n = length(c) - 1;
+if 2^n ~= length(pm)
+   error('Incorrect minterm probability vector length');
+end
+M  = mintable(n);              % Provides a table of minterm patterns
+s  = c(1:n)*M + c(n+1);        % Evaluates X on each minterm
+[x,px]  = csort(s,pm);         % s = values; pm = minterm probabilities     
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1166502673868" print-placement="here" type="Code Example"><label>jcalc.m</label>
+<problem id="eip-id1166509684902" type="description"><label>Description of Code</label>
+<para id="eip-id1166502739111">
+
+
+<emphasis effect="bold">jcalc.m</emphasis>  Sets up for calculations for joint simple random variables. The matrix <emphasis effect="italics">P</emphasis>
+of <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is arranged as on the plane (i.e., values of <emphasis effect="italics">Y</emphasis> increase upward).
+The MATLAB function meshgrid is applied to the row matrix <emphasis effect="italics">X</emphasis> and the reversed row matrix
+for <emphasis effect="italics">Y</emphasis> to put an appropriate <emphasis effect="italics">X</emphasis>-value and <emphasis effect="italics">Y</emphasis>-value at each position. These are in the
+“calculating matrices” <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis>, respectively, which are used in determining probabilities and
+expectations of various functions of <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id4044888" type="code">
+<label>Code</label>
+ <code id="fs-id20971554" display="block">
+% JCALC  file jcalc.m  Calculation setup for joint simple rv
+% Version of 4/7/95 (Update of prompt and display 5/1/95)
+% Setup for calculations for joint simple random variables
+% The joint probabilities arranged as on the plane 
+% (top row corresponds to largest value of Y) 
+P = input('Enter JOINT PROBABILITIES (as on the plane)  ');
+X = input('Enter row matrix of VALUES of X  ');
+Y = input('Enter row matrix of VALUES of Y  ');
+PX = sum(P);            % probabilities for X
+PY = fliplr(sum(P'));   % probabilities for Y
+[t,u] = meshgrid(X,fliplr(Y));
+disp(' Use array operations on matrices X, Y, PX, PY, t, u, and P')
+
+
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1166503656039" print-placement="here" type="Code Example"><label>jcalcf.m</label>
+<problem id="eip-id1166503945567" type="description"><label>Description of Code</label>
+<para id="eip-id4824530">
+
+<emphasis effect="bold">jcalcf.m</emphasis><code display="inline">function [x,y,t,u,px,py,p] = jcalcf(X,Y,P)</code>  is a function version of
+jcalc, which allows arbitrary naming of variables.
+
+</para>
+</problem>
+
+<solution id="eip-id1166504171698" type="code">
+<label>Code</label>
+<code id="fs-id18864065" display="block">
+function [x,y,t,u,px,py,p] = jcalcf(X,Y,P)
+% JCALCF [x,y,t,u,px,py,p] = jcalcf(X,Y,P) Function version of jcalc
+% Version of 5/3/95
+% Allows arbitrary naming of variables
+if sum(size(P) ~= [length(Y) length(X)]) &gt; 0
+  error('     Incompatible vector sizes')
+end
+x = X;
+y = Y;
+p = P;
+px = sum(P);
+py = fliplr(sum(P'));
+[t,u] = meshgrid(X,fliplr(Y));
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1166509050368" print-placement="here" type="Code Example"><label>jointzw.m</label>
+<problem id="eip-id1166502753824" type="description"><label>Description of Code</label>
+<para id="eip-id1166504166185">
+
+<emphasis effect="bold">jointzw.m</emphasis>   Sets up joint distribution for <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>
+and provides calculating matrices as in jcalc. Inputs are <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>,</m:mo><m:mi>X</m:mi></m:mrow></m:math>, and <emphasis effect="italics">Y</emphasis> as well as array
+expressions for <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Outputs are matrices <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>Z</m:mi><m:mi>W</m:mi></m:mrow></m:math> for the joint
+distribution, marginal probabilities <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>W</m:mi></m:mrow></m:math>, and the calculating matrices <m:math overflow="scroll"><m:mrow><m:mi>v</m:mi><m:mo>,</m:mo><m:mi>w</m:mi></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id1166505132756" type="code">
+<label>Code</label>
+<code id="fs-id19314943" display="block">
+% JOINTZW file jointzw.m Joint dbn for two functions of (X,Y)
+% Version of 4/29/97
+% Obtains joint distribution for
+% Z = g(X,Y) and W = h(X,Y)
+% Inputs P, X, and Y as well as array
+% expressions for g(t,u) and h(t,u)
+P = input('Enter joint prob for (X,Y) ');
+X = input('Enter values for X ');
+Y = input('Enter values for Y ');
+[t,u] = meshgrid(X,fliplr(Y));
+G = input('Enter expression for g(t,u) ');
+H = input('Enter expression for h(t,u) ');
+[Z,PZ] = csort(G,P);
+[W,PW] = csort(H,P);
+r = length(W);
+c = length(Z);
+PZW = zeros(r,c);
+for i = 1:r
+  for j = 1:c
+   a = find((G==Z(j))&amp;(H==W(i)));
+   if ~isempty(a)
+    PZW(i,j) = total(P(a));
+   end
+  end
+end
+PZW = flipud(PZW);
+[v,w] = meshgrid(Z,fliplr(W));
+if (G==t)&amp;(H==u)
+  disp(' ')
+  disp('  Note:  Z = X and W = Y')
+  disp(' ')
+elseif  G==t
+  disp(' ')
+  disp('  Note:  Z = X')
+  disp(' ')
+elseif H==u
+  disp(' ')
+  disp('  Note:  W = Y')
+  disp(' ')
+end
+disp('Use array operations on Z, W, PZ, PW, v, w, PZW')
+</code>
+
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1166505682327" print-placement="here" type="Code Example"><label>jdtest.m</label>
+<problem id="eip-id1166502850578" type="description"><label>Description of Code</label>
+<para id="eip-id1166501913068">
+
+
+<emphasis effect="bold">jdtest.m</emphasis>   Tests a joint probability matrix <emphasis effect="italics">P</emphasis> for negative
+entries and unit total probability..
+
+</para>
+</problem>
+
+<solution id="eip-id1166501569162" type="code">
+<label>Code</label>
+  <code id="fs-id11741432" display="block">
+function y = jdtest(P)
+% JDTEST y = jdtest(P) Tests P for unit total and negative elements
+% Version of 10/8/93
+M = min(min(P));
+S = sum(sum(P));
+if M &lt; 0
+  y = 'Negative entries';
+elseif abs(1 - S) &gt; 1e-7
+  y = 'Probabilities do not sum to one';
+else
+  y = 'P is a valid distribution';
+end
+
+</code>
+</solution>
+</exercise>
+
+</section>
+
+<section id="fs-id1166264411912"><title>Setup for general random variables</title><exercise id="eip-id1168713600146" print-placement="here" type="Code Example"><label>tappr.m</label>
+<problem id="eip-id1168725417483" type="description"><label>Description of Code</label>
+<para id="eip-id1168709370307">
+
+
+<emphasis effect="bold">tappr.m</emphasis>  Uses the density function to set up a discrete approximation to the
+distribution for absolutely continuous random variable <emphasis effect="italics">X</emphasis>.
+
+</para>
+</problem>
+
+<solution id="eip-id1168709371799" type="code">
+<label>Code</label>
+  <code id="fs-id18976752" display="block">
+% TAPPR file tappr.m  Discrete approximation to ac random variable
+% Version of 4/16/94
+% Sets up discrete approximation to distribution for
+% absolutely continuous random variable  X
+% Density is entered as a function of t
+r = input('Enter matrix [a b] of x-range endpoints  ');
+n = input('Enter number of x approximation points  ');
+d = (r(2) - r(1))/n;
+t = (r(1):d:r(2)-d) +d/2;
+PX = input('Enter density as a function of t  ');
+PX = PX*d;
+PX = PX/sum(PX);
+X  = t;
+disp('Use row matrices X and PX as in the simple case')
+
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1168708145290" print-placement="here" type="Code Example"><label>tuappr.m</label>
+<problem id="eip-id1168708160456" type="description"><label>Description of Code</label>
+<para id="eip-id1168709797341">
+
+
+<emphasis effect="bold">tuappr.m</emphasis>  Uses the joint density to set up discrete approximations to <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi></m:mrow></m:math>, and density.
+
+</para>
+</problem>
+
+<solution id="eip-id1168709463180" type="code">
+<label>Code</label>
+<code id="fs-id19128807" display="block">
+
+% TUAPPR file tuappr.m Discrete approximation to joint ac pair
+% Version of 2/20/96
+% Joint density entered as a function of t, u
+% Sets up discrete approximations to X, Y, t, u, and density
+rx = input('Enter matrix [a b] of X-range endpoints  ');
+ry = input('Enter matrix [c d] of Y-range endpoints  ');
+nx = input('Enter number of X approximation points  ');
+ny = input('Enter number of Y approximation points  ');
+dx = (rx(2) - rx(1))/nx;
+dy = (ry(2) - ry(1))/ny;
+X  = (rx(1):dx:rx(2)-dx) + dx/2;
+Y  = (ry(1):dy:ry(2)-dy) + dy/2;
+[t,u] = meshgrid(X,fliplr(Y));
+P  = input('Enter expression for joint density  ');
+P  = dx*dy*P;
+P  = P/sum(sum(P));
+PX = sum(P);
+PY = fliplr(sum(P'));
+disp('Use array operations on X, Y, PX, PY, t, u, and P')
+
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1168723003653" print-placement="here" type="Code Example"><label>dfappr.m</label>
+<problem id="eip-id1168722999727" type="description"><label>Description of Code</label>
+<para id="eip-id1168719049157">
+
+
+<emphasis effect="bold">dfappr.m</emphasis>  Approximate discrete distribution from distribution function entered as a
+function of <emphasis effect="italics">t</emphasis>.
+
+</para>
+</problem>
+
+<solution id="eip-id1168712496821" type="code">
+<label>Code</label>
+<code id="fs-id16228092" display="block">
+% DFAPPR file dfappr.m Discrete approximation from distribution function
+% Version of 10/21/95
+% Approximate discrete distribution from distribution
+% function entered as a function of t
+r = input('Enter matrix [a b] of X-range endpoints  ');
+s = input('Enter number of X approximation points  ');
+d = (r(2) - r(1))/s;
+t = (r(1):d:r(2)-d) +d/2;
+m  = length(t);
+f  = input('Enter distribution function F as function of t  ');
+f  = [0 f];
+PX = f(2:m+1) - f(1:m);
+PX = PX/sum(PX);
+X  = t - d/2;
+disp('Distribution is in row matrices X and PX')
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1168723199067" print-placement="here" type="Code Example"><label>acsetup.m</label>
+<problem id="eip-id1168709315169" type="description"><label>Description of Code</label>
+<para id="eip-id1168713637800">
+
+
+<emphasis effect="bold">acsetup.m</emphasis>  Approximate distribution for absolutely continuous random variable <emphasis effect="italics">X</emphasis>.
+Density is entered as a <emphasis effect="italics">string variable</emphasis> function of <emphasis effect="italics">t</emphasis>.
+
+</para>
+</problem>
+
+<solution id="eip-id1168724338831" type="code">
+<label>Code</label>
+<code id="fs-id20731611" display="block">
+% ACSETUP file acsetup.m Discrete approx from density as string variable
+% Version of 10/22/94
+% Approximate distribution for absolutely continuous rv X
+% Density is entered as a string variable function of t
+disp('DENSITY f is entered as a STRING VARIABLE.')
+disp('either defined previously or upon call.')
+r  = input('Enter matrix [a b] of x-range endpoints  ');
+s  = input('Enter number of x approximation points  ');
+d  = (r(2) - r(1))/s;
+t  = (r(1):d:r(2)-d) +d/2;
+m  = length(t);
+f  = input('Enter density as a function of t  ');
+PX = eval(f);
+PX = PX*d;
+PX = PX/sum(PX);
+X  = t;
+disp('Distribution is in row matrices X and PX')
+
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id1168712241008" print-placement="here" type="Code Example"><label>dfsetup.m</label>
+<problem id="eip-id1168709771300" type="description"><label>Description of Code</label>
+<para id="eip-id1168713628605">
+
+
+<emphasis effect="bold">dfsetup.m</emphasis>  Approximate discrete distribution from distribution function entered as a
+<emphasis effect="italics">string variable</emphasis> function of <emphasis effect="italics">t</emphasis>.
+
+</para>
+</problem>
+
+<solution id="eip-id1168709303155" type="code">
+<label>Code</label>
+<code id="fs-id20798309" display="block">
+% DFSETUP file dfsetup.m  Discrete approx from string dbn function
+% Version of 10/21/95
+% Approximate discrete distribution from distribution
+% function entered as string variable function of t
+disp('DISTRIBUTION FUNCTION F is entered as a STRING')
+disp('VARIABLE, either defined previously or upon call')
+r = input('Enter matrix [a b] of X-range endpoints  ');
+s = input('Enter number of X approximation points  ');
+d = (r(2) - r(1))/s;
+t = (r(1):d:r(2)-d) +d/2;
+m  = length(t);
+F  = input('Enter distribution function F as function of t  ');
+f  = eval(F);
+f  = [0 f];
+PX = f(2:m+1) - f(1:m);
+PX = PX/sum(PX);
+X  = t - d/2;
+disp('Distribution is in row matrices X and PX')
+</code>
+</solution>
+</exercise>
+
+</section>      
+
+<section id="fs-id1166253364577"><title>Setup for independent simple random variables</title><para id="id145155">MATLAB version 5.1 has provisions for multidimensional arrays, which make possible
+more direct implementation of icalc3 and icalc4.</para>
+      
+
+<exercise id="eip-id2269301" print-placement="here" type="Code Example"><label>icalc.m</label>
+<problem id="eip-id1168710417162" type="description"><label>Description of Code</label>
+<para id="eip-id1168716326708">
+
+
+<emphasis effect="bold">icalc.m</emphasis>  Calculation setup for an independent pair of simple random variables. Input
+consists of marginal distributions for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi></m:mrow></m:math>,  Output is joint distribution and calculating matrices
+<m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id1168717989203" type="code">
+<label>Code</label>
+  <code id="fs-id6501272" display="block">
+% ICALC file icalc.m  Calculation setup for independent pair
+% Version of 5/3/95
+% Joint calculation setup for independent pair
+X  = input('Enter row matrix of X-values  ');
+Y  = input('Enter row matrix of Y-values  ');
+PX = input('Enter X probabilities  ');
+PY = input('Enter Y probabilities  ');
+[a,b] = meshgrid(PX,fliplr(PY));
+P  = a.*b;                      % Matrix of joint independent probabilities 
+[t,u] = meshgrid(X,fliplr(Y));  % t, u matrices for joint calculations
+disp(' Use array operations on matrices X, Y, PX, PY, t, u, and P')
+
+</code>
+
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1168716189033" print-placement="here" type="Code Example"><label>icalcf.m</label>
+<problem id="eip-id8297920" type="description"><label>Description of Code</label>
+<para id="eip-id2182095">
+
+
+<emphasis effect="bold">icalcf.m</emphasis><code display="inline">[x,y,t,u,px,py,p] = icalcf(X,Y,PX,PY) </code> is a function version of
+icalc, which allows arbitrary naming of variables.
+
+</para>
+</problem>
+
+<solution id="eip-id6258348" type="code">
+<label>Code</label>
+<code id="fs-id19773266" display="block">
+function [x,y,t,u,px,py,p] = icalcf(X,Y,PX,PY)
+% ICALCF [x,y,t,u,px,py,p] = icalcf(X,Y,PX,PY) Function version of icalc
+% Version of 5/3/95
+% Allows arbitrary naming of variables
+x = X;
+y = Y;
+px = PX;
+py = PY;
+if length(X) ~= length(PX)
+  error('     X and PX of different lengths')
+elseif length(Y) ~= length(PY)
+  error('     Y and PY of different lengths')
+end
+[a,b] = meshgrid(PX,fliplr(PY));
+p   = a.*b;                       % Matrix of joint independent probabilities 
+[t,u] = meshgrid(X,fliplr(Y));    % t, u matrices for joint calculations
+
+</code>
+
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1168719404257" print-placement="here" type="Code Example"><label>icalc3.m</label>
+<problem id="eip-id1168720688398" type="description"><label>Description of Code</label>
+<para id="eip-id1168710807678">
+
+
+<emphasis effect="bold">icalc3.m</emphasis>  Calculation setup for an independent class of three simple random
+variables.
+
+</para>
+</problem>
+
+<solution id="eip-id1168710596859" type="code">
+<label>Code</label>
+<code id="fs-id18926003" display="block">
+% ICALC3 file icalc3.m Setup for three independent rv
+% Version of 5/15/96
+% Sets up for calculations for three
+% independent simple random variables
+% Uses m-functions rep, elrep, kronf
+X  = input('Enter row matrix of X-values  ');
+Y  = input('Enter row matrix of Y-values  ');
+Z  = input('Enter row matrix of Z-values  ');
+PX = input('Enter X probabilities  ');
+PY = input('Enter Y probabilities  ');
+PZ = input('Enter Z probabilities  ');
+n  = length(X);
+m  = length(Y);
+s  = length(Z);
+[t,u] = meshgrid(X,Y);
+t  = rep(t,1,s);
+u  = rep(u,1,s);
+v  = elrep(Z,m,n);  % t,u,v matrices for joint calculations
+P  = kronf(PZ,kronf(PX,PY'));
+disp('Use array operations on matrices X, Y, Z,')
+disp('PX, PY, PZ, t, u, v, and P')
+
+</code>
+
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1168710834474" print-placement="here" type="Code Example"><label>icalc4.m</label>
+<problem id="eip-id1168721287367" type="description"><label>Description of Code</label>
+<para id="eip-id1168714169712">
+
+
+<emphasis effect="bold">icalc4.m</emphasis>  Calculation setup for an independent class of four simple random
+variables.
+
+</para>
+</problem>
+
+<solution id="eip-id1168711326485" type="code">
+<label>Code</label>
+  <code id="fs-id21293377" display="block">
+% ICALC4 file icalc4.m Setup for four independent rv
+% Version of 5/15/96
+% Sets up for calculations for four
+% independent simple random variables
+% Uses m-functions rep, elrep, kronf
+X  = input('Enter row matrix of X-values  ');
+Y  = input('Enter row matrix of Y-values  ');
+Z  = input('Enter row matrix of Z-values  ');
+W  = input('Enter row matrix of W-values  ');
+PX = input('Enter X probabilities  ');
+PY = input('Enter Y probabilities  ');
+PZ = input('Enter Z probabilities  ');
+PW = input('Enter W probabilities  ');
+n  = length(X);
+m  = length(Y);
+s  = length(Z);
+r  = length(W);
+[t,u] = meshgrid(X,Y);
+t = rep(t,r,s);
+u = rep(u,r,s);
+[v,w] = meshgrid(Z,W);
+v = elrep(v,m,n);  % t,u,v,w matrices for joint calculations
+w = elrep(w,m,n);
+P = kronf(kronf(PZ,PW'),kronf(PX,PY'));
+disp('Use array operations on matrices X, Y, Z, W')
+disp('PX, PY, PZ, PW, t, u, v, w, and P')
+
+</code>
+
+</solution>
+</exercise>
+
+</section>
+<section id="fs-id6857917"><title>Calculations for random variables</title><exercise id="eip-id1168843411319" print-placement="here" type="Code Example"><label>ddbn.m</label>
+<problem id="eip-id1168849605819" type="description"><label>Description of Code</label>
+<para id="eip-id1168846798051">
+
+
+<emphasis effect="bold">ddbn.m</emphasis>  Uses the distribution of a simple random variable (or simple approximation)
+to plot a step graph for the distribution function <emphasis effect="italics">F<sub>X</sub></emphasis>.
+
+</para>
+</problem>
+
+<solution id="eip-id1168846152056" type="code">
+<label>Code</label>
+  <code id="fs-id14328175" display="block">
+% DDBN file ddbn.m Step graph of distribution function
+% Version of 10/25/95
+% Plots step graph of dbn function FX from 
+% distribution of simple rv (or simple approximation)
+xc  = input('Enter row matrix of VALUES  ');
+pc = input('Enter row matrix of PROBABILITIES  ');
+m  = length(xc);
+FX = cumsum(pc);
+xt = [xc(1)-1-0.1*abs(xc(1)) xc xc(m)+1+0.1*abs(xc(m))];
+FX = [0 FX 1];        % Artificial extension of range and domain
+stairs(xt,FX)         % Plot of stairstep graph
+hold on
+plot(xt,FX,'o')       % Marks values at jump
+hold off
+grid                  
+xlabel('t')
+ylabel('u = F(t)')
+title('Distribution Function')
+
+</code>
+</solution>
+</exercise>
+
+
+
+
+
+<exercise id="eip-id1168849292457" print-placement="here" type="Code Example"><label>cdbn.m</label>
+<problem id="eip-id1168847711057" type="description"><label>Description of Code</label>
+<para id="eip-id1168844838092">
+
+
+<emphasis effect="bold">cdbn.m</emphasis>  Plots a continuous graph of a distribution function of a simple random variable (or simple approximation).
+
+</para>
+</problem>
+
+<solution id="eip-id3544024" type="code">
+<label>Code</label>
+  <code id="fs-id20746569" display="block">
+% CDBN file cdbn.m Continuous graph of distribution function
+% Version of 1/29/97
+% Plots continuous graph of dbn function FX from 
+% distribution of simple rv (or simple approximation)
+xc  = input('Enter row matrix of VALUES  ');
+pc = input('Enter row matrix of PROBABILITIES  ');
+m  = length(xc);
+FX = cumsum(pc);
+xt = [xc(1)-0.01 xc xc(m)+0.01];
+FX = [0 FX FX(m)];    % Artificial extension of range and domain
+plot(xt,FX)           % Plot of continuous graph
+grid                  
+xlabel('t')
+ylabel('u = F(t)')
+title('Distribution Function')
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1168848186515" print-placement="here" type="Code Example"><label>simple.m</label>
+<problem id="eip-id3942629" type="description"><label>Description of Code</label>
+<para id="eip-id1168846666927">
+
+<emphasis effect="bold">simple.m</emphasis>  Calculates basic quantites for simple random variables from the
+distribution, input as row matrices <emphasis effect="italics">X</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id1168848061716" type="code">
+<label>Code</label>
+  <code id="fs-id20589219" display="block">
+% SIMPLE file simple.m Calculates basic quantites for simple rv
+% Version of 6/18/95
+X  = input('Enter row matrix of X-values  ');
+PX = input('Enter row matrix PX of X probabilities  ');
+n  = length(X);          % dimension of X
+EX = dot(X,PX)           % E[X]
+EX2 = dot(X.^2,PX)       % E[X^2]
+VX = EX2 - EX^2          % Var[X]
+disp(' ')
+disp('Use row matrices X and PX for further calculations')
+
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id7107461" print-placement="here" type="Code Example"><label>jddbn.m</label>
+<problem id="eip-id1168845929864" type="description"><label>Description of Code</label>
+<para id="eip-id1168847921089">
+
+<emphasis effect="bold">jddbn.m</emphasis>  Representation of joint distribution function for simple pair by
+obtaining the value of <m:math overflow="scroll"><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math> at the lower left hand corners of each grid cell.
+
+</para>
+</problem>
+
+<solution id="eip-id5303996" type="code">
+<label>Code</label>
+<code id="fs-id20659881" display="block">
+% JDDBN file jddbn.m  Joint distribution function
+% Version of 10/7/96
+% Joint discrete distribution function for
+% joint  matrix P (arranged as on the plane).
+% Values at lower left hand corners of grid cells
+P = input('Enter joint probability matrix (as on the plane)  ');
+FXY = flipud(cumsum(flipud(P)));
+FXY = cumsum(FXY')';
+disp('To view corner values for joint dbn function, call for FXY')
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id1168846373112" print-placement="here" type="Code Example"><label>jsimple.m</label>
+<problem id="eip-id4078212" type="description"><label>Description of Code</label>
+<para id="eip-id6014263">
+
+<emphasis effect="bold">jsimple.m</emphasis>  Calculates basic quantities for a joint simple pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> from
+the joint distrsibution <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mi>P</m:mi></m:mrow></m:math> as in jcalc. Calculated quantities include means, variances,
+covariance, regression line, and regression curve (conditional expectation <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math>).
+
+</para>
+</problem>
+
+<solution id="eip-id1168846696655" type="code">
+<label>Code</label>
+  <code id="fs-id19912083" display="block">
+% JSIMPLE file jsimple.m  Calculates basic quantities for joint simple rv
+% Version of 5/25/95
+% The joint probabilities are arranged as on the plane 
+% (the top row corresponds to the largest value of Y) 
+P = input('Enter JOINT PROBABILITIES (as on the plane)  ');
+X = input('Enter row matrix of VALUES of X  ');
+Y = input('Enter row matrix of VALUES of Y  ');
+disp(' ')
+PX = sum(P);               % marginal distribution for X
+PY = fliplr(sum(P'));      % marginal distribution for Y
+XDBN = [X; PX]';
+YDBN = [Y; PY]';
+PT  = idbn(PX,PY);
+D  = total(abs(P - PT));   % test for difference
+if D &gt; 1e-8                % to prevent roundoff error masking zero
+  disp('{X,Y} is NOT independent')
+ else
+  disp('{X,Y} is independent')
+end
+disp(' ')
+[t,u] = meshgrid(X,fliplr(Y));
+EX  = total(t.*P)          % E[X]
+EY  = total(u.*P)          % E[Y]
+EX2 = total((t.^2).*P)     % E[X^2]
+EY2 = total((u.^2).*P)     % E[Y^2]
+EXY = total(t.*u.*P)       % E[XY]
+VX  = EX2 - EX^2           % Var[X]
+VY  = EY2 - EY^2           % Var[Y]
+cv = EXY - EX*EY;          % Cov[X,Y] = E[XY] - E[X]E[Y]
+if abs(cv) &gt; 1e-9          % to prevent roundoff error masking zero
+   CV = cv
+ else
+   CV = 0
+end
+a = CV/VX                  % regression line of Y on X is
+b = EY - a*EX              %       u = at + b
+R = CV/sqrt(VX*VY);        % correlation coefficient rho
+disp(['The regression line of Y on X is:  u = ',num2str(a),'t + ',num2str(b),])
+disp(['The correlation coefficient is:  rho = ',num2str(R),])
+disp(' ')
+eYx = sum(u.*P)./PX; 
+EYX = [X;eYx]';
+disp('Marginal dbns are in X, PX, Y, PY; to view, call XDBN, YDBN')
+disp('E[Y|X = x] is in eYx; to view, call for EYX')
+disp('Use array operations on matrices X, Y, PX, PY, t, u, and P')
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id1168849162129" print-placement="here" type="Code Example"><label>japprox.m</label>
+<problem id="eip-id1168846174055" type="description"><label>Description of Code</label>
+<para id="eip-id1168846858287">
+
+<emphasis effect="bold">japprox.m</emphasis>  Assumes discrete setup and calculates basic quantities for a pair
+of random variables as in jsimple. Plots the regression line and regression curve.
+</para>
+</problem>
+
+<solution id="eip-id3555640" type="code">
+<label>Code</label>
+<code id="fs-id20208456" display="block">
+% JAPPROX file japprox.m Basic quantities for ac pair {X,Y}
+% Version of 5/7/96
+% Assumes tuappr has set X, Y, PX, PY, t, u, P
+EX  = total(t.*P)          % E[X]
+EY  = total(u.*P)          % E[Y]
+EX2 = total(t.^2.*P)       % E[X^2]
+EY2 = total(u.^2.*P)       % E[Y^2]
+EXY = total(t.*u.*P)       % E[XY]
+VX  = EX2 - EX^2           % Var[X]
+VY  = EY2 - EY^2           % Var[Y]
+cv = EXY - EX*EY;          % Cov[X,Y] = E[XY] - E[X]E[Y]
+if abs(cv) &gt; 1e-9  % to prevent roundoff error masking zero
+   CV = cv
+ else
+   CV = 0
+end
+a = CV/VX                  % regression line of Y on X is
+b = EY - a*EX              % u = at + b
+R = CV/sqrt(VX*VY);
+disp(['The regression line of Y on X is:  u = ',num2str(a),'t + ',num2str(b),])
+disp(['The correlation coefficient is:  rho = ',num2str(R),])
+disp(' ')
+eY = sum(u.*P)./sum(P);    % eY(t) = E[Y|X = t]
+RL = a*X + b;
+plot(X,RL,X,eY,'-.')
+grid
+title('Regression line and Regression curve')
+xlabel('X values')
+ylabel('Y values')
+legend('Regression line','Regression curve')
+clear eY                   % To conserve memory
+clear RL
+disp('Calculate with X, Y, t, u, P, as in joint simple case')
+</code>
+  
+</solution>
+</exercise>
+
+
+</section>      
+
+<section id="fs-id8087413"><title>Calculations and tests for independent random variables</title><exercise id="eip-id10009333" print-placement="here" type="Code Example"><label>mgsum.m</label>
+<problem id="eip-id4833956" type="description"><label>Description of Code</label>
+<para id="eip-id9963150">
+
+<emphasis effect="bold">mgsum.m</emphasis><code display="inline">function [z,pz] = mgsum(x,y,px,py)</code>  determines the distribution for
+the sum of an independent pair of simple random variables from their distributions.
+</para>
+</problem>
+
+<solution id="eip-id6435617" type="code">
+<label>Code</label>
+ <code id="fs-id1164126798143" display="block">
+function [z,pz] = mgsum(x,y,px,py)
+% MGSUM [z,pz] = mgsum(x,y,px,py)  Sum of two independent simple rv
+% Version of 5/6/96
+% Distribution for the sum of two independent simple random variables
+% x is a vector (row or column) of X values  
+% y is a vector (row or column) of Y values
+% px is a vector (row or column) of X probabilities
+% py is a vector (row or column) of Y probabilities
+% z and pz are row vectors
+[a,b] = meshgrid(x,y);
+t  = a+b;
+[c,d] = meshgrid(px,py);
+p  = c.*d;
+[z,pz]  = csort(t,p);
+
+
+</code>
+</solution>
+</exercise>
+
+<exercise id="eip-id4843418" print-placement="here" type="Code Example"><label>mgsum3.m</label>
+<problem id="eip-id6320701" type="description"><label>Description of Code</label>
+<para id="eip-id9883758">
+
+<emphasis effect="bold">mgsum3.m</emphasis><code display="inline">function [w,pw] = mgsum3(x,y,z,px,py,pz)</code>  extends mgsum to three
+random variables by repeated application of mgsum. Similarly for mgsum4.m.
+</para>
+</problem>
+
+<solution id="eip-id4423590" type="code">
+<label>Code</label>
+<code id="fs-id1164127732531" display="block">
+function [w,pw] = mgsum3(x,y,z,px,py,pz)
+% MGSUM3 [w,pw] = mgsum3(x,y,z,px,py,y) Sum of three independent simple rv
+% Version of 5/2/96
+% Distribution for the sum of three independent simple random variables
+% x is a vector (row or column) of X values  
+% y is a vector (row or column) of Y values
+% z is a vector (row or column) of Z values
+% px is a vector (row or column) of X probabilities
+% py is a vector (row or column) of Y probabilities
+% pz is a vector (row or column) of Z probabilities
+% W and pW are row vectors
+[a,pa] = mgsum(x,y,px,py);
+[w,pw] = mgsum(a,z,pa,pz);
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id6530358" print-placement="here" type="Code Example"><label>mgnsum.m</label>
+<problem id="eip-id6111514" type="description"><label>Description of Code</label>
+<para id="eip-id8815812">
+
+<emphasis effect="bold">mgnsum.m</emphasis><code display="inline">function [z,pz] = mgnsum(X,P)</code>  determines the distribution for a sum
+of <emphasis effect="italics">n</emphasis> independent random variables. <emphasis effect="italics">X</emphasis> an <emphasis effect="italics">n</emphasis>-row matrix of <emphasis effect="italics">X</emphasis>-values and <m:math overflow="scroll"><m:mrow/></m:math>P an <emphasis effect="italics">n</emphasis>-row matrix
+of <emphasis effect="italics">P</emphasis>-values (padded with zeros, if necessary, to make all rows the same length.
+
+</para>
+</problem>
+
+<solution id="eip-id6344528" type="code">
+<label>Code</label>
+<code id="fs-id1164127523798" display="block">
+function [z,pz] = mgnsum(X,P)
+% MGNSUM [z,pz] = mgnsum(X,P)  Sum of n independent simple rv
+% Version of 5/16/96
+% Distribution for the sum of n independent simple random variables
+% X an n-row matrix of X-values
+% P an n-row matrix of P-values
+% padded with zeros, if necessary
+% to make all rows the same length
+[n,r] = size(P);
+z  = 0;
+pz = 1;
+for i = 1:n
+  x = X(i,:);
+  p = P(i,:);
+  x = x(find(p&gt;0));
+  p = p(find(p&gt;0));
+  [z,pz] = mgsum(z,x,pz,p);
+end
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id6524490" print-placement="here" type="Code Example"><label>mgsumn.m</label>
+<problem id="eip-id9848068" type="description"><label>Description of Code</label>
+<para id="eip-id8845107">
+
+<emphasis effect="bold">mgsumn.m</emphasis><code display="inline">function [z,pz] = mgsumn(varargin)</code>  is an alternate to mgnsum,
+utilizing <emphasis effect="italics">varargin</emphasis> in MATLAB version 5.1.
+The call is of the form
+<code display="inline">[z,pz] = mgsumn([x1;p1],[x2;p2], ..., [xn;pn])</code>.
+
+</para>
+</problem>
+
+<solution id="eip-id8910389" type="code">
+<label>Code</label>
+<code id="fs-id1164129863973" display="block">
+function [z,pz] = mgsumn(varargin)
+% MGSUMN [z,pz] = mgsumn([x1;p1],[x2;p2], ..., [xn;pn])
+% Version of 6/2/97 Uses MATLAB version 5.1
+% Sum of n independent simple random variables
+% Utilizes distributions in the form [x;px] (two rows)
+% Iterates mgsum
+n  = length(varargin);   % The number of distributions
+z  = 0;                  % Initialization
+pz = 1;
+for i = 1:n              % Repeated use of mgsum
+  [z,pz] = mgsum(z,varargin{i}(1,:),pz,varargin{i}(2,:));
+end
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id6251887" print-placement="here" type="Code Example"><label>diidsum.m</label>
+<problem id="eip-id6399856" type="description"><label>Description of Code</label>
+<para id="eip-id6321371">
+
+<emphasis effect="bold">diidsum.m</emphasis><code display="inline">function [x,px] = diidsum(X,PX,n)</code>  determines the sum of <emphasis effect="italics">n</emphasis> iid
+simple random variables, with the common distribution <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id6302460" type="code">
+<label>Code</label>
+<code id="fs-id6559060" display="block">
+function [x,px] = diidsum(X,PX,n)
+% DIIDSUM [x,px] = diidsum(X,PX,n) Sum of n iid simple random variables
+% Version of 10/14/95 Input rev 5/13/97
+% Sum of n iid rv with common distribution X, PX
+% Uses m-function mgsum
+x  = X;                       % Initialization
+px = PX;
+for i = 1:n-1
+  [x,px] = mgsum(x,X,px,PX);
+end
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id8679101" print-placement="here" type="Code Example"><label>itest.m</label>
+<problem id="eip-id8686112" type="description"><label>Description of Code</label>
+<para id="eip-id4604633">
+
+<emphasis effect="bold">itest.m</emphasis>  Tests for independence the matrix <emphasis effect="italics">P</emphasis> of joint probabilities for a simple
+pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables.
+
+</para>
+</problem>
+
+<solution id="eip-id6355757" type="code">
+<label>Code</label>
+<code id="fs-id6946515" display="block">
+% ITEST file itest.m  Tests P for independence
+% Version of 5/9/95
+% Tests for independence the matrix of joint 
+% probabilities for a simple pair {X,Y}
+pt = input('Enter matrix of joint probabilities  ');
+disp(' ')
+px = sum(pt);                  % Marginal probabilities for X
+py = sum(pt');                 % Marginal probabilities for Y (reversed)
+[a,b] = meshgrid(px,py); 
+PT = a.*b;                     % Joint independent probabilities
+D  = abs(pt - PT) &gt; 1e-9;      % Threshold set above roundoff
+if total(D) &gt; 0
+  disp('The pair {X,Y} is NOT independent')
+  disp('To see where the product rule fails, call for D')
+else
+  disp('The pair {X,Y} is independent')
+end
+
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id10003649" print-placement="here" type="Code Example"><label>idbn.m</label>
+<problem id="eip-id9871823" type="description"><label>Description of Code</label>
+<para id="eip-id8823629">
+
+<emphasis effect="bold">idbn.m</emphasis><code display="inline">function p = idbn(px,py)</code>  uses marginal probabilities to determine
+the joint probability matrix (arranged as on the plane) for an independent pair of simple random
+variables.
+
+</para>
+</problem>
+
+<solution id="eip-id6053333" type="code">
+<label>Code</label>
+<code id="fs-id1164126691945" display="block">
+function p = idbn(px,py)
+% IDBN p = idbn(px,py)  Matrix of joint independent probabilities
+% Version of 5/9/95
+% Determines joint probability matrix for two independent
+% simple random variables (arranged as on the plane)
+[a,b] = meshgrid(px,fliplr(py));
+p = a.*b
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id8770148" print-placement="here" type="Code Example"><label>isimple.m</label>
+<problem id="eip-id6572815" type="description"><label>Description of Code</label>
+<para id="eip-id9871636">
+
+<emphasis effect="bold">isimple.m</emphasis>  Takes as inputs the marginal distributions for an independent pair
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> of simple random variables. Sets up the joint distribution probability matrix <emphasis effect="italics">P</emphasis> as in
+<emphasis effect="italics">idbn</emphasis>, and forms the calculating matrices <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi></m:mrow></m:math> as in <emphasis effect="italics">jcalc</emphasis>. Calculates basic
+quantities and makes available matrices <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>Y</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u </m:mi> </m:mrow> </m:math> for additional calculations.
+
+</para>
+</problem>
+
+<solution id="eip-id6250268" type="code">
+<label>Code</label>
+<code id="fs-id1164129818570" display="block">
+% ISIMPLE file isimple.m  Calculations for independent simple rv
+% Version of 5/3/95
+X  = input('Enter row matrix of X-values  ');
+Y  = input('Enter row matrix of Y-values  ');
+PX = input('Enter X probabilities  ');
+PY = input('Enter Y probabilities  ');
+[a,b] = meshgrid(PX,fliplr(PY));
+P  = a.*b;                      % Matrix of joint independent probabilities 
+[t,u] = meshgrid(X,fliplr(Y));  % t, u matrices for joint calculations
+EX  = dot(X,PX)                 % E[X]
+EY  = dot(Y,PY)                 % E[Y]
+VX  = dot(X.^2,PX) - EX^2       % Var[X]
+VY  = dot(Y.^2,PY) - EY^2       % Var[Y]
+disp(' Use array operations on matrices X, Y, PX, PY, t, u, and P')
+
+</code>
+</solution>
+</exercise>
+
+</section>      
+
+<section id="fs-id1216403"><title>Quantile functions for bounded distributions</title><exercise id="eip-id6546265" print-placement="here" type="Code Example"><label>dquant.m</label>
+<problem id="eip-id8113936" type="description"><label>Description of Code</label>
+<para id="eip-id2805908">
+
+<emphasis effect="bold">dquant.m</emphasis><code display="inline">function t = dquant(X,PX,U)</code>  determines the values of the
+quantile function for a simple random variable with distribution <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>X </m:mi></m:mrow></m:math> at the probability values
+in row vector <emphasis effect="italics">U</emphasis>.  The probability vector <emphasis effect="italics">U</emphasis> is often determined by a random number generator.
+
+</para>
+</problem>
+
+<solution id="eip-id7035707" type="code">
+<label>Code</label>
+<code id="fs-id2479683" display="block">
+function t = dquant(X,PX,U)
+% DQUANT t = dquant(X,PX,U)  Quantile function for a simple random variable
+% Version of 10/14/95
+% U is a vector of probabilities
+m  = length(X);
+n  = length(U);
+F  = [0 cumsum(PX)+1e-12]; 
+F(m+1) = 1;                     % Makes maximum value exactly one
+if U(n) &gt;= 1                    % Prevents improper values of probability U
+  U(n) = 1;
+end
+if U(1) &lt;= 0
+  U(1) = 1e-9;
+end
+f  = rowcopy(F,n);              % n rows of F
+u  = colcopy(U,m);              % m columns of U
+t  = X*((f(:,1:m) &lt; u)&amp;(u &lt;= f(:,2:m+1)))';
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id5722604" print-placement="here" type="Code Example"><label>dquanplot.m</label>
+<problem id="eip-id2817695" type="description"><label>Description of Code</label>
+<para id="eip-id6819196">
+
+<emphasis effect="bold">dquanplot.m</emphasis>  Plots as a stairs graph the quantile function for a simple random variable
+<emphasis effect="italics">X</emphasis>. The plot is the values of <emphasis effect="italics">X</emphasis> versus the distribution function <emphasis effect="italics">F<sub>X</sub></emphasis>.
+
+</para>
+</problem>
+
+<solution id="eip-id6908842" type="code">
+<label>Code</label>
+  <code id="fs-id1164127411288" display="block">
+% DQUANPLOT file dquanplot.m  Plot of quantile function for a simple rv
+% Version of 7/6/95
+% Uses stairs to plot the inverse of FX
+X  = input('Enter VALUES for X  ');
+PX = input('Enter PROBABILITIES for X  ');
+m  = length(X);
+F  = [0 cumsum(PX)];
+XP = [X X(m)];
+stairs(F,XP)
+grid
+title('Plot of Quantile Function')
+xlabel('u')
+ylabel('t = Q(u)')
+hold on
+plot(F(2:m+1),X,'o')          % Marks values at jumps
+hold off
+
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id6843688" print-placement="here" type="Code Example"><label>dsample.m</label>
+<problem id="eip-id5456961" type="description"><label>Description of Code</label>
+<para id="eip-id7143597">
+
+<emphasis effect="bold">dsample.m</emphasis>  Calculates a sample from a discrete distribution, determines the
+relative frequencies of values, and compares with actual probabilities. Input consists of value and
+probability matrices for <emphasis effect="italics">X</emphasis> and the sample size <emphasis effect="italics">n</emphasis>.  A matrix <emphasis effect="italics">U</emphasis> is determined by a random number
+generator, and the m-function dquant is used to calculate the corresponding sample values. Various
+data on the sample are calculated and displayed.
+
+</para>
+</problem>
+
+<solution id="eip-id2978400" type="code">
+<label>Code</label>
+<code id="fs-id6686291" display="block">
+% DSAMPLE file dsample.m  Simulates sample from discrete population
+% Version of 12/31/95 (Display revised 3/24/97)
+% Relative frequencies vs probabilities for
+% sample from discrete population distribution
+X  = input('Enter row matrix of VALUES  ');
+PX = input('Enter row matrix of PROBABILITIES  ');
+n  = input('Sample size n  ');
+U  = rand(1,n);
+T  = dquant(X,PX,U);
+[x,fr] = csort(T,ones(1,length(T)));
+disp('    Value      Prob    Rel freq')
+disp([x; PX; fr/n]')
+ex = sum(T)/n;
+EX = dot(X,PX);
+vx = sum(T.^2)/n - ex^2;
+VX = dot(X.^2,PX) - EX^2;
+disp(['Sample average ex = ',num2str(ex),])
+disp(['Population mean E[X] = ',num2str(EX),])
+disp(['Sample variance vx = ',num2str(vx),])
+disp(['Population variance Var[X] = ',num2str(VX),])
+
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id2771760" print-placement="here" type="Code Example"><label>quanplot.m</label>
+<problem id="eip-id2787582" type="description"><label>Description of Code</label>
+<para id="eip-id4588861">
+
+<emphasis effect="bold">quanplot.m</emphasis>  Plots the quantile function for a distribution function <emphasis effect="italics">F<sub>X</sub></emphasis>.  Assumes
+the procedure <emphasis effect="italics">dfsetup</emphasis> or <emphasis effect="italics">acsetup</emphasis> has been run. A suitable set <emphasis effect="italics">U</emphasis> of probability
+values is determined and the m-function <emphasis effect="italics">dquant</emphasis> is used to determine corresponding values of
+the quantile function. The results are plotted.
+
+</para>
+</problem>
+
+<solution id="eip-id5620683" type="code">
+<label>Code</label>
+<code id="fs-id6852680" display="block">
+% QUANPLOT file quanplot.m  Plots quantile function for dbn function
+% Version of 2/2/96
+% Assumes dfsetup or acsetup has been run
+% Uses m-function dquant
+X  = input('Enter row matrix of values  ');
+PX = input('Enter row matrix of probabilities  ');
+h  = input('Probability increment h  ');
+U  = h:h:1;
+T  = dquant(X,PX,U);
+U  = [0 U 1];
+Te = X(m) + abs(X(m))/20;
+T  = [X(1) T Te];
+plot(U,T)             % Plot rather than stairs for general case
+grid
+title('Plot of Quantile Function')
+xlabel('u')
+ylabel('t = Q(u)')
+
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id2922249" print-placement="here" type="Code Example"><label>qsample.m</label>
+<problem id="eip-id6584338" type="description"><label>Description of Code</label>
+<para id="eip-id6779555">
+
+<emphasis effect="bold">qsample.m</emphasis>  Simulates a sample for a given population density. Determines sample
+parameters and approximate population parameters. Assumes dfsetup or acsetup has been run. Takes as
+input the distribution matrices <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math> and the sample size <emphasis effect="italics">n</emphasis>.  Uses a random number generator to
+obtain the probability matrix <emphasis effect="italics">U</emphasis> and uses the m-function <emphasis effect="italics">dquant</emphasis> to determine the sample.
+Assumes <emphasis effect="italics">dfsetup</emphasis> or <emphasis effect="italics">acsetup</emphasis> has been run.
+
+</para>
+</problem>
+
+<solution id="eip-id8050231" type="code">
+<label>Code</label>
+<code id="fs-id7065416" display="block">
+% QSAMPLE file qsample.m  Simulates sample for given population density
+% Version of 1/31/96
+% Determines sample parameters 
+% and approximate population parameters.
+% Assumes dfsetup or acsetup has been run
+X  = input('Enter row matrix of VALUES  ');
+PX = input('Enter row matrix of PROBABILITIES  ');
+n  = input('Sample size n =  ');
+m  = length(X);
+U  = rand(1,n);
+T  = dquant(X,PX,U);
+ex = sum(T)/n;
+EX = dot(X,PX);
+vx = sum(T.^2)/n - ex^2;
+VX = dot(X.^2,PX) - EX^2;
+disp('The sample is in column vector T')
+disp(['Sample average ex = ', num2str(ex),])
+disp(['Approximate population mean E(X) = ',num2str(EX),])
+disp(['Sample variance vx = ',num2str(vx),])
+disp(['Approximate population variance V(X) = ',num2str(VX),])
+
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id5997040" print-placement="here" type="Code Example"><label>targetset.m</label>
+<problem id="eip-id3212631" type="description"><label>Description of Code</label>
+<para id="eip-id8106223">
+
+<emphasis effect="bold">targetset.m</emphasis>  Setup for arrival at a target set of values. Used in conjunction with
+the m-procedure <emphasis effect="italics">targetrun</emphasis> to determine the number of trials needed to visit <emphasis effect="italics">k</emphasis> of a specified
+set of target values. Input consists of the distribution matrices <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math> and the specified set <emphasis effect="italics">E</emphasis> of
+target values.
+</para>
+</problem>
+<solution id="fs-id1164126965383" type="Code">
+<label>Code</label>
+<code id="fs-id1164127012614" display="block">
+% TARGETSET file targetset.m  Setup for sample arrival at target set
+% Version of 6/24/95
+X  = input('Enter population VALUES  ');
+PX = input('Enter population PROBABILITIES  ');
+ms = length(X);
+x = 1:ms;                   % Value indices
+disp('The set of population values is')
+disp(X);
+E  = input('Enter the set of target values  ');
+ne = length(E);
+e  = zeros(1,ne);
+for i = 1:ne
+  e(i) = dot(E(i) == X,x);  % Target value indices
+end
+F  = [0 cumsum(PX)];
+A  = F(1:ms);
+B  = F(2:ms+1);
+disp('Call for targetrun')
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="eip-id5344324" print-placement="here" type="Code Example"><label>targetrun.m</label>
+<problem id="eip-id3422982" type="description"><label>Description of Code</label>
+<para id="eip-id2952488">
+
+<emphasis effect="bold">targetrun.m</emphasis>  Assumes the m-file <emphasis effect="italics">targetset</emphasis> has provided the basic data. Input
+consists of the number <emphasis effect="italics">r</emphasis> of repetitions and the number <emphasis effect="italics">k</emphasis> of the target states to visit. Calculates
+and displays various results.
+
+</para>
+</problem>
+
+<solution id="eip-id2902940" type="code">
+<label>Code</label>
+<code id="fs-id1164118283032" display="block">
+% TARGETRUN file targetrun.m Number of trials to visit k target values
+% Version of 6/24/95  Rev for Version 5.1 1/30/98
+% Assumes the procedure targetset has been run.
+r  = input('Enter the number of repetitions  ');
+disp('The target set is')
+disp(E)
+ks = input('Enter the number of target values to visit  ');
+if isempty(ks)
+  ks = ne;
+end
+if ks &gt; ne
+  ks = ne;
+end
+clear T             % Trajectory in value indices (reset)
+R0 = zeros(1,ms);   % Indicator for target value indices
+R0(e) = ones(1,ne);
+S  = zeros(1,r);    % Number of trials for each run (reset)
+for k = 1:r
+  R = R0;
+  i = 1;
+  while sum(R) &gt; ne - ks
+    u = rand(1,1);
+    s = ((A &lt; u)&amp;(u &lt;= B))*x';
+    if R(s) == 1     % Deletes indices as values reached
+      R(s) = 0;
+    end
+    T(i) = s;
+    i = i+1;
+  end
+  S(k) = i-1;
+end
+if r == 1
+  disp(['The number of trials to completion is ',int2str(i-1),])
+  disp(['The initial value is ',num2str(X(T(1))),])
+  disp(['The terminal value is ',num2str(X(T(i-1))),])
+  N  = 1:i-1;
+  TR = [N;X(T)]';
+  disp('To view the trajectory, call for TR')
+else
+  [t,f] = csort(S,ones(1,r));
+  D  = [t;f]';
+  p  = f/r;
+  AV = dot(t,p);
+  SD = sqrt(dot(t.^2,p) - AV^2);
+  MN = min(t);
+  MX = max(t);
+  disp(['The average completion time is ',num2str(AV),])
+  disp(['The standard deviation is ',num2str(SD),])
+  disp(['The minimum completion time is ',int2str(MN),])
+  disp(['The maximum completion time is ',int2str(MX),])
+  disp(' ')
+  disp('To view a detailed count, call for D.')
+  disp('The first column shows the various completion times;')
+  disp('the second column shows the numbers of trials yielding those times')
+  plot(t,cumsum(p))
+  grid
+  title('Fraction of Runs t Steps or Less')
+  ylabel('Fraction of runs')
+  xlabel('t = number of steps to complete run')
+end
+
+</code>
+</solution>
+</exercise>
+
+</section>
+
+      <section id="fs-id1553277"><title>Compound demand</title><para id="id146316">The following pattern provides a useful model in many situations. Consider</para>
+      <equation id="id146320"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>D</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>N</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id146358">where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, and the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid, independent of the counting random variable
+<emphasis effect="italics">N</emphasis>. One natural interpretation is to consider <emphasis effect="italics">N</emphasis> to be the number of customers in a store and <emphasis effect="italics">Y<sub>k</sub></emphasis>
+the amount purchased by the <emphasis effect="italics">k</emphasis>th customer. Then <emphasis effect="italics">D</emphasis> is the total demand of the actual customers.
+Hence, we call <emphasis effect="italics">D</emphasis> the <emphasis effect="italics">compound demand</emphasis>.</para>
+      
+<exercise id="eip-id4738570" print-placement="here" type="Code Example"><label>gend.m</label>
+<problem id="eip-id12960595" type="description"><label>Description of Code</label>
+<para id="eip-id12941295">
+
+<emphasis effect="bold">gend.m</emphasis>  Uses coefficients of the generating functions for <emphasis effect="italics">N</emphasis> and <emphasis effect="italics">Y</emphasis> to calculate,
+in the integer case, the marginal distribution for the compound demand <emphasis effect="italics">D</emphasis> and the joint distribution
+for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id11799599" type="code">
+<label>Code</label>
+<code id="fs-id1165208640530" display="block">
+% GEND file gend.m   Marginal and joint dbn for integer compound demand
+% Version of 5/21/97
+% Calculates marginal distribution for compound demand D
+% and joint distribution for {N,D} in the integer case
+% Do not forget zero coefficients for missing powers
+% in the generating functions for N, Y
+disp('Do not forget zero coefficients for missing powers')
+gn = input('Enter gen fn COEFFICIENTS for gN  ');
+gy = input('Enter gen fn COEFFICIENTS for gY  ');
+n  = length(gn) - 1;           % Highest power in gN
+m  = length(gy) - 1;           % Highest power in gY
+P  = zeros(n + 1,n*m + 1);     % Base for generating P
+y  = 1;                        % Initialization
+P(1,1) = gn(1);                % First row of P (P(N=0) in the first position)
+for i = 1:n                    % Row by row determination of P
+   y  = conv(y,gy);            % Successive powers of gy
+   P(i+1,1:i*m+1) = y*gn(i+1); % Successive rows of P
+end
+PD = sum(P);                   % Probability for each possible value of D
+a  = find(gn);                 % Location of nonzero N probabilities
+b  = find(PD);                 % Location of nonzero D probabilities
+P  = P(a,b);                   % Removal of zero rows and columns
+P  = rot90(P);                 % Orientation as on the plane
+N  = 0:n;
+N  = N(a);                     % N values with positive probabilites
+PN = gn(a);                    % Positive N probabilities
+Y  = 0:m;                      % All possible values of Y
+Y  = Y(find(gy));              % Y values with positive probabilities
+PY = gy(find(gy));             % Positive Y proabilities
+D  = 0:n*m;                    % All possible values of D
+PD = PD(b);                    % Positive D probabilities
+D  = D(b);                     % D values with positive probabilities
+gD = [D; PD]';                 % Display combination
+disp('Results are in N, PN, Y, PY, D, PD, P')
+disp('May use jcalc or jcalcf on N, D, P')
+disp('To view distribution for D, call for gD')
+
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id15285922" print-placement="here" type="Code Example"><label>gendf.m</label>
+<problem id="eip-id5201098" type="description"><label>Description of Code</label>
+<para id="eip-id5906191">
+
+<emphasis effect="bold">gendf.m</emphasis><code display="inline">function [d,pd] = gendf(gn,gy)</code> is a function version of
+<emphasis effect="italics">gend</emphasis>, which allows arbitrary naming of the variables. Calculates the distribution for <emphasis effect="italics">D</emphasis>,
+but not the joint distribution for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>.
+
+</para>
+</problem>
+
+<solution id="eip-id8457544" type="code">
+<label>Code</label>
+  <code id="fs-id1165207438056" display="block">
+function [d,pd] = gendf(gn,gy)
+% GENDF [d,pd] = gendf(gN,gY) Function version of gend.m
+% Calculates marginal for D in the integer case 
+% Version of 5/21/97
+% Do not forget zero coefficients for missing powers
+% in the generating functions for N, Y
+n  = length(gn) - 1;           % Highest power in gN
+m  = length(gy) - 1;           % Highest power in gY
+P  = zeros(n + 1,n*m + 1);     % Base for generating P
+y  = 1;                        % Initialization
+P(1,1) = gn(1);                % First row of P (P(N=0) in the first position)
+for i = 1:n                    % Row by row determination of P
+   y  = conv(y,gy);            % Successive powers of gy
+   P(i+1,1:i*m+1) = y*gn(i+1); % Successive rows of P
+end
+PD = sum(P);                   % Probability for each possible value of D
+D  = 0:n*m;                    % All possible values of D
+b  = find(PD);                 % Location of nonzero D probabilities
+d  = D(b);                     % D values with positive probabilities
+pd = PD(b);                    % Positive D probabilities
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id6250048" print-placement="here" type="Code Example"><label>mgd.m</label>
+<problem id="eip-id12959205" type="description"><label>Description of Code</label>
+<para id="eip-id7514352">
+
+<emphasis effect="bold">mgd.m</emphasis>  Uses coefficients for the generating function for <emphasis effect="italics">N</emphasis> and the distribution for
+simple <emphasis effect="italics">Y</emphasis> to calculate the distribution for the compound demand.
+
+</para>
+</problem>
+
+<solution id="eip-id11969124" type="code">
+<label>Code</label>
+<code id="fs-id1165200990368" display="block">
+% MGD file mgd.m  Moment generating function for compound demand
+% Version of 5/19/97
+% Uses m-functions csort, mgsum
+disp('Do not forget zeros coefficients for missing')
+disp('powers in the generating function for N')
+disp(' ') 
+g  = input('Enter COEFFICIENTS for gN  ');
+y  = input('Enter VALUES for Y  ');
+p  = input('Enter PROBABILITIES for Y  ');
+n  = length(g);               % Initialization
+a  = 0;
+b  = 1;
+D  = a;
+PD = g(1);
+for i = 2:n
+  [a,b] = mgsum(y,a,p,b);
+  D  = [D a];
+  PD = [PD b*g(i)];
+  [D,PD] = csort(D,PD);
+end
+r = find(PD&gt;1e-13); 
+D = D(r);                     % Values with positive probability
+PD = PD(r);                   % Corresponding probabilities
+mD = [D; PD]';                % Display details
+disp('Values are in row matrix D; probabilities are in PD.')
+disp('To view the distribution, call for mD.')
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id4370093" print-placement="here" type="Code Example"><label>mgdf.m</label>
+<problem id="eip-id9971129" type="description"><label>Description of Code</label>
+<para id="eip-id13517141">
+
+<emphasis effect="bold">mgdf.m</emphasis><code display="inline">function [d,pd] = mgdf(pn,y,py)</code>  is a function version of <emphasis effect="italics">mgd</emphasis>,
+which allows arbitrary naming of the variables. The input matrix <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mi>n</m:mi></m:mrow></m:math> is the coefficient matrix
+for the counting random variable generating function. Zeros for the missing powers must be included.
+The matrices <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mi>y</m:mi></m:mrow></m:math> are the actual values and probabilities of the demand random variable.
+
+</para>
+</problem>
+
+<solution id="eip-id6618583" type="code">
+<label>Code</label>
+  <code id="fs-id1165207414462" display="block">
+function [d,pd] = mgdf(pn,y,py)
+% MGDF [d,pd] = mgdf(pn,y,py)  Function version of mgD
+% Version of 5/19/97
+% Uses m-functions mgsum and csort
+% Do not forget zeros coefficients for missing
+% powers in the generating function for N 
+n  = length(pn);               % Initialization
+a  = 0;
+b  = 1;
+d  = a;
+pd = pn(1);
+for i = 2:n
+  [a,b] = mgsum(y,a,py,b);
+  d  = [d a];
+  pd = [pd b*pn(i)];
+  [d,pd] = csort(d,pd);
+end
+a  = find(pd&gt;1e-13);          % Location of positive probabilities
+pd = pd(a);                   % Positive probabilities
+d  = d(a);                    % D values with positive probability
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id14366697" print-placement="here" type="Code Example"><label>randbern.m</label>
+<problem id="eip-id12855439" type="description"><label>Description of Code</label>
+<para id="eip-id9024307">
+
+<emphasis effect="bold">randbern.m</emphasis> Let <emphasis effect="italics">S</emphasis> be the number of successes in a random number <emphasis effect="italics">N</emphasis> of Bernoulli trials,
+with probability <emphasis effect="italics">p</emphasis> of success on each trial. The procedure randbern takes as inputs the probability
+<emphasis effect="italics">p</emphasis> of success and the distribution matrices <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>P</m:mi><m:mi>N</m:mi></m:mrow></m:math> for the counting random variable <emphasis effect="italics">N</emphasis> and calculates
+the joint distribution for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>S</m:mi><m:mo>}</m:mo></m:mrow></m:math> and the marginal distribution for <emphasis effect="italics">S</emphasis>.
+
+</para>
+</problem>
+
+<solution id="eip-id6169274" type="code">
+<label>Code</label>
+<code id="fs-id1165201189897" display="block">
+
+% RANDBERN file randbern.m   Random number of Bernoulli trials
+% Version of 12/19/96; notation modified 5/20/97
+% Joint and marginal distributions for a random number of Bernoulli trials
+% N is the number of trials
+% S is the number of successes
+p  = input('Enter the probability of success  ');
+N  = input('Enter VALUES of N  ');
+PN = input('Enter PROBABILITIES for N  ');
+n  = length(N);
+m  = max(N);
+S  = 0:m;
+P  = zeros(n,m+1);
+for i = 1:n
+  P(i,1:N(i)+1) = PN(i)*ibinom(N(i),p,0:N(i));
+end
+PS = sum(P);
+P  = rot90(P);
+disp('Joint distribution N, S, P, and marginal PS')
+
+
+</code>
+</solution>
+</exercise>
+
+</section>
+
+      <section id="fs-id1166253511857"><title>Simulation of Markov systems       </title><exercise id="eip-id13024076" print-placement="here" type="Code Example"><label>inventory1.m</label>
+<problem id="eip-id13952288" type="description"><label>Description of Code</label>
+<para id="eip-id6565654">
+
+<emphasis effect="bold">inventory1.m</emphasis>  Calculates the transition matrix for an <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:math> inventory policy.
+At the end of each period, if the stock is less than a reorder point <emphasis effect="italics">m</emphasis>, stock is
+replenished to the level <emphasis effect="italics">M</emphasis>.  Demand in each period is an integer valued random variable
+<emphasis effect="italics">Y</emphasis>.  Input consists of the parameters <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>M</m:mi></m:mrow></m:math> and the distribution for <emphasis effect="italics">Y</emphasis> as a simple random
+variable (or a discrete approximation).
+
+</para>
+</problem>
+
+<solution id="eip-id8807282" type="code">
+<label>Code</label>
+<code id="fs-id1165215533394" display="block">
+% INVENTORY1 file inventory1.m  Generates P for (m,M) inventory policy
+% Version of 1/27/97
+% Data for transition probability calculations
+% for (m,M) inventory policy
+M  = input('Enter value M of maximum stock  ');
+m  = input('Enter value m of reorder point  ');
+Y  = input('Enter row vector of demand values  ');
+PY = input('Enter demand probabilities  ');
+states = 0:M;
+ms = length(states);
+my = length(Y);
+% Calculations for determining P
+[y,s] = meshgrid(Y,states);
+T  =  max(0,M-y).*(s &lt; m) + max(0,s-y).*(s &gt;= m);
+P  = zeros(ms,ms);
+for i = 1:ms
+   [a,b] = meshgrid(T(i,:),states);
+   P(i,:) = PY*(a==b)';
+end
+disp('Result is in matrix P')
+
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="eip-id3925498" print-placement="here" type="Code Example"><label>branchp.m</label>
+<problem id="eip-id8811945" type="description"><label>Description of Code</label>
+<para id="eip-id12272299">
+
+<emphasis effect="bold">branchp.m</emphasis>  Calculates the transition matrix for a simple branching process with
+a specified maximum population. Input consists of the maximum population value <emphasis effect="italics">M</emphasis> and the coefficient
+matrix for the generating function for the individual propagation random variables <emphasis effect="italics">Z<sub>i</sub></emphasis>. The latter
+matrix must include zero coefficients for missing powers.
+
+</para>
+</problem>
+
+<solution id="eip-id10531097" type="code">
+<label>Code</label>
+<code id="fs-id1165206501507" display="block">
+% BRANCHP file branchp.m  Transition P for simple branching process
+% Version of 7/25/95
+% Calculates transition matrix for a simple branching 
+% process with specified maximum population.
+disp('Do not forget zero probabilities for missing values of Z')
+PZ = input('Enter PROBABILITIES for individuals  ');
+M  = input('Enter maximum allowable population  ');
+mz = length(PZ) - 1;
+EZ = dot(0:mz,PZ);
+disp(['The average individual propagation is ',num2str(EZ),])
+P  = zeros(M+1,M+1);
+Z  = zeros(M,M*mz+1);
+k  = 0:M*mz;
+a  = min(M,k);
+z  = 1;
+P(1,1) = 1;
+for i = 1:M                 % Operation similar to gend
+  z = conv(PZ,z);
+  Z(i,1:i*mz+1) = z;
+  [t,p] = csort(a,Z(i,:));
+  P(i+1,:) = p;
+end  
+disp('The transition matrix is P')
+disp('To study the evolution of the process, call for branchdbn')
+
+</code>
+
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id15398609" print-placement="here" type="Code Example"><label>chainset.m</label>
+<problem id="eip-id11806635" type="description"><label>Description of Code</label>
+<para id="eip-id5201122">
+
+<emphasis effect="bold">chainset.m</emphasis>  Sets up for simulation of Markov chains. Inputs are the transition
+matrix <emphasis effect="bold">P</emphasis> the set of states, and an optional set of target states. The chain generating procedures
+listed below assume this procedure has been run.
+
+</para>
+</problem>
+
+<solution id="eip-id18425807" type="code">
+<label>Code</label>
+<code id="fs-id1165215209236" display="block">
+% CHAINSET file chainset.m Setup for simulating Markov chains
+% Version of 1/2/96 Revise 7/31/97 for version 4.2 and 5.1
+P  = input('Enter the transition matrix  ');
+ms = length(P(1,:));
+MS = 1:ms;
+states = input('Enter the states if not 1:ms  ');
+if isempty(states)
+  states = MS;
+end
+disp('States are')
+disp([MS;states]')
+PI = input('Enter the long-run probabilities  ');
+F  = [zeros(1,ms); cumsum(P')]';
+A  = F(:,MS);
+B  = F(:,MS+1);
+e  = input('Enter the set of target states  ');
+ne = length(e);
+E  = zeros(1,ne);
+for i = 1:ne
+  E(i) = MS(e(i)==states);
+end
+disp(' ')
+disp('Call for for appropriate chain generating procedure')
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id7086982" print-placement="here" type="Code Example"><label>mchain.m</label>
+<problem id="eip-id19534860" type="description"><label>Description of Code</label>
+<para id="eip-id19586454">
+
+
+<emphasis effect="bold">mchain.m</emphasis>  Assumes <emphasis effect="italics">chainset</emphasis> has been run. Generates trajectory of specified
+length, with specified initial state.
+</para>
+</problem>
+
+<solution id="eip-id13075246" type="code">
+<label>Code</label>
+<code id="fs-id1165207584648" display="block">
+% MCHAIN file mchain.m  Simulation of Markov chains
+% Version of 1/2/96  Revised 7/31/97 for version 4.2 and 5.1
+% Assumes the procedure chainset has been run
+n  = input('Enter the number n of stages   ');
+st = input('Enter the initial state  ');
+if ~isempty(st)
+  s  = MS(st==states);
+else
+  s = 1;
+end
+T  = zeros(1,n);           % Trajectory in state numbers
+U  = rand(1,n);
+for i = 1:n
+  T(i) = s;
+  s = ((A(s,:) &lt; U(i))&amp;(U(i) &lt;= B(s,:)))*MS';
+end
+N  = 0:n-1;
+tr = [N;states(T)]';
+n10 = min(n,11);
+TR = tr(1:n10,:);
+f  = ones(1,n)/n;
+[sn,p] = csort(T,f);
+if isempty(PI)
+  disp('     State     Frac')
+  disp([states; p]')
+else
+  disp('     State     Frac       PI')
+  disp([states; p; PI]')
+end
+disp('To view the first part of the trajectory of states, call for TR')
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id7437462" print-placement="here" type="Code Example"><label>arrival.m</label>
+<problem id="eip-id10562893" type="description"><label>Description of Code</label>
+<para id="eip-id8381984">
+
+
+<emphasis effect="bold">arrival.m</emphasis>  Assumes <emphasis effect="italics">chainset</emphasis> has been run. Calculates repeatedly the arrival
+time to a prescribed set of states.
+</para>
+</problem>
+
+
+<solution id="eip-id12297766" type="code">
+<label>Code</label>
+<code id="fs-id1165200780635" display="block">
+
+% ARRIVAL file arrival.m  Arrival time to a set of states
+% Version of 1/2/96  Revised 7/31/97 for version 4.2 and 5.1
+% Calculates repeatedly the arrival
+% time to a prescribed set of states.
+% Assumes the procedure chainset has been run.
+r  = input('Enter the number of repetitions  ');
+disp('The target state set is:')
+disp(e)
+st = input('Enter the initial state  ');
+if ~isempty(st)
+  s1 = MS(st==states); % Initial state number
+else
+  s1 = 1;
+end
+clear T                % Trajectory in state numbers (reset)
+S  = zeros(1,r);       % Arrival time for each rep  (reset)
+TS = zeros(1,r);       % Terminal state number for each rep (reset)
+for k = 1:r
+  R  = zeros(1,ms);    % Indicator for target state numbers
+  R(E) = ones(1,ne);   % reset for target state numbers
+  s  = s1;
+  T(1) = s;
+  i  = 1;
+  while R(s) ~= 1      % While s is not a target state number
+    u = rand(1,1);
+    s = ((A(s,:) &lt; u)&amp;(u &lt;= B(s,:)))*MS';
+    i = i+1;
+    T(i) = s;
+  end
+  S(k) = i-1;          % i is the number of stages; i-1 is time
+  TS(k) = T(i);
+end
+[ts,ft] = csort(TS,ones(1,r));  % ts = terminal state numbers  ft = frequencies
+fts = ft/r;                     % Relative frequency of each ts
+[a,at]  = csort(TS,S);          % at = arrival time for each ts
+w  = at./ft;                    % Average arrival time for each ts
+RES = [states(ts); fts; w]';
+disp(' ')
+if r == 1
+  disp(['The arrival time is ',int2str(i-1),])
+  disp(['The state reached is ',num2str(states(ts)),])
+  N = 0:i-1;
+  TR = [N;states(T)]';
+  disp('To view the trajectory of states, call for TR')
+else
+  disp(['The result of ',int2str(r),' repetitions is:'])
+  disp('Term state  Rel Freq   Av time')
+  disp(RES)
+  disp(' ')
+  [t,f]  = csort(S,ones(1,r));  % t = arrival times   f = frequencies
+  p  = f/r;                     % Relative frequency of each t
+  dbn = [t; p]';
+  AV = dot(t,p);
+  SD = sqrt(dot(t.^2,p) - AV^2);
+  MN = min(t);
+  MX = max(t);
+  disp(['The average arrival time is ',num2str(AV),])
+  disp(['The standard deviation is ',num2str(SD),])
+  disp(['The minimum arrival time is ',int2str(MN),])
+  disp(['The maximum arrival time is ',int2str(MX),])
+  disp('To view the distribution of arrival times, call for dbn')
+  disp('To plot the arrival time distribution, call for plotdbn')
+end
+
+
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id3701180" print-placement="here" type="Code Example"><label>recurrence.m</label>
+<problem id="eip-id4404816" type="description"><label>Description of Code</label>
+<para id="eip-id19518238">
+
+<emphasis effect="bold">recurrence.m</emphasis>  Assumes <emphasis effect="italics">chainset</emphasis> has been run. Calculates repeatedly the
+recurrence time to a prescribed set of states, if initial state is in the set; otherwise calculates
+the arrival time.
+</para>
+</problem>
+
+
+<solution id="eip-id4276278" type="code">
+<label>Code</label>
+<code id="fs-id1165216643506" display="block">
+% RECURRENCE file recurrence.m Recurrence time to a set of states
+% Version of 1/2/96  Revised 7/31/97 for version 4.2 and 5.1
+% Calculates repeatedly the recurrence time
+% to a prescribed set of states, if initial
+% state is in the set; otherwise arrival time.
+% Assumes the procedure chainset has been run.
+r  = input('Enter the number of repititions  ');
+disp('The target state set is:')
+disp(e)
+st = input('Enter the initial state  ');
+if ~isempty(st)
+  s1 = MS(st==states); % Initial state number
+else
+  s1 = 1;
+end
+clear T                % Trajectory in state numbers (reset)
+S  = zeros(1,r);       % Recurrence time for each rep  (reset)
+TS = zeros(1,r);       % Terminal state number for each rep (reset)
+for k = 1:r
+  R  = zeros(1,ms);    % Indicator for target state numbers
+  R(E) = ones(1,ne);   % reset for target state numbers
+  s  = s1;
+  T(1) = s;
+  i  = 1;
+  if R(s) == 1
+    u = rand(1,1);
+    s = ((A(s,:) &lt; u)&amp;(u &lt;= B(s,:)))*MS';
+    i = i+1;
+    T(i) = s;
+  end
+  while R(s) ~= 1      % While s is not a target state number
+    u = rand(1,1);
+    s = ((A(s,:) &lt; u)&amp;(u &lt;= B(s,:)))*MS';
+    i = i+1;
+    T(i) = s;
+  end
+  S(k) = i-1;          % i is the number of stages; i-1 is time
+  TS(k) = T(i);
+end
+[ts,ft]  = csort(TS,ones(1,r)); % ts = terminal state numbers  ft = frequencies
+fts = ft/r;                % Relative frequency of each ts
+[a,tt]  = csort(TS,S);    % tt = total time for each ts
+w  = tt./ft;               % Average time for each ts
+RES = [states(ts); fts; w]';
+disp(' ')
+if r == 1
+  disp(['The recurrence time is ',int2str(i-1),])
+  disp(['The state reached is ',num2str(states(ts)),])
+  N = 0:i-1;
+  TR = [N;states(T)]';
+  disp('To view the trajectory of state numbers, call for TR')
+else
+  disp(['The result of ',int2str(r),' repetitions is:'])
+  disp('Term state  Rel Freq   Av time')
+  disp(RES)
+  disp(' ')
+  [t,f]  = csort(S,ones(1,r));  % t = recurrence times   f = frequencies
+  p  = f/r;                      % Relative frequency of each t
+  dbn = [t; p]';
+  AV = dot(t,p);
+  SD = sqrt(dot(t.^2,p) - AV^2);
+  MN = min(t);
+  MX = max(t);
+  disp(['The average recurrence time is ',num2str(AV),])
+  disp(['The standard deviation is ',num2str(SD),])
+  disp(['The minimum recurrence time is ',int2str(MN),])
+  disp(['The maximum recurrence time is ',int2str(MX),])
+  disp('To view the distribution of recurrence times, call for dbn')
+  disp('To plot the recurrence time distribution, call for plotdbn')
+end
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id6520386" print-placement="here" type="Code Example"><label>kvis.m</label>
+<problem id="eip-id14475172" type="description"><label>Description of Code</label>
+<para id="eip-id5952235">
+
+<emphasis effect="bold">kvis.m</emphasis>  Assumes <emphasis effect="italics">chainset</emphasis> has been run. Calculates repeatedly the time to
+complete visits to a specified <emphasis effect="italics">k</emphasis> of the states in a prescribed set.
+</para>
+</problem>
+
+
+<solution id="eip-id7068072" type="code">
+<label>Code</label>
+<code id="fs-id1165207548937" display="block">
+% KVIS file kvis.m  Time to complete k visits to a set of states
+% Version of 1/2/96 Revised 7/31/97 for version 4.2 and 5.1
+% Calculates repeatedly the time to complete
+% visits to k of the states in a prescribed set.
+% Default is visit to all the target states.
+% Assumes the procedure chainset has been run.
+r  = input('Enter the number of repetitions  ');
+disp('The target state set is:')
+disp(e)
+ks = input('Enter the number of target states to visit  ');
+if isempty(ks)
+  ks = ne;
+end
+if ks &gt; ne
+  ks = ne;
+end
+st = input('Enter the initial state  ');
+if ~isempty(st)
+  s1 = MS(st==states); % Initial state number
+else
+  s1 = 1;
+end
+disp(' ')
+clear T                    % Trajectory in state numbers (reset)
+R0 = zeros(1,ms);          % Indicator for target state numbers
+R0(E) = ones(1,ne);        % reset
+S = zeros(1,r);            % Terminal transitions for each rep (reset)
+for k = 1:r
+  R = R0;
+  s  = s1;
+  if R(s) == 1
+    R(s) = 0;
+  end
+  i  = 1;
+  T(1) = s;
+  while sum(R) &gt; ne - ks
+    u = rand(1,1);
+    s = ((A(s,:) &lt; u)&amp;(u &lt;= B(s,:)))*MS';
+    if R(s) == 1
+      R(s) = 0;
+    end
+    i = i+1;
+    T(i) = s;
+  end
+  S(k) = i-1;
+end
+if r == 1
+  disp(['The time for completion is ',int2str(i-1),])
+  N = 0:i-1;
+  TR = [N;states(T)]';
+  disp('To view the trajectory of states, call for TR')
+else
+  [t,f]  = csort(S,ones(1,r));
+  p  = f/r;
+  D  = [t;f]';
+  AV = dot(t,p);
+  SD = sqrt(dot(t.^2,p) - AV^2);
+  MN = min(t);
+  MX = max(t);
+  disp(['The average completion time is ',num2str(AV),])
+  disp(['The standard deviation is ',num2str(SD),])
+  disp(['The minimum completion time is ',int2str(MN),])
+  disp(['The maximum completion time is ',int2str(MX),])
+  disp(' ')
+  disp('To view a detailed count, call for D.')
+  disp('The first column shows the various completion times;')
+  disp('the second column shows the numbers of trials yielding those times')
+end
+
+</code>
+
+</solution>
+</exercise>
+
+
+
+<exercise id="eip-id7651037" print-placement="here" type="Code Example"><label>plotdbn</label>
+<problem id="eip-id14651004" type="description"><label>Description of Code</label>
+<para id="eip-id14505609">
+
+<emphasis effect="bold">plotdbn</emphasis>  Used after m-procedures <emphasis effect="italics">arrival</emphasis> or <emphasis effect="italics">recurrence</emphasis> to plot arrival or
+recurrence time distribution.
+</para>
+</problem>
+
+
+
+<solution id="eip-id3558279" type="code">
+<label>Code</label>
+  <code id="fs-id1165212021243" display="block">
+% PLOTDBN file plotdbn.m 
+% Version of 1/23/98
+% Plot arrival or recurrence time dbn
+% Use after procedures arrival or recurrence 
+% to plot arrival or recurrence time distribution
+plot(t,p,'-',t,p,'+')
+grid
+title('Time Distribution')
+xlabel('Time in number of transitions')
+ylabel('Relative frequency')
+</code>
+</solution>
+</exercise>
+
+
+    </section>
+  </content>
+</document>

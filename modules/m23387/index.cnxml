@@ -1,0 +1,3144 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Mathematical Expectation: Simple Random Variables</title>
+  <metadata>
+  <md:content-id>m23387</md:content-id><md:title>Mathematical Expectation: Simple Random Variables</md:title>
+  <md:abstract>For simple, real valued random variables, the expectation is the probability weighted average of the values taken on.  It may be viewed as the center of mass for the probability mass distribution on the line.</md:abstract>
+  <md:uuid>524130a2-d8a0-44c3-a5f3-0194bec2d32f</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="fs-id1169408038956">
+          <title> Introduction</title>
+
+      <para id="id326932">The probability that real random variable <emphasis effect="italics">X</emphasis> takes a value in a set <emphasis effect="italics">M</emphasis> of real numbers is
+interpreted as the likelihood that the observed value <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math> on any trial will lie in <emphasis effect="italics">M</emphasis>.  Historically, this idea of likelihood is rooted in the intuitive notion that if the experiment
+is repeated enough times the probability is approximately the fraction of times the value of
+<emphasis effect="italics">X</emphasis> will fall in <emphasis effect="italics">M</emphasis>. Associated with this interpretation is the notion of the <emphasis effect="italics">average</emphasis>
+of the values taken on. We incorporate the concept of <emphasis effect="italics">mathematical expectation</emphasis> into the
+mathematical model as an appropriate form of such averages.
+We begin by studying the mathematical expectation of simple random variables, then extend the
+definition and properties to the general case. In the process, we note the relationship of
+mathematical expectation to the Lebesque integral, which is developed in abstract measure theory.
+Although we do not develop this theory, which lies beyond the scope of this study, identification
+of this relationship provides access to a rich and powerful set of properties which
+have far reaching consequences in both application and theory.</para>
+</section>
+
+    <section id="cid2">
+      <title>Expectation for simple random variables</title>
+      <para id="id327020">The notion of mathematical expectation is closely related to the idea of a weighted mean, used
+extensively in the handling of numerical data. Consider the arithmetic average <m:math overflow="scroll"><m:mover><m:mi>x</m:mi><m:mo>¯</m:mo></m:mover></m:math>
+of the following ten numbers: 1, 2, 2, 2, 4, 5, 5, 8, 8, 8, which is given by</para>
+      <equation id="id327037">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mover>
+              <m:mi>x</m:mi>
+              <m:mo>¯</m:mo>
+            </m:mover>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>10</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id326420">Examination of the ten numbers to be added shows that five distinct values are included. One of
+the ten, or the fraction 1/10 of them, has the value 1, three of the ten, or the fraction 3/10 of them,
+have the value 2, 1/10 has the value 4, 2/10 have the value 5, and 3/10 have the value 8. Thus, we
+could write</para>
+      <equation id="id326428">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mover>
+              <m:mi>x</m:mi>
+              <m:mo>¯</m:mo>
+            </m:mover>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id327379">The pattern in this last expression can be stated in words:   Multiply each possible value by the fraction of the numbers having that value and then sum these
+products. The fractions are often referred to as the <emphasis effect="italics">relative frequencies</emphasis>.  A sum of this
+sort is known as a <emphasis effect="italics">weighted average</emphasis>.</para>
+      <para id="id327396">In general, suppose there are <emphasis effect="italics">n</emphasis> numbers <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> to be averaged, with
+<m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math> distinct values
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mi>m</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math>.  Suppose <emphasis effect="italics">f<sub>1</sub></emphasis> have value <emphasis effect="italics">t<sub>1</sub></emphasis>,
+<emphasis effect="italics">f<sub>2</sub></emphasis> have value <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>f</m:mi><m:mi>m</m:mi></m:msub></m:mrow></m:math> have value <emphasis effect="italics">t<sub>m</sub></emphasis>.  The <emphasis effect="italics">f<sub>i</sub></emphasis> must add to <emphasis effect="italics">n</emphasis>. If we
+set <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>f</m:mi><m:mi>i</m:mi></m:msub><m:mo>/</m:mo><m:mi>n</m:mi></m:mrow></m:math>, then the fraction <emphasis effect="italics">p<sub>i</sub></emphasis> is called the relative frequency of those numbers in the
+set which have the value <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi></m:mrow></m:math>.  The average <m:math overflow="scroll"><m:mover><m:mi>x</m:mi><m:mo>¯</m:mo></m:mover></m:math> of the <emphasis effect="italics">n</emphasis> numbers
+may be written</para>
+      <equation id="id327718"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mover>
+              <m:mi>x</m:mi>
+              <m:mo>¯</m:mo>
+            </m:mover>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>x</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id327798">In probability theory, we have a similar averaging process in which the relative frequencies of
+the various possible values of are replaced by the probabilities that those values are observed on
+any trial.</para>
+
+          <para id="fs-id7741990"><emphasis effect="bold"> Definition</emphasis>. For a simple random variable <emphasis effect="italics">X</emphasis> with values <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math>
+and corresponding probabilities <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, the <emphasis effect="italics">mathematical expectation</emphasis>, designated
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, is the probability weighted average of the values taken on by <emphasis effect="italics">X</emphasis>.  In symbols</para>
+      <equation id="id327941"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id328038">Note that the expectation is determined by the distribution. Two quite different random
+variables may have the same distribution, hence the same expectation.
+Traditionally, this average has been called the <emphasis effect="italics">mean</emphasis>, or the <emphasis effect="italics">mean value</emphasis>, of
+the random variable <emphasis effect="italics">X</emphasis>.</para>
+
+<example id="fs-id1164693184170"><title>Some special cases</title>
+
+<list id="fs-id4683124" list-type="enumerated">
+<item>Since <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:msub><m:mi>I</m:mi><m:mi>E</m:mi></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:msub><m:mi>I</m:mi><m:msup><m:mi>E</m:mi><m:mi>c</m:mi></m:msup></m:msub><m:mo>+</m:mo><m:mi>a</m:mi><m:msub><m:mi>I</m:mi><m:mi>E</m:mi></m:msub></m:mrow></m:math>,  we have <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:msub><m:mi>I</m:mi><m:mi>E</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>E</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+</item>
+
+      <item>For <emphasis effect="italics">X</emphasis> a constant <emphasis effect="italics">c</emphasis>,  <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>c</m:mi><m:msub><m:mi>I</m:mi><m:mi>Ω</m:mi></m:msub></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>c</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>c</m:mi><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>c</m:mi></m:mrow></m:math>.
+</item>
+
+      <item>If <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math> then <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>a</m:mi><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:mi>a</m:mi><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>,
+so that
+
+      <equation id="id328346"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>a</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>a</m:mi>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>a</m:mi>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation></item></list>
+      <!--empty paragraphs get left behind.-->
+      </example>
+
+
+
+      <figure id="uid1"><media id="uid1_media" alt="Figure 1 is a drawing of the moment of a probability distribution about the origin. The expected value of X, E[X], is equal to the sum of the moments, which is equal to the center of mass. The drawing shows one major horizontal line split in half by one major vertical line. As a title, the top of the drawing reads Negative Moments to the left of the vertical line, and Positive Moments to the right, which are meant to distinguish the arrows and labels in the drawing. On the horizontal line are five black dots, two to the left of the vertical line and three to the right. Below the corresponding dots are the corresponding labels: t_1, t_2, t_3, t_4, and t_5. Above the black dots are the following labels: p_1, p_2, p_3, p_4, and p_5. Above the horizontal line is another smaller horizontal line with arrows pointing in both directions. The label for the arrow pointing to the left is t_2 p_2, and the label for the arrow on the left is t_3 p_3. A longer horizontal line sits further up on the drawing, which also has arrows pointing in both directions. and intersects the same vertical line. The arrows are approximately twice as long as the two arrows below. The label for the arrow pointing to the left is t_1 p_1, and the label for the arrow to the left is t_4 p_4. finally, there is one horizontal line extending only to the right of the vertical line, with an arrow pointing to the right. This line is longer in this direction than any of the arrows that sit below it pointing to the right. The arrow is labeled t_5 p_5.">
+          <image mime-type="image/png" src="../../media/fig11_1_1.png" id="uid1_onlineimage" width="408"><!-- NOTE: attribute width changes image size online (pixels). original width is 408. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig11_1_1.eps" id="uid1_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Moment of a probability distribution about the origin.</caption></figure>
+    
+
+      <para id="fs-id1166194734473"><emphasis effect="bold"> Mechanical interpretation</emphasis></para>
+
+      <para id="id328508">In order to aid in visualizing an essentially abstract
+system, we have employed the notion of probability as mass. The distribution induced by
+a real random variable on the line is visualized as a unit of probability mass actually
+distributed along the line. We utilize the mass distribution to give an important and
+helpful mechanical interpretation of the expectation or mean value. In <link document="m23412" target-id="fs-id7202349">Example 6</link> in "Mathematical Expectation: General Random Variables",
+we give an alternate interpretation in terms of mean-square estimation.</para>
+      <para id="id328515">Suppose the random variable <emphasis effect="italics">X</emphasis> has values <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>.  This produces a probability mass distribution, as shown in Figure 1, with point mass concentration
+in the amount of <emphasis effect="italics">p<sub>i</sub></emphasis> at the point <emphasis effect="italics">t<sub>i</sub></emphasis>.  The expectation is</para>
+      <equation id="id328621"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mi>i</m:mi>
+            </m:munder>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id328652">Now <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>|</m:mo></m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>|</m:mo></m:mrow></m:mrow></m:math> is the distance of point mass <emphasis effect="italics">p<sub>i</sub></emphasis> from the origin, with <emphasis effect="italics">p<sub>i</sub></emphasis> to the left of the
+origin iff <emphasis effect="italics">t<sub>i</sub></emphasis> is negative. Mechanically, the sum of the products <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math> is the <emphasis effect="italics">moment</emphasis>
+of the probability mass distribution about the origin on the real line. From physical theory, this
+moment is known to be the same as the product of the total mass times the number which locates
+the center of mass. Since the total mass is one, the <emphasis effect="italics">mean value</emphasis> is the
+<emphasis effect="italics">location of the center of mass</emphasis>.  If the real line is viewed as a stiff, weightless
+rod with point mass <emphasis effect="italics">p<sub>i</sub></emphasis> attached at each value <emphasis effect="italics">t<sub>i</sub></emphasis> of <emphasis effect="italics">X</emphasis>, then the mean value <emphasis effect="italics">μ<sub>X</sub></emphasis> is the
+point of balance. Often there are symmetries in the distribution which make it possible to
+determine the expectation without detailed calculation.</para>
+
+<example id="fs-id2050907"><title>The number of spots on a die</title><para id="id328813">Let <emphasis effect="italics">X</emphasis> be the number of spots which turn up on a throw of a simple six-sided die. We
+suppose each number is equally likely. Thus the values are the integers one through six,
+and each probability is 1/6. By definition</para>
+      <equation id="id328826">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>6</m:mn>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>6</m:mn>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>6</m:mn>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>6</m:mn>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>6</m:mn>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>6</m:mn>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>6</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>6</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>7</m:mn>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id328969">Although the calculation is very simple in this case, it is really not necessary.
+The probability distribution places equal mass at each of the integer values one through
+six. The center of mass is at the midpoint.</para>
+</example>      
+
+
+<example id="fs-id1164693193118"><title>A simple choice</title><para id="id328997">A child is told she may have one of four toys. The prices are $2.50. $3.00, $2.00, and
+$3.50, respectively. She choses one, with respective probabilities 0.2, 0.3, 0.2, and 0.3 of choosing the first,
+second, third or fourth. What is the expected cost of her selection?</para>
+      <equation id="id329003">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>00</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>50</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>00</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>50</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>85</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <!--empty paragraphs get left behind.-->
+      </example>
+      <para id="id329121">For a simple random variable, the mathematical expectation is
+determined as the dot product of the value matrix with the probability matrix. This is easily
+calculated using MATLAB.</para>
+
+<example id="fs-id1164694020726"><title>MATLAB calculation for Example 3</title><!--empty paragraphs get left behind.-->
+      <code id="id329137" display="block">X = [2 2.5 3 3.5];  % Matrix of values (ordered)
+PX = 0.1*[2 2 3 3]; % Matrix of probabilities
+EX = dot(X,PX)      % The usual MATLAB operation
+EX =  2.8500
+Ex = sum(X.*PX)     % An alternate calculation
+Ex =  2.8500
+ex = X*PX'          % Another alternate
+ex =  2.8500
+</code>
+      </example>
+
+
+
+    
+      <para id="fs-id8838016"><emphasis effect="bold"> Expectation and primitive form</emphasis></para>
+
+      <para id="id329240">The definition and treatment above assumes <emphasis effect="italics">X</emphasis> is in <emphasis effect="italics">canonical form</emphasis>, in which case</para>
+      <equation id="id329258"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>implies</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id329425">We wish to ease this restriction to canonical form.</para>
+      <para id="id329431">Suppose simple random variable <emphasis effect="italics">X</emphasis> is in a <emphasis effect="italics">primitive form</emphasis></para>
+      <equation id="id329449"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>j</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>m</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>a</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>partition</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id329563">We show that</para>
+      <equation id="id329569"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id329630">Before a formal verification, we begin with an example which exhibits the essential pattern.
+Establishing the general case is simply a matter of appropriate use of notation.</para>
+
+<example id="fs-id1164693453154"><title>Simple random variable <emphasis effect="italics">X</emphasis> in primitive form</title><equation id="id329654">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>.</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>a</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>partition</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id329877">Inspection shows the distinct possible values of <emphasis effect="italics">X</emphasis> to be 1, 2, or 3. Also,</para>
+      <equation id="id329893"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>5</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id330050">so that</para>
+      <equation id="id330056">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id330239">Now</para>
+      <equation id="id330244">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>C</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>C</m:mi>
+                  <m:mn>5</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>C</m:mi>
+                  <m:mn>6</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id330432">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+      <para id="id330567">To establish the general pattern, consider <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msub><m:mi>c</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>.
+We identify the distinct set of values contained
+in the set <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>c</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math>.  Suppose these are <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>&lt;</m:mo><m:mo>⋯</m:mo><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math>.
+For any value <emphasis effect="italics">t<sub>i</sub></emphasis> in the range, identify the index set <emphasis effect="italics">J<sub>i</sub></emphasis> of those <emphasis effect="italics">j</emphasis> such
+that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>c</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>. Then the terms</para>
+      <equation id="id330760"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:msub>
+                <m:mi>J</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:munder>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:msub>
+                <m:mi>J</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:munder>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>j</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:msub>
+                    <m:mi>J</m:mi>
+                    <m:mi>i</m:mi>
+                  </m:msub>
+                </m:mrow>
+                <m:mrow/>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id330936">By the additivity of probability</para>
+      <equation id="id330942"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>∈</m:mo>
+                <m:msub>
+                  <m:mi>J</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:munder>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id331024">Since for each <m:math overflow="scroll"><m:mrow><m:mi>j</m:mi><m:mo>∈</m:mo><m:msub><m:mi>J</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math> we have <m:math overflow="scroll"><m:mrow><m:msub><m:mi>c</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, we have</para>
+      <equation id="id331075"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:munder>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>∈</m:mo>
+                <m:msub>
+                  <m:mi>J</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:munder>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:munder>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>∈</m:mo>
+                <m:msub>
+                  <m:mi>J</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <!--empty paragraphs get left behind.-->
+      <para id="id331301">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+      <para id="id331316">Thus, <emphasis effect="italics">the defining expression for expectation thus holds for <emphasis effect="italics">X</emphasis> in a primitive form</emphasis>.</para>
+      <para id="id331334">An alternate approach to obtaining the expectation from a primitive form is to use the csort
+operation to determine the distribution of <emphasis effect="italics">X</emphasis> from the coefficients and probabilities of
+the primitive form.
+</para>
+
+
+<example id="fs-id3859893"><title>Alternate determinations of <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math></title><para id="id331370">Suppose <emphasis effect="italics">X</emphasis> in a primitive form is</para>
+      <equation id="id331382">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>7</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>8</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>9</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>10</m:mn>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id331556">with respective probabilities</para>
+      <equation id="id331562">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>08</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>11</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>06</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>13</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>08</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>12</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>07</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>14</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>16</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <code id="id331700" display="block">c = [1 2 1 3 2 2 1 3 2 1];            % Matrix of coefficients
+pc = 0.01*[8 11 6 13 5 8 12 7 14 16]; % Matrix of probabilities
+EX = c*pc'
+EX =   1.7800                         % Direct solution
+[X,PX] = csort(c,pc);                 % Determination of dbn for X
+disp([X;PX]')
+    1.0000    0.4200
+    2.0000    0.3800
+    3.0000    0.2000
+Ex = X*PX'                            %  E[X] from distribution
+Ex =   1.7800
+</code>
+      <!--empty paragraphs get left behind.-->
+      </example>
+
+    
+      <para id="fs-id1166194541142"><emphasis effect="bold"> Linearity</emphasis></para>
+
+      <para id="id331840">The result on primitive forms may be used to establish the <emphasis effect="italics">linearity</emphasis> of mathematical
+expectation for simple random variables. Because of its fundamental importance, we work through
+the verification in some detail.</para>
+      <para id="id331851">Suppose <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math> and <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math> (both in canonical form). Since</para>
+      <equation id="id331962"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id332037">we have</para>
+      <equation id="id332042"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mfenced separators="" open="(" close=")">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>j</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>m</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+              </m:msub>
+            </m:mfenced>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mfenced separators="" open="(" close=")">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:msub>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>+</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id332291">Note that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math>.  The
+class of these sets for all possible pairs <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:math> forms a partition. Thus, the last
+summation expresses <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:math> in a primitive form. Because of the result on primitive forms, above, we have</para>
+      <equation id="id332455"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>+</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id332687"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id332825">We note that for each <emphasis effect="italics">i</emphasis> and for each <emphasis effect="italics">j</emphasis></para>
+      <equation id="id332848"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id332991">Hence, we may write</para>
+      <equation id="id332996"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id333125">Now <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mi>X</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>b</m:mi><m:mi>Y</m:mi></m:mrow></m:math> are simple if <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> are, so that with the aid of <link target-id="fs-id1164693184170"/> we have</para>
+      <equation id="id333174">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>b</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>+</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>b</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>+</m:mo>
+            <m:mi>b</m:mi>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id333252">If <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi></m:mrow></m:math> are simple, then so are <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>b</m:mi><m:mi>Y</m:mi></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>c</m:mi><m:mi>Z</m:mi></m:mrow></m:math>.  It follows that</para>
+      <equation id="id333313">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>b</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>c</m:mi>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>b</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>+</m:mo>
+            <m:mi>c</m:mi>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>a</m:mi>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>+</m:mo>
+            <m:mi>b</m:mi>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>+</m:mo>
+            <m:mi>c</m:mi>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id333416">By an inductive argument, this pattern may be extended to a linear combination of
+any finite number of simple random variables. Thus we may assert</para>
+      <para id="id333423"><emphasis effect="bold">Linearity</emphasis>.  The expectation of a linear combination of a finite number of simple random variables
+is that linear combination of the expectations of the individual random variables.
+      </para>
+      <para id="id333434">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+
+      <para id="fs-id8733303"><emphasis effect="bold"> Expectation of a simple random variable in affine form</emphasis></para>
+
+      <para id="id333457">As a direct consequence of linearity, whenever simple random variable <emphasis effect="italics">X</emphasis> is in affine form, then</para>
+      <equation id="id333470"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>+</m:mo>
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:msub>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      
+<para id="fs-id1166194462150"><emphasis effect="italics">Thus, <emphasis effect="italics">the defining expression holds for any affine combination of indicator</emphasis> <emphasis effect="italics">functions</emphasis>, whether in canonical form or not.</emphasis></para>
+
+
+<example id="fs-id1164701907540"><title>Binomial distribution <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math></title><para id="id333649">This random variable appears as the number of successes in
+<emphasis effect="italics">n</emphasis> Bernoulli trials with probability <emphasis effect="italics">p</emphasis> of success on each component trial. It is
+naturally expressed in affine form</para>
+      <equation id="id333671"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>p</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mi>p</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id333774">Alternately, in canonical form</para>
+      <equation id="id333780"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mi>n</m:mi>
+                </m:mrow>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mi>n</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>q</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>q</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>p</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id333956">so that</para>
+      <equation id="id333962"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>q</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>q</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>p</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id334062">Some algebraic tricks may be used to show that the second form sums to <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi></m:mrow></m:math>, but there is
+no need of that. The computation for the affine form is much simpler.</para>
+      </example>
+
+
+<example id="fs-id1164693988060"><title> Expected winnings</title><para id="id334104">A bettor places three bets at $2.00 each. The first bet pays $10.00 with probability 0.15,
+the second pays $8.00 with probability 0.20, and the third pays $20.00 with probability 0.10.
+What is the expected gain?</para>
+      <para id="id334109">SOLUTION</para>
+      <para id="id334112">The net gain may be expressed</para>
+      <equation id="id334116">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>10</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>A</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>8</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>B</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>20</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>15</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>20</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id334253">Then</para>
+      <equation id="id334259">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>15</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>20</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>20</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>-</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>90</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id334332">These calculations may be done in MATLAB as follows:</para>
+      <code id="id334338" display="block">c = [10 8 20 -6];
+p = [0.15 0.20 0.10 1.00]; % Constant a = aI_(Omega), with P(Omega) = 1
+E = c*p'
+E =  -0.9000
+</code>
+      </example>
+
+
+
+    
+      <para id="fs-id1166194548606"><emphasis effect="bold">Functions of simple random variables</emphasis></para>
+
+      <para id="id334407">If <emphasis effect="italics">X</emphasis> is in a primitive form (including canonical form) and <emphasis effect="italics">g</emphasis> is a real function defined
+on the range of <emphasis effect="italics">X</emphasis>, then</para>
+      <equation id="id334438"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Z</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>a</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>primitive</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>form</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id334530">so that</para>
+      <equation id="id334536"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id334624">Alternately, we may use csort to determine the distribution for <emphasis effect="italics">Z</emphasis> and work with that
+distribution.</para>
+      <para id="id334639"><emphasis effect="italics">Caution</emphasis>.  If <emphasis effect="italics">X</emphasis> is in affine form (but not a primitive form)</para>
+      <equation id="id334656"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>then</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>≠</m:mo>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id334811">so that</para>
+      <equation id="id334816"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>≠</m:mo>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>c</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+<example id="fs-id2920427"><title>Expectation of a function of <emphasis effect="italics">X</emphasis></title><para id="id334925">Suppose <emphasis effect="italics">X</emphasis> in a primitive form is</para>
+      <equation id="id334937">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mn>3</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:mn>3</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>4</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>7</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>8</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>9</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>10</m:mn>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id335116">with probabilities <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>08</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>11</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>06</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>13</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>08</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>12</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>07</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>14</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>16</m:mn></m:mrow></m:math>.</para>
+      <para id="id335257">Let <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>t</m:mi></m:mrow></m:math>. Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math>.</para>
+      <code id="id335320" display="block">c = [-3 -1 2 -3 4 -1 1 2 3 2];            % Original coefficients
+pc = 0.01*[8 11 6 13 5 8 12 7 14 16];     % Probabilities for C_j
+G = c.^2 + 2*c                            % g(c_j)
+G =  3  -1   8   3  24  -1   3   8  15   8
+EG = G*pc'                            % Direct computation
+EG =  6.4200
+[Z,PZ] = csort(G,pc);                 % Distribution for Z = g(X)
+disp([Z;PZ]')                         % Optional display
+   -1.0000    0.1900
+    3.0000    0.3300
+    8.0000    0.2900
+   15.0000    0.1400
+   24.0000    0.0500
+EZ = Z*PZ'                            % E[Z] from distribution for Z
+EZ =  6.4200
+</code>
+      </example>
+
+
+      <para id="id335500">A similar approach can be made to a function of a pair of simple random variables,
+provided the joint distribution is available. Suppose <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>
+and <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math> (both in canonical form). Then</para>
+      <equation id="id335612"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Z</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id335727">The <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math> form a partition, so <emphasis effect="italics">Z</emphasis> is in a primitive form. We have the same two
+alternative possibilities: (1)  direct calculation from values of <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> and
+corresponding probabilities <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>,  or (2)  use of csort to
+obtain the distribution for <emphasis effect="italics">Z</emphasis>.</para>
+     
+
+<example id="fs-id1164693552188"><title>Expectation for <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math></title><para id="id335912">We use the joint distribution in file jdemo1.m and let <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>t</m:mi><m:mi>u</m:mi><m:mo>-</m:mo><m:mn>3</m:mn><m:mi>u</m:mi></m:mrow></m:math>.
+To set up for calculations, we use jcalc.</para>
+      <code id="id335966" display="block">% file jdemo1.m
+X = [-2.37 -1.93 -0.47 -0.11  0  0.57 1.22 2.15 2.97 3.74];
+Y = [-3.06 -1.44 -1.21  0.07 0.88 1.77 2.01 2.84];
+P = 0.0001*[ 53   8 167 170 184  18  67 122  18  12;
+             11  13 143 221 241 153  87 125 122 185;
+            165 129 226 185  89 215  40  77  93 187;
+            165 163 205  64  60  66 118 239  67 201;
+            227   2 128  12 238 106 218 120 222  30;
+             93  93  22 179 175 186 221  65 129   4;
+            126  16 159  80 183 116  15  22 113 167;
+            198 101 101 154 158  58 220 230 228 211];
+</code>
+      
+      <code id="id336091" display="block">jdemo1                   % Call for data
+jcalc                    % Set up
+Enter JOINT PROBABILITIES (as on the plane)  P
+Enter row matrix of VALUES of X  X
+Enter row matrix of VALUES of Y  Y
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+G = t.^2 + 2*t.*u - 3*u; % Calculation of matrix of [g(t_i, u_j)]
+EG = total(G.*P)         % Direct calculation of expectation
+EG =  3.2529
+[Z,PZ] = csort(G,P);     % Determination of distribution for Z
+EZ = Z*PZ'               % E[Z] from distribution
+EZ =  3.2529
+</code>
+      </example>
+
+    </section>
+  </content>
+</document>

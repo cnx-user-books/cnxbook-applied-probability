@@ -1,0 +1,2050 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Minterms</title>
+  <metadata>
+  <md:content-id>m23247</md:content-id><md:title>Minterms</md:title>
+  <md:abstract>A fundamental problem is to determine the probability of a logical (Boolean) combination of a finite class of events, when the probabilities of certain other combinations are known. If we partition an event F into component events whose probabilities can be determined, then the additivity property implies the probability of F is the sum of these component probabilities. Frequently, the event F is a Boolean combination of members of a finite class -- say 
+{A, B, C} or {A, B, C,D}. For each such finite class, there is a fundamental partition determined by the class. The members of this partition are  called minterms. Any Boolean combination of members of the class can be expressed as the disjoint union of a unique subclass of the minterms. If the probability of every minterm in this subclass can be determined, then by additivity the probability of the Boolean combination is determined.  An important geometric aid to analysis is the minterm map, which has spaces for minterms in an orderly arrangement.</md:abstract>
+  <md:uuid>43d02fee-f64c-488d-a6a8-68b286c8bb30</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title>Introduction</title>
+      <para id="id311569">A <emphasis effect="italics">fundamental problem</emphasis> in elementary probability is to find the probability of a
+logical (Boolean) combination of a finite class of events, when the probabilities of
+certain other combinations are known. If we partition an event
+<emphasis effect="italics">F</emphasis> into component events whose probabilities can be determined, then the additivity
+property implies the probability of <emphasis effect="italics">F</emphasis> is the
+sum of these component probabilities. Frequently, the event <emphasis effect="italics">F</emphasis> is a Boolean combination
+of members of a finite class– say, <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> or <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> .
+For each such finite class, there is a <emphasis effect="italics">fundamental partition</emphasis>
+determined by the class. The members of this partition are
+called <emphasis effect="italics">minterms</emphasis>. Any Boolean combination of members of the class can be expressed
+as the disjoint union of a unique subclass of the minterms. If the probability of every minterm
+in this subclass can be determined, then by additivity the probability of the Boolean
+combination is determined. We examine these ideas in more detail.</para>
+    </section>
+
+    <section id="cid2">
+      <title> Partitions and minterms</title>
+      <para id="id311692">To see how the fundamental partition arises naturally, consider first the partition of the
+basic space produced by a single event <emphasis effect="italics">A</emphasis>.</para>
+      <equation id="id311704">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Ω</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>⋁</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id311729">Now if <emphasis effect="italics">B</emphasis> is a second event, then</para>
+      <equation id="id311742">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>⋁</m:mo>
+            <m:mi>A</m:mi>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>B</m:mi>
+            <m:mo>⋁</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Ω</m:mi>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>⋁</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>B</m:mi>
+            <m:mo>⋁</m:mo>
+            <m:mi>A</m:mi>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>⋁</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id311905">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> has partitioned <emphasis effect="italics">Ω</emphasis> into <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math>.
+Continuation is this way leads systematically to a partition by three events
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math>, four events <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>, etc.</para>
+      <para id="id312067">We illustrate the fundamental patterns in the case of
+four events <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>. We form the
+<emphasis effect="italics">minterms</emphasis> as intersections of members of the class,
+with various patterns of complementation.
+For a class of four events, there are <m:math overflow="scroll"><m:mrow><m:msup><m:mn>2</m:mn><m:mn>4</m:mn></m:msup><m:mo>=</m:mo><m:mn>16</m:mn></m:mrow></m:math> such patterns, hence
+16 minterms. These are, in a systematic arrangement,</para>
+      <table id="id312132" summary="a 4x4 table showing the fundamental patterns of four events A, B, C, D.">
+<tgroup cols="4"><tbody>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>B</m:mi>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:mi>B</m:mi>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>B</m:mi>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:mi>B</m:mi>
+                    <m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>B</m:mi>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:mi>B</m:mi>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:msup>
+                      <m:mi>D</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:msup>
+                      <m:mi>A</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>B</m:mi>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mi>c</m:mi>
+                    </m:msup>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>A</m:mi>
+                    <m:mi>B</m:mi>
+                    <m:mi>C</m:mi>
+                    <m:mspace width="0.277778em"/>
+                    <m:mi>D</m:mi>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table>
+      <!--empty paragraphs get left behind.-->
+      <para id="id312634">No element can be in more than one minterm, because each differs from the others by
+complementation of at least one member event. Each
+element <emphasis effect="italics">ω</emphasis> is assigned to exactly one of the minterms by determining
+the answers to four questions:</para>
+      <para id="id312647">Is it in <emphasis effect="italics">A</emphasis>?     Is it in <emphasis effect="italics">B</emphasis>?     Is it in <emphasis effect="italics">C</emphasis>?     Is it in <emphasis effect="italics">D</emphasis>?</para>
+      <para id="id312684">Suppose, for example, the answers are: Yes, No, No, Yes. Then <emphasis effect="italics">ω</emphasis> is
+in the minterm <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mi>D</m:mi></m:mrow></m:math>. In a similar way, we can determine the
+membership of each <emphasis effect="italics">ω</emphasis> in the basic space. Thus, the minterms form a <emphasis effect="italics">partition</emphasis>. That is, the minterms represent mutually exclusive events,
+one of which is sure to occur on each trial. The membership of any minterm
+depends upon the membership of each generating set <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi></m:mrow></m:math> or <emphasis effect="italics">D</emphasis>, and the
+relationships between them. For some classes, one or more of the minterms are empty
+(impossible events). As we see below, this causes no problems.</para>
+      <para id="id312771">An examination of the development above shows that if we begin with a class of <emphasis effect="italics">n</emphasis> events,
+there are <emphasis effect="italics">2<sup>n</sup></emphasis> minterms. To aid in systematic handling,
+we introduce a simple numbering system for the minterms, which we illustrate
+by considering again the four events <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi></m:mrow></m:math> , in that order. The answers to
+the four questions above can be represented numerically by the scheme</para>
+      <para id="id313008">No <m:math overflow="scroll"><m:mrow><m:mo>∼</m:mo><m:mn>0</m:mn></m:mrow></m:math>      and      Yes <m:math overflow="scroll"><m:mrow><m:mo>∼</m:mo><m:mn>1</m:mn></m:mrow></m:math></para>
+      <para id="id313035">Thus, if <emphasis effect="italics">ω</emphasis> is in <m:math overflow="scroll"><m:mrow><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>, the answers are
+tabulated as <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mspace width="0.166667em"/><m:mn>0</m:mn></m:mrow></m:math>. If <emphasis effect="italics">ω</emphasis> is in <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mi>D</m:mi></m:mrow></m:math>, then this
+is designated <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mspace width="0.166667em"/><m:mn>1</m:mn></m:mrow></m:math> . With this scheme, the minterm arrangement above
+becomes</para>
+      <table id="id313166" summary="A minterm arrangement of four events: A, B, C, D; if ω is present.">
+<tgroup cols="4"><tbody>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0000</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>0</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0100</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>4</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1000</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>8</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1100</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>12</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0001</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0101</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>5</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1001</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>9</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1101</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>13</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0010</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0110</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>6</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1010</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>10</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1110</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>14</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0011</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>3</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>0111</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>7</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1011</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>11</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>1111</m:mn>
+                    <m:mo>∼</m:mo>
+                    <m:mn>15</m:mn>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table>
+      <!--empty paragraphs get left behind.-->
+      <para id="id313453">We may view these quadruples of zeros and ones as binary representations
+of integers, which may also be represented by their decimal equivalents, as shown
+in the table. Frequently, it is useful to refer to the minterms by number.
+If the members of the generating class are treated in a
+fixed order, then each minterm number arrived at in the manner above specifies a
+minterm uniquely. Thus, for the generating class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>, in that order,
+we may designate</para>
+      <equation id="id313498">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(minterm</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>0)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>A</m:mi>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>D</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>9</m:mn>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(minterm</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>9),</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>etc.</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id313627">We utilize this numbering scheme on special Venn diagrams called
+<emphasis effect="italics">minterm maps</emphasis>. These are illustrated in <link target-id="uid1"/>, for the cases of three,
+four, and five generating events. Since the actual content of any minterm
+depends upon the sets <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi></m:mrow></m:math>, and <emphasis effect="italics">D</emphasis> in the generating class, it
+is customary to refer to these sets as <emphasis effect="italics">variables</emphasis>. In the three-variable case,
+set <emphasis effect="italics">A</emphasis> is the right half of the diagram and set <emphasis effect="italics">C</emphasis> is the lower half; but set
+<emphasis effect="italics">B</emphasis> is split, so that it is the union of the second and fourth columns. Similar
+splits occur in the other cases.</para>
+      <para id="id313709"><emphasis effect="italics">Remark</emphasis>. Other useful arrangements of minterm maps are employed
+in the analysis of switching circuits.</para>
+      <figure id="uid1"><media id="uid1_media" alt="three separate minterm maps are displayed. The minterm map for three variable is a 2x4 table; for four vairable a 4x4 table; and for five variables a 4x8 table.">
+          <image mime-type="image/png" src="../../media/fig2_1_1.png" id="uid1_onlineimage" width="387"><!-- NOTE: attribute width changes image size online (pixels). original width is 387. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig2_1_1.eps" id="uid1_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Minterm maps for three, four, or five variables.</caption></figure>
+    </section>
+    <section id="cid3">
+      <title> Minterm maps and the minterm expansion</title>
+      <para id="id313743">The significance of the minterm partition of the basic space rests in large
+measure on the following fact.</para>
+      <para id="id313747">
+        <emphasis effect="italics">Minterm expansion</emphasis>
+      </para>
+      <para id="id313754">Each Boolean combination of the elements in a generating class may be
+expressed as the disjoint union of an appropriate subclass
+of the minterms. This representation is known as the
+<emphasis effect="italics">minterm expansion</emphasis> for the combination.</para>
+      <para id="id313780">In deriving an expression for a given
+Boolean combination which holds for any class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mspace width="0.166667em"/><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> of four events,
+we include all possible minterms, whether empty or not. If a minterm is empty for a
+given class, its presence
+does not modify the set content or probability assignment for the Boolean combination.</para>
+      <para id="id313822">The existence and uniqueness of the expansion is made plausible by simple examples utilizing
+minterm maps to determine graphically the minterm content of various Boolean combinations.
+Using the arrangement and numbering system introduced above, we let <emphasis effect="italics">M<sub>i</sub></emphasis> represent the <emphasis effect="italics">i</emphasis>th
+minterm (numbering from zero) and let <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>)</m:mo></m:mrow></m:math> represent the probability of that minterm.
+When we deal with a union of minterms in a minterm expansion, it is convenient to
+utilize the shorthand illustrated in the following.</para>
+      <equation id="id313869">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>M</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>3</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>7</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>3</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>7</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <figure id="uid2"><media id="uid2_media" alt="A 2x4 table demonstrating the minterm expansion for the example.">
+          <image mime-type="image/png" src="../../media/fig2_2_1.png" id="uid2_onlineimage" width="264"><!-- NOTE: attribute width changes image size online (pixels). original width is 264. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig2_2_1.eps" id="uid2_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>c</m:mi></m:msup><m:mo>=</m:mo><m:mi>M</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+Minterm expansion for <link target-id="fs-id1165335938058"/></caption></figure>
+      <para id="id314101">Consider the following simple example.</para>
+    
+<example id="fs-id1165335938058"><title> Minterm expansion</title><para id="id314111">Suppose <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>c</m:mi></m:msup></m:mrow></m:math>. Examination of the minterm map in
+<link target-id="uid2"/> shows that <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>B</m:mi></m:mrow></m:math> consists of the union of minterms <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mn>6</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mn>7</m:mn></m:msub></m:mrow></m:math>, which
+we designate <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>. The combination <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>=</m:mo><m:mi>M</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math> ,
+so that its complement <m:math overflow="scroll"><m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>c</m:mi></m:msup><m:mo>=</m:mo><m:mi>M</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. This leaves the
+common part <m:math overflow="scroll"><m:mrow><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>c</m:mi></m:msup><m:mo>=</m:mo><m:msub><m:mi>M</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math>. Hence, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mi>M</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  Similarly, <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>=</m:mo><m:mi>M</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</para>
+      </example>
+
+
+      <para id="id314513">A key to establishing the expansion is to note that each minterm is either a subset
+of the combination or is disjoint from it. The expansion is thus the union of those
+minterms included in the combination. A general verification using indicator functions
+is sketched in the last section of this module.</para>
+    </section>
+    <section id="cid4">
+      <title> Use of minterm maps</title>
+      <para id="id314528">A typical problem seeks the probability of certain Boolean combinations
+of a class of events when the probabilities of various other combinations is given.
+We consider several simple examples and illustrate the use of minterm maps in
+formulation and solution.</para>
+<example id="fs-id1165341983875"><title>Survey on software</title><para id="id314541">Statistical data are taken for a certain student population with
+personal computers. An individual is selected at random. Let <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event
+the person selected has word processing, <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event he or
+she has a spread sheet program, and <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the person has a
+data base program. The data imply</para>
+      <list id="id314584" display="block" list-type="bulleted">
+        <item id="uid3">The probability is 0.80 that the person has a <emphasis effect="italics">word processing</emphasis> program:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:math></item>
+        <item id="uid4">The probability is 0.65 that the person has a <emphasis effect="italics">spread sheet</emphasis> program:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn></m:mrow></m:math></item>
+        <item id="uid5">The probability is 0.30 that the person has a <emphasis effect="italics">data base</emphasis> program:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:math></item>
+        <item id="uid6">The probability is 0.10 that the person has <emphasis effect="italics">all three</emphasis>:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math></item>
+        <item id="uid7">The probability is 0.05 that the person has <emphasis effect="italics">neither word processing
+nor spread sheet</emphasis>:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math></item>
+        <item id="uid8">The probability is 0.65 that the person has <emphasis effect="italics">at least two</emphasis>:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn></m:mrow></m:math></item>
+        <item id="uid9">The probability of <emphasis effect="italics">word processor and data base, but no spread sheet</emphasis>
+is twice the probabilty of <emphasis effect="italics">spread sheet and data base, but no word processor</emphasis>:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+      </list>
+      <list id="id314961" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid10">What is the probability that the person has exactly two of the programs?
+</item>
+        <item id="uid11">What is the probability that the person has only the data base program?
+</item>
+      </list>
+      <para id="id314994">Several questions arise:</para>
+      <list id="id314998" display="block" list-type="bulleted">
+        <item id="uid12">Are these data consistent?
+</item>
+        <item id="uid13">Are the data sufficient to answer the questions?
+</item>
+        <item id="uid14">How may the data be utilized to anwer the questions?
+</item>
+      </list>
+      <para id="id315039">SOLUTION</para>
+      <para id="id315043">The data, expressed in terms of minterm probabilities, are:</para>
+      <!--empty paragraphs get left behind.-->
+      <para id="id315051">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>80</m:mn></m:mrow></m:math>; hence <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>20</m:mn></m:mrow></m:math></para>
+      <para id="id315160">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn></m:mrow></m:math>; hence <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>35</m:mn></m:mrow></m:math></para>
+      <para id="id315269">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>30</m:mn></m:mrow></m:math>; hence <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>70</m:mn></m:mrow></m:math></para>
+      <para id="id315377">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>10</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math></para>
+      <para id="id315486">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn></m:mrow></m:math></para>
+      <para id="id315555">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></para>
+      <para id="id315636">These data are shown on the minterm map in <link target-id="uid15">Figure 3a</link>.
+We use the patterns displayed in the minterm map to aid in an algebraic solution for
+the various minterm probabilities.</para>
+      <para id="id315640">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>20</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn></m:mrow></m:math></para>
+      <para id="id315727">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>50</m:mn></m:mrow></m:math></para>
+      <para id="id315816">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>50</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>10</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>40</m:mn></m:mrow></m:math></para>
+      <para id="id315888">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>50</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn><m:mspace width="0.277778em"/><m:mo>⇒</m:mo><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn><m:mo>,</m:mo></m:mrow></m:math></para>
+      <para id="id316005">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>10</m:mn><m:mspace width="0.277778em"/><m:mo>⇒</m:mo><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>10</m:mn></m:mrow></m:math></para>
+      <para id="id316060">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>30</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>10</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn><m:mspace width="0.277778em"/><m:mo>⇒</m:mo><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math></para>
+      <para id="id316186">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>80</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>10</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>50</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>20</m:mn></m:mrow></m:math></para>
+      <para id="id316290">Thus, all minterm probabilities are determined. They are displayed in <link target-id="uid15">Figure 3b</link>. From
+these we get</para>
+      <equation id="id316295"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mo>⋁</m:mo>
+              <m:mi>A</m:mi>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>C</m:mi>
+              <m:mo>⋁</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>6</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>40</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>55</m:mn>
+          </m:mrow>
+<m:mrow>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      
+      </example>
+
+
+
+      <figure id="uid15"><media id="uid15_media" alt="Two 2x4 tables the first is labeled 'Data for software survey' and the second is labeled 'minterm probabilities for software survey'.">
+          <image mime-type="image/png" src="../../media/fig2_3_1.png" id="uid15_onlineimage" width="313"><!-- NOTE: attribute width changes image size online (pixels). original width is 313. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig2_3_1.eps" id="uid15_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Minterm maps for software survey, <link target-id="fs-id1165341983875"/></caption></figure>
+<example id="fs-id1165342944458"><title>Survey on personal computers</title><para id="id316506">A survey of 1000 students shows that 565 have PC compatible desktop computers,
+515 have Macintosh desktop computers, and 151 have laptop computers. 51 have all three,
+124 have both PC and laptop computers, 212 have at least two of the three, and twice
+as many own both PC and laptop as those who have both Macintosh desktop and laptop.
+A person is selected at random from this population.
+What is the probability he or she has at least one of these types of computer? What
+is the probability the person selected has only a laptop?</para>
+      <figure id="uid16"><media id="uid16_media" alt="A 2x4 table demonstrating the minterm probabilities for the computer survey.">
+          <image mime-type="image/png" src="../../media/fig2_3_2.png" id="uid16_onlineimage" width="264"><!-- NOTE: attribute width changes image size online (pixels). original width is 264. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig2_3_2.eps" id="uid16_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Minterm probabilities for computer survey, <link target-id="fs-id1165342944458"/></caption></figure>
+      <para id="id316529">SOLUTION</para>
+      <para id="id316532">Let <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event of owning a PC desktop, <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event of owning a Macintosh
+desktop, and <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event of owning a laptop. We utilize a minterm map for
+three variables to help determine minterm patterns. For example,
+the event <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>=</m:mo><m:msub><m:mi>M</m:mi><m:mn>5</m:mn></m:msub><m:mo>⋁</m:mo><m:msub><m:mi>M</m:mi><m:mn>7</m:mn></m:msub></m:mrow></m:math> so that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id316660">The data, expressed in terms of minterm probabilities, are:</para>
+      <para id="id316666">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>565</m:mn></m:mrow></m:math>, hence <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>435</m:mn></m:mrow></m:math></para>
+      <para id="id316775">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>515</m:mn></m:mrow></m:math>, hence <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>485</m:mn></m:mrow></m:math></para>
+      <para id="id316883">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>151</m:mn></m:mrow></m:math>, hence <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>849</m:mn></m:mrow></m:math></para>
+      <para id="id316992">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>051</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>124</m:mn></m:mrow></m:math></para>
+      <para id="id317086">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>212</m:mn></m:mrow></m:math></para>
+      <para id="id317155">      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math></para>
+      <para id="id317225">We use the patterns displayed in the minterm map to aid in an algebraic solution for
+the various minterm probabilities.</para>
+      <para id="id317229">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>124</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>051</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>073</m:mn></m:mrow></m:math></para>
+      <para id="id317301">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>151</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>124</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>027</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>565</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>124</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>441</m:mn></m:mrow></m:math></para>
+      <para id="id317446">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>124</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>062</m:mn></m:mrow></m:math></para>
+      <para id="id317506">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>062</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>051</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>011</m:mn></m:mrow></m:math></para>
+      <para id="id317553">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>212</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>011</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>124</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>077</m:mn></m:mrow></m:math></para>
+      <para id="id317656">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>565</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>077</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1124</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>364</m:mn></m:mrow></m:math></para>
+      <para id="id317748">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>027</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>11</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>016</m:mn></m:mrow></m:math></para>
+      <para id="id317820">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>515</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>062</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>077</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>376</m:mn></m:mrow></m:math></para>
+      <para id="id317911">      <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>849</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>441</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>376</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>032</m:mn></m:mrow></m:math></para>
+      <para id="id318011">We have determined the minterm probabilities, which are displayed
+on the minterm map <link target-id="uid16"/>. We may now compute the probability of any
+Boolean combination of the generating events <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi></m:mrow></m:math>. Thus,</para>
+      <equation id="id318040">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>∪</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>∪</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>968</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>016</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+      <figure id="uid17"><media id="uid17_media" alt="A 4x4 table of minterm probabilities.">
+          <image mime-type="image/png" src="../../media/fig2_3_3.png" id="uid17_onlineimage" width="298"><!-- NOTE: attribute width changes image size online (pixels). original width is 298. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig2_3_3.eps" id="uid17_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Minterm probabilities for opinion survey, <link target-id="fs-id7388979"/></caption></figure>
+<example id="fs-id7388979"><title>Opinion survey</title><para id="id318240">A survey of 1000 persons is made to determine their opinions on
+four propositions. Let <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>,</m:mo><m:mi>D</m:mi></m:mrow></m:math> be the events a person selected agrees with
+the respective propositions. Survey results show the following probabilities for
+various combinations:</para>
+      <equation id="id318278">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>200</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>500</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>300</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>700</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>∪</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>055</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id318438">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>∪</m:mo>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mo>∪</m:mo>
+              <m:msup>
+                <m:mi>D</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>520</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>B</m:mi>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>200</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>015</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>030</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id318597">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>195</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>120</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>B</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>D</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>120</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>140</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id318765">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>C</m:mi>
+              <m:msup>
+                <m:mi>D</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>025</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:msup>
+                <m:mi>D</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>020</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id318847">Determine the probabilities for each minterm and for each of the following combinations</para>
+      <para id="id318853">          <m:math overflow="scroll"><m:mrow><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> –  that is, not <emphasis effect="italics">A</emphasis> and (<emphasis effect="italics">B</emphasis> or <emphasis effect="italics">C</emphasis>, but not both)</para>
+      <para id="id318926">          <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math> –  that is, <emphasis effect="italics">A</emphasis> or (<emphasis effect="italics">B</emphasis> and not <emphasis effect="italics">C</emphasis>)</para>
+      <para id="id318980">SOLUTION</para>
+      <para id="id318984">At the outset, it is not clear that the data are consistent or sufficient to determine the minterm
+probabilities. However, an examination of the data shows that there are sixteen items (including
+the fact that the sum of all minterm probabilities is one). Thus, there is hope, but no
+assurance, that a solution exists. A step elimination procedure, as in the previous examples,
+shows that all minterms can in fact be calculated. The results are displayed on the minterm
+map in <link target-id="uid17"/>. It would be desirable to be able to analyze the problem systematically.
+The formulation above suggests a more systematic algebraic formulation which should make
+possible machine aided solution.</para>
+      </example>
+    </section>
+    <section id="cid5">
+      <title>  Systematic formulation</title>
+      <para id="id319017">Use of a minterm map has the advantage of visualizing the minterm expansion in
+direct relation to the Boolean combination. The algebraic solutions of the previous
+problems involved <emphasis effect="italics">ad hoc</emphasis> manipulations of the data minterm probability
+combinations to find the probability of the desired target combination. We seek
+a systematic formulation of the data as a set of linear algebraic equations with
+the minterm probabilities as unknowns, so that standard methods of solution may be
+employed. Consider again the software survey of
+<link target-id="fs-id1165341983875"/>.</para>
+<example id="fs-id5564197"><title>The software survey problem reformulated</title><para id="id319038">The data, expressed in terms of minterm probabilities, are:</para>
+      <para id="id319042">          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>80</m:mn></m:mrow></m:math></para>
+      <para id="id319096">          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn></m:mrow></m:math></para>
+      <para id="id319148">          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>30</m:mn></m:mrow></m:math></para>
+      <para id="id319201">          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>10</m:mn></m:mrow></m:math></para>
+      <para id="id319245">          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math></para>
+      <para id="id319304">          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn></m:mrow></m:math></para>
+      <para id="id319372"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>
+</para>
+      <para id="eip-245">We also have in any case</para><para id="id319490">          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math></para>
+      <para id="id319576">to complete the eight items of data needed for determining all eight minterm
+probabilities. The first datum can be expressed as an equation in minterm
+probabilities:</para>
+      <equation id="id319581"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mn>0</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>+</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>7</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>80</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id319718">This is an algebraic equation in <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>  with a matrix of coefficients</para>
+      <equation id="id319762">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id319817">The others may be written out accordingly, giving eight linear algebraic equations
+in eight variables
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math> through <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Each equation has a matrix or vector of zero-one coefficients
+indicating which minterms are included. These may be written in matrix form as follows:</para>
+      <equation id="id319858">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfenced separators="" open="[" close="]">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mrow>
+                      <m:mo>-</m:mo>
+                      <m:mn>2</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd columnalign="right">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+            <m:mfenced separators="" open="[" close="]">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>0</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>1</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>2</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>3</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>4</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>5</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>6</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mi>p</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mn>7</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="[" close="]">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mn>1</m:mn>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mn>0</m:mn>
+                      <m:mo>.</m:mo>
+                      <m:mn>80</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mn>0</m:mn>
+                      <m:mo>.</m:mo>
+                      <m:mn>65</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mn>0</m:mn>
+                      <m:mo>.</m:mo>
+                      <m:mn>30</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mn>0</m:mn>
+                      <m:mo>.</m:mo>
+                      <m:mn>10</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mn>0</m:mn>
+                      <m:mo>.</m:mo>
+                      <m:mn>05</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mn>0</m:mn>
+                      <m:mo>.</m:mo>
+                      <m:mn>65</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="[" close="]">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mi>Ω</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mi>B</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mi>B</m:mi>
+                      <m:mo>∪</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>∪</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mrow>
+                        <m:mo>(</m:mo>
+                        <m:mi>A</m:mi>
+                        <m:msup>
+                          <m:mi>B</m:mi>
+                          <m:mi>c</m:mi>
+                        </m:msup>
+                        <m:mi>C</m:mi>
+                        <m:mo>)</m:mo>
+                      </m:mrow>
+                      <m:mo>-</m:mo>
+                      <m:mn>2</m:mn>
+                      <m:mi>P</m:mi>
+                      <m:mrow>
+                        <m:mo>(</m:mo>
+                        <m:msup>
+                          <m:mi>A</m:mi>
+                          <m:mi>c</m:mi>
+                        </m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>C</m:mi>
+                        <m:mo>)</m:mo>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <list id="id320622" display="block" list-type="bulleted">
+        <item id="uid18">The patterns in the coefficient matrix are determined by <emphasis effect="italics">logical operations</emphasis>. We
+obtained these with the aid of a minterm map.
+</item>
+        <item id="uid19">The solution utilizes an <emphasis effect="italics">algebraic procedure</emphasis>, which could be carried out in
+a variety of ways, including several standard computer packages for matrix operations.
+</item>
+      </list>
+      <para id="id320664">We show in the module <link document="m23248" target-id="cid1">Minterm Vectors and MATLAB</link> how we may use MATLAB for <emphasis effect="italics">both</emphasis> aspects.</para>
+</example>
+    </section>
+    <section id="cid6">
+      <title> Indicator functions and the minterm expansion</title>
+      <para id="id320690">Previous discussion of the indicator function shows that the indicator function
+for a Boolean combination of sets is a numerical valued function of the indicator
+functions for the individual sets.</para>
+      <list id="id320695" display="block" list-type="bulleted"><item id="uid20">As an indicator function, it takes on only the values zero and one.
+</item>
+        <item id="uid21">The value of the indicator function for any
+Boolean combination must be constant on each minterm. For example, for each
+<emphasis effect="italics">ω</emphasis> in the minterm <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>,
+we must have <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>, and
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>D</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>. Thus, any function of <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>I</m:mi><m:mi>D</m:mi></m:msub></m:mrow></m:math> must
+be constant over the minterm.
+</item>
+        <item id="uid22">Consider a Boolean combination <emphasis effect="italics">E</emphasis> of the generating sets. If <emphasis effect="italics">ω</emphasis> is
+in <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>∩</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>E</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, so that
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub><m:mo>⊂</m:mo><m:mi>E</m:mi></m:mrow></m:math>. Since each <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>E</m:mi></m:mrow></m:math> must be the
+union of those minterms sharing an <emphasis effect="italics">ω</emphasis> with <emphasis effect="italics">E</emphasis>.
+</item>
+        <item id="uid23">Let <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mi>i</m:mi><m:mo>∈</m:mo><m:msub><m:mi>J</m:mi><m:mi>E</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> be the subclass of those minterms on which <emphasis effect="italics">I<sub>E</sub></emphasis> has
+the value one. Then
+<equation id="id321160"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mspace width="0.166667em"/><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:msub><m:mi>J</m:mi><m:mi>E</m:mi></m:msub></m:mrow><m:mrow/></m:munderover></m:mrow><m:mspace width="0.166667em"/><m:mspace width="0.166667em"/><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math></equation>
+which is the minterm expansion of <emphasis effect="italics">E</emphasis>.
+</item>
+      </list>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,2012 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Covariance and the Correlation Coefficient</title>
+  <metadata>
+  <md:content-id>m23460</md:content-id><md:title>Covariance and the Correlation Coefficient</md:title>
+  <md:abstract>The mean value and the variance give important information about the distribution for a real random variable X.  We consider the expectation of an appropriate function of a pair (X, Y) which gives useful information about their joint distribution.  This is the covariance function.</md:abstract>
+  <md:uuid>c5c14984-fc3d-47ec-917a-c05f23a2f18d</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+<section id="fs-id5003078">
+<title>Covariance and the Correlation Coefficient</title>
+
+    <para id="id233187">The mean value <m:math overflow="scroll"><m:mrow><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math> and the variance <m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>σ</m:mi><m:mi>X</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow></m:mrow></m:math> give
+important information about the distribution for real random variable <emphasis effect="italics">X</emphasis>.  Can
+the expectation of an appropriate function of <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> give useful information about
+the joint distribution? A clue to one possibility is given in the expression</para>
+    <equation id="id233301">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>±</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>±</m:mo>
+          <m:mn>2</m:mn>
+          <m:mfenced separators="" open="(" close=")">
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>-</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mfenced>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id233397">The expression <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>-</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math> vanishes if the pair is independent (and in some
+other cases). We note also that for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math></para>
+    <equation id="id233491">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msub>
+            <m:mi>μ</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:msub>
+            <m:mi>μ</m:mi>
+            <m:mi>Y</m:mi>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id233572">To see this, expand the expression <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and use linearity to get</para>
+    <equation id="id233618">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mi>X</m:mi>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mi>Y</m:mi>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msub>
+            <m:mi>μ</m:mi>
+            <m:mi>Y</m:mi>
+          </m:msub>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msub>
+            <m:mi>μ</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>μ</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:msub>
+            <m:mi>μ</m:mi>
+            <m:mi>Y</m:mi>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id233792">which reduces directly to the desired expression.
+Now for given <emphasis effect="italics">ω</emphasis>, <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub></m:mrow></m:math> is the variation of <emphasis effect="italics">X</emphasis> from its mean
+and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub></m:mrow></m:math> is the variation of <emphasis effect="italics">Y</emphasis> from its mean. For this reason,
+the following terminology is used.</para>
+    <para id="id234053"><emphasis effect="bold">Definition</emphasis>.  The quantity <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:math> is called
+the <emphasis effect="italics">covariance</emphasis> of <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis>.</para>
+    <para id="id234148">If we let <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mo>'</m:mo></m:msup><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>Y</m:mi><m:mo>'</m:mo></m:msup><m:mo>=</m:mo><m:mi>Y</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub></m:mrow></m:math> be the centered random
+variables, then</para>
+    <equation id="id234207">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msup>
+            <m:msup>
+              <m:mi>Y</m:mi>
+              <m:mo>'</m:mo>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id234258"><emphasis effect="italics">Note</emphasis> that the variance of <emphasis effect="italics">X</emphasis> is the covariance of <emphasis effect="italics">X</emphasis> with itself.</para>
+    <para id="id234283">If we standardize, with <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:msub><m:mi>σ</m:mi><m:mi>X</m:mi></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:msub><m:mi>σ</m:mi><m:mi>Y</m:mi></m:msub></m:mrow></m:math>,
+we have</para>
+    <para id="id234372"><emphasis effect="bold">Definition</emphasis>.  The <emphasis effect="italics">correlation coefficient</emphasis><m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mi>ρ</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math> is the quantity</para>
+    <equation id="id234408">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>ρ</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mo>*</m:mo>
+            </m:msup>
+            <m:msup>
+              <m:mi>Y</m:mi>
+              <m:mo>*</m:mo>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id234517">Thus <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>/</m:mo><m:msub><m:mi>σ</m:mi><m:mi>X</m:mi></m:msub><m:msub><m:mi>σ</m:mi><m:mi>Y</m:mi></m:msub></m:mrow></m:math>.  We examine these concepts for information on the joint distribution.
+By Schwarz' inequality (E15), we have</para>
+    <equation id="id234567">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msup>
+            <m:mi>ρ</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mo>*</m:mo>
+            </m:msup>
+            <m:msup>
+              <m:mi>Y</m:mi>
+              <m:mo>*</m:mo>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>≤</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>X</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>Y</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>with</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>equality</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>iff</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msup>
+            <m:mi>Y</m:mi>
+            <m:mo>*</m:mo>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:mi>c</m:mi>
+          <m:msup>
+            <m:mi>X</m:mi>
+            <m:mo>*</m:mo>
+          </m:msup>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id234721">Now equality holds iff</para>
+    <equation id="id234726">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>c</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>X</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>c</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>which</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>implies</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>c</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>±</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>and</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>ρ</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>±</m:mo>
+          <m:mn>1</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id234838">We conclude <m:math overflow="scroll"><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>ρ</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mspace width="0.166667em"/><m:mo>±</m:mo><m:mn>1</m:mn></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:mspace width="0.166667em"/><m:mo>±</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup></m:mrow></m:math></para>
+ 
+
+      <para id="fs-id1168856199511"><emphasis effect="bold"> Relationship between <emphasis effect="italics">ρ</emphasis> and the joint distribution</emphasis></para>
+
+      <list id="id234927" display="block" list-type="bulleted">
+        <item id="uid1">We consider first the distribution for the standardized pair <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo></m:mrow></m:math></item>
+        <item id="uid2">Since
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>≤</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>≤</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub></m:mrow><m:msub><m:mi>σ</m:mi><m:mi>X</m:mi></m:msub></m:mfrac><m:mo>≤</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mfrac><m:mrow><m:mi>Y</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub></m:mrow><m:msub><m:mi>σ</m:mi><m:mi>Y</m:mi></m:msub></m:mfrac><m:mo>≤</m:mo><m:mi>s</m:mi></m:mfenced></m:mrow></m:mstyle></m:math><equation id="id235108"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>σ</m:mi><m:mi>X</m:mi></m:msub><m:mi>r</m:mi><m:mo>+</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>=</m:mo><m:msub><m:mi>σ</m:mi><m:mi>Y</m:mi></m:msub><m:mi>s</m:mi><m:mo>+</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math></equation>
+we obtain the results for the distribution for <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> by the mapping
+<equation id="id235211"><m:math overflow="scroll" mode="display"><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>σ</m:mi><m:mi>X</m:mi></m:msub><m:mi>r</m:mi><m:mo>+</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:msub><m:mi>σ</m:mi><m:mi>Y</m:mi></m:msub><m:mi>s</m:mi><m:mo>+</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub></m:mrow></m:mtd></m:mtr></m:mtable></m:math></equation></item>
+      </list>
+    
+      <para id="fs-id4888404"><emphasis effect="bold"> Joint distribution for the standardized variables</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo></m:mrow></m:math>,   <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>,</m:mo><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></para>
+
+      <list id="fs-id7636451" list-type="bulleted" bullet-style="none">
+<item>
+      <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> iff all probability mass is on the line <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mi>r</m:mi></m:mrow></m:math>.
+</item>
+
+      <item>      <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>=</m:mo><m:mo>-</m:mo><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup></m:mrow></m:math> iff all probability mass is on the line <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mi>r</m:mi></m:mrow></m:math>.
+</item></list>
+
+      <para id="id235519">If <m:math overflow="scroll"><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>&lt;</m:mo><m:mi>ρ</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>, then at least some of the mass must fail to be on these lines.</para>
+      <figure id="uid3"><media id="uid3_media" alt="Figure one is comprised of a diagonal line with a right triangle. A portion of the line is the base of the triangle. The line is labeled, s = r. One point of the triangle located on the diagonal line is labeled (r, r). The point of the triangle that is not located on the line is labeled, (r, s). The side of the triangle in between these two labeled points is labeled as the absolute value of s - r. The side of the triangle on the line is not labeled. The third side is labeled as the absolute value of s - r divided by the square root of two.">
+          <image mime-type="image/png" src="../../media/fig12_2_1.png" id="uid3_onlineimage" width="257"><!-- NOTE: attribute width changes image size online (pixels). original width is 257. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig12_2_1.eps" id="uid3_printimage" print-width="2.8in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distance from point (r,s) to the line s = r.</caption></figure>
+      <para id="id235558">The <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>±</m:mo><m:mn>1</m:mn></m:mrow></m:math> lines for the <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> distribution are:</para>
+      <equation id="id235600">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>u</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mo>±</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>±</m:mo>
+            <m:mfrac>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id235740">Consider <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>-</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup></m:mrow></m:math>. Then <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac><m:msup><m:mi>Z</m:mi><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>-</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow></m:mrow></m:mstyle></m:math>. Reference to <link target-id="uid3"/> shows this is the average of the
+square of the distances
+of the points <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>,</m:mo><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> from the line <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mi>r</m:mi></m:mrow></m:math> (i.e., the variance about
+the line <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mi>r</m:mi></m:mrow></m:math>). Similarly for <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>+</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msup><m:mi>W</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>]</m:mo></m:mrow></m:math> is the variance about <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mi>r</m:mi></m:mrow></m:math>. Now</para>
+      
+
+      <equation id="id236009">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msup>
+                    <m:mi>Y</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>±</m:mo>
+                  <m:msup>
+                    <m:mi>X</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mfenced separators="" open="{" close="}">
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msup>
+                      <m:mi>Y</m:mi>
+                      <m:mo>*</m:mo>
+                    </m:msup>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msup>
+                      <m:mi>X</m:mi>
+                      <m:mo>*</m:mo>
+                    </m:msup>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>±</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msup>
+                  <m:mi>X</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:msup>
+                  <m:mi>Y</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>±</m:mo>
+            <m:mi>ρ</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+
+      <para id="id236165">Thus</para>
+
+      <list id="fs-id1168847405296" list-type="bulleted" bullet-style="none">
+<item>
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>ρ</m:mi></m:mrow></m:math> is the variance about <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mi>r</m:mi></m:mrow></m:math>   (the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> line)</item>
+
+<item>
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>ρ</m:mi></m:mrow></m:math> is the variance about <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mi>r</m:mi></m:mrow></m:math> (the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> line)
+</item>
+</list>
+
+      <para id="id236270">Now since</para>
+      <equation id="id236274">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msup>
+                    <m:mi>Y</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>-</m:mo>
+                  <m:msup>
+                    <m:mi>X</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msup>
+                    <m:mi>Y</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>+</m:mo>
+                  <m:msup>
+                    <m:mi>X</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msup>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>iff</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>ρ</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:msup>
+                <m:mi>Y</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id236409">the condition <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> is the condition for equality of the two variances.</para>
+    
+
+      <para id="fs-id1168847438696"><emphasis effect="bold"> Transformation to the <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> plane</emphasis></para>
+
+      <equation id="id236459">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>σ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mi>r</m:mi>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>σ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mi>s</m:mi>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>r</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>s</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>u</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id236613">      The <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> line is:</para>
+      <equation id="id236634">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>u</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id236769">      The <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> line is:</para>
+      <equation id="id236792">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>u</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>σ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id236931"><m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>ρ</m:mi></m:mrow></m:math> is proportional to the variance abut the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> line and <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>ρ</m:mi></m:mrow></m:math> is proportional
+to the variance about the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> line. <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> iff the variances about both are the same.</para>
+
+
+<example id="fs-id1172137427370"><title>Uncorrelated but not independent</title><para id="id237019">Suppose the joint density for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is constant on the unit circle about the origin. By the
+rectangle test, the pair cannot be independent. By symmetry, the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> line is <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math>
+and the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> line is <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow></m:math>. By symmetry, also, the variance about each of these
+lines is the same. Thus <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, which is true iff <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>. This fact can be
+verified by calculation, if desired.</para>
+      </example>
+
+
+      
+
+
+<example id="fs-id7054910">
+<title>Uniform marginal distributions</title>
+
+<figure id="uid4"><media id="uid4_media" alt="Figure two is comprised of three graphs of multiple shaded squares. All three are standard cartesian graphs, with all four quadrants equal in size, t as the horizontal axis, and u as the vertical axis. The first graph shows one large square centered at the origin with a length of two units on a side. As the square is centered about the origin, the square is divided equally into four smaller squares by the vertical and horizontal axes. A caption below the first graph reads, rho = 0. The second graph contains two smaller squares, one unit to a side, one sitting with two sides along the axes of the graph in the first quadrant, and one sitting with two sides along the axes of the graph in the third quadrant. The caption reads rho = 3/4. The third graph contains two squares of the same size as the second graph, this time with one sitting with two sides along the axes in the second quadrant, and one sitting with two sides along the axes in the fourth quadrant. The caption reads rho = -3/4.">
+          <image mime-type="image/png" src="../../media/fig12_2_2.png" id="uid4_onlineimage" width="424"><!-- NOTE: attribute width changes image size online (pixels). original width is 424. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig12_2_2.eps" id="uid4_printimage" print-width="3.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Uniform marginals but different correlation coefficients.</caption></figure>
+
+<para id="id237188">Consider the three distributions in <link target-id="uid4"/>. In case (a), the distribution is
+uniform over the square centered at the origin with vertices at (1,1), (-1,1), (-1,-1),
+(1,-1). In case (b), the distribution is uniform over two squares, in the first and
+third quadrants with vertices (0,0), (1,0), (1,1), (0,1) and (0,0),</para>
+      <para id="id237194">(-1,0), (-1,-1), (0,-1).
+In case (c) the two squares are in the second and fourth quadrants. The marginals
+are uniform on (-1,1) in each case, so that in each case</para>
+      <equation id="id237200">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>3</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id237291">This means the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> line is <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math> and the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> line is <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow></m:math>.</para>
+      <list id="id237359" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid5">By symmetry, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> (in fact the pair is independent) and <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid6">For every pair of possible values, the two signs must be the same, so <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> which
+implies <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  The actual value may be calculated to give <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>.  Since
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>ρ</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>ρ</m:mi></m:mrow></m:math>, the variance about the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> line
+is less than that about the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> line. This is evident from the figure.
+</item>
+        <item id="uid7"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>&lt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>&lt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  Since <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>ρ</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>ρ</m:mi></m:mrow></m:math>, the variance about the
+<m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> line is less than that about the <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> line. Again, examination of the figure
+confirms this.
+</item>
+      </list>
+      </example>
+
+<example id="fs-id1172137702860"><title>A pair of simple random variables</title><para id="id237666">With the aid of m-functions and MATLAB we can easily caluclate the covariance
+and the correlation coefficient. We use the joint distribution for <link document="m23441" target-id="fs-id1170955561022">Example 9</link> in "Variance." In
+that example calculations show</para>
+      <equation id="id237671">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1633</m:mn>
+            <m:mo>=</m:mo>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>σ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>8170</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>σ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>9122</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id237802">so that <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>04699</m:mn></m:mrow></m:math>.</para>
+      </example>
+
+<example id="fs-id6106871"><title>An absolutely continuous pair</title><para id="id237851">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density function <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>6</m:mn><m:mn>5</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math> on the triangular region bounded by <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math>, and
+<m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  By the usual integration techniques, we have</para>
+      <equation id="id237980">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>6</m:mn>
+              <m:mn>5</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>2</m:mn>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id238124">From this we obtain <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>50</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>80</m:mn></m:mrow></m:math>.  To complete the picture we need</para>
+      <equation id="id238239">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>6</m:mn>
+              <m:mn>5</m:mn>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mi>t</m:mi>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mi>u</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>t</m:mi>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>25</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id238340">Then</para>
+      <equation id="id238346">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>100</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>ρ</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi> Cov </m:mi>
+                <m:mspace width="0.166667em"/>
+                <m:mo>[</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>σ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>σ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>4</m:mn>
+              <m:mn>30</m:mn>
+            </m:mfrac>
+            <m:msqrt>
+              <m:mn>10</m:mn>
+            </m:msqrt>
+            <m:mo>≈</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4216</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id238500">APPROXIMATION</para>
+      <code id="id238506" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  200
+Enter number of Y approximation points  200
+Enter expression for joint density  (6/5)*(t + 2*u).*(u&gt;=t)
+Use array operations on X, Y, PX, PY, t, u, and P
+EX = total(t.*P)
+EX =   0.4012                    % Theoretical = 0.4
+EY = total(u.*P)
+EY =   0.7496                    % Theoretical = 0.75
+VX = total(t.^2.*P) - EX^2
+VX =   0.0603                    % Theoretical = 0.06
+VY = total(u.^2.*P) - EY^2
+VY =   0.0376                    % Theoretical = 0.0375
+CV = total(t.*u.*P) - EX*EY
+CV =   0.0201                    % Theoretical = 0.02
+rho = CV/sqrt(VX*VY)
+rho =  0.4212                    % Theoretical = 0.4216
+</code>
+</example>
+
+
+    
+      <para id="fs-id1168847441073"><emphasis effect="bold"> Coefficient of linear correlation</emphasis></para>
+
+      <para id="id238712">The parameter <emphasis effect="italics">ρ</emphasis> is usually called the correlation coefficient. A more descriptive
+name would be <emphasis effect="italics">coefficient of linear correlation</emphasis>.  The following example shows that
+all probability mass may be on a curve, so that <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math> (i.e., the value of <emphasis effect="italics">Y</emphasis> is
+completely determined by the value of <emphasis effect="italics">X</emphasis>), yet <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.</para>
+
+
+<example id="fs-id4644410"><title><m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math> but <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math></title><para id="id238826">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> uniform (-1,1), so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  Let <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo form="prefix">cos</m:mo><m:mi>X</m:mi></m:mrow></m:math>.  Then</para>
+      <equation id="id238942">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:mi>t</m:mi>
+            <m:mo form="prefix">cos</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>t</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id239029">Thus <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>. Note that <emphasis effect="italics">g</emphasis> could be any even function defined on (-1,1). In this case
+the integrand <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> is odd, so that the value of the integral is zero.</para>
+      </example>
+
+    
+      <para id="fs-id1168847441439"><emphasis effect="bold"> Variance and covariance for linear combinations</emphasis></para>
+
+
+      <para id="id239102">We generalize the property <link document="m23441" target-id="uid9">(V4)</link> on linear combinations. Consider the linear combinations</para>
+      <equation id="id239106"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>b</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id239210">We wish to determine <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>. It is convenient to work with the centered random variables
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mo>'</m:mo></m:msup><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>Y</m:mi><m:mo>'</m:mo></m:msup><m:mo>=</m:mo><m:mi>Y</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>y</m:mi></m:msub></m:mrow></m:math>. Since by linearity of expectation,</para>
+      <equation id="id239320"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>b</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id239445">we have</para>
+      <equation id="id239453"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>-</m:mo>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id239633">and similarly for <emphasis effect="italics">Y<sup><emphasis effect="normal">'</emphasis></sup></emphasis>. By definition</para>
+      <equation id="id239654"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mo>'</m:mo>
+              </m:msup>
+              <m:msup>
+                <m:mi>Y</m:mi>
+                <m:mo>'</m:mo>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:munder>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>j</m:mi>
+                </m:mrow>
+              </m:munder>
+              <m:msub>
+                <m:mi>a</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msub>
+                <m:mi>b</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:msubsup>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+                <m:mo>'</m:mo>
+              </m:msubsup>
+              <m:msubsup>
+                <m:mi>Y</m:mi>
+                <m:mi>j</m:mi>
+                <m:mo>'</m:mo>
+              </m:msubsup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>j</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>b</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msubsup>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+                <m:mo>'</m:mo>
+              </m:msubsup>
+              <m:msubsup>
+                <m:mi>Y</m:mi>
+                <m:mi>j</m:mi>
+                <m:mo>'</m:mo>
+              </m:msubsup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>j</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>b</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id239883">In particular</para>
+      <equation id="id239889"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>j</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>≠</m:mo>
+                <m:mi>j</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id240105">Using the fact that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>a</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>a</m:mi><m:mi>j</m:mi></m:msub><m:mi> Cov </m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>a</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>a</m:mi><m:mi>i</m:mi></m:msub><m:mi> Cov </m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>j</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, we have</para>
+      <equation id="id240207"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>&lt;</m:mo>
+                <m:mi>j</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mi> Cov </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id240338">Note that <emphasis effect="italics">a<sub>i</sub><sup>2</sup></emphasis> does not depend upon the sign of <emphasis effect="italics">a<sub>i</sub></emphasis>. If the <emphasis effect="italics">X<sub>i</sub></emphasis> form an independent class, or are
+otherwise uncorrelated, the expression for variance reduces to</para>
+      <equation id="id240391"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+    </section>
+  </content>
+</document>

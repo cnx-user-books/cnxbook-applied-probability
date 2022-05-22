@@ -1,0 +1,2080 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Independent Classes of Random Variables</title>
+  <metadata>
+  <md:content-id>m23321</md:content-id><md:title>Independent Classes of Random Variables</md:title>
+  <md:abstract>The concept of independence for classes of events is developed in terms of a product rule. Recall that for a real random variable X, the inverse image of each reasonable subset M on the real line (i.e., the set of all outcomes  which are mapped into M by X) is an event.  Similarly, the inverse image of N by random variable Y is an event. We extend the notion of independence to a pair of random variables by requiring independence of the events they determine in this fashion. This condition may be stated in terms of the product rule
+      P(X in M, Y in N) = P(X in M)P(Y in N) for all Borel sets M, N.
+This product rule holds for the distribution functions FXY(t,u) = FX(t)FY(u) for all t, u. And similarly for density functions when they exist.
+This condition puts restrictions on the nature of the probability mass distribution on the plane.  For a rectangle with sides M, N 
+     the probability mass in M x N is P(X in M)P(Y in N). 
+Extension to general classes is simple and immediate.</md:abstract>
+  <md:uuid>5535655e-4ffa-4d25-b1b9-f0583154322e</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title> Introduction</title>
+      <para id="id200465">The concept of independence for classes of events is developed in terms of a product rule. In this
+unit, we extend the concept to classes of random variables.</para>
+    </section>
+    <section id="cid2">
+      <title>Independent pairs</title>
+      <para id="id200479">Recall that for a random variable <emphasis effect="italics">X</emphasis>, the inverse image <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>  (i.e., the set of
+all outcomes <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>Ω</m:mi></m:mrow></m:math> which are mapped into <emphasis effect="italics">M</emphasis> by <emphasis effect="italics">X</emphasis>) is an event for each
+reasonable subset <emphasis effect="italics">M</emphasis> on the real line.  Similarly, the inverse image
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>Y</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is an event determined by random variable <emphasis effect="italics">Y</emphasis> for each reasonable set <emphasis effect="italics">N</emphasis>.  We extend the notion of independence to a pair of random variables by requiring independence
+of the events they determine. More precisely,</para>
+    
+      <para id="fs-id1168100895692"><emphasis effect="bold"> Definition</emphasis></para>
+
+      <para id="id200605">A pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables is (stochastically) <emphasis effect="italics">independent</emphasis>
+iff each pair of events <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:msup><m:mi>Y</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+      <para id="id200687">This condition may be stated in terms of the <emphasis effect="italics">product rule</emphasis></para>
+      <equation id="id200695">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mi>M</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mi>N</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mi>M</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mi>N</m:mi>
+            <m:mo>)</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>(Borel)</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>sets</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>M</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>N</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id200798">Independence implies</para>
+      <equation id="id200803">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>t</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>u</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>t</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>u</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id201135">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id201200">Note that the product rule on the distribution function is equivalent to the condition the product
+rule holds for the inverse images of a special class of sets <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>M</m:mi><m:mo>,</m:mo><m:mi>N</m:mi><m:mo>}</m:mo></m:mrow></m:math> of the form
+<m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>]</m:mo></m:mrow></m:math>. An important
+theorem from measure theory ensures that if the product rule holds for this special class
+it holds for the general class of <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>M</m:mi><m:mo>,</m:mo><m:mi>N</m:mi><m:mo>}</m:mo></m:mrow></m:math>.  Thus we may assert</para>
+      <para id="id201303">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent iff the following product rule holds
+      </para>
+      <equation id="id201330">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <!--empty paragraphs get left behind.-->
+
+
+<example id="fs-id5095375"><title>An independent pair</title><para id="id201436">Suppose <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfenced separators="" open="(" close=")"><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>α</m:mi><m:mi>t</m:mi></m:mrow></m:msup></m:mfenced><m:mfenced separators="" open="(" close=")"><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>β</m:mi><m:mi>u</m:mi></m:mrow></m:msup></m:mfenced><m:mspace width="4pt"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi></m:mrow></m:mstyle></m:math>. Taking limits shows</para>
+      <equation id="id201555">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mo movablelimits="true" form="prefix">lim</m:mo>
+              <m:mrow>
+                <m:mi>u</m:mi>
+                <m:mo>→</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>α</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mo movablelimits="true" form="prefix">lim</m:mo>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mo>→</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>β</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id201741">so that the product rule <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>F</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> holds. The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is
+therefore independent.</para>
+      </example>
+
+
+      <para id="id201843">If there is a joint density function, then the relationship to the joint distribution function makes it
+clear that the pair is independent iff the product rule holds for the density. That is, the
+pair is independent iff</para>
+      <equation id="id201849">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+<example id="fs-id1167706789403"><title>Joint uniform distribution on a rectangle</title><para id="id201952">Suppose the joint probability mass distributions induced by the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is
+uniform on a rectangle with sides <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mrow><m:mo>[</m:mo><m:mi>c</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math>. Since the area
+is <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>)</m:mo><m:mo>(</m:mo><m:mi>d</m:mi><m:mo>-</m:mo><m:mi>c</m:mi><m:mo>)</m:mo></m:mrow></m:math>, the constant value of <m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math> is <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>)</m:mo><m:mo>(</m:mo><m:mi>d</m:mi><m:mo>-</m:mo><m:mi>c</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Simple integration gives</para>
+      <equation id="id202115">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo>)</m:mo>
+                <m:mo>(</m:mo>
+                <m:mi>d</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>c</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mi>c</m:mi>
+              <m:mi>d</m:mi>
+            </m:msubsup>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>b</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>a</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>a</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>b</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id202225">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo>)</m:mo>
+                <m:mo>(</m:mo>
+                <m:mi>d</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>c</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mi>a</m:mi>
+              <m:mi>b</m:mi>
+            </m:msubsup>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>d</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>c</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>c</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>d</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id202323">Thus it follows that <emphasis effect="italics">X</emphasis> is uniform on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <emphasis effect="italics">Y</emphasis> is uniform on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>c</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>f</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi></m:mrow></m:math>, so that the pair
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent. The converse is also true: if the pair is independent with
+<emphasis effect="italics">X</emphasis> uniform on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <emphasis effect="italics">Y</emphasis> is uniform on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>c</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mo>]</m:mo></m:mrow></m:math>, the the pair has uniform joint
+distribution on <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mn>1</m:mn></m:msub><m:mo>×</m:mo><m:msub><m:mi>I</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math>.</para>
+      </example>
+    </section>
+    <section id="cid4">
+      <title>The joint mass distribution</title>
+      <para id="id202600">It should be apparent that the independence condition puts restrictions on the character
+of the joint mass distribution on the plane. In order to describe this more succinctly,
+we employ the following terminology.</para>
+    
+      <para id="fs-id1168100338007"><emphasis effect="bold"> Definition</emphasis></para>
+      <para id="id202615">If <emphasis effect="italics">M</emphasis> is a subset of the horizontal axis and <emphasis effect="italics">N</emphasis> is a subset of the vertical axis,
+then the <emphasis effect="italics">cartesian product </emphasis><m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>×</m:mo><m:mi>N</m:mi></m:mrow></m:math> is the (generalized) rectangle consisting of
+those points <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> on the plane such that <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>∈</m:mo><m:mi>N</m:mi></m:mrow></m:math>.</para>
+
+
+<example id="fs-id1167705591847"><title>Rectangle with interval sides</title><para id="id202716">The rectangle in <link target-id="fs-id1167706789403"/> is the Cartesian product <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mn>1</m:mn></m:msub><m:mo>×</m:mo><m:msub><m:mi>I</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math>, consisting of all those
+points <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> such that <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mi>b</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>c</m:mi><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mi>d</m:mi></m:mrow></m:math> (i.e., <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>∈</m:mo><m:msub><m:mi>I</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math>
+and <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>∈</m:mo><m:msub><m:mi>I</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math>).</para>
+      </example>
+
+
+      <figure id="uid1"><media id="uid1_media" alt="A graph with two horizontal lines and two vertical lines intersecting each other and creating a square. the distance between the two vertical line is labeled M and the distance between the two horizontal lines is labeled N. The area inside the square is shaded and labeled 'Mass in rectangle MxN P(X in M)P(Y in N)'. The space above the square contains the phrase 'mass in vertical strip is P(X in M)' while the area to the right of the square is labeled 'Mass in horizontal strip is P(Y in N)'.">
+          <image mime-type="image/png" src="../../media/fig9_2_1.png" id="uid1_onlineimage" width="346"><!-- NOTE: attribute width changes image size online (pixels). original width is 346. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig9_2_1.eps" id="uid1_printimage" print-width="3.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Joint distribution for an independent pair of random variables.</caption></figure>
+      <para id="id202872">We restate the product rule for independence in terms of cartesian product sets.</para>
+      <equation id="id202876">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>∈</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>×</m:mo>
+              <m:mi>N</m:mi>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id202977">Reference to <link target-id="uid1"/> illustrates the basic pattern. If <emphasis effect="italics">M</emphasis>, <emphasis effect="italics">N</emphasis> are intervals on
+the horizontal and vertical axes, respectively, then the rectangle <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>×</m:mo><m:mi>N</m:mi></m:mrow></m:math> is
+the intersection of the vertical strip meeting the horizontal axis in <emphasis effect="italics">M</emphasis> with the
+horizontal strip meeting the vertical axis in <emphasis effect="italics">N</emphasis>.  The probability <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi></m:mrow></m:math> is
+the portion of the joint probability mass in the vertical strip; the probability <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∈</m:mo><m:mi>N</m:mi></m:mrow></m:math>
+is the part of the joint probability in the horizontal strip. The probability in the
+rectangle is the product of these marginal probabilities.</para>
+      <para id="id203065">This suggests a useful test for nonindependence which we call the <emphasis effect="italics">rectangle test</emphasis>.  We illustrate with a simple example.</para>
+      <figure id="uid2"><media id="uid2_media" alt="A graph containing a square rotated on one of its corners making it look like a diamond. This diamond is shaded. There are two rectangles, one rising from the x axis and another from the y axis. These two rectangles intersect different corners of the shaded diamond and each other. The area of intersection of the rectangle originating on the y axis and the diamond is labeled P(Y in N &gt; 0). The intersection of the two rectangles is labeled P(X in M,Y in N) = 0. The area of intersection of the rectangle originating from the x-axis and the shaded diamond is labeled P(X in M) &gt; 0. The height of the rectangle on the y axis is labeled N, and the width of the rectangle on the x axis is labeled M.">
+          <image mime-type="image/png" src="../../media/fig9_2_2.png" id="uid2_onlineimage" width="339"><!-- NOTE: attribute width changes image size online (pixels). original width is 339. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig9_2_2.eps" id="uid2_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Rectangle test for nonindependence of a pair of random variables.</caption></figure>
+
+<example id="fs-id1167702450704"><title>The rectangle test for nonindependence</title><para id="id203097">Supose probability mass is uniformly distributed over the square with vertices at
+(1,0), (2,1), (1,2), (0,1). It is evident from <link target-id="uid2"/> that a value of <emphasis effect="italics">X</emphasis> determines
+the possible values of <emphasis effect="italics">Y</emphasis> and vice versa, so that we would not expect independence of
+the pair. To establish this, consider the small rectangle <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>×</m:mo><m:mi>N</m:mi></m:mrow></m:math> shown on the
+figure. There is no probability mass in the region. Yet <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>∈</m:mo><m:mi>N</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>, so that</para>
+      <para id="id203186"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>∈</m:mo><m:mi>N</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:mstyle></m:math>, but
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>×</m:mo><m:mi>N</m:mi></m:mfenced><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>. The product rule fails; hence
+the pair cannot be stochastically independent.</para>
+      </example>
+
+
+
+      <para id="id203294"><emphasis effect="italics">Remark</emphasis>.  There are nonindependent cases for which this test does not work. And
+it does not provide a test <emphasis effect="italics">for</emphasis> independence. In spite of these limitations, it
+is frequently useful.
+Because of the information contained in the independence condition, in many cases the
+complete joint and marginal distributions may be obtained with appropriate partial
+information. The following is a simple example.</para>
+      
+<example id="fs-id8285554"><title>Joint and marginal probabilities from partial information</title><para id="id203322">Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent and each has three possible values. The
+following four items of information are available.</para>
+      <equation id="id203349">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>08</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id203483">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>15</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id203537">These values are shown in bold type on <link target-id="uid3"/>. A combination of the product rule
+and the fact that the total probability mass is one are used to calculate each of
+the marginal and joint probabilities. For example <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math></para>
+      <para id="id203621"><m:math overflow="scroll"><m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>08</m:mn></m:mrow></m:math> implies <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn></m:mrow></m:math>.  Then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mn>3</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math></para>
+      <para id="id203741"><m:math overflow="scroll"><m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:math>.  Others are calculated
+similarly. There is no unique procedure for solution. And it has not seemed
+useful to develop MATLAB procedures to accomplish this.</para>
+      </example>
+
+
+      <figure id="uid3"><media id="uid3_media" alt="This image consist of three elements. There is a vertical line, a horizontal line and square comprised of four square assembled together. On each of the lines there are three points indicated by a bold dot and a number. Original numbers are represented in bold while calculated ones are in italics. Vertical line has these points labeled ascending 0.3 in bold, 0.4 in italics and 0.3 in italics. The horizontal line has points progressing to the right labeled 0.2 in bold, 0.5 in italics, and 0.3 in italics. There are points at all the intersections of the lines.">
+          <image mime-type="image/png" src="../../media/fig9_2_3.png" id="uid3_onlineimage" width="344"><!-- NOTE: attribute width changes image size online (pixels). original width is 344. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig9_2_3.eps" id="uid3_printimage" print-width="3.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Joint and marginal probabilities from partial information.</caption></figure>
+
+<example id="fs-id1167705836938"><title>The joint normal distribution</title><para id="id203847">A pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has the joint normal distribution iff the joint density is</para>
+      <equation id="id203874">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mn>2</m:mn>
+                <m:mi>π</m:mi>
+                <m:msub>
+                  <m:mi>σ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:msub>
+                  <m:mi>σ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:msup>
+                      <m:mi>ρ</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mn>1</m:mn>
+                    <m:mo>/</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+            </m:mfrac>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>Q</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id203990">where</para>
+      <equation id="id203996">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Q</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>ρ</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+              </m:mrow>
+            </m:mfrac>
+            <m:mfenced separators="" open="[" close="]">
+              <m:msup>
+                <m:mfenced separators="" open="(" close=")">
+                  <m:mfrac>
+                    <m:mrow>
+                      <m:mi>t</m:mi>
+                      <m:mo>-</m:mo>
+                      <m:msub>
+                        <m:mi>μ</m:mi>
+                        <m:mi>X</m:mi>
+                      </m:msub>
+                    </m:mrow>
+                    <m:msub>
+                      <m:mi>σ</m:mi>
+                      <m:mi>X</m:mi>
+                    </m:msub>
+                  </m:mfrac>
+                </m:mfenced>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>-</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>ρ</m:mi>
+              <m:mfenced separators="" open="(" close=")">
+                <m:mfrac>
+                  <m:mrow>
+                    <m:mi>t</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:msub>
+                      <m:mi>μ</m:mi>
+                      <m:mi>X</m:mi>
+                    </m:msub>
+                  </m:mrow>
+                  <m:msub>
+                    <m:mi>σ</m:mi>
+                    <m:mi>X</m:mi>
+                  </m:msub>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mfenced separators="" open="(" close=")">
+                <m:mfrac>
+                  <m:mrow>
+                    <m:mi>u</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:msub>
+                      <m:mi>μ</m:mi>
+                      <m:mi>Y</m:mi>
+                    </m:msub>
+                  </m:mrow>
+                  <m:msub>
+                    <m:mi>σ</m:mi>
+                    <m:mi>Y</m:mi>
+                  </m:msub>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mfenced separators="" open="(" close=")">
+                  <m:mfrac>
+                    <m:mrow>
+                      <m:mi>u</m:mi>
+                      <m:mo>-</m:mo>
+                      <m:msub>
+                        <m:mi>μ</m:mi>
+                        <m:mi>Y</m:mi>
+                      </m:msub>
+                    </m:mrow>
+                    <m:msub>
+                      <m:mi>σ</m:mi>
+                      <m:mi>Y</m:mi>
+                    </m:msub>
+                  </m:mfrac>
+                </m:mfenced>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id204189">The marginal densities are obtained with the aid of some algebraic tricks to integrate
+the joint density. The result is that <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msubsup><m:mi>σ</m:mi><m:mi>X</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>)</m:mo></m:mrow></m:math>
+and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub><m:mo>,</m:mo><m:msubsup><m:mi>σ</m:mi><m:mi>Y</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>)</m:mo></m:mrow></m:math>.  If the parameter <emphasis effect="italics">ρ</emphasis> is set to zero, the result is</para>
+      <equation id="id204288">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id204355">so that the pair is independent iff <m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  The details are left as an exercise for
+the interested reader.</para>
+      </example>
+
+
+      <para id="id204391"><emphasis effect="italics">Remark</emphasis>.  While it is true that every independent pair of normally distributed random
+variables is joint normal, not every pair of normally distributed random variables has the
+joint normal distribution.</para>
+
+<example id="fs-id8306906"><title>A normal pair not joint normally distributed</title><para id="id204408">We start with the distribution for a joint normal pair and derive a joint distribution
+for a normal pair which is <emphasis effect="italics">not</emphasis> joint normal. The function</para>
+      <equation id="id204417">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mspace width="4pt"/>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mn>2</m:mn>
+                <m:mi>π</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo form="prefix">exp</m:mo>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mo>-</m:mo>
+              <m:mfrac>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:mo>-</m:mo>
+              <m:mfrac>
+                <m:msup>
+                  <m:mi>u</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id204495">is the joint normal density for an independent pair (<m:math overflow="scroll"><m:mrow><m:mi>ρ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>) of standardized normal
+random variables. Now define the joint density for a pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> by</para>
+      <equation id="id204538">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>in</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>first</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>third</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>quadrants,</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>zero</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>elsewhere</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id204649">Both <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>. However, they cannot be joint normal, since the joint
+normal distribution is positive for all <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      </example>
+
+
+    </section>
+    <section id="cid6">
+      <title>Independent classes</title>
+      <para id="id204759">Since independence of random variables is independence of the events determined by the
+random variables, extension to general classes is simple and immediate.</para>
+    
+      <para id="fs-id1168100727984"><emphasis effect="bold"> Definition</emphasis></para>
+
+      <para id="id204773">A class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables is (stochastically)
+<emphasis effect="italics">independent</emphasis> iff the product rule holds for
+every finite subclass of two or more.</para>
+      <para id="id204812"><emphasis effect="italics">Remark</emphasis>. The index set <emphasis effect="italics">J</emphasis> in the definition may be finite or infinite.</para>
+      <para id="id204830">For a finite class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>, independence is equivalent to the product
+rule</para>
+      <equation id="id204866"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>⋯</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∏</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id205065">Since we may obtain the joint distribution function for any finite subclass by letting
+the arguments for the others be <emphasis effect="italics">∞</emphasis> (i.e., by taking the limits as the appropriate
+<emphasis effect="italics">t<sub>i</sub></emphasis> increase without bound), the single product rule suffices to account for all
+finite subclasses.</para>
+    
+      <para id="fs-id1169206481499"><emphasis effect="bold"> Absolutely continuous random variables</emphasis></para>
+
+      <para id="id205107">If a class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent and the individual variables are absolutely
+continuous (i.e., have densities), then any finite subclass is jointly absolutely
+continuous and the product rule holds for the densities of such subclasses</para>
+      <equation id="id205141"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:msub>
+                <m:mo>⋯</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mi>m</m:mi>
+                  </m:mrow>
+                </m:msub>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mn>2</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mi>m</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∏</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mi>k</m:mi>
+                </m:mrow>
+              </m:msub>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mi>k</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id205365">Similarly, if each finite subclass is jointly absolutely continuous, then each individual
+variable is absolutely continuous and the product rule holds for the densities.
+Frequently we deal with independent classes in which each random variable has the same
+marginal distribution. Such classes are referred to as <emphasis effect="italics">iid</emphasis> classes (an acronym for
+<emphasis effect="bold">i</emphasis>ndependent,<emphasis effect="bold">i</emphasis>dentically <emphasis effect="bold">d</emphasis>istributed). Examples are
+simple random samples
+from a given population, or the results of repetitive trials with the same distribution
+on the outcome of each component trial. A Bernoulli sequence is a simple example.</para>
+    </section>
+    <section id="cid9">
+      <title>Simple random variables</title>
+      <para id="id205408">Consider a pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> of simple random variables in canonical form</para>
+      <equation id="id205435"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id205553">Since <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math> the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent iff
+each of the pairs <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent. The joint distribution has probability mass at
+each point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> in the range of <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Thus at every point on the grid,</para>
+      <equation id="id205744">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id205831">According to the rectangle test, no gridpoint having one of the <emphasis effect="italics">t<sub>i</sub></emphasis>
+or <emphasis effect="italics">u<sub>j</sub></emphasis> as a coordinate has zero probability mass . The marginal distributions
+determine the joint distributions. If <emphasis effect="italics">X</emphasis> has <emphasis effect="italics">n</emphasis> distinct values and <emphasis effect="italics">Y</emphasis> has <emphasis effect="italics">m</emphasis> distinct
+values, then the <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>m</m:mi></m:mrow></m:math> marginal probabilities suffice to determine the <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>·</m:mo><m:mi>n</m:mi></m:mrow></m:math> joint
+probabilities. Since the marginal probabilities for each variable must add to one, only
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>+</m:mo><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>m</m:mi><m:mo>+</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>2</m:mn></m:mrow></m:math> values are needed.</para>
+      <para id="id205975">Suppose <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> are in affine form. That is,</para>
+      <equation id="id205996"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>a</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>b</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>b</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>F</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id206123">Since <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>r</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>r</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math> is the union of minterms generated by the <emphasis effect="italics">E<sub>i</sub></emphasis> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>s</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math>
+is the union of minterms generated by the <emphasis effect="italics">F<sub>j</sub></emphasis>,
+the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent iff each pair of minterms <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>M</m:mi><m:mi>a</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>N</m:mi><m:mi>b</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> generated by
+the two classes, respectivly, is independent. Independence of the minterm pairs
+is implied by independence of the combined class</para>
+      <equation id="id206285">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>{</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mo>:</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>1</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>i</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>j</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>m</m:mi>
+            <m:mo>}</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id206356">Calculations in the joint simple case are
+readily handled by appropriate m-functions and m-procedures.</para>
+   
+      <para id="fs-id1169207995614"><emphasis effect="bold"> MATLAB and independent simple random variables</emphasis></para>
+
+      <para id="id206372">In the general case of pairs of joint simple random variables we have the m-procedure jcalc,
+which uses information in matrices <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>Y,</m:mi></m:mrow></m:math> and <emphasis effect="italics">P</emphasis> to determine the marginal
+probabilities and the calculation matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis>. In the independent case,
+we need only the marginal distributions in matrices <emphasis effect="italics">X</emphasis>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math>, <emphasis effect="italics">Y</emphasis>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Y</m:mi></m:mrow></m:math> to
+determine the joint probability matrix (hence the joint distribution) and the
+calculation matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis>. If the random variables are given in canonical form,
+we have the marginal distributions. If they are in affine form, we may use canonic (or
+the function form canonicf) to obtain the marginal distributions.</para>
+      <para id="id206487">Once we have both marginal distributions, we use an m-procedure
+we call <emphasis effect="italics">icalc</emphasis>. Formation of the joint probability matrix is simply a
+matter of determining all the joint probabilities</para>
+      <equation id="id206497">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>i</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>j</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id206600">Once these are calculated, formation of the calculation matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis> is
+achieved exactly as in jcalc.</para>
+
+<example id="fs-id1167705621337"><title>Use of icalc to set up for joint calculations</title><code id="id206634" display="block">X = [-4 -2 0 1 3];
+Y = [0 1 2 4];
+PX = 0.01*[12 18 27 19 24];
+PY = 0.01*[15 43 31 11];
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+disp(P)                        % Optional display of the joint matrix
+    0.0132    0.0198    0.0297    0.0209    0.0264
+    0.0372    0.0558    0.0837    0.0589    0.0744
+    0.0516    0.0774    0.1161    0.0817    0.1032
+    0.0180    0.0270    0.0405    0.0285    0.0360
+disp(t)                        % Calculation matrix t
+    -4    -2     0     1     3
+    -4    -2     0     1     3
+    -4    -2     0     1     3
+    -4    -2     0     1     3
+disp(u)                        % Calculation matrix u
+     4     4     4     4     4
+     2     2     2     2     2
+     1     1     1     1     1
+     0     0     0     0     0
+M = (t&gt;=-3)&amp;(t&lt;=2);            % M = [-3, 2]
+PM = total(M.*P)               % P(X in M)
+PM =   0.6400
+N = (u&gt;0)&amp;(u.^2&lt;=15);          % N = {u: u &gt; 0, u^2 &lt;= 15}
+PN = total(N.*P)               % P(Y in N)
+PN =   0.7400
+Q = M&amp;N;                       % Rectangle MxN
+PQ = total(Q.*P)               % P((X,Y) in MxN)
+PQ =   0.4736
+p = PM*PN
+p  =   0.4736                  % P((X,Y) in MxN) = P(X in M)P(Y in N)
+</code>
+      </example>
+
+      <para id="id207033">As an example, consider again the problem of joint Bernoulli trials described
+in the treatment of <link document="m23256">Composite trials</link>.</para>
+
+<example id="fs-id1167703195440"><title>The joint Bernoulli trial of Example 4.9.</title><para id="id207055">1
+Bill and Mary take ten basketball free throws each. We assume
+the two seqences of trials are independent of each other, and each is a
+Bernoulli sequence.</para>
+      <para id="id207062">      Mary:  Has probability 0.80 of success on each trial.</para>
+      <para id="id207066">      Bill:    Has probability 0.85 of success on each trial.</para>
+      <para id="id207072">What is the probability Mary makes more free throws than Bill?</para>
+      <para id="id207076">SOLUTION</para>
+      <para id="id207079">Let <emphasis effect="italics">X</emphasis> be the number of goals that Mary makes and <emphasis effect="italics">Y</emphasis> be the number that Bill makes. Then
+<m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>85</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <code id="id207180" display="block">X = 0:10;
+Y = 0:10;
+PX = ibinom(10,0.8,X);
+PY = ibinom(10,0.85,Y);
+icalc
+Enter row matrix of X-values  X  % Could enter 0:10
+Enter row matrix of Y-values  Y  % Could enter 0:10
+Enter X probabilities  PX        % Could enter ibinom(10,0.8,X)
+Enter Y probabilities  PY        % Could enter ibinom(10,0.85,Y)
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+PM = total((t&gt;u).*P)
+PM =  0.2738                     % Agrees with solution in <link document="fs-id5149102" target-id="m23256">Example 9</link> from "Composite Trials".
+Pe = total((u==t).*P)            % Additional information is more easily
+Pe =  0.2276                     % obtained than in the event formulation
+Pm = total((t&gt;=u).*P)            % of <link document="fs-id5149102" target-id="m23256">Example 9</link> from "Composite Trials".
+Pm =  0.5014
+</code>
+      </example>
+
+<example id="fs-id1167702633174"><title>Sprinters time trials</title><para id="id207364">Twelve world class sprinters in a meet are running in two heats of
+six persons each. Each runner has a reasonable chance of breaking
+the track record. We suppose results for individuals are independent.</para>
+      <para id="id207369">          First heat probabilities: 0.61 0.73 0.55 0.81 0.66 0.43         </para>
+      <para id="id207376">          Second heat probabilities: 0.75 0.48 0.62 0.58 0.77 0.51         </para>
+      <para id="id207383">Compare the two heats for numbers who break the track record.</para>
+      <para id="id207389">SOLUTION</para>
+      <para id="id207392">Let <emphasis effect="italics">X</emphasis> be the number of successes in the first heat and <emphasis effect="italics">Y</emphasis> be the number
+who are successful in the second heat. Then the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.
+We use the m-function canonicf to determine the distributions for <emphasis effect="italics">X</emphasis> and for <emphasis effect="italics">Y</emphasis>, then
+icalc to get the joint distribution.</para>
+      <code id="id207456" display="block">c1 = [ones(1,6) 0];
+c2 = [ones(1,6) 0];
+P1 = [0.61 0.73 0.55 0.81 0.66 0.43];
+P2 = [0.75 0.48 0.62 0.58 0.77 0.51];
+[X,PX] = canonicf(c1,minprob(P1));
+[Y,PY] = canonicf(c2,minprob(P2));
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+Pm1 = total((t&gt;u).*P)   % Prob first heat has most
+Pm1 =  0.3986
+Pm2 = total((u&gt;t).*P)   % Prob second heat has most
+Pm2 =  0.3606
+Peq = total((t==u).*P)  % Prob both have the same
+Peq =  0.2408
+Px3 = (X&gt;=3)*PX'        % Prob first has 3 or more
+Px3 =  0.8708
+Py3 = (Y&gt;=3)*PY'        % Prob second has 3 or more
+Py3 =  0.8525
+</code>
+      </example>
+
+
+
+      <para id="id207692">As in the case of jcalc, we have an m-function version <emphasis effect="italics">icalcf</emphasis></para>
+      <equation id="id207700">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi mathvariant="monospace">x</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">y</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">t</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">u</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">p</m:mi>
+            <m:mi mathvariant="monospace">x</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">p</m:mi>
+            <m:mi mathvariant="monospace">y</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">p</m:mi>
+            <m:mo>]</m:mo>
+            <m:mspace width="3.33333pt"/>
+            <m:mo>=</m:mo>
+            <m:mspace width="3.33333pt"/>
+            <m:mi mathvariant="monospace">i</m:mi>
+            <m:mi mathvariant="monospace">c</m:mi>
+            <m:mi mathvariant="monospace">a</m:mi>
+            <m:mi mathvariant="monospace">l</m:mi>
+            <m:mi mathvariant="monospace">c</m:mi>
+            <m:mi mathvariant="monospace">f</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi mathvariant="monospace">X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">Y</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">P</m:mi>
+            <m:mi mathvariant="monospace">X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi mathvariant="monospace">P</m:mi>
+            <m:mi mathvariant="monospace">Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id207839">We have a related m-function <emphasis effect="italics">idbn</emphasis> for obtaining the joint probability matrix
+from the marginal probabilities. Its formation of the joint matrix utilizes
+the same operations as icalc.</para>
+
+
+<example id="fs-id1167701331714"><title>A numerical example</title><code id="id207859" display="block">PX = 0.1*[3 5 2];
+PY = 0.01*[20 15 40 25];
+P  = idbn(PX,PY)
+P =
+    0.0750    0.1250    0.0500
+    0.1200    0.2000    0.0800
+    0.0450    0.0750    0.0300
+    0.0600    0.1000    0.0400
+</code>
+      <para id="id207933">An m- procedure <emphasis effect="italics">itest</emphasis> checks a joint distribution for independence. It does this by
+calculating the marginals, then forming an independent joint test matrix,
+which is compared with the original. We do not ordinarily exhibit the matrix <emphasis effect="italics">P</emphasis> to be tested. However, this
+is a case in which the product rule holds for most of the minterms, and
+it would be very difficult to pick out those for which it fails. The m-procedure
+simply checks all of them.</para>
+</example>
+
+<example id="fs-id4932535">      
+
+      <code id="id207963" display="block">idemo1                           % Joint matrix in datafile idemo1
+P =  0.0091  0.0147  0.0035  0.0049  0.0105  0.0161  0.0112
+     0.0117  0.0189  0.0045  0.0063  0.0135  0.0207  0.0144
+     0.0104  0.0168  0.0040  0.0056  0.0120  0.0184  0.0128
+     0.0169  0.0273  0.0065  0.0091  0.0095  0.0299  0.0208
+     0.0052  0.0084  0.0020  0.0028  0.0060  0.0092  0.0064
+     0.0169  0.0273  0.0065  0.0091  0.0195  0.0299  0.0208
+     0.0104  0.0168  0.0040  0.0056  0.0120  0.0184  0.0128
+     0.0078  0.0126  0.0030  0.0042  0.0190  0.0138  0.0096
+     0.0117  0.0189  0.0045  0.0063  0.0135  0.0207  0.0144
+     0.0091  0.0147  0.0035  0.0049  0.0105  0.0161  0.0112
+     0.0065  0.0105  0.0025  0.0035  0.0075  0.0115  0.0080
+     0.0143  0.0231  0.0055  0.0077  0.0165  0.0253  0.0176
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent   % Result of test
+</code>
+      
+      <code id="id208120" display="block">To see where the product rule fails, call for D
+disp(D)                          % Optional call for D
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     1     1     1     1     1     1     1
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     1     1     1     1     1     1     1
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+</code>
+      <para id="id208253">Next, we consider an example in which the pair is known to be independent.</para>
+</example>
+
+<example id="fs-id1167711060966">
+      
+      <code id="id208266" display="block">jdemo3      % call for data in m-file
+disp(P)     % call to display P
+     0.0132    0.0198    0.0297    0.0209    0.0264
+     0.0372    0.0558    0.0837    0.0589    0.0744
+     0.0516    0.0774    0.1161    0.0817    0.1032
+     0.0180    0.0270    0.0405    0.0285    0.0360
+ 
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is independent       % Result of test
+</code>
+      </example>
+
+      <para id="id208377">The procedure icalc can be extended to deal with an independent class of three random
+variables. We call the m-procedure <emphasis effect="italics">icalc3</emphasis>.  The following is a simple example
+of its use.</para>
+
+<example id="fs-id1167709904349"><title>Calculations for three independent random variables</title><code id="id208395" display="block">X = 0:4;
+Y = 1:2:7;
+Z = 0:3:12;
+PX = 0.1*[1 3 2 3 1];
+PY = 0.1*[2 2 3 3];
+PZ = 0.1*[2 2 1 3 2];
+icalc3
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter row matrix of Z-values  Z
+Enter X probabilities  PX
+Enter Y probabilities  PY
+Enter Z probabilities  PZ
+Use array operations on matrices X, Y, Z,
+PX, PY, PZ, t, u, v, and P
+G = 3*t + 2*u - 4*v;        % W = 3X + 2Y -4Z
+[W,PW] = csort(G,P);        % Distribution for W
+PG = total((G&gt;0).*P)        % P(g(X,Y,Z) &gt; 0)
+PG =  0.3370
+Pg = (W&gt;0)*PW'            % P(Z &gt; 0)
+Pg =  0.3370
+</code>
+      </example>
+
+      <para id="id208627">An m-procedure <emphasis effect="italics">icalc4</emphasis> to handle an independent class of four variables
+is also available. Also several variations of the m-function <emphasis effect="italics">mgsum</emphasis> and the
+m-function <emphasis effect="italics">diidsum</emphasis> are used for obtaining distributions for sums of independent
+random variables. We consider them in various contexts in
+other units.</para>
+    </section>
+    <section id="cid11">
+      <title>Approximation for the absolutely continuous case</title>
+      <para id="id208659">In the study of functions of random variables, we show that an approximating simple
+random variable <emphasis effect="italics">X<sub>s</sub></emphasis> of the type we use is a function of the random variable
+<emphasis effect="italics">X</emphasis> which is approximated. Also, we show that if <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair,
+so is <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>}</m:mo></m:mrow></m:math> for any reasonable functions <emphasis effect="italics">g</emphasis> and <emphasis effect="italics">h</emphasis>. Thus if <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an
+independent pair, so is any pair of approximating simple functions <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>Y</m:mi><m:mi>s</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> of the type
+considered. Now it is theoretically possible for the approximating pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>Y</m:mi><m:mi>s</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> to be
+independent, yet have the approximated pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> not independent. But <emphasis effect="italics">this is highly
+unlikely</emphasis>.  For all practical purposes, we may consider <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> to be independent iff
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>Y</m:mi><m:mi>s</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent. When in doubt, consider a second pair of approximating simple
+functions with more subdivision points. This decreases even further the likelihood of a false
+indication of independence by the approximating random variables.</para>
+
+<example id="fs-id1167712076718"><title>An independent pair</title><para id="id208918">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential (3) and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential (2) with</para>
+      <equation id="id208947">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>6</m:mn>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>3</m:mn>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>2</m:mn>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mn>6</m:mn>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mo>(</m:mo>
+                <m:mn>3</m:mn>
+                <m:mi>t</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>2</m:mn>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id209071">Since <m:math overflow="scroll"><m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mn>12</m:mn></m:mrow></m:msup><m:mo>≈</m:mo><m:mn>6</m:mn><m:mo>×</m:mo><m:msup><m:mn>10</m:mn><m:mrow><m:mo>-</m:mo><m:mn>6</m:mn></m:mrow></m:msup></m:mrow></m:math>, we approximate <emphasis effect="italics">X</emphasis> for values up to 4
+and <emphasis effect="italics">Y</emphasis> for values up to 6.
+</para>
+      <code id="id209132" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 4]
+Enter matrix [c d] of Y-range endpoints  [0 6]
+Enter number of X approximation points  200
+Enter number of Y approximation points  300
+Enter expression for joint density  6*exp(-(3*t + 2*u))
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is independent
+</code>
+      </example>
+
+<example id="fs-id1167702486623"><title>Test for independence</title><para id="id209256">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>4</m:mn><m:mi>t</m:mi><m:mi>u</m:mi><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  It is easy enough to determine the marginals in this case. By
+symmetry, they are the same.</para>
+      <equation id="id209366">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>4</m:mn>
+            <m:mi>t</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:mi>u</m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id209447">so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:msub><m:mi>f</m:mi><m:mi>Y</m:mi></m:msub></m:mrow></m:math> which ensures the pair is independent. Consider the
+solution using tuappr and itest.</para>
+      <code id="id209490" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  100
+Enter number of Y approximation points  100
+Enter expression for joint density  4*t.*u
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is independent
+</code>
+      </example>
+
+    </section>
+  </content>
+</document>

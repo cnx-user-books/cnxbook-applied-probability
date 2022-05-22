@@ -1,0 +1,5893 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Problems on Variance, Covariance, Linear Regression</title>
+  <metadata>
+  <md:content-id>m24379</md:content-id><md:title>Problems on Variance, Covariance, Linear Regression</md:title>
+  <md:abstract/>
+  <md:uuid>5fb402d3-f58b-4d4c-9960-d97b9118ea84</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of useful matlab files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+
+
+<exercise id="fs-id3355902" print-placement="end">
+<problem id="fs-id13819709">
+    <para id="id135063">(See <link document="m24209" target-id="fs-id2694763">Exercise 1</link> from "Problems on Distribution and Density Functions ", and <link document="m24366" target-id="fs-id8773195">Exercise 1</link> from "Problems on Mathematical Expectation", m-file <link window="new" document="m24179" target-id="eip-40">npr07_01.m</link>). The class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>}</m:mo></m:mrow></m:math> is a partition.
+Random variable <emphasis effect="italics">X</emphasis> has values <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>}</m:mo></m:mrow></m:math> on <emphasis effect="italics">C<sub>1</sub></emphasis> through <emphasis effect="italics">C<sub>10</sub></emphasis>,
+respectively, with probabilities 0.08, 0.13, 0.06, 0.09, 0.14, 0.11, 0.12, 0.07, 0.11, 0.09.
+Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id10201832">
+    <code id="id209470" display="block"><link window="new" document="m24179" target-id="eip-40">npr07_01</link>
+Data are in T and pc
+EX = T*pc'
+EX =  2.7000
+VX = (T.^2)*pc' - EX^2
+VX =  1.5500
+[X,PX] = csort(T,pc);    % Alternate
+Ex = X*PX'
+Ex =  2.7000
+Vx = (X.^2)*PX' - EX^2
+Vx =  1.5500
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id10261645" print-placement="end">
+<problem id="fs-id10505214">
+    <para id="id135209">(See <link document="m24209" target-id="fs-id6646811">Exercise 2</link> from "Problems on Distribution and Density Functions ", and <link document="m24366" target-id="fs-id7351897">Exercise 2</link> from "Problems on Mathematical Expectation", m-file <link window="new" document="m24179" target-id="eip-440">npr07_02.m</link>). A store has eight
+items for sale. The prices
+are $3.50, $5.00, $3.50, $7.50, $5.00, $5.00, $3.50, and $7.50, respectively.
+A customer comes in. She purchases
+one of the items with probabilities 0.10, 0.15, 0.15, 0.20, 0.10 0.05, 0.10 0.15. The
+random variable expressing the amount of her purchase may be written</para>
+    <equation id="id135221">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>7</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>5</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>7</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>8</m:mn>
+            </m:msub>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id134548">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id10041518">
+    <code id="id209581" display="block"><link window="new" document="m24179" target-id="eip-440">npr07_02</link>
+Data are in T, pc
+EX = T*pc';
+VX = (T.^2)*pc' - EX^2
+VX =  2.8525
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id10633698" print-placement="end">
+<problem id="fs-id10010200">
+    <para id="id135605">(See <link document="m24208" target-id="fs-id1165810913405">Exercise 12</link> from "Problems on Random Variables and Probabilities", <link document="m24366" target-id="fs-id7533067">Exercise 3</link> from "Problems on Mathematical Expectation", m-file <link window="new" document="m24179" target-id="cid33">npr06_12.m</link>). The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+has minterm probabilities</para>
+    <equation id="id135649">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>p</m:mi>
+          <m:mi>m</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>001</m:mn>
+          <m:mo>*</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>5</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>7</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>6</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>8</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>9</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>14</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>22</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>33</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>21</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>32</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>50</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>75</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>86</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>129</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>201</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>302</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id135794">Consider <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>D</m:mi></m:msub></m:mrow></m:math>,
+which counts the number of these events which occur on a trial. Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id10304338">
+    <code id="id209633" display="block"><link window="new" document="m24179" target-id="cid33">npr06_12</link>
+Minterm probabilities in pm, coefficients in c
+canonic
+ Enter row vector of coefficients  c
+ Enter row vector of minterm probabilities  pm
+Use row matrices X and PX for calculations
+Call for XDBN to view the distribution
+VX = (X.^2)*PX' - (X*PX')^2
+VX =  0.7309
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id3145710" print-placement="end">
+<problem id="fs-id10391490">
+    <para id="id135866">(See <link document="m24366" target-id="fs-id8224379">Exercise 4</link> from "Problems on Mathematical Expectation"). In a thunderstorm in a national park there are 127 lightning strikes.
+Experience shows that the probability of each lightning strike starting a fire is about
+0.0083. Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id10282444">
+<para id="id209719"><m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (127,0.0083). <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>127</m:mn><m:mo>·</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0083</m:mn><m:mo>·</m:mo><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0083</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>0454</m:mn></m:mrow></m:math>.</para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id10304723" print-placement="end">
+<problem id="fs-id8123902">
+    <para id="id135889">(See <link document="m24366" target-id="fs-id7703092">Exercise 5</link> from "Problems on Mathematical Expectation"). Two coins are flipped twenty times. Let <emphasis effect="italics">X</emphasis> be the number of
+matches (both heads or both tails). Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id13101358">
+<para id="id209791"><m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (20,1/2). <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>20</m:mn><m:mo>·</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>5</m:mn></m:mrow></m:math>.</para>
+</solution>
+</exercise>
+
+<exercise id="fs-id10218126" print-placement="end">
+<problem id="fs-id9859595">
+    <para id="id135920">(See <link document="m24366" target-id="fs-id8767193">Exercise 6</link> from "Problems on Mathematical Expectation"). A residential College plans to raise money by selling “chances” on
+a board. Fifty chances are sold. A player pays $10 to play; he or she wins $30
+with probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math>. The profit to the College is</para>
+    <equation id="id135944">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>50</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>10</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>30</m:mn>
+          <m:mi>N</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>where</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mi>N</m:mi>
+          <m:mspace width="4.pt"/>
+          <m:mtext>is</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>the</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>number</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>of</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>winners</m:mtext>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id136014">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id10424280">
+  <para id="id208958"><m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (50,0.2). <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>N</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>50</m:mn><m:mo>·</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>·</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn><m:mo>=</m:mo><m:mn>8</m:mn></m:mrow></m:math>.  <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mn>30</m:mn><m:mn>2</m:mn></m:msup><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>N</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>7200</m:mn></m:mrow></m:math>.</para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id10023894" print-placement="end">
+<problem id="fs-id9794815">
+    <para id="id136038">(See <link document="m24366" target-id="fs-id7240472">Exercise 7</link> from "Problems on Mathematical Expectation"). The number of noise pulses arriving on a power circuit in an
+hour is a random quantity <emphasis effect="italics">X</emphasis> having Poisson (7) distribution. Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id3305482">
+<para id="id210135"><m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (7).  <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>7</m:mn></m:mrow></m:math>.</para>
+</solution>
+</exercise>
+
+<exercise id="fs-id10051730" print-placement="end">
+<problem id="fs-id6247262">
+    <para id="id136069">(See <link document="m24209" target-id="fs-id1165806742603">Exercise 24</link> from "Problems on Distribution and Density Functions", and <link document="m24366" target-id="fs-id4967433">Exercise 8</link> from "Problems on Mathematical Expectation"). The total operating time for the units in <link document="m24209" target-id="fs-id1165806742603">Exercise 24</link> from "Problems on Distribution and Density Functions" is a random variable <m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma (20, 0.0002). Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>T</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id8863365">
+<para id="id210177"><m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma (20,0.0002).  <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>T</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>20</m:mn><m:mo>/</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:msup><m:mn>0002</m:mn><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>500</m:mn><m:mo>,</m:mo><m:mn>000</m:mn><m:mo>,</m:mo><m:mn>000</m:mn></m:mrow></m:math>.
+</para>
+</solution>
+</exercise>
+
+<exercise id="fs-id9549169" print-placement="end">
+<problem id="fs-id10702898">
+    <para id="id136103">The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>E</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>F</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent,
+with respective probabilities</para>
+    <para id="id136156">0.43, 0.53, 0.46, 0.37, 0.45, 0.39. Let</para>
+    <equation id="id136162">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>6</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>A</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>13</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>B</m:mi>
+          </m:msub>
+          <m:mo>-</m:mo>
+          <m:mn>8</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>C</m:mi>
+          </m:msub>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>D</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>4</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>E</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>F</m:mi>
+          </m:msub>
+          <m:mo>-</m:mo>
+          <m:mn>7</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <list id="id136261" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1">Use properties of expectation and variance to obtain <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>. <emphasis effect="italics">Note</emphasis> that it is <emphasis effect="italics">not</emphasis> necessary to
+obtain the distributions for <emphasis effect="italics">X</emphasis> or <emphasis effect="italics">Y</emphasis>.
+</item>
+      <item id="uid2">Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mi>Y</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>X</m:mi></m:mrow></m:math>.  <newline/>Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id7257600">
+    <code id="id210246" display="block">cx = [6 13 -8 0];
+cy = [-3 4 1 -7];
+px = 0.01*[43 53 46 100];
+py = 0.01*[37 45 39 100];
+EX = dot(cx,px)
+EX =   5.7900
+EY = dot(cy,py)
+EY =  -5.9200
+VX = sum(cx.^2.*px.*(1-px))
+VX =  66.8191
+VY = sum(cy.^2.*py.*(1-py))
+VY =   6.2958
+EZ = 3*EY - 2*EX
+EZ = -29.3400
+VZ = 9*VY + 4*VX
+VZ = 323.9386
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id9792089" print-placement="end">
+<problem id="fs-id9315564">
+    <para id="id136446">Consider <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>7</m:mn><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>+</m:mo><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mo>+</m:mo><m:mn>7</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:msub><m:mi>I</m:mi><m:mi>D</m:mi></m:msub><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>4</m:mn></m:mrow></m:math>.
+The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> has minterm</para>
+    <para id="id136568">probabilities (data are in m-file <link window="new" document="m24179" target-id="eip-939">npr12_10.m</link>)</para>
+    <equation id="id136578">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mtext>pmx</m:mtext>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0475</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0725</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0120</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0180</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1125</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1675</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0280</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0420</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mo>⋯</m:mo>
+          <m:mspace width="0.277778em"/>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id136696">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0480</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0720</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0130</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0170</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1120</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1680</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0270</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0430</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <list id="id136841" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid3">Calculate <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+      <item id="uid4">Let <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>-</m:mo><m:mn>3</m:mn><m:mi>X</m:mi><m:mo>+</m:mo><m:mn>2</m:mn></m:mrow></m:math>. <newline/>Calculate
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>W</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>W</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id6156581">
+    <code id="id210402" display="block"><link window="new" document="m24179" target-id="eip-939">npr12_10</link>
+Data are in cx, cy, pmx and pmy
+canonic
+ Enter row vector of coefficients  cx
+ Enter row vector of minterm probabilities  pmx
+Use row matrices X and PX for calculations
+Call for XDBN to view the distribution
+EX = dot(X,PX)
+EX =  -1.2200
+VX = dot(X.^2,PX) - EX^2
+VX =  18.0253
+G = 2*X.^2 - 3*X + 2;
+[W,PW] = csort(G,PX);
+EW = dot(W,PW)
+EW =  44.6874
+VW = dot(W.^2,PW) - EW^2
+VW =  2.8659e+03
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id6465006" print-placement="end">
+<problem id="fs-id6271748">
+    <para id="id136984">Consider a second random variable <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mn>10</m:mn><m:msub><m:mi>I</m:mi><m:mi>E</m:mi></m:msub><m:mo>+</m:mo><m:mn>17</m:mn><m:msub><m:mi>I</m:mi><m:mi>F</m:mi></m:msub><m:mo>+</m:mo><m:mn>20</m:mn><m:msub><m:mi>I</m:mi><m:mi>G</m:mi></m:msub><m:mo>-</m:mo><m:mn>10</m:mn></m:mrow></m:math> in addition
+to that in <link target-id="fs-id9792089"/>. The
+class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>F</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>G</m:mi><m:mo>}</m:mo></m:mrow></m:math> has minterm probabilities (in mfile <link window="new" document="m24179" target-id="eip-939">npr12_10.m</link>)</para>
+    <equation id="id137072">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mtext>pmy</m:mtext>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>06</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>14</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>09</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>21</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>06</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>14</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>09</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>21</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id137188">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id137221" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid5">Calculate <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+      <item id="uid6">Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>X</m:mi><m:mi>Y</m:mi><m:mo>-</m:mo><m:mi>Y</m:mi></m:mrow></m:math>. <newline/>Calculate <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id9464403">
+    <para id="id210563">(Continuation of <link target-id="fs-id9792089"/>)</para>
+    <code id="id210566" display="block">[Y,PY] = canonicf(cy,pmy);
+EY = dot(Y,PY)
+EY =  19.2000
+VY = dot(Y.^2,PY) - EY^2
+VY = 178.3600
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+H = t.^2 + 2*t.*u - u;
+[Z,PZ] = csort(H,P);
+EZ = dot(Z,PZ)
+EZ = -46.5343
+VZ = dot(Z.^2,PZ) - EZ^2
+VZ =  3.7165e+04
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id10137235" print-placement="end">
+<problem id="fs-id10096429">
+    <para id="id137362">Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent, with <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math>
+gamma (3,0.1) and</para>
+    <para id="id137401"><m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (13). Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>5</m:mn><m:mi>Y</m:mi></m:mrow></m:math>. Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id10034930">
+   <para id="id210726"><m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma (3, 0.1) implies <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>30</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>300</m:mn></m:mrow></m:math>.  <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (13) implies <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>13</m:mn></m:mrow></m:math>.  Then</para>
+    <equation id="id210827">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>Z</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>30</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>13</m:mn>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>Z</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>300</m:mn>
+          <m:mo>+</m:mo>
+          <m:mn>25</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>13</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>1525</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id9937274" print-placement="end">
+<problem id="fs-id9925164">
+ <para id="id137476">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is jointly distributed with the following parameters:</para>
+    <equation id="id137502">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>15</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>11</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>5</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id137667">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mn>3</m:mn><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id9336493">
+    <code id="id210924" display="block">EX = 3;
+EY = 4;
+EXY = 15;
+EX2 = 11;
+VY = 5;
+VX = EX2 - EX^2
+VX =  2
+CV = EXY - EX*EY
+CV =  3
+VZ = 9*VX + 4*VY - 6*2*CV
+VZ =  2
+</code>
+    <para id="id211024"/>
+   </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id10148783" print-placement="end"><problem id="fs-id10712398">
+    <para id="id137701">The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>,</m:mo><m:mi>E</m:mi><m:mo>,</m:mo><m:mi>F</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent,
+with respective probabilities</para>
+    <equation id="id137757">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>47</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>33</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>46</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>27</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>41</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>37</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id137849">Let</para>
+    <!--empty paragraphs get left behind.-->
+    <equation id="id137859">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>8</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>A</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>11</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>B</m:mi>
+          </m:msub>
+          <m:mo>-</m:mo>
+          <m:mn>7</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>C</m:mi>
+          </m:msub>
+          <m:mo>,</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>D</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>E</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>F</m:mi>
+          </m:msub>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>,</m:mo>
+          <m:mtext>and</m:mtext>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mi>Y</m:mi>
+          <m:mo>-</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>X</m:mi>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <list id="id138006" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid7">Use properties of expectation
+and variance to obtain <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+      <item id="uid8">Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+      <item id="uid9">Use appropriate m-programs to obtain <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>.  Compare with results of parts (a) and (b).
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id6382814">
+    <code id="id211032" display="block">px = 0.01*[47 33 46 100];
+py = 0.01*[27 41 37 100];
+cx = [8 11 -7 0];
+cy = [-3 5 1 -3];
+ex = dot(cx,px)
+ex =   4.1700
+ey = dot(cy,py)
+ey =  -1.3900
+vx = sum(cx.^2.*px.*(1 - px))
+vx =  54.8671
+vy = sum(cy.^2.*py.*(1-py))
+vy =   8.0545
+[X,PX] = canonicf(cx,minprob(px(1:3)));
+[Y,PY] = canonicf(cy,minprob(py(1:3)));
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+EX = dot(X,PX)
+EX =   4.1700
+EY = dot(Y,PY)
+EY =  -1.3900
+VX = dot(X.^2,PX) - EX^2
+VX =  54.8671
+VY = dot(Y.^2,PY) - EY^2
+VY =   8.0545
+EZ = 3*EY - 2*EX
+EZ = -12.5100
+VZ = 9*VY + 4*VX
+VZ = 291.9589
+</code>
+  </solution>
+</exercise>
+
+
+
+<exercise id="fs-id11377506" print-placement="end">
+<problem id="fs-id10177931">
+    <para id="id138273">For the Beta <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:math> distribution,</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id138300" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid10">Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msup><m:mi>X</m:mi><m:mi>n</m:mi></m:msup><m:mo>]</m:mo></m:mrow></m:math>, where <emphasis effect="italics">n</emphasis> is a positive integer.
+</item>
+      <item id="uid11">Use the result of part (a) to determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+    </list>
+</problem>
+<solution id="fs-id4689566">
+    <equation id="id211362">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mrow>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+          </m:msup>
+          <m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>s</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>Γ</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id211568">
+      <m:math overflow="scroll" mode="display">
+        <m:mfrac>
+          <m:mrow>
+            <m:mi>Γ</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>r</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>Γ</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>r</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mi>Γ</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>r</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>Γ</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>r</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mfrac>
+      </m:math>
+    </equation>
+    <para id="id211633">Using <m:math overflow="scroll"><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>x</m:mi><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>)</m:mo></m:mrow></m:math> we have</para>
+    <equation id="id211673">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mi>r</m:mi>
+            <m:mrow>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>r</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id211775">Some algebraic manipulations show that</para>
+    <equation id="id211780">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>r</m:mi>
+              <m:mi>s</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>r</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id10152899" print-placement="end">
+<problem id="fs-id8319627">
+    <para id="id138400">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint distribution. Suppose</para>
+    <equation id="id138422">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>11</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>10</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Y</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>101</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>30</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id138559">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mn>15</m:mn><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id10469952">
+    <code id="id211884" display="block">EX = 3;
+EX2 = 11;
+EY = 10;
+EY2 = 101;
+EXY = 30;
+VX = EX2 - EX^2
+VX =    2
+VY = EY2 - EY^2
+VY =    1
+CV = EXY - EX*EY
+CV =    0
+VZ = 15^2*VX + 2^2*VY
+VZ =  454
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id7549988" print-placement="end">
+<problem id="fs-id6783640">
+    <para id="id138593">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint distribution. Suppose</para>
+    <equation id="id138616">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Y</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id138756">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mn>3</m:mn><m:mi>X</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id8161616">
+    <code id="id212012" display="block">EX = 2;
+EX2 = 5;
+EY = 1;
+EY2 = 2;
+EXY = 1;
+VX = EX2 - EX^2
+VX =    1
+VY = EY2 - EY^2
+VY =    1
+CV = EXY - EX*EY
+CV =   -1
+VZ = 9*VX + 4*VY + 2*6*CV
+VZ =    1
+</code>
+</solution>
+</exercise>    
+
+
+
+
+<exercise id="fs-id9877407" print-placement="end">
+<problem id="fs-id8649476">
+    <para id="id138790">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent, with</para>
+    <equation id="id138812">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>6</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>4</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id138913">Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mi>X</m:mi><m:msup><m:mi>Y</m:mi><m:mn>2</m:mn></m:msup><m:mo>-</m:mo><m:mn>3</m:mn><m:mi>Y</m:mi><m:mo>+</m:mo><m:mn>4.</m:mn></m:mrow></m:math>.<newline/>  Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>].</m:mo></m:mrow></m:math></para>
+   </problem>
+<solution id="fs-id7279092"> 
+    <code id="id212142" display="block">EX = 2;
+EY = 1;
+VX = 6;
+VY = 4;
+EX2 = VX + EX^2
+EX2 =  10
+EY2 = VY + EY^2
+EY2 =   5
+EZ = 2*EX2 + EX*EY2 - 3*EY + 4
+EZ =   31
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id9332629" print-placement="end">
+<problem id="fs-id8033150">
+<para id="id138980">(See <link document="m24366" target-id="fs-id7326898">Exercise 9</link> from "Problems on Mathematical Expectation"). Random variable <emphasis effect="italics">X</emphasis> has density function</para>
+    <equation id="id138991"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>  =</m:mo>
+          <m:mfenced separators="" open="{" close="">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mn>6</m:mn>
+                      <m:mo>/</m:mo>
+                      <m:mn>5</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:msup>
+                      <m:mi>t</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mtext>for</m:mtext>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mn>0</m:mn>
+                    <m:mo>≤</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>≤</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>6</m:mn>
+                    <m:mo>/</m:mo>
+                    <m:mn>5</m:mn>
+                    <m:mo>)</m:mo>
+                    <m:mo>(</m:mo>
+                    <m:mn>2</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mtext>for</m:mtext>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mn>1</m:mn>
+                    <m:mo>&lt;</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>≤</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mo>=</m:mo>
+          <m:mi>I</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>,</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id139231"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>11</m:mn><m:mo>/</m:mo><m:mn>10</m:mn></m:mrow></m:math>.  Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+   </problem>
+<solution id="fs-id10218196">
+    <equation id="id212237">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>∫</m:mo>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>4</m:mn>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>3</m:mn>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>67</m:mn>
+            <m:mn>50</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id212392">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>13</m:mn>
+            <m:mn>100</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+  </solution>
+</exercise>
+
+
+
+<para id="id139280"><emphasis effect="bold">For the distributions in Exercises 20-22</emphasis>
+    </para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id139291">      Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and the regression line of <emphasis effect="italics">Y</emphasis> on <emphasis effect="italics">X</emphasis>.</para>
+    <!--empty paragraphs get left behind.-->
+
+
+
+
+<exercise id="fs-id8372587" print-placement="end">
+<problem id="fs-id10525020">
+    <para id="id139363">(See <link document="m24244" target-id="fs-id4211660">Exercise 7</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id8628717">Exercise 17</link> from "Problems on Mathematical Expectation"). The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has the joint distribution (in
+file <link window="new" document="m24179" target-id="cid43">npr08_07.m</link>):</para>
+    <equation id="id139396">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>u</m:mi>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <table id="id139438" summary="Table of values with t-values as headers in the first row, and u-values as headers in the first column.">
+<tgroup cols="7"><tbody>
+          <row>
+            <entry>t =</entry>
+            <entry>-3.1</entry>
+            <entry>-0.5</entry>
+            <entry>1.2</entry>
+            <entry>2.4</entry>
+            <entry>3.7</entry>
+            <entry>4.9</entry>
+          </row>
+          <row>
+            <entry>u = 7.5</entry>
+            <entry>0.0090</entry>
+            <entry>0.0396</entry>
+            <entry>0.0594</entry>
+            <entry>0.0216</entry>
+            <entry>0.0440</entry>
+            <entry>0.0203</entry>
+          </row>
+          <row>
+            <entry>4.1</entry>
+            <entry>0.0495</entry>
+            <entry>0</entry>
+            <entry>0.1089</entry>
+            <entry>0.0528</entry>
+            <entry>0.0363</entry>
+            <entry>0.0231</entry>
+          </row>
+          <row>
+            <entry>-2.0</entry>
+            <entry>0.0405</entry>
+            <entry>0.1320</entry>
+            <entry>0.0891</entry>
+            <entry>0.0324</entry>
+            <entry>0.0297</entry>
+            <entry>0.0189</entry>
+          </row>
+          <row>
+            <entry>-3.8</entry>
+            <entry>0.0510</entry>
+            <entry>0.0484</entry>
+            <entry>0.0726</entry>
+            <entry>0.0132</entry>
+            <entry>0</entry>
+            <entry>0.0077</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+</problem>
+<solution id="fs-id10057051">
+    <code id="id212461" display="block"><link window="new" document="m24179" target-id="cid43">npr08_07</link>
+Data are in X, Y, P
+jcalc
+- - - - - - - - - - -
+EX = dot(X,PX);
+EY = dot(Y,PY);
+VX = dot(X.^2,PX) - EX^2
+VX =   5.1116
+CV = total(t.*u.*P) - EX*EY
+CV =   2.6963
+a = CV/VX
+a =    0.5275
+b = EY - a*EX
+b =    0.6924       % Regression line: u = at + b
+</code>
+    </solution>
+</exercise>
+
+<exercise id="fs-id3432675" print-placement="end">
+<problem id="fs-id3657407">
+    <para id="id139754">(See <link document="m24244" target-id="fs-id4397710">Exercise 8</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id8319457">Exercise 18</link> from "Problems on Mathematical Expectation"). The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has the joint distribution (in
+file <link window="new" document="m24179" target-id="cid64">npr08_08.m</link>):</para>
+    <equation id="id139786">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>u</m:mi>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <table id="id139827" summary="Table of values with t-values as headers in the first row, and u-values as headers in the first column.">
+<tgroup cols="11"><tbody>
+          <row>
+            <entry>t =</entry>
+            <entry>1</entry>
+            <entry>3</entry>
+            <entry>5</entry>
+            <entry>7</entry>
+            <entry>9</entry>
+            <entry>11</entry>
+            <entry>13</entry>
+            <entry>15</entry>
+            <entry>17</entry>
+            <entry>19</entry>
+          </row>
+          <row>
+            <entry>u = 12</entry>
+            <entry>0.0156</entry>
+            <entry>0.0191</entry>
+            <entry>0.0081</entry>
+            <entry>0.0035</entry>
+            <entry>0.0091</entry>
+            <entry>0.0070</entry>
+            <entry>0.0098</entry>
+            <entry>0.0056</entry>
+            <entry>0.0091</entry>
+            <entry>0.0049</entry>
+          </row>
+          <row>
+            <entry>10</entry>
+            <entry>0.0064</entry>
+            <entry>0.0204</entry>
+            <entry>0.0108</entry>
+            <entry>0.0040</entry>
+            <entry>0.0054</entry>
+            <entry>0.0080</entry>
+            <entry>0.0112</entry>
+            <entry>0.0064</entry>
+            <entry>0.0104</entry>
+            <entry>0.0056</entry>
+          </row>
+          <row>
+            <entry>9</entry>
+            <entry>0.0196</entry>
+            <entry>0.0256</entry>
+            <entry>0.0126</entry>
+            <entry>0.0060</entry>
+            <entry>0.0156</entry>
+            <entry>0.0120</entry>
+            <entry>0.0168</entry>
+            <entry>0.0096</entry>
+            <entry>0.0056</entry>
+            <entry>0.0084</entry>
+          </row>
+          <row>
+            <entry>5</entry>
+            <entry>0.0112</entry>
+            <entry>0.0182</entry>
+            <entry>0.0108</entry>
+            <entry>0.0070</entry>
+            <entry>0.0182</entry>
+            <entry>0.0140</entry>
+            <entry>0.0196</entry>
+            <entry>0.0012</entry>
+            <entry>0.0182</entry>
+            <entry>0.0038</entry>
+          </row>
+          <row>
+            <entry>3</entry>
+            <entry>0.0060</entry>
+            <entry>0.0260</entry>
+            <entry>0.0162</entry>
+            <entry>0.0050</entry>
+            <entry>0.0160</entry>
+            <entry>0.0200</entry>
+            <entry>0.0280</entry>
+            <entry>0.0060</entry>
+            <entry>0.0160</entry>
+            <entry>0.0040</entry>
+          </row>
+          <row>
+            <entry>-1</entry>
+            <entry>0.0096</entry>
+            <entry>0.0056</entry>
+            <entry>0.0072</entry>
+            <entry>0.0060</entry>
+            <entry>0.0256</entry>
+            <entry>0.0120</entry>
+            <entry>0.0268</entry>
+            <entry>0.0096</entry>
+            <entry>0.0256</entry>
+            <entry>0.0084</entry>
+          </row>
+          <row>
+            <entry>-3</entry>
+            <entry>0.0044</entry>
+            <entry>0.0134</entry>
+            <entry>0.0180</entry>
+            <entry>0.0140</entry>
+            <entry>0.0234</entry>
+            <entry>0.0180</entry>
+            <entry>0.0252</entry>
+            <entry>0.0244</entry>
+            <entry>0.0234</entry>
+            <entry>0.0126</entry>
+          </row>
+          <row>
+            <entry>-5</entry>
+            <entry>0.0072</entry>
+            <entry>0.0017</entry>
+            <entry>0.0063</entry>
+            <entry>0.0045</entry>
+            <entry>0.0167</entry>
+            <entry>0.0090</entry>
+            <entry>0.0026</entry>
+            <entry>0.0172</entry>
+            <entry>0.0217</entry>
+            <entry>0.0223</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+    </problem>
+<solution id="fs-id7546832">
+    <code id="id212623" display="block"><link window="new" document="m24179" target-id="cid64">npr08_08</link>
+Data are in X, Y, P
+jcalc
+- - - - - - - - - - - -
+EX = dot(X,PX);
+EY = dot(Y,PY);
+VX = dot(X.^2,PX) - EX^2
+VX =  31.0700
+CV = total(t.*u.*P) - EX*EY
+CV =  -8.0272
+a  = CV/VX
+a  =  -0.2584
+b = EY - a*EX
+b  =   5.6110       % Regression line: u = at + b
+</code>
+</solution>
+</exercise>
+
+
+
+
+
+<exercise id="fs-id10447779" print-placement="end">
+<problem id="fs-id7717577">
+<para id="id140675">(See <link document="m24244" target-id="fs-id3049470">Exercise 9</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id8574793">Exercise 19</link> from "Problems on Mathematical Expectation"). Data were kept on the effect of training time on
+the time to perform
+a job on a production line. <emphasis effect="italics">X</emphasis> is the amount of training, in hours, and <emphasis effect="italics">Y</emphasis> is
+the time to perform the task, in minutes. The data are as follows (in file <link window="new" document="m24179" target-id="cid65">npr08_09.m</link>):</para>
+    <equation id="id140704">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>u</m:mi>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <table id="id140745" summary="Table of values with t-values as headers in the first row, and u-values as headers in the first column.">
+<tgroup cols="6"><tbody>
+          <row>
+            <entry>t =</entry>
+            <entry>1</entry>
+            <entry>1.5</entry>
+            <entry>2</entry>
+            <entry>2.5</entry>
+            <entry>3</entry>
+          </row>
+          <row>
+            <entry>u = 5</entry>
+            <entry>0.039</entry>
+            <entry>0.011</entry>
+            <entry>0.005</entry>
+            <entry>0.001</entry>
+            <entry>0.001</entry>
+          </row>
+          <row>
+            <entry>4</entry>
+            <entry>0.065</entry>
+            <entry>0.070</entry>
+            <entry>0.050</entry>
+            <entry>0.015</entry>
+            <entry>0.010</entry>
+          </row>
+          <row>
+            <entry>3</entry>
+            <entry>0.031</entry>
+            <entry>0.061</entry>
+            <entry>0.137</entry>
+            <entry>0.051</entry>
+            <entry>0.033</entry>
+          </row>
+          <row>
+            <entry>2</entry>
+            <entry>0.012</entry>
+            <entry>0.049</entry>
+            <entry>0.163</entry>
+            <entry>0.058</entry>
+            <entry>0.039</entry>
+          </row>
+          <row>
+            <entry>1</entry>
+            <entry>0.003</entry>
+            <entry>0.009</entry>
+            <entry>0.045</entry>
+            <entry>0.025</entry>
+            <entry>0.017</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+</problem>
+<solution id="fs-id7623326">
+    <code id="id212793" display="block"><link window="new" document="m24179" target-id="cid65">npr08_09</link>
+Data are in X, Y, P
+jcalc
+- - - - - - - - - - - -
+EX = dot(X,PX);
+EY = dot(Y,PY);
+VX = dot(X.^2,PX) - EX^2
+VX =   0.3319
+CV = total(t.*u.*P) - EX*EY
+CV =  -0.2586
+a  = CV/VX
+a  =  -0.77937/6;
+b = EY - a*EX
+b  =   4.3051       % Regression line: u = at + b
+</code>
+   </solution>
+</exercise>
+
+
+
+
+<para id="id141074"><emphasis effect="bold">For the joint densities in Exercises 23-30 below</emphasis>
+    </para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id141086" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid12">Determine analytically <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and the regression
+line of <emphasis effect="italics">Y</emphasis> on <emphasis effect="italics">X</emphasis>.
+</item>
+      <item id="uid13">Check these with a discrete approximation.
+</item>
+    </list>
+
+
+
+
+<exercise id="fs-id21057549" print-placement="end">
+<problem id="fs-id21057552">
+    <para id="id141180">(See <link document="m24244" target-id="fs-id7625495">Exercise 10</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id8062427">Exercise 20</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    <equation id="id141266">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>3</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>6</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2</m:mn>
+            <m:mn>3</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id6958974">
+    <equation id="id212962">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>6</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id213044">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>6</m:mn>
+          </m:mfrac>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>3</m:mn>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mn>2</m:mn>
+            <m:mn>3</m:mn>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>18</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>6</m:mn>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>18</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id213167">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>,</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id213258" display="block">tuappr: [0 1] [0 2] 200 400  u&lt;=2*(1-t)
+EX = dot(X,PX);
+EY = dot(Y,PY);
+VX = dot(X.^2,PX) - EX^2
+VX =   0.0556
+CV = total(t.*u.*P) - EX*EY
+CV =  -0.0556
+a = CV/VX
+a =   -1.0000
+b = EY - a*EX
+b =    1.0000
+</code>
+    </solution>
+</exercise>
+
+
+<exercise id="fs-id3616434" print-placement="end">
+<problem id="fs-id3346181">
+    <para id="id141356">(See <link document="m24244" target-id="fs-id7639318">Exercise 13</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id5113574">Exercise 23</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>8</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>.</para>
+    <equation id="id141454">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>7</m:mn>
+            <m:mn>6</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>5</m:mn>
+            <m:mn>3</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id7241104">
+    <equation id="id213383">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>8</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>36</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>11</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>36</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id213539">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>,</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>11</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>14</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>11</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id213641" display="block">tuappr:  [0 2] [0 2] 200 200 (1/8)*(t+u)
+VX =  0.3055  CV = -0.0278  a = -0.0909  b =  1.2727
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id5161520" print-placement="end">
+<problem id="fs-id10275770">
+    <para id="id141525">(See <link document="m24244" target-id="fs-id8747460">Exercise 15</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id7936816">Exercise 25</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>3</m:mn><m:mn>88</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>3</m:mn><m:msup><m:mi>u</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>t</m:mi></m:mrow></m:math>.</para>
+    <equation id="id141636">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>313</m:mn>
+            <m:mn>220</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1429</m:mn>
+            <m:mn>880</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>49</m:mn>
+            <m:mn>22</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id13239487">
+    <equation id="id213669">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>88</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2153</m:mn>
+            <m:mn>880</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>26383</m:mn>
+            <m:mn>1933600</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>9831</m:mn>
+            <m:mn>48400</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id213844">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>26383</m:mn>
+            <m:mn>39324</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>26321</m:mn>
+            <m:mn>39324</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id213946" display="block">tuappr:  [0 2] [0 3] 200 300  (3/88)*(2*t + 3*u.^2).*(u&lt;=1+t)
+VX =  0.2036  CV = 0.1364 a = 0.6700  b = 0.6736
+</code>
+   </solution>
+</exercise>
+
+
+<exercise id="fs-id21737908" print-placement="end">
+<problem id="fs-id17024134">
+    <para id="id141723">(See <link document="m24244" target-id="fs-id8741636">Exercise 16</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id7670839">Exercise 26</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>12</m:mn><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mi>u</m:mi></m:mrow></m:math> on the parallelogram with vertices</para>
+    <equation id="id141772">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mo>(</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mo>(</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mo>(</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mo>(</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id141852">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>11</m:mn>
+            <m:mn>15</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id7754899">
+    <equation id="id213973">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>12</m:mn>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+            <m:mn>0</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>3</m:mn>
+          </m:msup>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mn>12</m:mn>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mi>t</m:mi>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>3</m:mn>
+          </m:msup>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id214117">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>8</m:mn>
+            <m:mn>75</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>25</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id214187">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>,</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id214284" display="block">tuappr: [-1 1] [0 1] 400 200  12*t.^2.*u.*(u&gt;= max(0,t)).*(u&lt;= min(1+t,1))
+VX = 0.2383  CV = 0.1056  a = 0.4432  b = 0.5553
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id10121529" print-placement="end">
+<problem id="fs-id16930573">
+    <para id="id141939">(See <link document="m24244" target-id="fs-id8742791">Exercise 17</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id6891217">Exercise 27</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>24</m:mn><m:mn>11</m:mn></m:mfrac><m:mi>t</m:mi><m:mi>u</m:mi></m:mrow></m:mstyle></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math>.</para>
+    <equation id="id142049">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>52</m:mn>
+            <m:mn>55</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>32</m:mn>
+            <m:mn>55</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>627</m:mn>
+            <m:mn>605</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id8858040">
+    <equation id="id214315">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>24</m:mn>
+            <m:mn>11</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>24</m:mn>
+            <m:mn>11</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>28</m:mn>
+            <m:mn>55</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id214465">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>124</m:mn>
+            <m:mn>3025</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>431</m:mn>
+            <m:mn>3025</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id214535">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>124</m:mn>
+            <m:mn>431</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>368</m:mn>
+            <m:mn>431</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id214639" display="block">tuappr: [0 2] [0 1] 400 200 (24/11)*t.*u.*(u&lt;=min(1,2-t))
+VX = 0.1425  CV =-0.0409  a = -0.2867 b = 0.8535
+</code>
+</solution>
+</exercise>   
+
+
+
+
+<exercise id="fs-id10045715" print-placement="end">
+<problem id="fs-id10014074">
+    <para id="id142136">(See <link document="m24244" target-id="fs-id8758335">Exercise 18</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id8561456">Exercise 28</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>3</m:mn><m:mn>23</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>  for
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>{</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math>.</para>
+    <equation id="id142255">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>53</m:mn>
+            <m:mn>46</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>22</m:mn>
+            <m:mn>23</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>9131</m:mn>
+            <m:mn>5290</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id10151543">
+    <!--empty paragraphs get left behind.-->
+    <equation id="id214682">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>23</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>23</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mi>t</m:mi>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>251</m:mn>
+            <m:mn>230</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id214838">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>57</m:mn>
+            <m:mn>5290</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>4217</m:mn>
+            <m:mn>10580</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id214910">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>114</m:mn>
+            <m:mn>4217</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>4165</m:mn>
+            <m:mn>4217</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id215015" display="block">tuappr: [0 2] [0 2] 200 200 (3/23)*(t + 2*u).*(u&lt;=max(2-t,t))
+VX = 0.3984 CV = -0.0108  a = -0.0272  b = 0.9909
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id5168404" print-placement="end">
+<problem id="fs-id5168407">
+    <para id="id142342">(See <link document="m24244" target-id="fs-id8771223">Exercise 21</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id7851442">Exercise 31</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>2</m:mn><m:mn>13</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>, for
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>{</m:mo><m:mn>2</m:mn><m:mi>t</m:mi><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math>.</para>
+    <equation id="id142463">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>16</m:mn>
+            <m:mn>13</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>11</m:mn>
+            <m:mn>12</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2847</m:mn>
+            <m:mn>1690</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id13964369">
+    <!--empty paragraphs get left behind.-->
+    <equation id="id215052">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2</m:mn>
+            <m:mn>13</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>3</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>2</m:mn>
+            <m:mn>13</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>431</m:mn>
+            <m:mn>390</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id215212">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>130</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>287</m:mn>
+            <m:mn>1690</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id215282">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>39</m:mn>
+            <m:mn>297</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>3733</m:mn>
+            <m:mn>3444</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id215386" display="block">tuappr: [0 2] [0 2] 400 400 (2/13)*(t + 2*u).*(u&lt;=min(2*t,3-t))
+VX = 0.1698  CV = -0.0229  a = -0.1350  b = 1.0839
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id17860004" print-placement="end">
+<problem id="fs-id10493035">
+    <para id="id142551">(See <link document="m24244" target-id="fs-id8772708">Exercise 22</link> from "Problems On Random Vectors and Joint Distributions", and <link document="m24366" target-id="fs-id5756925">Exercise 32</link> from "Problems on Mathematical Expectation"). <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mfrac><m:mn>3</m:mn><m:mn>8</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mfrac><m:mn>9</m:mn><m:mn>14</m:mn></m:mfrac><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:msup><m:mi>u</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:mstyle></m:math>,  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+    <equation id="id142709">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>243</m:mn>
+            <m:mn>224</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>11</m:mn>
+            <m:mn>16</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>107</m:mn>
+            <m:mn>70</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</problem>
+<solution id="fs-id6558070">
+    <!--empty paragraphs get left behind.-->
+    <equation id="id215423">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>8</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>9</m:mn>
+            <m:mn>14</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>3</m:mn>
+          </m:msup>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>3</m:mn>
+          </m:msup>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>347</m:mn>
+            <m:mn>448</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id215576">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>103</m:mn>
+            <m:mn>3584</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>88243</m:mn>
+            <m:mn>250880</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id215647">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>a</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>/</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>7210</m:mn>
+            <m:mn>88243</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>b</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>105691</m:mn>
+            <m:mn>176486</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id215749" display="block">tuappr: [0 2] [0 1] 400 200 (3/8)*(t.^2 + 2*u).*(t&lt;=1) + (9/14)*t.^2.*u.^2.*(t&gt;1)
+VX = 0.3517  CV = 0.0287 a = 0.0817  b = 0.5989
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id7437124" print-placement="end">
+<problem id="fs-id10006540">
+    <para id="id142796">The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables is iid (independent, identically
+distributed) with common distribution</para>
+    <equation id="id142830">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>5</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>3</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>4</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>7</m:mn>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>01</m:mn>
+          <m:mo>*</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>15</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>20</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>30</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>25</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>10</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id142946">Let <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>4</m:mn><m:mi>Y</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>Z</m:mi></m:mrow></m:math>. Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>W</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>W</m:mi><m:mo>]</m:mo></m:mrow></m:math>.  Do this using icalc, then repeat
+with icalc3 and compare results.</para>
+</problem>
+<solution id="fs-id3485918">
+    <code id="id215778" display="block">x = [-5 -1 3 4 7];
+px = 0.01*[15 20 30 25 10];
+EX = dot(x,px)                % Use of properties
+EX =   1.6500
+VX = dot(x.^2,px) - EX^2
+VX =  12.8275
+EW = (3 - 4+ 2)*EX
+EW =   1.6500
+VW = (3^2 + 4^2 + 2^2)*VX
+VW = 371.9975
+icalc                         % Iterated use of icalc
+Enter row matrix of X-values  x
+Enter row matrix of Y-values  x
+Enter X probabilities  px
+Enter Y probabilities  px
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+G = 3*t - 4*u;
+[R,PR] = csort(G,P);
+icalc
+Enter row matrix of X-values  R
+Enter row matrix of Y-values  x
+Enter X probabilities  PR
+Enter Y probabilities  px
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+H = t + 2*u;
+[W,PW] = csort(H,P);
+EW = dot(W,PW)
+EW =   1.6500
+VW = dot(W.^2,PW) - EW^2
+VW = 371.9975
+icalc3                        % Use of icalc3
+Enter row matrix of X-values  x
+Enter row matrix of Y-values  x
+Enter row matrix of Z-values  x
+Enter X probabilities  px
+Enter Y probabilities  px
+Enter Z probabilities  px
+Use array operations on matrices X, Y, Z,
+PX, PY, PZ, t, u, v, and P
+S = 3*t - 4*u + 2*v;
+[w,pw] = csort(S,P);
+Ew = dot(w,pw)
+Ew =   1.6500
+Vw = dot(w.^2,pw) - Ew^2
+Vw = 371.9975
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id5013682" print-placement="end">
+<problem id="fs-id5013686">
+    <para id="id143018"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>3</m:mn><m:mn>88</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>3</m:mn><m:msup><m:mi>u</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>  for
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>t</m:mi></m:mrow></m:math>  (see <link document="m24366" target-id="fs-id7936816">Exercise 25</link> and <link document="m24366" target-id="fs-id8685171">Exercise 37</link> from "Problems on Mathematical Expectation").</para>
+    <equation id="id143129">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mn>4</m:mn>
+          <m:mi>X</m:mi>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id143211">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>313</m:mn>
+            <m:mn>220</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>5649</m:mn>
+            <m:mn>1760</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>4881</m:mn>
+            <m:mn>440</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id143304">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>. Check with discrete approximation.</para>
+</problem>
+<solution id="fs-id9286999">
+    <equation id="id216229">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>88</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mn>4</m:mn>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>88</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>16931</m:mn>
+            <m:mn>3520</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id216421">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2451039</m:mn>
+            <m:mn>3097600</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>94273</m:mn>
+            <m:mn>387200</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id216559" display="block">tuappr: [0 2] [0 3] 200 300 (3/88)*(2*t+3*u.^2).*(u&lt;=1+t)
+G = 4*t.*(t&lt;=1) + (t+u).*(t&gt;1);
+EZ = total(G.*P)
+EZ = 3.2110
+EX = dot(X,PX)
+EX = 1.4220
+CV = total(G.*t.*P) - EX*EZ
+CV = 0.2445                       % Theoretical 0.2435
+VZ = total(G.^2.*P) - EZ^2
+VZ = 0.7934                       % Theoretical 0.7913
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id7477421" print-placement="end">
+<problem id="fs-id13116498">
+    <para id="id143355"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>24</m:mn><m:mn>11</m:mn></m:mfrac><m:mi>t</m:mi><m:mi>u</m:mi></m:mrow></m:mstyle></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math>  (see <link document="m24366" target-id="fs-id6891217">Exercise 27</link> and <link document="m24366" target-id="fs-id7937338">Exercise 38</link> from "Problems on Mathematical Expectation").</para>
+    <equation id="id143464">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>M</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:mfrac>
+          <m:mi>X</m:mi>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msup>
+              <m:mi>M</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msup>
+            <m:mi>Y</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>M</m:mi>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mo>{</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>:</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>&gt;</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>}</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id143580">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>52</m:mn>
+            <m:mn>55</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>16</m:mn>
+            <m:mn>55</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>39</m:mn>
+            <m:mn>308</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id143673">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>. Check with discrete approximation.</para>
+</problem>
+<solution id="fs-id8601272">
+    <equation id="id216668">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>24</m:mn>
+            <m:mn>11</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mi>t</m:mi>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>/</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>24</m:mn>
+            <m:mn>11</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mi>t</m:mi>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>24</m:mn>
+            <m:mn>11</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mi>t</m:mi>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>211</m:mn>
+            <m:mn>770</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id216878">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>3557</m:mn>
+            <m:mn>84700</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>43</m:mn>
+            <m:mn>42350</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id217018" display="block">tuappr:  [0 2] [0 1] 400 200 (24/11)*t.*u.*(u&lt;=min(1,2-t))
+G = (t/2).*(u&gt;t) + u.^2.*(u&lt;=t);
+VZ = total(G.^2.*P) - EZ^2
+VZ =   0.0425
+CV = total(t.*G.*P) - EZ*dot(X,PX)
+CV = -9.2940e-04
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id7678432" print-placement="end">
+<problem id="fs-id3548214">
+    <para id="id143724"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>3</m:mn><m:mn>23</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>{</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math>  (see <link document="m24366" target-id="fs-id8561456">Exercise 28</link> and <link document="m24366" target-id="fs-id5173935">Exercise 39</link> from "Problems on Mathematical Expectation").</para>
+    <equation id="id143842">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>M</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msup>
+              <m:mi>M</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mn>2</m:mn>
+          <m:mi>Y</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>M</m:mi>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mo>{</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>:</m:mo>
+            <m:mo movablelimits="true" form="prefix">max</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>}</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id143974">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>53</m:mn>
+            <m:mn>46</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>175</m:mn>
+            <m:mn>92</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2063</m:mn>
+            <m:mn>460</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id144068">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>. Check with discrete approximation.</para>
+</problem>
+<solution id="fs-id6728345">
+    <equation id="id217095">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>23</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>23</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mn>2</m:mn>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mspace width="0.277778em"/>
+          <m:mo>+</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id217260">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>23</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mi>t</m:mi>
+          </m:msubsup>
+          <m:mn>2</m:mn>
+          <m:mi>t</m:mi>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1009</m:mn>
+            <m:mn>460</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id217339">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>36671</m:mn>
+            <m:mn>42320</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>39</m:mn>
+            <m:mn>21160</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id217477" display="block">tuappr:  [0 2] [0 2] 400 400 (3/23)*(t+2*u).*(u&lt;=max(2-t,t))
+M = max(t,u)&lt;=1;
+G = (t+u).*M + 2*u.*(1-M);
+EZ = total(G.*P);
+EX = dot(X,PX);
+CV = total(t.*G.*P) - EX*EZ
+CV =  0.0017
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id9629681" print-placement="end">
+<problem id="fs-id11712374">
+    <para id="id144114"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>12</m:mn><m:mn>179</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>,  for
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>{</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math>  (see <link document="m24366" target-id="fs-id7313844">Exercise 29</link> and <link document="m24366" target-id="fs-id6153991">Exercise 40</link> from "Problems on Mathematical Expectation").</para>
+    <equation id="id144238">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>M</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msup>
+              <m:mi>M</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mn>2</m:mn>
+          <m:msup>
+            <m:mi>Y</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>M</m:mi>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mo>{</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>:</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>}</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id144374">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>2313</m:mn>
+            <m:mn>1790</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1422</m:mn>
+            <m:mn>895</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>28296</m:mn>
+            <m:mn>6265</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id144466">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>. Check with discrete approximation.</para>
+</problem>
+<solution id="fs-id5285028">
+    <equation id="id217556">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>12</m:mn>
+            <m:mn>179</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:mi>t</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>12</m:mn>
+            <m:mn>179</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:mn>2</m:mn>
+          <m:mi>t</m:mi>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id217729">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:mn>12</m:mn>
+            <m:mn>179</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>3</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:mn>2</m:mn>
+          <m:mi>t</m:mi>
+          <m:msup>
+            <m:mi>u</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>24029</m:mn>
+            <m:mn>12530</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id217824">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>11170332</m:mn>
+            <m:mn>5607175</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>1517647</m:mn>
+            <m:mn>11214350</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id217964" display="block">tuappr:  [0 2] [0 2] 400 400 (12/179)*(3*t.^2 + u).*(u &lt;= min(2,3-t))
+M = (t&lt;=1)&amp;(u&gt;=1);
+G = (t + u).*M + 2*u.^2.*(1 - M);
+EZ = total(G.*P);
+EX = dot(X,PX);
+CV = total(t.*G.*P) - EZ*EX
+CV = -0.1347
+</code>
+   </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id10552428" print-placement="end">
+<problem id="fs-id7923046">
+    <para id="id144517"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>12</m:mn><m:mn>227</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>t</m:mi><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>,  for
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>}</m:mo></m:mrow></m:math>  (see <link document="m24366" target-id="fs-id7927802">Exercise 30</link> and <link document="m24366" target-id="fs-id7899523">Exercise 41</link> from "Problems on Mathematical Expectation").</para>
+    <equation id="id144639">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>M</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msup>
+              <m:mi>M</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>X</m:mi>
+          <m:mi>Y</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>M</m:mi>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mo>{</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>:</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mo movablelimits="true" form="prefix">min</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>}</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id144769">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1567</m:mn>
+            <m:mn>1135</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>5774</m:mn>
+            <m:mn>3405</m:mn>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>56673</m:mn>
+            <m:mn>15890</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id144864">Determine <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Cov </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow></m:math>. Check with discrete approximation.</para>
+</problem>
+<solution id="fs-id10403368">
+
+    <equation id="id218048">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>12</m:mn>
+            <m:mn>227</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>12</m:mn>
+            <m:mn>227</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mspace width="0.277778em"/>
+          <m:mo>+</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id218217">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:mn>12</m:mn>
+            <m:mn>227</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>0</m:mn>
+            <m:mn>1</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>12</m:mn>
+            <m:mn>227</m:mn>
+          </m:mfrac>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mrow>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+            </m:mrow>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mi>u</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>u</m:mi>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>20338</m:mn>
+            <m:mn>7945</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id218384">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>E</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>112167631</m:mn>
+            <m:mn>162316350</m:mn>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi> Cov </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>-</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>5915884</m:mn>
+            <m:mn>27052725</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <code id="id218522" display="block">tuappr: [0 2] [0 2] 400 400 (12/227)*(3*t + 2*t.*u).*(u &lt;= min(1+t,2))
+EX = dot(X,PX);
+M = u &lt;= min(1,2-t);
+G = t.*M + t.*u.*(1 - M);
+EZ = total(G.*P);
+EZX = total(t.*G.*P)
+EZX =  2.5597
+CV = EZX - EX*EZ
+CV =   0.2188
+VZ = total(G.^2.*P) - EZ^2
+VZ =   0.6907
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id8642678" print-placement="end">
+<problem id="fs-id8642681">
+    <para id="id144915">(See <link target-id="fs-id8372587"/>, and Exercises <link document="m24315" target-id="fs-id14329983">9</link> and <link document="m24315" target-id="fs-id4618822">10</link> from "Problems on Functions of Random Variables"). For the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> in <link target-id="fs-id8372587"/>, let</para>
+    <equation id="id144937">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>g</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:msup>
+            <m:mi>X</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>+</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>X</m:mi>
+          <m:mi>Y</m:mi>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>Y</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id144996">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>W</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>h</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfenced separators="" open="{" close="">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd>
+                  <m:mi>X</m:mi>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mtext>for</m:mtext>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mi>X</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>Y</m:mi>
+                    <m:mo>≤</m:mo>
+                    <m:mn>4</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mn>2</m:mn>
+                    <m:mi>Y</m:mi>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mtext>for</m:mtext>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mi>X</m:mi>
+                    <m:mo>+</m:mo>
+                    <m:mi>Y</m:mi>
+                    <m:mo>&gt;</m:mo>
+                    <m:mn>4</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>M</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msup>
+              <m:mi>M</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mn>2</m:mn>
+          <m:mi>Y</m:mi>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id145178">Determine the joint distribution for the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>}</m:mo></m:mrow></m:math> and determine the regression
+line of <emphasis effect="italics">W</emphasis> on <emphasis effect="italics">Z</emphasis>.</para>
+</problem>
+<solution id="fs-id11525056">
+    <code id="id218646" display="block"><link window="new" document="m24179" target-id="cid43">npr08_07</link>
+Data are in X, Y, P
+jointzw
+Enter joint prob for (X,Y) P
+Enter values for X X
+Enter values for Y Y
+Enter expression for g(t,u) 3*t.^2 + 2*t.*u - u.^2
+Enter expression for h(t,u) t.*(t+u&lt;=4) + 2*u.*(t+u&gt;4)
+Use array operations on Z, W, PZ, PW, v, w, PZW
+EZ = dot(Z,PZ)
+EZ =    5.2975
+EW = dot(W,PW)
+EW =    4.7379
+VZ = dot(Z.^2,PZ) - EZ^2
+VZ =    1.0588e+03
+CZW = total(v.*w.*PZW) - EZ*EW
+CZW = -12.1697
+a = CZW/VZ
+a =   -0.0115
+b = EW - a*EZ
+b =    4.7988                 % Regression line: w = av + b
+</code>
+</solution>
+</exercise>
+
+  </content>
+</document>

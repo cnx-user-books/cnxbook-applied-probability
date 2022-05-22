@@ -1,0 +1,2179 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Function of Random Vectors</title>
+  <metadata>
+  <md:content-id>m23332</md:content-id><md:title>Function of Random Vectors</md:title>
+  <md:abstract>For a pair {X, Y} having joint distribution on the plane, the approach is analogous to the single variable case. To find the probability an absolutely continuous pair takes on values in a set Q on the plane, integrate the joint density over the set.  In the discrete case, identify those pairs of values which meet the defining conditions for Q and add the associated probabilities.  To find the probability that g(X, Y ) takes on a a value in set M, determine the set  Q of those pairs (t, u) mapped into M by the function g and then determine, as in the previous case, the probability the pair {X, Y} takes on values in  Q.</md:abstract>
+  <md:uuid>f1117311-0bbf-41a9-91d3-24b5d6746c2c</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+      <para id="fs-id11154732"><emphasis effect="bold"> Introduction</emphasis></para>
+      <para id="id262075">The general mapping approach for a single random variable and the discrete alternative
+extends to functions of more than one variable. It is convenient to consider the
+case of two random variables, considered jointly. Extensions
+to more than two random variables are made similarly, although the details are more complicated.</para>
+   
+    <section id="cid2">
+      <title> The general approach extended to a pair</title>
+      <para id="id262091">Consider a pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> having joint distribution on the plane. The approach is analogous
+to that for a single random variable with distribution on the line.</para>
+      <list id="id262116" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1">
+To find <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>Q</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+
+<list id="id262164" display="block" list-type="enumerated">
+<item id="uid2">
+<emphasis effect="italics">Mapping approach</emphasis>.  Simply find the amount of probability mass mapped into
+the set <emphasis effect="italics">Q</emphasis> on the plane by the random vector <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+
+<list id="id262221" display="block" list-type="bulleted">
+<item id="uid3">In the absolutely continuous case, calculate <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mo>∫</m:mo><m:msub><m:mo>∫</m:mo><m:mi>Q</m:mi></m:msub><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:mrow></m:mstyle></m:math>.
+</item>
+<item id="uid4">In the discrete case, identify those vector values <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> of <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> which are
+in the set <emphasis effect="italics">Q</emphasis> and add the associated probabilities.
+</item></list></item>
+
+<item id="uid5"><emphasis effect="italics">Discrete alternative</emphasis>.  Consider each vector value <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> of <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Select those which meet the defining conditions for <emphasis effect="italics">Q</emphasis> and add the associated probabilities. This
+is the approach we use in the MATLAB calculations. It does not require that we describe geometrically
+the region <emphasis effect="italics">Q</emphasis>.
+</item></list></item>
+
+<item id="uid6">To find <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  <emphasis effect="italics">g</emphasis> is real valued and <emphasis effect="italics">M</emphasis> is a subset the real line.
+
+<list id="id262670" display="block" list-type="enumerated"><item id="uid7"><emphasis effect="italics">Mapping approach</emphasis>.  Determine the set <emphasis effect="italics">Q</emphasis> of all those <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> which are
+mapped into <emphasis effect="italics">M</emphasis> by the function <emphasis effect="italics">g</emphasis>.  Now
+<equation id="id262734"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>W</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>Q</m:mi><m:mtext>iff</m:mtext><m:mi>g</m:mi><m:mo>(</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>M</m:mi><m:mtext>Hence</m:mtext></m:mrow></m:math></equation><equation id="id262842"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>{</m:mo><m:mi>ω</m:mi><m:mo>:</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>}</m:mo><m:mo>=</m:mo><m:mo>{</m:mo><m:mi>ω</m:mi><m:mo>:</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>Q</m:mi><m:mo>}</m:mo></m:mrow></m:math></equation>
+Since these are the same event, they must have the same probability. Once <emphasis effect="italics">Q</emphasis> is identified
+on the plane,
+determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>Q</m:mi><m:mo>)</m:mo></m:mrow></m:math> in the usual manner (see part a, above).
+</item>
+
+<item id="uid8"><emphasis effect="italics">Discrete alternative</emphasis>.  For each possible vector value <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> of
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, determine whether <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> meets the defining condition for <emphasis effect="italics">M</emphasis>.  Select
+those <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> which do and add the associated probabilities.
+</item></list></item>
+      </list>
+
+      <para id="id263124">We illustrate the mapping approach in the absolutely continuous case. A key element in the
+approach is finding the set <emphasis effect="italics">Q</emphasis> on the plane such that <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>M</m:mi></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>Q</m:mi></m:mrow></m:math>.  The desired probability is obtained by integrating <m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math> over <emphasis effect="italics">Q</emphasis>.</para>
+
+      <figure id="uid9"><media id="uid9_media" alt="A graph with a Diagonal line from points (0,0) to (2,2). Another line extends from (2,0) to (2,2) creating a triangle with the diagonal line. This line is labeled t=2 and this triangle is shaded. There is one more line originating at (0,1) and ending at (1,1). This line is labeled u=1. The diagonal line is labeled u=t. Below this graph is the equation f_XY(t,u)=(6/37)(t+2u).">
+          <image mime-type="image/png" src="../../media/fig10_3_1.png" id="uid9_onlineimage" width="361"><!-- NOTE: attribute width changes image size online (pixels). original width is 361. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_3_1.eps" id="uid9_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for <link target-id="fs-id4652642"/>.</caption></figure>
+
+<example id="fs-id4652642"><title>A numerical example</title><para id="id263234">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>6</m:mn><m:mn>37</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>
+on the region bounded by <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math>  (see Figure 1).
+Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mi>Y</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  Here <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>u</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Now <m:math overflow="scroll"><m:mrow><m:mi>Q</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo><m:mo>:</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>u</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn><m:mo>}</m:mo><m:mo>=</m:mo><m:mo>{</m:mo><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo><m:mo>:</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math> which is the region on the
+plane on or below the line <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math>.  Examination of the figure shows that for this region,
+<m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math> is different from zero on the triangle bounded by <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math>.
+The desired probability is</para>
+
+      <equation id="id263625">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:mfrac>
+              <m:mn>6</m:mn>
+              <m:mn>37</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>32</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>37</m:mn>
+            <m:mo>≈</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>8649</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+<example id="fs-id10172934"><title>The density for the sum <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:math></title>
+
+<para id="id263756">Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density <m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math>. Determine the density for</para>
+
+      <equation id="id263800">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Z</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>Y</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id263819">SOLUTION</para>
+      <equation id="id263825">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∈</m:mo>
+              <m:msub>
+                <m:mi>Q</m:mi>
+                <m:mi>v</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>Q</m:mi>
+              <m:mi>v</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>:</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>:</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+      <para id="id264007">For any fixed <emphasis effect="italics">v</emphasis>, the region <emphasis effect="italics">Q<sub>v</sub></emphasis> is the portion of the plane on or below the line <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>v</m:mi><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow></m:math>  (see <link target-id="uid10"/>). Thus</para>
+      <equation id="id264055">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mo>∫</m:mo>
+              <m:msub>
+                <m:mi>Q</m:mi>
+                <m:mi>v</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>v</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id264185">Differentiating with the aid of the fundamental theorem of calculus, we get</para>
+      <equation id="id264192">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>v</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id264268">This integral expresssion is known as a <emphasis effect="italics">convolution integral</emphasis>.</para>
+      
+
+
+      <figure id="uid10"><media id="uid10_media" alt="A graph of the equation Q_V{(t,u):u&lt;=v-t}. A line ascends to the upper left intersecting the x and y axes. The area to the left of this line is shaded and the area contained on the positive side of the graph is labeled Q_V the point at which the diagonal line intersects the y axis is labeled (0,V) and where the line intersects the x axis the line is labeled (V,0). The diagonal line is labeled u=v-t">
+          <image mime-type="image/png" src="../../media/fig10_3_2.png" id="uid10_onlineimage" width="310"><!-- NOTE: attribute width changes image size online (pixels). original width is 310. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_3_2.eps" id="uid10_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Region <emphasis effect="italics">Q<sub>v</sub></emphasis> for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>v</m:mi></m:mrow></m:math>.</caption></figure>
+</example>
+
+      
+
+
+<example id="fs-id9737742"><title>Sum of joint uniform random variables</title><para id="id264365">Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint uniform density on the unit square <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  Determine the density for <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:math>.</para>
+      <para id="id264448">SOLUTION</para>
+      <para id="id264451"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>v</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the probability in the region <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Q</m:mi><m:mi>v</m:mi></m:msub><m:mo>:</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mi>v</m:mi><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow></m:math>.  Now <m:math overflow="scroll"><m:mrow><m:msub><m:mi>P</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Q</m:mi><m:mi>v</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>P</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msubsup><m:mi>Q</m:mi><m:mi>v</m:mi><m:mi>c</m:mi></m:msubsup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, where the complementary set <emphasis effect="italics">Q<sub>v</sub><sup>c</sup></emphasis> is the set of points above the line.
+As Figure 3 shows, for <m:math overflow="scroll"><m:mrow><m:mi>v</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the part of <emphasis effect="italics">Q<sub>v</sub></emphasis> which has probability mass is the
+lower shaded triangular region on the figure, which has area (and hence probability) <m:math overflow="scroll"><m:mrow><m:msup><m:mi>v</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>.
+For <m:math overflow="scroll"><m:mrow><m:mi>v</m:mi><m:mo>&gt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the complementary region <emphasis effect="italics">Q<sub>v</sub><sup>c</sup></emphasis> is the upper shaded region. It has area
+<m:math overflow="scroll"><m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>v</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>. so that in this case,</para>
+      <para id="id264700"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>P</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Q</m:mi><m:mi>v</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>v</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>. Thus,</para>
+      <equation id="id264763">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>v</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>v</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>-</m:mo>
+                  <m:mi>v</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>v</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>2</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id264919">Differentiation shows that <emphasis effect="italics">Z</emphasis> has the symmetric triangular distribution on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>]</m:mo></m:mrow></m:math>, since</para>
+      <equation id="id264956">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>v</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>v</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>v</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>2</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id265089">With the use of indicator functions, these may be combined into a single expression</para>
+      <equation id="id265095">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>,</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>v</m:mi>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>,</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+<figure id="uid11"><media id="uid11_media" alt="This ia graph of the equation u=v-1, for v&lt;=1. The x-axis is labeled t and the y-axis is labeled u. A square is formed by a line ascending from the x-axis and a line originating at the y-axis. There are two parallel line that proceed up and to the left intersecting the x and y axes for the bottom line and the two lines originating at either of the axes. These two parallel lines create two triangles. The bottom triangle contains Q_V with each one of the sides of the right angle being labeled V. The upper triangle contains Q_V^C with each of the sides of the right angle labeled 2-v and the long side being labeled u=v-t, for v &gt; 1">
+          <image mime-type="image/png" src="../../media/fig10_3_3.png" id="uid11_onlineimage" width="332"><!-- NOTE: attribute width changes image size online (pixels). original width is 332. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_3_3.eps" id="uid11_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Geometry for sum of joint uniform random variables.</caption></figure>
+      <para id="id265188">ALTERNATE SOLUTION</para>
+      <para id="id265194">Since <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>,  we have <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>v</m:mi><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>v</m:mi><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  Now <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>v</m:mi><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>
+iff <m:math overflow="scroll"><m:mrow><m:mi>v</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mi>v</m:mi></m:mrow></m:math>, so that</para>
+      <equation id="id265436">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>v</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mn>1</m:mn>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>v</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mn>2</m:mn>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>v</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mn>1</m:mn>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id265595">Integration with respect to <emphasis effect="italics">t</emphasis> gives the result above.</para>
+      </example>
+
+  
+      <para id="fs-id1164863228685"><emphasis effect="bold"> Independence of functions of independent random variables</emphasis></para>
+
+      <para id="id265635">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair. Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Since</para>
+      <equation id="id265700">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mi>Z</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>g</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>M</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>W</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>Y</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>h</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id265832">the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>Z</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>W</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:math> is independent for each pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>M</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>N</m:mi><m:mo>}</m:mo></m:mrow></m:math>. Thus,
+the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>W</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+      <para id="id265936">If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair and <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then
+the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent. However, if <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then in
+general <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>}</m:mo></m:mrow></m:math> is not independent. This is illustrated for simple random variables with
+the aid of the m-procedure <emphasis effect="italics">jointzw</emphasis> at the end of the next section.</para>
+
+<example id="fs-id10925976"><title>Independence of simple approximations to an independent pair</title><para id="id266100">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair with simple approximations <emphasis effect="italics">X<sub>s</sub></emphasis> and <emphasis effect="italics">Y<sub>s</sub></emphasis> as
+described in Distribution Approximations.</para>
+      <equation id="id266156"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>s</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>s</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>F</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>u</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id266372">As functions of <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis>, respectively, the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>Y</m:mi><m:mi>s</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent. Also
+each pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>N</m:mi><m:mi>j</m:mi></m:msub></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+      </example>
+
+
+    </section>
+    <section id="cid4">
+      <title>Use of MATLAB on pairs of simple random variables</title>
+      <para id="id266513">In the single-variable case, we use array operations on the values of <emphasis effect="italics">X</emphasis> to determine
+a matrix of values of <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>. In the two-variable case, we must use array operations on
+the calculating matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis> to
+obtain a matrix <emphasis effect="italics">G</emphasis> whose elements are <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>. To obtain the distribution for
+<m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, we may use the m-function csort on <emphasis effect="italics">G</emphasis> and the joint probability matrix <emphasis effect="italics">P</emphasis>.
+A first step, then, is the use of jcalc or icalc to set up the joint distribution and
+the calculating matrices. This is illustrated in the following example.</para>
+      
+
+<example id="fs-id8651905">
+
+      <code id="id266658" display="block">% file jdemo3.m
+% data for joint simple distribution
+X = [-4 -2 0 1 3];
+Y = [0 1 2 4];
+P = [0.0132    0.0198    0.0297    0.0209    0.0264;
+     0.0372    0.0558    0.0837    0.0589    0.0744;
+     0.0516    0.0774    0.1161    0.0817    0.1032;
+     0.0180    0.0270    0.0405    0.0285    0.0360];
+jdemo3                % Call for data
+jcalc                 % Set up of calculating matrices t, u.
+Enter JOINT PROBABILITIES (as on the plane)  P
+Enter row matrix of VALUES of X  X
+Enter row matrix of VALUES of Y  Y
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+G = t.^2 -3*u;        % Formation of G = [g(ti,uj)]
+M = G &gt;= 1;           % Calculation using the XY distribution
+PM = total(M.*P)      % Alternately, use total((G&gt;=1).*P)
+PM =  0.4665
+[Z,PZ] = csort(G,P);
+PM = (Z&gt;=1)*PZ'     % Calculation using the Z distribution
+PM =  0.4665
+disp([Z;PZ]')         % Display of the Z distribution
+  -12.0000    0.0297
+  -11.0000    0.0209
+   -8.0000    0.0198
+   -6.0000    0.0837
+   -5.0000    0.0589
+   -3.0000    0.1425
+   -2.0000    0.1375
+         0    0.0405
+    1.0000    0.1059
+    3.0000    0.0744
+    4.0000    0.0402
+    6.0000    0.1032
+    9.0000    0.0360
+   10.0000    0.0372
+   13.0000    0.0516
+   16.0000    0.0180
+</code>
+      </example>
+
+      <para id="id267060">We extend the example above by considering a function <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> which has a composite
+definition.</para>
+      
+
+<example id="fs-id6139557"><title>Continuation of <link target-id="fs-id8651905"/></title><para id="id267123">Let</para>
+      <equation id="id267126">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="{" close="">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mi>X</m:mi>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mi>X</m:mi>
+                      <m:mo>+</m:mo>
+                      <m:mi>Y</m:mi>
+                      <m:mo>≥</m:mo>
+                      <m:mn>1</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:msup>
+                        <m:mi>X</m:mi>
+                        <m:mn>2</m:mn>
+                      </m:msup>
+                      <m:mo>+</m:mo>
+                      <m:msup>
+                        <m:mi>Y</m:mi>
+                        <m:mn>2</m:mn>
+                      </m:msup>
+                    </m:mrow>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mi>X</m:mi>
+                      <m:mo>+</m:mo>
+                      <m:mi>Y</m:mi>
+                      <m:mo>&lt;</m:mo>
+                      <m:mn>1</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>Determine</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>distribution</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>W</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <code id="id267272" display="block">H = t.*(t+u&gt;=1) + (t.^2 + u.^2).*(t+u&lt;1);  % Specification of h(t,u)
+ 
+ 
+ 
+[W,PW] = csort(H,P);                       % Distribution for W = h(X,Y)
+disp([W;PW]')
+   -2.0000    0.0198
+         0    0.2700
+    1.0000    0.1900
+    3.0000    0.2400
+    4.0000    0.0270
+    5.0000    0.0774
+    8.0000    0.0558
+   16.0000    0.0180
+   17.0000    0.0516
+   20.0000    0.0372
+   32.0000    0.0132
+ddbn                                        % Plot of distribution function
+Enter row matrix of values  W
+Enter row matrix of probabilities  PW
+print                                       % See <link target-id="uid12"/>
+</code>
+<figure id="uid12"><media id="uid12_media" alt="A graph of distribution function for random variable W. This graph is a series of plotted points with lines drawn between them. The line goes up and to the right.">
+          <image mime-type="image/png" src="../../media/fig10_4_1.png" id="uid12_onlineimage" width="484"><!-- NOTE: attribute width changes image size online (pixels). original width is 484. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_4_1.eps" id="uid12_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for random variable <emphasis effect="italics">W</emphasis> in <link target-id="fs-id6139557"/>.</caption></figure>
+      </example>
+
+
+   
+      <para id="fs-id1164854389525"><emphasis effect="bold"> Joint distributions for two functions of</emphasis> <m:math overflow="scroll">
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </para>
+      <para id="id267521">In previous treatments, we use csort to obtain the <emphasis effect="italics">marginal</emphasis> distribution for a
+single function <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>. It is often desirable to have the <emphasis effect="italics">joint</emphasis> distribution
+for a pair <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>. As special cases, we may have <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi></m:mrow></m:math>
+or <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>Y</m:mi></m:mrow></m:math>. Suppose</para>
+
+      <equation id="id267639">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Z</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>has</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>values</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>z</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>z</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mo>⋯</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>z</m:mi>
+                <m:mi>c</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>W</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>has</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>values</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>w</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>w</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mo>⋯</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>w</m:mi>
+                <m:mi>r</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+      <para id="id267815">The joint distribution requires the probability of each pair, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>=</m:mo><m:msub><m:mi>w</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>=</m:mo><m:msub><m:mi>z</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>.
+Each such pair of values corresponds to a set of pairs of <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> values. To determine
+the joint probability matrix <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Z</m:mi><m:mi>W</m:mi></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>)</m:mo></m:mrow></m:math> arranged as on the plane, we assign to
+each position <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:math> the probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>=</m:mo><m:msub><m:mi>w</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>=</m:mo><m:msub><m:mi>z</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>, with values of <emphasis effect="italics">W</emphasis> increasing
+upward. Each pair of <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow></m:math> values corresponds to one or more pairs of <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math> values.
+If we select and add the probabilities corresponding to the latter pairs, we have
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>=</m:mo><m:msub><m:mi>w</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>=</m:mo><m:msub><m:mi>z</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>. This may be accomplished as follows:</para>
+
+      <list id="id268061" display="block" list-type="enumerated">
+        <item id="uid13">Set up calculation matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis> as with jcalc.
+</item>
+        <item id="uid14">Use array arithmetic to determine the matrices of values <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math>
+and <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid15">Use csort to determine the <emphasis effect="italics">Z</emphasis> and <emphasis effect="italics">W</emphasis> value matrices and the <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Z</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>W</m:mi></m:mrow></m:math> marginal
+probability matrices.
+</item>
+        <item id="uid16">For each pair <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>w</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>z</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>, use the MATLAB function <emphasis effect="italics">find</emphasis> to determine
+the positions <emphasis effect="italics">a</emphasis> for which
+<equation id="id268279"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>(</m:mo><m:mi mathvariant="monospace">H</m:mi><m:mo>=</m:mo><m:mo>=</m:mo><m:mi mathvariant="monospace">W</m:mi><m:mo>(</m:mo><m:mi mathvariant="monospace">i</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>&amp;</m:mo><m:mo>(</m:mo><m:mi mathvariant="monospace">G</m:mi><m:mo>=</m:mo><m:mo>=</m:mo><m:mi mathvariant="monospace">Z</m:mi><m:mo>(</m:mo><m:mi mathvariant="monospace">j</m:mi><m:mo>)</m:mo><m:mo>)</m:mo></m:mrow></m:math></equation></item>
+        <item id="uid17">Assign to the <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi><m:mo>)</m:mo></m:mrow></m:math> position in the joint probability matrix <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Z</m:mi><m:mi>W</m:mi></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>)</m:mo></m:mrow></m:math> the
+probability
+<equation id="id268406"><m:math overflow="scroll" mode="display"><m:mrow><m:mi mathvariant="monospace">P</m:mi><m:mi mathvariant="monospace">Z</m:mi><m:mi mathvariant="monospace">W</m:mi><m:mo>(</m:mo><m:mi mathvariant="monospace">i</m:mi><m:mo>,</m:mo><m:mi mathvariant="monospace">j</m:mi><m:mo>)</m:mo><m:mspace width="3.33333pt"/><m:mo>=</m:mo><m:mspace width="3.33333pt"/><m:mi mathvariant="monospace">t</m:mi><m:mi mathvariant="monospace">o</m:mi><m:mi mathvariant="monospace">t</m:mi><m:mi mathvariant="monospace">a</m:mi><m:mi mathvariant="monospace">l</m:mi><m:mo>(</m:mo><m:mi mathvariant="monospace">P</m:mi><m:mo>(</m:mo><m:mi mathvariant="monospace">a</m:mi><m:mo>)</m:mo><m:mo>)</m:mo></m:mrow></m:math></equation></item>
+      </list>
+
+      <para id="id268494">We first examine the basic calculations, which are then implemented in the m-procedure
+<emphasis effect="italics">jointzw</emphasis>.</para>
+
+<example id="fs-id11207618"><title>Illustration of the basic joint calculations</title><code id="id268511" display="block">% file jdemo7.m
+P = [0.061  0.030  0.060  0.027  0.009;
+       0.015  0.001  0.048  0.058  0.013;
+       0.040  0.054  0.012  0.004  0.013;
+       0.032  0.029  0.026  0.023  0.039;
+       0.058  0.040  0.061  0.053  0.018;
+       0.050  0.052  0.060  0.001  0.013];
+X = -2:2;
+Y = -2:3;
+jdemo7                      % Call for data in jdemo7.m
+jcalc                       % Used to set up calculation matrices t, u
+- - - - - - - - - -
+H = u.^2                    % Matrix of values for W = h(X,Y)
+H =
+     9     9     9     9     9
+     4     4     4     4     4
+     1     1     1     1     1
+     0     0     0     0     0
+     1     1     1     1     1
+     4     4     4     4     4
+G = abs(t)                  % Matrix of values for Z = g(X,Y)
+ 
+G =
+     2     1     0     1     2
+     2     1     0     1     2
+     2     1     0     1     2
+     2     1     0     1     2
+     2     1     0     1     2
+     2     1     0     1     2
+[W,PW] = csort(H,P)         % Determination of marginal for W
+W =     0     1     4     9
+PW =    0.1490    0.3530    0.3110    0.1870
+[Z,PZ] = csort(G,P)         % Determination of marginal for Z
+Z =     0     1     2
+PZ =    0.2670    0.3720    0.3610
+r = W(3)                    % Third value for W
+r =   4
+s = Z(2)                    % Second value for Z
+s =   1
+</code>
+      <para id="id268901">To determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>=</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>, we need to determine the <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> positions for
+which this pair of <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow></m:math> values is taken on. By inspection, we find these to be (2,2), (6,2),
+(2,4), and (6,4). Then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>=</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math> is the total probability at these positions.
+This is 0.001 + 0.052 + 0.058 + 0.001 = 0.112. We put this probability in the joint
+probability matrix <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Z</m:mi><m:mi>W</m:mi></m:mrow></m:math> at the <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> position. This may be achieved by
+MATLAB with the following operations.</para>
+      <code id="id269046" display="block">[i,j] = find((H==W(3))&amp;(G==Z(2)));  % Location of (t,u) positions
+disp([i j])                         % Optional display of positions
+     2     2
+     6     2
+     2     4
+     6     4
+a = find((H==W(3))&amp;(G==Z(2)));      % Location in more convenient form
+P0 = zeros(size(P));                % Setup of zero matrix
+P0(a) = P(a)                        % Display of designated probabilities in P
+P0 =
+         0         0         0         0         0
+         0    0.0010         0    0.0580         0
+         0         0         0         0         0
+         0         0         0         0         0
+         0         0         0         0         0
+         0    0.0520         0    0.0010         0
+PZW = zeros(length(W),length(Z))    % Initialization of PZW matrix
+PZW(3,2) = total(P(a))              % Assignment to PZW matrix with
+PZW =    0         0         0      % W increasing downward
+         0         0         0
+         0    0.1120         0
+         0         0         0
+</code>
+      
+      <code id="id269261" display="block">PZW = flipud(PZW)                   % Assignment with W increasing upward
+PZW =
+         0         0         0
+         0    0.1120         0
+         0         0         0
+         0         0         0
+</code>
+      <para id="id269318">The procedure <emphasis effect="italics">jointzw</emphasis> carries out this operation for each possible pair of <emphasis effect="italics">W</emphasis> and <emphasis effect="italics">Z</emphasis> values (with the
+<code display="inline">flipud</code> operation coming only after all individual assignments are made).</para>
+      </example>
+
+<example id="fs-id11182115"><title>
+Joint distribution for <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>|</m:mo><m:mo>-</m:mo><m:mi>Y</m:mi><m:mo>|</m:mo></m:mrow></m:math> and
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>h</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mo>|</m:mo>
+            <m:mi>X</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>|</m:mo>
+          </m:mrow>
+        </m:math>
+      </title>
+      <code id="id269457" display="block">% file jdemo3.m   data for joint simple distribution
+X = [-4 -2 0 1 3];
+Y = [0 1 2 4];
+P = [0.0132    0.0198    0.0297    0.0209    0.0264;
+     0.0372    0.0558    0.0837    0.0589    0.0744;
+     0.0516    0.0774    0.1161    0.0817    0.1032;
+     0.0180    0.0270    0.0405    0.0285    0.0360];
+jdemo3          % Call for data
+jointzw         % Call for m-program
+Enter joint prob for (X,Y): P
+Enter values for X: X
+Enter values for Y: Y
+Enter expression for g(t,u): abs(abs(t)-u)
+Enter expression for h(t,u): abs(t.*u)
+Use array operations on Z, W, PZ, PW, v, w, PZW
+disp(PZW)
+    0.0132         0         0         0         0
+         0    0.0264         0         0         0
+         0         0    0.0570         0         0
+         0    0.0744         0         0         0
+    0.0558         0         0    0.0725         0
+         0         0    0.1032         0         0
+         0    0.1363         0         0         0
+    0.0817         0         0         0         0
+    0.0405    0.1446    0.1107    0.0360    0.0477
+EZ = total(v.*PZW)
+EZ =   1.4398
+ 
+ez = Z*PZ'       % Alternate, using marginal dbn
+ez =   1.4398
+EW = total(w.*PZW)
+EW =   2.6075
+ew = W*PW'       % Alternate, using marginal dbn
+ew =   2.6075
+M = v &gt; w;           % P(Z&gt;W)
+PM = total(M.*PZW)
+PM =   0.3390
+</code>
+      </example>
+
+
+      <para id="id269833">At noted in the previous section, if <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair and <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>,</para>
+      <para id="id269878"><m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent. However, if
+<m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> and</para>
+      <para id="id269947"><m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then in general the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mi>W</m:mi><m:mo>}</m:mo></m:mrow></m:math> is not independent.
+We may illustrate this with the aid of the m-procedure <emphasis effect="italics">jointzw</emphasis></para>
+
+<example id="fs-id6787969"><title>Functions of independent random variables</title><code id="id270007" display="block">jdemo3
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is independent           % The pair {X,Y} is independent
+jointzw
+Enter joint prob for (X,Y): P
+Enter values for X: X
+Enter values for Y: Y
+Enter expression for g(t,u): t.^2 - 3*t  % Z = g(X)
+Enter expression for h(t,u): abs(u) + 3  % W = h(Y)
+Use array operations on Z, W, PZ, PW, v, w, PZW
+itest
+Enter matrix of joint probabilities  PZW
+The pair {X,Y} is independent           % The pair {g(X),h(Y)} is independent
+jdemo3                                  % Refresh data
+jointzw
+Enter joint prob for (X,Y): P
+Enter values for X: X
+Enter values for Y: Y
+Enter expression for g(t,u): t+u         % Z = g(X,Y)
+Enter expression for h(t,u): t.*u        % W = h(X,Y)
+Use array operations on Z, W, PZ, PW, v, w, PZW
+</code>
+      
+      <code id="id270222" display="block">itest
+Enter matrix of joint probabilities  PZW
+The pair {X,Y} is NOT independent  % The pair {g(X,Y),h(X,Y)} is not indep
+To see where the product rule fails, call for D  % Fails for all pairs
+</code>
+      </example>
+
+
+    </section>
+    <section id="cid6">
+      <title>Absolutely continuous case: analysis and approximation</title>
+      <para id="id270287">As in the analysis <link document=" m23318">Joint Distributions</link>, we may set up a simple approximation to the joint distribution
+and proceed as for simple random variables. In this section, we solve several
+examples analytically, then obtain simple approximations.</para>
+
+<example id="fs-id9367759"><title>Distribution for a product</title><para id="id270300">Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density <m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math>.  Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:math>.  Determine
+<emphasis effect="italics">Q<sub>v</sub></emphasis> such that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>≤</m:mo><m:mi>v</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>∈</m:mo><m:msub><m:mi>Q</m:mi><m:mi>v</m:mi></m:msub></m:mfenced></m:mrow></m:math>.</para>
+      <figure id="uid18"><media id="uid18_media" alt="This graph consist of an area bounded by two curves. One curve exist in the top right section and bottom left portion of a graph. The bottom left curve is labeled u=v/t v&gt;0. The upper right portion is labeled u=v/t v&lt;0. The bounded area is labeled Q_v.">
+          <image mime-type="image/png" src="../../media/fig10_5_1.png" id="uid18_onlineimage" width="452"><!-- NOTE: attribute width changes image size online (pixels). original width is 452. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_5_1.eps" id="uid18_printimage" print-width="3.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Region <emphasis effect="italics">Q<sub>v</sub></emphasis> for product <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>v</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>.</caption></figure>
+      <para id="id270486">SOLUTION (see <link target-id="uid18"/>)</para>
+      <equation id="id270489"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>Q</m:mi>
+              <m:mi>v</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>:</m:mo>
+                <m:mi>t</m:mi>
+                <m:mi>u</m:mi>
+                <m:mo>≤</m:mo>
+                <m:mi>v</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>:</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>&gt;</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.277778em"/>
+                <m:mi>u</m:mi>
+                <m:mo>≤</m:mo>
+                <m:mi>v</m:mi>
+                <m:mo>/</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+              <m:mo>⋁</m:mo>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>:</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>&lt;</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.277778em"/>
+                <m:mi>u</m:mi>
+                <m:mo>≥</m:mo>
+                <m:mi>v</m:mi>
+                <m:mo>/</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+      <figure id="uid19"><media id="uid19_media" alt="This graph contains a square that is intersected by a curve. This curve is labeled u=v/t.">
+          <image mime-type="image/png" src="../../media/fig10_5_2.png" id="uid19_onlineimage" width="314"><!-- NOTE: attribute width changes image size online (pixels). original width is 314. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_5_2.eps" id="uid19_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Product of <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi></m:mrow></m:math> with uniform joint distribution on the unit square.</caption></figure>
+
+<example id="fs-id10999492"><para id="id270685"><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo><m:mo>∼</m:mo></m:mrow></m:math> uniform on unit square</para>
+      <para id="id270716"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>. Then (see <link target-id="uid19"/>)</para>
+      <equation id="id270796">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mo>∫</m:mo>
+              <m:msub>
+                <m:mi>Q</m:mi>
+                <m:mi>v</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>Q</m:mi>
+              <m:mi>v</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>:</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mo movablelimits="true" form="prefix">min</m:mo>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>v</m:mi>
+                <m:mo>/</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id270961">Integration shows</para>
+      <equation id="id270967">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>v</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mo form="prefix">ln</m:mo>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mfenced>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mo form="prefix">ln</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo form="prefix">ln</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mi>v</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>&lt;</m:mo>
+            <m:mi>v</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id271134">For <m:math overflow="scroll"><m:mrow><m:mi>v</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>F</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8466</m:mn></m:mrow></m:math>.</para>
+      <code id="id271195" display="block">% Note that although f = 1, it must be expressed in terms of t, u.
+tuappr
+Enter matrix [a b] of X-range endpoints  [0 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  200
+Enter number of Y approximation points  200
+Enter expression for joint density  (u&gt;=0)&amp;(t&gt;=0)
+Use array operations on X, Y, PX, PY, t, u, and P
+G = t.*u;
+</code>
+      
+      <code id="id271295" display="block">[Z,PZ] = csort(G,P);
+p = (Z&lt;=0.5)*PZ'
+p =  0.8465                 % Theoretical value 0.8466, above
+</code>
+      </example>
+
+<example id="fs-id10748979"><title>Continuation of <link document="m23318" target-id="fs-id1171310550774">Example 5</link> from "Random Vectors and Joint Distributions"</title><para id="id271350">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>6</m:mn><m:mn>37</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>
+on the region bounded by <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math> (see Figure 7).
+Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:math>.  Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <figure id="uid20"><media id="uid20_media" alt="A graph of f_xy(t,u)=(6/37)(t+2u)">
+          <image mime-type="image/png" src="../../media/fig10_5_3.png" id="uid20_onlineimage" width="330"><!-- NOTE: attribute width changes image size online (pixels). original width is 330. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_5_3.eps" id="uid20_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Area of integration for <link target-id="fs-id10748979"/>.</caption></figure>
+      <para id="id271564">ANALYTIC SOLUTION</para>
+      <equation id="id271567">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>∈</m:mo>
+              <m:mi>Q</m:mi>
+            </m:mfenced>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Q</m:mi>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>:</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id271681">Reference to <link target-id="uid20"/> shows that</para>
+      <equation id="id271687">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>∈</m:mo>
+              <m:mi>Q</m:mi>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>6</m:mn>
+              <m:mn>37</m:mn>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>6</m:mn>
+              <m:mn>37</m:mn>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>1</m:mn>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>/</m:mo>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>9</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>37</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>9</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>37</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>18</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>37</m:mn>
+            <m:mo>≈</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4865</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id271877">APPROXIMATE SOLUTION</para>
+      <code id="id271884" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 2]
+Enter matrix [c d] of Y-range endpoints  [0 2]
+Enter number of X approximation points  300
+Enter number of Y approximation points  300
+Enter expression for joint density  (6/37)*(t + 2*u).*(u&lt;=max(t,1))
+Use array operations on X, Y, PX, PY, t, u, and P
+Q = t.*u&lt;=1;
+PQ = total(Q.*P)
+PQ =  0.4853             % Theoretical value 0.4865, above
+G = t.*u;                % Alternate, using the distribution for Z
+[Z,PZ] = csort(G,P);
+PZ1 = (Z&lt;=1)*PZ'
+PZ1 = 0.4853
+</code>
+      </example>
+
+      <para id="id272044">In the following example, the function <emphasis effect="italics">g</emphasis> has a compound definition. That is, it has
+a different rule for different parts of the plane.</para>
+      <figure id="uid21"><media id="uid21_media" alt="This is a graph of a curve. To the left of the curve is a shaded area labeled Q_B. Below the curve is a shaded area labeled Q_A. The line defining area Q_B is labeled u=1/2-t. The curve is labeled u=t^2. The top of area Q_A is labeled u=1/2. Inside area Q_A is another triangle labled t_1 and an area labeled t_2">
+          <image mime-type="image/png" src="../../media/fig10_5_4.png" id="uid21_onlineimage" width="425"><!-- NOTE: attribute width changes image size online (pixels). original width is 425. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_5_4.eps" id="uid21_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Regions for <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math> in <link target-id="fs-id9530777"/>.</caption></figure>
+
+<example id="fs-id9530777"><title>A compound function</title><para id="id272105">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>2</m:mn><m:mn>3</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>
+on the unit square <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+      <equation id="id272230">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Z</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="{" close="">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mi>Y</m:mi>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:msup>
+                        <m:mi>X</m:mi>
+                        <m:mn>2</m:mn>
+                      </m:msup>
+                      <m:mo>-</m:mo>
+                      <m:mi>Y</m:mi>
+                      <m:mo>≥</m:mo>
+                      <m:mn>0</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>X</m:mi>
+                      <m:mo>+</m:mo>
+                      <m:mi>Y</m:mi>
+                    </m:mrow>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:msup>
+                        <m:mi>X</m:mi>
+                        <m:mn>2</m:mn>
+                      </m:msup>
+                      <m:mo>-</m:mo>
+                      <m:mi>Y</m:mi>
+                      <m:mo>&lt;</m:mo>
+                      <m:mn>0</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>Q</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>Y</m:mi>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msup>
+                <m:mi>Q</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id272414">for <m:math overflow="scroll"><m:mrow><m:mi>Q</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>:</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>}</m:mo></m:mrow></m:math>.  Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>&lt;</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id272494">ANALYTICAL SOLUTION</para>
+      <equation id="id272497"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∈</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>Q</m:mi>
+                <m:mi>A</m:mi>
+              </m:msub>
+              <m:mo>⋁</m:mo>
+              <m:msub>
+                <m:mi>Q</m:mi>
+                <m:mi>B</m:mi>
+              </m:msub>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id272654">where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Q</m:mi><m:mi>A</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>:</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>u</m:mi><m:mo>≤</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>}</m:mo></m:mrow></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>Q</m:mi><m:mi>B</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>:</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>u</m:mi><m:mo>&gt;</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>}</m:mo></m:mrow></m:mrow></m:math>.  Reference to <link target-id="uid21"/> shows that this is the part of the unit square for which
+<m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>(</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  We may break up the integral into three parts. Let
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:msubsup><m:mi>t</m:mi><m:mn>1</m:mn><m:mn>2</m:mn></m:msubsup></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>t</m:mi><m:mn>2</m:mn><m:mn>2</m:mn></m:msubsup><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>.  Then</para>
+      <equation id="id272934">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>2</m:mn>
+              <m:mn>3</m:mn>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>2</m:mn>
+              <m:mn>3</m:mn>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+              </m:mrow>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mn>2</m:mn>
+              <m:mn>3</m:mn>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+              </m:mrow>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2322</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id273173">APPROXIMATE SOLUTION</para>
+      <code id="id273178" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  200
+Enter number of Y approximation points  200
+Enter expression for joint density  (2/3)*(t + 2*u)
+Use array operations on X, Y, PX, PY, t, u, and P
+Q = u &lt;= t.^2;
+G = u.*Q + (t + u).*(1-Q);
+prob = total((G&lt;=1/2).*P)
+prob =  0.2328          % Theoretical is 0.2322, above
+</code>
+      </example>
+
+
+      <para id="id273309">The setup of the integrals involves careful attention to the geometry of the system. Once
+set up, the evaluation is elementary but tedious. On the other hand, the approximation
+proceeds in a straightforward manner from the normal description of the problem. The
+numerical result compares quite closely with the theoretical value and accuracy could be
+improved by taking more subdivision points.</para>
+    </section>
+  </content>
+</document>

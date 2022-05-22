@@ -1,0 +1,2717 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Problems on Conditional Probability</title>
+  <metadata>
+  <md:content-id>m24173</md:content-id><md:title>Problems on Conditional Probability</md:title>
+  <md:abstract/>
+  <md:uuid>a9279769-dad6-45ec-ac2a-bbce475d1bf6</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of useful matlab files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+<!--empty paragraphs get left behind.-->
+
+<exercise id="fs-id1171892350374" print-placement="end"><problem id="fs-id1171885123872">
+    <para id="id2258272">Given the following data:</para>
+    <equation id="id2258277">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>55</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>30</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>20</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>∪</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>55</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>B</m:mi>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>15</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id2259086">Determine, if possible, the conditional probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1171885608053">
+    <!--empty paragraphs get left behind.-->
+    <code id="id66630" display="block">% file <link window="new" document="m24179" target-id="cid23">npr03_01.m</link>
+% Data for <link target-id="fs-id1171892350374"/>
+minvec3
+DV = [A|Ac; A;  A&amp;B; B&amp;C; Ac|(B&amp;C); Ac&amp;B&amp;Cc];
+DP = [ 1   0.55 0.30 0.20   0.55     0.15  ];
+TV = [Ac&amp;B; B];
+disp('Call for mincalc')
+npr03_01
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.2500
+    2.0000    0.5500
+The number of minterms is 8
+The number of available minterms is 4
+- - - - - - - - - - - -
+P = 0.25/0.55
+P =  0.4545
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1171890389510" print-placement="end"><problem id="fs-id1171886418543">
+    <para id="id2259390">In <link document="m24171" target-id="fs-id4889487">Exercise 11</link> from "Problems on Minterm Analysis," we have the following data:
+A survey of a represenative group of students yields the following information:
+    <list id="eip-id1166817946721"><item>52 percent are male</item>
+    <item>85 percent live on campus</item>
+    <item>78 percent are male or are active in intramural sports (or both)</item>
+    <item>30 percent live on campus but are not active in sports</item>
+    <item>32 percent are male, live on campus, and are active in sports</item>
+    <item>8  percent are male and live off campus</item>
+    <item>17 percent are male students inactive in sports</item></list></para>
+    <para id="id2259437">Let A = male, B = on campus, C = active in sports.</para>
+    <list id="eip-id1166815877613"><item>(a)  A student is selected at random. He is male and lives on campus. What is
+the (conditional) probability that he is active in sports?</item>
+    <item>(b)  A student selected is active in sports. What is the(conditional) probability
+that she is a female who lives on campus?</item></list>
+</problem>
+<solution id="fs-id1171884546723">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id66850" display="block"><link window="new" document="m24179" target-id="cid10">npr02_11</link>
+- - - - - - - - - - - -
+mincalc
+- - - - - - - - - - - -
+mincalct
+Enter matrix of target Boolean combinations  [A&amp;B&amp;C; A&amp;B; Ac&amp;B&amp;C; C]
+ Computable target probabilities
+    1.0000    0.3200
+    2.0000    0.4400
+    3.0000    0.2300
+    4.0000    0.6100
+PC_AB = 0.32/0.44
+PC_AB =  0.7273
+PAcB_C = 0.23/0.61
+PAcB_C = 0.3770
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1171887236597" print-placement="end"><problem id="fs-id1171885176455">
+    <para id="id2259458">In a certain population, the probability a woman lives to at least
+seventy years is 0.70 and is 0.55 that she will live to at least eighty years.
+If a woman is seventy years old, what is the conditional probability she will
+survive to eighty years? <emphasis effect="italics">Note</emphasis> that if <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi></m:mrow></m:math> then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</para>
+</problem>
+<solution id="fs-id1171893609530">
+<para id="id67026"> Let <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo></m:mrow></m:math> event she lives to seventy and <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo></m:mrow></m:math> event she lives to eighty.
+Since <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>⊂</m:mo><m:mi>A</m:mi></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>/</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>/</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>55</m:mn><m:mo>/</m:mo><m:mn>70</m:mn></m:mrow></m:math>.
+</para>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1171885706984" print-placement="end"><problem id="fs-id8504907">
+<para id="fs-id1171886426292">From 100 cards numbered 00, 01, 02, <m:math overflow="scroll"><m:mo>⋯</m:mo></m:math>, 99, one card is drawn.
+Suppose <emphasis effect="italics">A<sub>i</sub></emphasis> is the event the sum of the two digits on a card is <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mo>, </m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>18,  </m:mn></m:mrow></m:math> 
+and <emphasis effect="italics">B<sub>j</sub></emphasis> is the event the product of the two digits is <emphasis effect="italics">j</emphasis>. Determine
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:msub><m:mi>B</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math> for each possible <emphasis effect="italics">i</emphasis>.
+</para>
+</problem>
+<solution id="fs-id1171890659090"><para id="fs-id1171885274633">
+ <emphasis effect="italics">B<sub>0</sub></emphasis> is the event one of the first ten is drawn. <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>B</m:mi><m:mn>0</m:mn></m:msub></m:mrow></m:math> is the event
+that the card with numbers <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mi>i</m:mi></m:mrow></m:math> is drawn. <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:msub><m:mi>B</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>100</m:mn><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>10</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>10</m:mn></m:mrow></m:math> for
+each <emphasis effect="italics">i</emphasis>, 0 through 9.</para>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1171890442902" print-placement="end"><problem id="fs-id1171884788723">
+<para id="fs-id1171892440913">
+ Two fair dice are rolled.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2259634" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid118768798759876">What is the (conditional) probability that one turns up two spots, given
+they show different numbers?
+</item>
+      <item id="uid212342342">What is the (conditional) probability that the first turns up six, given that
+the sum is <emphasis effect="italics">k</emphasis>, for each <emphasis effect="italics">k</emphasis> from two through 12?
+</item>
+      <item id="uid3524353252345235">What is the (conditional) probability that at least one turns up six, given that
+the sum is <emphasis effect="italics">k</emphasis>, for each <emphasis effect="italics">k</emphasis> from two through 12?
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1171886821386">
+
+    <!--empty paragraphs get left behind.-->
+    <list id="id67446" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1">There are <m:math overflow="scroll"><m:mrow><m:mn>6</m:mn><m:mo>×</m:mo><m:mn>5</m:mn></m:mrow></m:math> ways to choose all different. There are <m:math overflow="scroll"><m:mrow><m:mn>2</m:mn><m:mo>×</m:mo><m:mn>5</m:mn></m:mrow></m:math>
+ways that they are different and one turns up two spots. The conditional probability is
+2/6.
+
+</item>
+      <item id="uid2">Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mn>6</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> event first is a six and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo></m:mrow></m:math> event the sum is <emphasis effect="italics">k</emphasis>. Now
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mn>6</m:mn></m:msub><m:msub><m:mi>S</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mi>∅</m:mi></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>≤</m:mo><m:mn>6</m:mn></m:mrow></m:math>. A table of sums shows <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mn>6</m:mn></m:msub><m:msub><m:mi>S</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>36</m:mn></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>6</m:mn><m:mo>/</m:mo><m:mn>36</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>/</m:mo><m:mn>36</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>/</m:mo><m:mn>36</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>36</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:mn>36</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>36</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>7</m:mn></m:mrow></m:math> through 12, respectively.
+Hence <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mn>6</m:mn></m:msub><m:mo>|</m:mo><m:msub><m:mi>S</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>1</m:mn></m:mrow></m:math>, respectively.
+
+</item>
+      <item id="uid3234524352">If <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:msub><m:mi>B</m:mi><m:mn>6</m:mn></m:msub></m:mrow></m:math> is the event at least one is a six, then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msub><m:mi>B</m:mi><m:mn>6</m:mn></m:msub><m:msub><m:mi>S</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:mn>36</m:mn></m:mrow></m:math>
+for <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>7</m:mn></m:mrow></m:math> through 11 and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msub><m:mi>B</m:mi><m:mn>6</m:mn></m:msub><m:msub><m:mi>S</m:mi><m:mn>12</m:mn></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>36</m:mn></m:mrow></m:math>.  Thus, the conditional
+probabilities are 2/6, 2/5, 2/4, 2/3, 1, 1, respectively.
+</item>
+    </list>
+</solution>
+</exercise>
+
+
+
+
+
+<exercise id="fs-id1171885599224" print-placement="end"><problem id="fs-id1171886430709">
+    <para id="id2259723">Four persons are to be selected from a group of 12 people, 7 of whom are
+women.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2259732" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid424523452346432">What is the probability that the first and third selected are women?
+</item>
+      <item id="uid525245234523452345">What is the probability that three of those selected are women?
+</item>
+      <item id="uid62435243643246">What is the (conditional) probability that the first and third selected are women,
+given that three of those selected are women?
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1171887242028">
+ 
+    <!--empty paragraphs get left behind.-->
+    <equation id="id67921">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>W</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>7</m:mn>
+            <m:mn>12</m:mn>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>11</m:mn>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mn>5</m:mn>
+            <m:mn>10</m:mn>
+          </m:mfrac>
+          <m:mo>+</m:mo>
+          <m:mfrac>
+            <m:mn>7</m:mn>
+            <m:mn>12</m:mn>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mn>5</m:mn>
+            <m:mn>11</m:mn>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>10</m:mn>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>7</m:mn>
+            <m:mn>22</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+   </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1171892967674" print-placement="end"><problem id="fs-id1171887045166">
+    <para id="id2259786"> Twenty percent of the paintings in a gallery are not originals. A
+collector buys a painting. He has probability 0.10 of buying a fake for
+an original but never rejects an original as a fake, What is the (conditional) probability
+the painting he purchases is an original?
+</para>
+</problem>
+<solution id="fs-id7668152">
+  <para id="id68080"> Let <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the collector buys, and <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the painting
+is original. Assume <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>G</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>G</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>. If <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>G</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:math>, then</para>
+    <equation id="id68189">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>G</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>B</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>G</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>G</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>B</m:mi>
+                <m:mo>|</m:mo>
+                <m:msup>
+                  <m:mi>G</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>G</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>8</m:mn>
+            </m:mrow>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>2</m:mn>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>40</m:mn>
+            <m:mn>41</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+  
+
+
+
+
+
+<exercise id="fs-id1171884949904" print-placement="end"><problem id="fs-id1171886775619">
+<para id="fs-id1171885898361">
+ Five percent of the units of a certain type of equipment brought in for service
+have a common defect. Experience shows that 93 percent of the units with this defect
+exhibit a certain behavioral characteristic, while only two percent of the
+units which do not have this defect exhibit that characteristic.
+A unit is examined and found to have the characteristic symptom. What is the conditional
+probability that the unit has the defect, given this behavior?
+</para>
+</problem>
+<solution id="fs-id1171885016981">
+<para id="id68369"> Let <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the unit is defective and <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event it has the
+characteristic. Then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>|</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>93</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>|</m:mo><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>02</m:mn></m:mrow></m:math>.</para>
+    <equation id="id68482">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>C</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>D</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>D</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>C</m:mi>
+                <m:mo>|</m:mo>
+                <m:msup>
+                  <m:mi>D</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>D</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>93</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>05</m:mn>
+            </m:mrow>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>93</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>05</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>02</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>95</m:mn>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>93</m:mn>
+            <m:mn>131</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1171886738573" print-placement="end"><problem id="fs-id1171887099232">
+<para id="fs-id1171892786773">
+ A shipment of 1000 electronic units is received. There is an equally likely
+probability that there are 0, 1, 2, or 3 defective units in the lot. If one is selected
+at random and found to be good, what is the probability of no defective units in the lot?
+</para>
+</problem>
+<solution id="fs-id1171897108988">
+ <para id="id68654"> Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>D</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo></m:mrow></m:math> the event of <emphasis effect="italics">k</emphasis> defective and <emphasis effect="italics">G</emphasis> be the event a good one is chosen.</para>
+    <equation id="id68692">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>D</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>G</m:mi>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>0</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>0</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>G</m:mi>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>0</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>0</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>G</m:mi>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>G</m:mi>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>G</m:mi>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>D</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id68903">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>4</m:mn>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>)</m:mo>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>999</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>1000</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>998</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>1000</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>997</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>1000</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1000</m:mn>
+            <m:mn>3994</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1171884851531" print-placement="end"><problem id="fs-id1171892391445">
+<para id="fs-id8735218">
+Data on incomes and salary ranges for a certain population are analyzed
+as follows. <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> event annual income is less than $25,000; <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> event
+annual income is between $25,000 and $100,000; <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> event annual income is
+greater than $100,000. <m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> event did not complete college education; <m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> event of
+completion of bachelor's degree; <m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> event of completion of graduate or professional
+degree program. Data may be tabulated as follows: <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>30</m:mn></m:mrow></m:math>, and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math>.</para>
+<!--empty paragraphs get left behind.-->
+    <para id="id2260009"><equation id="eip-id6096857"><m:math overflow="scroll">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:msub>
+            <m:mi>S</m:mi>
+            <m:mi>i</m:mi>
+          </m:msub>
+          <m:mo>|</m:mo>
+          <m:msub>
+            <m:mi>E</m:mi>
+            <m:mi>j</m:mi>
+          </m:msub>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation></para>
+<!--empty paragraphs get left behind.-->
+<!--empty paragraphs get left behind.-->
+    <table id="id2260054" summary="Table with a header row containing S-values, and a header column containing E-values along with the P(S) row at the base of the table.">
+<tgroup cols="4"><tbody>
+          <row>
+            <entry/>
+            <entry>
+              <emphasis effect="italics">S<sub>1</sub></emphasis>
+            </entry>
+            <entry>
+              <emphasis effect="italics">S<sub>2</sub></emphasis>
+            </entry>
+            <entry>
+              <emphasis effect="italics">S<sub>3</sub></emphasis>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <emphasis effect="italics">E<sub>1</sub></emphasis>
+            </entry>
+            <entry>0.85</entry>
+            <entry>0.10</entry>
+            <entry>0.05</entry>
+          </row>
+          <row>
+            <entry>
+              <emphasis effect="italics">E<sub>2</sub></emphasis>
+            </entry>
+            <entry>0.10</entry>
+            <entry>0.80</entry>
+            <entry>0.10</entry>
+          </row>
+          <row>
+            <entry>
+              <emphasis effect="italics">E<sub>3</sub></emphasis>
+            </entry>
+            <entry>0.05</entry>
+            <entry>0.50</entry>
+            <entry>0.45</entry>
+          </row>
+          <row>
+            <entry>
+              <m:math overflow="scroll">
+                <m:mrow>
+                  <m:mi>P</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>i</m:mi>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:math>
+            </entry>
+            <entry>0.50</entry>
+            <entry>0.40</entry>
+            <entry>0.10</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+<!--empty paragraphs get left behind.-->
+    <list id="id2260321" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid72452345243523452">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:msub><m:mi>S</m:mi><m:mn>3</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+      <item id="uid8243524234524352">Suppose a person has a university education (no graduate study). What is
+the (conditional) probability that he or she will make $25,000 or more?
+</item>
+      <item id="uid923452345345">Find the total probability that a person's income category is at least
+as high as his or her educational level.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id5370446">
+ 
+    <!--empty paragraphs get left behind.-->
+    <list id="id68992" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid4">
+        
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>45</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>0225</m:mn>
+          </m:mrow>
+        </m:math>
+      </item>
+      <item id="uid5">
+        
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>80</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>90</m:mn>
+          </m:mrow>
+        </m:math>
+      </item>
+      <item id="uid6">
+        
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>p</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>85</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>65</m:mn>
+            <m:mo>+</m:mo>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>80</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>30</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>45</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>9425</m:mn>
+          </m:mrow>
+        </m:math>
+      </item>
+    </list>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1171888357055" print-placement="end"><problem id="fs-id1171892526308">
+    <para id="id2260404">In a survey, 85 percent of the employees say they favor a certain
+company policy. Previous experience indicates that 20 percent of those who do
+not favor the policy say that they do, out of fear of reprisal. What is
+the probability that an employee picked at random really does favor
+the company policy? It is reasonable to assume that all who favor say so.
+</para>
+</problem>
+<solution id="fs-id1171889045605">
+<para id="id69307"> <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>S</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>85</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>S</m:mi><m:mo>|</m:mo><m:msup><m:mi>F</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>20</m:mn></m:mrow></m:math>. Also, reasonable to assume <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>S</m:mi><m:mo>|</m:mo><m:mi>F</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+    <equation id="id69395">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>S</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>S</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>F</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>F</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>S</m:mi>
+            <m:mo>|</m:mo>
+            <m:msup>
+              <m:mi>F</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>F</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>implies</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>F</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>S</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>S</m:mi>
+                <m:mo>|</m:mo>
+                <m:msup>
+                  <m:mi>F</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>S</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>F</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>13</m:mn>
+            <m:mn>16</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1171886186350" print-placement="end"><problem id="fs-id1171885996179"><para id="fs-id1171895246191">
+ A quality control group is designing an automatic test procedure for
+compact disk players coming from a production line. Experience shows that
+one percent of the units produced are defective. The automatic test procedure
+has probability 0.05 of giving a false positive indication and probability
+0.02 of giving a false negative. That is, if <emphasis effect="italics">D</emphasis> is the event a unit
+tested is defective, and <emphasis effect="italics">T</emphasis> is the event that it tests satisfactory,
+then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>T</m:mi><m:mo>|</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>T</m:mi><m:mi>c</m:mi></m:msup><m:mo>|</m:mo><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>02</m:mn></m:mrow></m:math>.  Determine the probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup><m:mo>|</m:mo><m:mi>T</m:mi><m:mo>)</m:mo></m:mrow></m:math> that a unit which tests good is,
+in fact, free of defects.
+</para>
+</problem>
+<solution id="fs-id1171893252400">
+ 
+    <!--empty paragraphs get left behind.-->
+    <equation id="id69584">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>D</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>|</m:mo>
+              <m:mi>T</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>T</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>T</m:mi>
+                <m:mo>|</m:mo>
+                <m:msup>
+                  <m:mi>D</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>D</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>T</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>98</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>99</m:mn>
+            </m:mrow>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>05</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>01</m:mn>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>9702</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id69736">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>|</m:mo>
+            <m:mi>T</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>9702</m:mn>
+            <m:mn>9707</m:mn>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:mn>5</m:mn>
+            <m:mn>9707</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id4967241" print-placement="end"><problem id="fs-id1171889695384">
+<para id="fs-id1171887902151">
+ Five boxes of random access memory chips have 100 units per box. They have
+respectively one, two, three, four, and five defective units. A box is selected at random,
+on an equally likely basis, and a unit is selected at random therefrom. It is defective.
+What are the (conditional) probabilities the unit was selected from each of the boxes?</para>
+</problem>
+<solution id="fs-id1171890659833">
+ <para id="id69787"> <m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo></m:mrow></m:math> the event from box <emphasis effect="italics">i</emphasis>. <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>H</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>5</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>|</m:mo><m:msub><m:mi>H</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>i</m:mi><m:mo>/</m:mo><m:mn>100</m:mn></m:mrow></m:math>.</para>
+    <equation id="id69885">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>H</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>D</m:mi>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>H</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>H</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>∑</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>D</m:mi>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>H</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>H</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mi>i</m:mi>
+          <m:mo>/</m:mo>
+          <m:mn>15</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>1</m:mn>
+          <m:mo>≤</m:mo>
+          <m:mi>i</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>5</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+
+
+<exercise id="fs-id1171888341812" print-placement="end"><problem id="fs-id3919857">
+<para id="fs-id1171892407226">
+ Two percent of the units received at a warehouse are defective. A
+nondestructive test procedure gives two percent false positive indications
+and five percent false negative. Units which fail to pass the inspection
+are sold to a salvage firm. This firm applies a corrective procedure
+which does not affect any good unit and which corrects 90 percent of
+the defective units. A customer buys a unit from the salvage firm. It
+is good. What is the (conditional) probability the unit was originally defective?
+</para>
+</problem>
+<solution id="fs-id5159801">
+  <para id="id70019"> Let <m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>=</m:mo></m:mrow></m:math> event test indicates defective, <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>=</m:mo></m:mrow></m:math> event initially defective,
+and <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mo>=</m:mo></m:mrow></m:math> event unit purchased is good. Data are</para>
+    <equation id="id70062">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>02</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>T</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>|</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>02</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>T</m:mi>
+            <m:mo>|</m:mo>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>05</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:msup>
+              <m:mi>T</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>,</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id70194">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>D</m:mi>
+            <m:mi>T</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>90</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>|</m:mo>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>T</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id70263">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mi>T</m:mi>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>T</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>T</m:mi>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id70393">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mi>T</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mi>D</m:mi>
+            <m:mi>T</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>T</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>T</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>T</m:mi>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>T</m:mi>
+            <m:mo>|</m:mo>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>T</m:mi>
+            <m:msup>
+              <m:mi>D</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id70564">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>G</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>02</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>98</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>90</m:mn>
+            </m:mrow>
+            <m:mrow>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>02</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>98</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>90</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>98</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>05</m:mn>
+              <m:mo>·</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>00</m:mn>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>441</m:mn>
+            <m:mn>1666</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1171888256983" print-placement="end"><problem id="fs-id1171892978377">
+<para id="fs-id1171887514535">
+ At a certain stage in a trial, the judge feels the odds are two to one the
+defendent is guilty. It is determined that the defendent is left handed. An investigator
+convinces the judge this is six times more likely if the defendent is guilty than if he
+were not. What is the likelihood, given this evidence, that the defendent is guilty?
+</para>
+</problem>
+<solution id="fs-id5363828">
+ <para id="id70676"> Let <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mo>=</m:mo></m:mrow></m:math> event the defendent is guilty, <m:math overflow="scroll"><m:mrow><m:mi>L</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the defendent is
+left handed. Prior odds: <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>G</m:mi><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>G</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>.  Result of testimony: <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>L</m:mi><m:mo>|</m:mo><m:mi>G</m:mi><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>L</m:mi><m:mo>|</m:mo><m:msup><m:mi>G</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>6</m:mn></m:mrow></m:math>.</para>
+    <equation id="id70792">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>L</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>G</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>|</m:mo>
+              <m:mi>L</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>G</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>·</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>L</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>G</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>L</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>G</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>6</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>12</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id70917">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>G</m:mi>
+          <m:mo>|</m:mo>
+          <m:mi>L</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>12</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>13</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+
+
+
+<exercise id="fs-id8730932" print-placement="end"><problem id="fs-id1171893147771">
+<para id="fs-id1171892167834">
+ Show that if <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Is the converse true? Prove or give a counterexample.</para>
+</problem>
+<solution id="fs-id1171887888243">
+ <para id="id70948"> <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id71111">The converse is not true. Consider <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>,</para>
+    <para id="id71189"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>.  Then</para>
+    <equation id="id71291">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>&gt;</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>2</m:mn>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>8</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id71396">But <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</para>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1171886221404" print-placement="end"><problem id="fs-id1171887277779">
+<para id="fs-id2092965">
+Since <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>·</m:mo><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> is a probability measure for a given <emphasis effect="italics">B</emphasis>, we must
+have <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  Construct an example to show that in general
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>≠</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1171886450198">
+<para id="fs-id1171892456596">
+ Suppose <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi></m:mrow></m:math> with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>/</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>
+and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> so the sum is less than one.
+</para>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1171886756475" print-placement="end"><problem id="fs-id6931232">
+<para id="fs-id4768825">Use property <link document="m23252" target-id="id232641">(CP4)</link> to show</para>
+    <list id="eip-id2024804" list-type="enumerated" number-style="lower-alpha"><item>
+      <m:math overflow="scroll" mode="display">
+        
+         
+          <m:mspace width="4.pt"/>
+          <m:mspace width="4.pt"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>&gt;</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>iff</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>&lt;</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow></m:math>
+          </item><item><m:math overflow="scroll" mode="display">
+          
+          <m:mspace width="4.pt"/>
+          <m:mspace width="4.pt"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>&gt;</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>iff</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>&lt;</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        
+      </m:math>
+   </item>
+    <item>
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+         
+          <m:mspace width="4.pt"/>
+          <m:mspace width="4.pt"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>&gt;</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>iff</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>|</m:mo>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>&gt;</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </item></list>
+</problem>    
+<solution id="fs-id6467973">
+
+    <!--empty paragraphs get left behind.-->
+    <list id="id71561" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid7"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+      <item id="uid8"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>
+iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math></item>
+      <item id="uid9"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+iff <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>|</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+    </list>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1171886909053" print-placement="end"><problem id="fs-id1171891523275">
+<para id="id2261079"> Show that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≥</m:mo><m:mfenced separators="" open="(" close=")"><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mfenced><m:mo>/</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+</para>
+</problem>
+<solution id="fs-id1171893657339">
+<para id="id72129"> <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≥</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+Simple algebra gives the desired result.</para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id2296345" print-placement="end"><problem id="fs-id1171885848967">
+<para id="fs-id1171888273995">
+Show that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+</para>
+</problem>
+<solution id="fs-id1171894610237">
+
+    <!--empty paragraphs get left behind.-->
+    <equation id="id72240">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mi>B</m:mi>
+                <m:mi>C</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mi>B</m:mi>
+                <m:msup>
+                  <m:mi>C</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id72340">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>B</m:mi>
+                <m:mi>C</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>B</m:mi>
+                <m:mi>C</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>B</m:mi>
+                <m:msup>
+                  <m:mi>C</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>B</m:mi>
+                <m:msup>
+                  <m:mi>C</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id6640468" print-placement="end"><problem id="fs-id1171894584790">
+<para id="fs-id6813447">
+ An individual is to select from among <emphasis effect="italics">n</emphasis> alternatives in an attempt to
+obtain a particular one. This might be selection from answers on a
+multiple choice question, when only one is correct. Let <emphasis effect="italics">A</emphasis> be the
+event he makes a correct selection, and <emphasis effect="italics">B</emphasis> be the event he knows which
+is correct before making the selection. We suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>n</m:mi></m:mrow></m:math>. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math>; show that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>≥</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> increases with <emphasis effect="italics">n</emphasis> for fixed <emphasis effect="italics">p</emphasis>.
+</para>
+</problem>
+<solution id="fs-id5370784">
+<para id="id72508"> <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>n</m:mi></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:math></para>
+    <equation id="id72592">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mi>A</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>B</m:mi>
+                <m:mo>)</m:mo>
+                <m:mi>P</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>B</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>A</m:mi>
+                <m:mo>|</m:mo>
+                <m:msup>
+                  <m:mi>B</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>B</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mi>p</m:mi>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mn>1</m:mn>
+                <m:mi>n</m:mi>
+              </m:mfrac>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>p</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mi>p</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+              <m:mi>p</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id72758">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mfrac>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mi>n</m:mi>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mi>p</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:mi>p</m:mi>
+            </m:mrow>
+          </m:mfrac>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>increases</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>from</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>1</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>to</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mrow>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mi>p</m:mi>
+          </m:mrow>
+          <m:mspace width="4.pt"/>
+          <m:mtext>as</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>n</m:mi>
+          <m:mo>→</m:mo>
+          <m:mi>∞</m:mi>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1171893451010" print-placement="end"><problem id="fs-id1171890664053">
+<para id="fs-id1171886298354">
+ <emphasis effect="italics">Polya's urn scheme for a contagious disease</emphasis>.  An urn contains
+initially <emphasis effect="italics">b</emphasis> black balls and <emphasis effect="italics">r</emphasis> red balls (<m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>b</m:mi><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow></m:math>). A ball
+is drawn on an equally likely basis from among those in the urn, then
+replaced along with <emphasis effect="italics">c</emphasis> additional balls of the same color. The process
+is repeated. There are <emphasis effect="italics">n</emphasis> balls on the first choice, <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>c</m:mi></m:mrow></m:math> balls
+on the second choice, etc. Let <emphasis effect="italics">B<sub>k</sub></emphasis> be the event
+of a black ball on the <emphasis effect="italics">k</emphasis>th draw and <emphasis effect="italics">R<sub>k</sub></emphasis> be the event of a red ball on
+the <emphasis effect="italics">k</emphasis>th draw. Determine</para>
+    <list id="eip-id1166791589702" list-type="enumerated" number-style="lower-alpha"><item>  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>2</m:mn></m:msub><m:mo>|</m:mo><m:msub><m:mi>R</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math> </item><item>     <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>B</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math> </item><item>    <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>R</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math> </item><item>   <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>|</m:mo><m:msub><m:mi>R</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>.</item></list>
+</problem>
+<solution id="fs-id6759489">
+
+    <!--empty paragraphs get left behind.-->
+    <list id="id72882" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid10">
+        
+        <m:math overflow="scroll">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>R</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mi>b</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                </m:mrow>
+              </m:mfrac>
+            </m:mrow>
+          </m:mstyle>
+        </m:math>
+      </item>
+      <item id="uid11">
+        
+        <m:math overflow="scroll">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mi>b</m:mi>
+                <m:mi>n</m:mi>
+              </m:mfrac>
+              <m:mo>·</m:mo>
+              <m:mfrac>
+                <m:mrow>
+                  <m:mi>b</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                </m:mrow>
+              </m:mfrac>
+            </m:mrow>
+          </m:mstyle>
+        </m:math>
+      </item>
+      <item id="uid12">
+        
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>R</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>R</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>R</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>R</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>R</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+        <equation id="id73186">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mrow>
+                  <m:mi>r</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                </m:mrow>
+              </m:mfrac>
+              <m:mo>·</m:mo>
+              <m:mfrac>
+                <m:mi>r</m:mi>
+                <m:mi>n</m:mi>
+              </m:mfrac>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mi>r</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                </m:mrow>
+              </m:mfrac>
+              <m:mo>·</m:mo>
+              <m:mfrac>
+                <m:mi>b</m:mi>
+                <m:mi>n</m:mi>
+              </m:mfrac>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mrow>
+                  <m:mi>r</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mi>r</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mi>c</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mfrac>
+            </m:mrow>
+          </m:math>
+        </equation>
+      </item>
+      <item id="uid13"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>|</m:mo><m:msub><m:mi>R</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>R</m:mi><m:mn>2</m:mn></m:msub><m:mo>|</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:mrow><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>R</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math> with
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>R</m:mi><m:mn>2</m:mn></m:msub><m:mo>|</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>r</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>c</m:mi></m:mrow></m:mfrac><m:mo>·</m:mo><m:mfrac><m:mi>b</m:mi><m:mi>n</m:mi></m:mfrac></m:mrow></m:mstyle></m:math>.
+Using (c), we have
+<equation id="id73472"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>|</m:mo><m:msub><m:mi>R</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>b</m:mi><m:mrow><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>b</m:mi><m:mo>+</m:mo><m:mi>c</m:mi></m:mrow></m:mfrac><m:mo>=</m:mo><m:mfrac><m:mi>b</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>c</m:mi></m:mrow></m:mfrac></m:mrow></m:math></equation></item>
+    </list>
+</solution>
+</exercise>
+  </content>
+</document>

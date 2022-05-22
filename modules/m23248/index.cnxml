@@ -1,0 +1,1348 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Minterms and MATLAB Calculations</title>
+  <metadata>
+  <md:content-id>m23248</md:content-id><md:title>Minterms and MATLAB Calculations</md:title>
+  <md:abstract>The systematic formulation in the module Minterms shows that each Boolean combination, as a union of minterms, can be designated by a vector of zero-one coefficients. A coefficient one in the ith position (numbering from zero) indicates the inclusion of minterm Mi in the union. We formulate this pattern carefully below and show how MATLAB logical operations may be utilized in problem setup and solution.</md:abstract>
+  <md:uuid>48055b3c-07a9-44cf-a279-c7d1f5d31426</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="id225370">The concepts and procedures in this unit play a significant role in many aspects of the analysis of
+probability topics and in the use of MATLAB throughout this work.</para>
+    <section id="cid1">
+      <title> Minterm vectors and MATLAB </title>
+      <para id="id225387">The systematic formulation in the previous module <link document="m23247">Minterms</link> shows that each Boolean
+combination, as a union of minterms, can be designated by a vector of zero-one coefficients. A
+coefficient one in the <emphasis effect="italics">i</emphasis>th position (numbering from zero) indicates the inclusion of minterm <emphasis effect="italics">M<sub>i</sub></emphasis>
+in the union. We formulate this pattern carefully below and show how MATLAB logical
+operations may be utilized in problem setup and solution.</para>
+      <para id="id225420">Suppose <emphasis effect="italics">E</emphasis> is a Boolean combination of <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi></m:mrow></m:math>. Then, by the minterm expansion,</para>
+      <equation id="id225454">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:msub>
+                    <m:mi>J</m:mi>
+                    <m:mi>E</m:mi>
+                  </m:msub>
+                </m:mrow>
+                <m:mrow/>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id224876">where <emphasis effect="italics">M<sub>i</sub></emphasis> is the <emphasis effect="italics">i</emphasis>th minterm and <emphasis effect="italics">J<sub>E</sub></emphasis> is the set of indices for those <emphasis effect="italics">M<sub>i</sub></emphasis> included
+in <emphasis effect="italics">E</emphasis>. For example, consider</para>
+      <equation id="id225747">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>∪</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>B</m:mi>
+                <m:mo>∪</m:mo>
+                <m:msup>
+                  <m:mi>C</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>M</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>6</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id225874">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>F</m:mi>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>∪</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>5</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>M</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id225972">We may designate each set by a pattern of zeros and ones <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>e</m:mi><m:mn>0</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>e</m:mi><m:mn>7</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>. The ones indicate which minterms are present in the set. In the pattern for
+set <emphasis effect="italics">E</emphasis>, minterm <emphasis effect="italics">M<sub>i</sub></emphasis> is included in <emphasis effect="italics">E</emphasis> iff <m:math overflow="scroll"><m:mrow><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>. This is, in effect,
+another arrangement of the minterm map. In this form, it is convenient to view the
+pattern as a <emphasis effect="italics">minterm vector</emphasis>, which may be represented by a row matrix or row vector
+<m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:msub><m:mi>e</m:mi><m:mn>0</m:mn></m:msub><m:mspace width="0.277778em"/><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>e</m:mi><m:mn>7</m:mn></m:msub><m:mo>]</m:mo></m:mrow></m:math> . 
+We find it convenient to use <emphasis effect="italics"> the same symbol
+for the name of the event and for the minterm vector or matrix representing it</emphasis>. Thus,
+for the examples above,</para>
+      <equation id="id226135">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>∼</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>F</m:mi>
+            <m:mo>∼</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id226258">It should be apparent that this formalization can be extended to sets generated
+by any finite class.</para>
+    
+      <para id="fs-id1170563211513"><emphasis effect="bold"> Minterm vectors for Boolean combinations</emphasis></para>
+      <para id="id226274">If <emphasis effect="italics">E</emphasis> and <emphasis effect="italics">F</emphasis> are combinations of <emphasis effect="italics">n</emphasis> generating sets, then each is represented by
+a unique minterm vector of length <emphasis effect="italics">2<sup>n</sup></emphasis>. In the treatment in the module <link document="m23247">Minterms</link>, we determine
+the minterm vector with the aid of a minterm map. We wish to develop a
+systematic way to determine these vectors.</para>
+      <para id="id226321">As a first step, we suppose we have minterm vectors for <emphasis effect="italics">E</emphasis> and <emphasis effect="italics">F</emphasis> and want to
+obtain the minterm vector of Boolean combinations of these.</para>
+      <list id="id226342" display="block" list-type="enumerated">
+        <item id="uid1">The minterm expansion for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>∪</m:mo><m:mi>F</m:mi></m:mrow></m:math> has all the minterms in either set. This
+means the <emphasis effect="italics">j</emphasis>th element of the vector for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>∪</m:mo><m:mi>F</m:mi></m:mrow></m:math> is the <emphasis effect="italics">maximum</emphasis> of the
+<emphasis effect="italics">j</emphasis>th elements for the two vectors.
+</item>
+        <item id="uid2">The minterm expansion for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>∩</m:mo><m:mi>F</m:mi></m:mrow></m:math> has only those minterms in both sets. This
+means the <emphasis effect="italics">j</emphasis>th element of the vector for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>∩</m:mo><m:mi>F</m:mi></m:mrow></m:math> is the <emphasis effect="italics">minimum</emphasis> of the
+<emphasis effect="italics">j</emphasis>th elements for the two vectors.
+</item>
+        <item id="uid3">The minterm expansion for <emphasis effect="italics">E<sup>c</sup></emphasis> has only those minterms not in the expansion
+for <emphasis effect="italics">E</emphasis>. This means the vector for <emphasis effect="italics">E<sup>c</sup></emphasis> has zeros and ones interchanged. The
+<emphasis effect="italics">j</emphasis>th element of <emphasis effect="italics">E<sup>c</sup></emphasis> is one iff the corresponding element of <emphasis effect="italics">E</emphasis> is zero.
+</item>
+      </list>
+      <para id="id226540">We illustrate for the case of
+the two combinations <emphasis effect="italics">E</emphasis> and <emphasis effect="italics">F</emphasis> of three generating sets, considered above</para>
+      <equation id="id226560">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>∪</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>B</m:mi>
+                <m:mo>∪</m:mo>
+                <m:msup>
+                  <m:mi>C</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>∼</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>F</m:mi>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>∪</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>∼</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id226756">Then</para>
+      <equation id="id226761">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>F</m:mi>
+            <m:mo>∼</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mo>∩</m:mo>
+            <m:mi>F</m:mi>
+            <m:mo>∼</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>E</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>∼</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>1</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+    
+      <para id="fs-id3204902"><emphasis effect="bold"> MATLAB logical operations</emphasis></para>
+      <para id="id226972">MATLAB logical operations on zero-one matrices provide a convenient way of handling
+Boolean combinations of minterm vectors represented as matrices. For two <emphasis effect="italics">zero-one</emphasis>
+matrices <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>F</m:mi></m:mrow></m:math> of the same size</para>
+      <list id="id226998" display="block" list-type="labeled-item"><item id="uid4"><label/><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>|</m:mo><m:mi>F</m:mi></m:mrow></m:math> is the matrix obtained by taking the maximum element in each place.
+</item>
+        <item id="uid5"><label/><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>&amp;</m:mo><m:mi>F</m:mi></m:mrow></m:math> is the matrix obtained by taking the minimum element in each place.
+</item>
+        <item id="uid6"><label/><m:math overflow="scroll"><m:mrow><m:msup><m:mi>E</m:mi><m:mi>C</m:mi></m:msup></m:mrow></m:math> is the matrix obtained by interchanging one and zero in each place in <emphasis effect="italics">E</emphasis>.
+</item>
+      </list>
+      <para id="id227093">Thus, if <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>F</m:mi></m:mrow></m:math> are minterm vectors for sets by the same name, then <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>|</m:mo><m:mi>F</m:mi></m:mrow></m:math> is the minterm
+vector for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>∪</m:mo><m:mi>F</m:mi></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>&amp;</m:mo><m:mi>F</m:mi></m:mrow></m:math> is the minterm vector for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>∩</m:mo><m:mi>F</m:mi></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>E</m:mi></m:mrow></m:math> is
+the minterm vector for <emphasis effect="italics">E<sup>c</sup></emphasis>.</para>
+      <para id="id227208">This suggests a general approach to determining minterm vectors for Boolean combinations.</para>
+      <list id="id227212" display="block" list-type="enumerated" number-style="arabic"><item id="uid7">Start with minterm vectors for the generating sets.
+</item>
+        <item id="uid8">Use MATLAB logical operations to obtain the minterm vector for any Boolean combination.
+</item>
+      </list>
+      <para id="id227246">Suppose, for example, the class
+of generating sets is <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math>. Then the minterm vectors for <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi></m:mrow></m:math>, and <emphasis effect="italics">C</emphasis>,
+respectively, are</para>
+      <equation id="id227306">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>B</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id227495">If <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>, then the logical combination <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>&amp;</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mspace width="3.33333pt"/><m:mi>C</m:mi></m:mrow></m:math>  of the matrices
+yields <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>1</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>.</para>
+    
+      <para id="fs-id1170562858454"><emphasis effect="bold"> MATLAB implementation</emphasis></para>
+      <para id="id227624">A key step in the procedure just outlined is to obtain the minterm vectors for the generating
+elements <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math>. We have an m-function to provide
+such fundamental vectors. For example to produce the second minterm vector for the family
+(i.e., the minterm vector for <emphasis effect="italics">B</emphasis>), the basic zero-one pattern <code display="inline">0  0  1  1</code> is replicated
+twice to give</para>
+      <code id="id227675" display="block"> 0     0     1     1     0     0     1     1
+</code>
+      <para id="id227684">The function <emphasis effect="italics">minterm(n,k)</emphasis>  generates the <emphasis effect="italics">k</emphasis>th minterm vector for a class of <emphasis effect="italics">n</emphasis>
+generating sets.</para>
+      <!--empty paragraphs get left behind.-->
+<example id="fs-id12469194"><title>Minterms for the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math>.</title><code id="id227749" display="block">&gt;&gt; A = minterm(3,1)
+A =  0     0     0     0     1     1     1     1
+&gt;&gt; B = minterm(3,2)
+B =  0     0     1     1     0     0     1     1
+&gt;&gt; C = minterm(3,3)
+C =  0     1     0     1     0     1     0     1
+</code>
+      </example>
+<example id="fs-id8869777"><title>Minterm patterns for the Boolean combinations</title><para id="id227842">
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>F</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>C</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>G</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>C</m:mi>
+          </m:mrow>
+        </m:math>
+      </para>
+      <!--empty paragraphs get left behind.-->
+      <code id="id227907" display="block">F = (A&amp;B)|(~B&amp;C)
+F =  0     1     0     0     0     1     1     1
+&gt;&gt; G = A|(~A&amp;C)
+G =  0     1     0     1     1     1     1     1
+&gt;&gt; JF = find(F)-1           % Use of find to determine index set for F
+JF =   1     5     6     7  % Shows F = M(1, 5, 6, 7)
+</code>
+      </example>
+
+      <para id="id227992">These basic minterm patterns are useful not only for Boolean combinations of events
+but also for many aspects of the analysis of those random variables which take on only
+a finite number of values.
+</para>
+    
+<para id="fs-id1170564160861"><emphasis effect="bold">Zero-one arrays in MATLAB</emphasis></para>
+
+<para id="id228008">The treatment above hides the fact that a rectangular array of zeros and ones can have two quite
+different meanings and functions in MATLAB.</para>
+      <list id="id228013" display="block" list-type="enumerated">
+        <item id="uid9">A <emphasis effect="italics">numerical matrix</emphasis> (or vector) subject to the usual operations on matrices..
+</item>
+        <item id="uid10">A <emphasis effect="italics">logical array</emphasis> whose elements are combined by
+a.  Logical operators to give new logical arrays;
+b.  Array operations (element by element) to give numerical matrices;
+c.  Array operations with numerical matrices to give numerical results.
+</item>
+      </list>
+      <para id="id228071">Some simple examples will illustrate the principal properties.</para>
+      <code id="id228075" display="block">&gt;&gt;&gt; A = minterm(3,1);
+&gt;&gt; B = minterm(3,2);
+&gt;&gt; C = minterm(3,3);
+&gt;&gt; F = (A&amp;B)|(~B&amp;C)
+F =  0     1     0     0     0     1     1     1
+&gt;&gt; G = A|(~A&amp;C)
+G =  0     1     0     1     1     1     1     1
+&gt;&gt; islogical(A)       % Test for logical array
+ans =    0
+&gt;&gt; islogical(F)
+ans =   1
+&gt;&gt; m = max(A,B)       % A matrix operation
+m =   0     0     1     1     1     1     1     1
+&gt;&gt; islogical(m)
+ans =   0
+&gt;&gt; m1 = A|B           % A logical operation
+m1 =   0     0     1     1     1     1     1     1
+&gt;&gt; islogical(m1)
+ans = 1
+&gt;&gt; a = logical(A)      % Converts 0-1 matrix into logical array
+a =   0     0     0     0     1     1     1     1
+&gt;&gt; b = logical(B)
+&gt;&gt; m2 = a|b
+m2 =   0     0     1     1     1     1     1     1
+&gt;&gt; p = dot(A,B)        % Equivalently, p = A*B'
+p =  2
+&gt;&gt; p1 = total(A.*b)
+p1 =  2
+&gt;&gt; p3 = total(A.*B)
+p3 =  2
+&gt;&gt; p4 = a*b'           % Cannot use matrix operations on logical arrays
+??? Error using ==&gt; mtimes   % MATLAB error signal
+Logical inputs must be scalar.
+</code>
+      <para id="id228472">Often it is desirable to have a table of the generating minterm vectors. Use of the
+function minterm in a simple “for loop” yields the following m-function.</para>
+      <para id="id228478">The function <emphasis effect="italics">mintable(n)</emphasis>  Generates a table of minterm vectors for <emphasis effect="italics">n</emphasis>
+generating sets.</para>
+
+<example id="fs-id5193594"><title>Mintable for three variables</title><code id="id228505" display="block">&gt;&gt; M3 = mintable(3)
+M3 = 0     0     0     0     1     1     1     1
+     0     0     1     1     0     0     1     1
+     0     1     0     1     0     1     0     1
+</code>
+      </example>
+      <para id="id228562">As an application of mintable, consider the problem of determining the probability
+of <emphasis effect="italics">k</emphasis> of <emphasis effect="italics">n</emphasis> events. If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is any finite class of events, the event that
+exactly <emphasis effect="italics">k</emphasis> of these events occur on a trial can be characterized simply in terms
+of the minterm expansion. The event <m:math overflow="scroll"><m:msub><m:mi>A</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub></m:math> that exactly <emphasis effect="italics">k</emphasis> occur is given by</para>
+      <equation id="id228656">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>disjoint</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>union</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>those</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>minterms</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>exactly</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>k</m:mi>
+            <m:mspace width="4.pt"/>
+            <m:mtext>positions</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>uncomplemented</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id228737">In the matrix <code display="inline">M = mintable(n)</code> these are the minterms corresponding to columns
+with exactly <emphasis effect="italics">k</emphasis> ones. The event <m:math overflow="scroll"><m:msub><m:mi>B</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub></m:math> that <emphasis effect="italics">k</emphasis> or more occur is given by</para>
+      <equation id="id228785"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>r</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>k</m:mi>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mrow>
+                <m:mi>r</m:mi>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id228850">If we have the minterm probabilities, it is easy to pick out the appropriate minterms and
+combine the probabilities. The following example in the case of three variables illustrates
+the procedure.</para>
+<example id="fs-id11775206"><title>The software survey (continued)</title><para id="id228866">In the software survey problem, the minterm probabilities are</para>
+      <equation id="id228869">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>p</m:mi>
+            <m:mi>m</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>05</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>20</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>40</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id228984">where <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo></m:mrow></m:math> event has word processor, <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo></m:mrow></m:math> event has spread sheet, <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>=</m:mo></m:mrow></m:math> event has a
+data base program. It is desired to get the probability an individual selected has
+<emphasis effect="italics">k</emphasis> of these, <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>3</m:mn></m:mrow></m:math>.</para>
+      <para id="id229073">SOLUTION</para>
+      <para id="id229076">We form a mintable for three variables. We count the number of “successes” corresponding
+to each minterm by using the MATLAB function sum, which gives the sum of each column. In this
+case, it would be easy to determine each distinct value and add the probabilities on the
+minterms which yield this value. For more complicated cases, we have an m-function called
+<emphasis effect="italics">csort</emphasis> (for sort and consolidate) to perform this operation.</para>
+      <code id="id229092" display="block">&gt;&gt; pm = 0.01*[0 5 10 5 20 10 40 10];
+&gt;&gt; M = mintable(3)
+M =
+0     0     0     0     1     1     1     1
+0     0     1     1     0     0     1     1
+0     1     0     1     0     1     0     1
+&gt;&gt; T = sum(M)                                    % Column sums give number
+T =  0     1     1     2     1     2     2     3 % of successes on each
+&gt;&gt; [k,pk] = csort(T,pm);                         % minterm, determines
+                                                 % distinct values in T and
+&gt;&gt; disp([k;pk]')                                 % consolidates probabilities
+0         0
+1.0000    0.3500
+2.0000    0.5500
+3.0000    0.1000
+</code>
+      <para id="id229258">For three variables, it is easy enough to identify the various combinations “by eye”
+and make the combinations. For a larger number of variables, however, this may become tedious.
+The approach is much more useful in the case of <link document=" m23253">Independent 
+Events</link>, because of the ease of determining the minterm probabilities.</para>
+</example>
+    
+      <para id="fs-id1170572951281"><emphasis effect="bold"> Minvec procedures</emphasis></para>
+
+      <para id="id229294">Use of the tilde <m:math overflow="scroll"><m:mo>∼</m:mo></m:math> to indicate the complement of an event
+is often awkward. It is customary to indicate the complement of
+an event <emphasis effect="italics">E</emphasis> by <emphasis effect="italics">E<sup>c</sup></emphasis>. In MATLAB, we cannot indicate the superscript, so we
+indicate the complement by <m:math overflow="scroll"><m:mrow><m:msup><m:mi>E</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math> instead of <m:math overflow="scroll"><m:mrow><m:mo>∼</m:mo><m:mi>E</m:mi></m:mrow></m:math>. To facilitate writing combinations,
+we have a family of <emphasis effect="italics">minvec</emphasis> procedures (minvec3, minvec4, ..., minvec10) to expedite
+expressing Boolean combinations of <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mn>10</m:mn></m:mrow></m:math> sets.
+These generate and name the minterm vector for each generating set and its complement.
+</para>
+<example id="fs-id12798170"><title>Boolean combinations using minvec3</title><para id="id229414">We wish to generate a matrix whose rows are the minterm vectors for <m:math overflow="scroll"><m:mrow><m:mi>Ω</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>,
+<emphasis effect="italics">A</emphasis>, <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>B</m:mi></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi></m:mrow></m:math>, <emphasis effect="italics">C</emphasis>, and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>, respectively.</para>
+      <code id="id229509" display="block">&gt;&gt; minvec3                               % Call for the setup procedure
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired
+&gt;&gt; V = [A|Ac; A; A&amp;B; A&amp;B&amp;C; C; Ac&amp;Cc];  % Logical combinations (one per
+                                       % row) yield logical vectors
+&gt;&gt; disp(V)
+1     1     1     1     1     1     1     1   % Mixed logical and
+0     0     0     0     1     1     1     1   % numerical vectors
+0     0     0     0     0     0     1     1
+0     0     0     0     0     0     0     1
+0     1     0     1     0     1     0     1
+1     0     1     0     0     0     0     0
+</code>
+</example>
+    
+<para id="fs-id1170571667503"><emphasis effect="bold">Minterm probabilities and Boolean combination</emphasis></para>
+
+<para id="id229646">If we have the probability of every minterm generated by a finite class, we
+can determine the probability of any Boolean combination of the members of the
+class. When we know the minterm expansion or, equivalently, the minterm
+vector, we simply pick out the probabilities corresponding to the minterms
+in the expansion and add them. In the following example, we do this “by hand” then 
+show how to do it with MATLAB .</para>
+<example id="fs-id1165521600652"><para id="id229663">Consider <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>c</m:mi></m:msup></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>=</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi></m:mrow></m:math> of the
+example above, and suppose the respective minterm probabilities are</para>
+      <equation id="id229766">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>21</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>06</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>29</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>11</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>09</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>5</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>03</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>14</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>07</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id229941">Use of a minterm map shows <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mi>M</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>=</m:mo><m:mi>M</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>. so that</para>
+      <equation id="id230033">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>4</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>6</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>7</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>36</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>F</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>5</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>7</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>37</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id230216">This is easily handled in MATLAB.</para>
+      <list id="id230223" display="block" list-type="bulleted">
+        <item id="uid11">Use minvec3 to set the generating minterm vectors.
+</item>
+        <item id="uid12">Use <emphasis effect="italics">logical</emphasis> matrix operations
+<equation id="id230257"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>&amp;</m:mo><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mi>c</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>|</m:mo><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>c</m:mi><m:mo>&amp;</m:mo><m:mo>(</m:mo><m:mspace width="3.33333pt"/><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mi>c</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>)</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>F</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>c</m:mi><m:mo>&amp;</m:mo><m:mi>B</m:mi><m:mi>c</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>&amp;</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math></equation>
+to obtain the (logical) minterm vectors for <emphasis effect="italics">E</emphasis> and <emphasis effect="italics">F</emphasis>.
+</item>
+        <item id="uid13">If <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mi>m</m:mi></m:mrow></m:math> is the matrix of minterm probabilities, perform the <emphasis effect="italics">algebraic</emphasis> dot
+product or scalar product of the <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mi>m</m:mi></m:mrow></m:math> matrix and the minterm vector for the combination.
+This can be called for by the MATLAB commands PE = E*pm'
+ and
+PF = F*pm'
+ .
+</item>
+      </list>
+      <para id="id230462">The following is a transcript of the MATLAB operations.</para>
+      <code id="id230466" display="block">&gt;&gt; minvec3                 % Call for the setup procedure
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+&gt;&gt; E  = (A&amp;(B|Cc))|(Ac&amp;~(B|Cc));
+&gt;&gt; F  = (Ac&amp;Bc)|(A&amp;C);
+&gt;&gt; pm = 0.01*[21 6 29 11 9 3 14 7];
+&gt;&gt; PE = E*pm'              % Picks out and adds the minterm probabilities
+PE =  0.3600
+&gt;&gt; PF = F*pm'
+PF =  0.3700
+</code>
+      </example>
+<example id="fs-id8926081"><title>Solution of the software survey problem</title><para id="id230612">We set up the matrix equations with the use of MATLAB and solve for the
+minterm probabilities. From these, we may solve for the desired “target”
+probabilities.</para>
+      <code id="id230618" display="block">&gt;&gt; minvec3
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Data vector combinations are:
+&gt;&gt; DV = [A|Ac; A; B; C; A&amp;B&amp;C; Ac&amp;Bc; (A&amp;B)|(A&amp;C)|(B&amp;C); (A&amp;Bc&amp;C) - 2*(Ac&amp;B&amp;C)]
+DV =
+1     1     1     1     1     1     1     1    % Data mixed numerical
+0     0     0     0     1     1     1     1    % and logical vectors
+0     0     1     1     0     0     1     1
+0     1     0     1     0     1     0     1
+0     0     0     0     0     0     0     1
+1     1     0     0     0     0     0     0
+0     0     0     1     0     1     1     1
+0     0     0    -2     0     1     0     0
+&gt;&gt; DP = [1 0.8 0.65 0.3 0.1 0.05 0.65 0];  % Corresponding data probabilities
+&gt;&gt; pm = DV\DP'                             % Solution for minterm probabilities
+pm =
+-0.0000                                          % Roundoff -3.5 x 10-17
+0.0500
+0.1000
+0.0500
+0.2000
+0.1000
+0.4000
+0.1000
+&gt;&gt; TV = [(A&amp;B&amp;Cc)|(A&amp;Bc&amp;C)|(Ac&amp;B&amp;C); Ac&amp;Bc&amp;C]       % Target combinations
+TV =
+0     0     0     1     0     1     1     0    % Target vectors
+0     1     0     0     0     0     0     0
+&gt;&gt; PV = TV*pm                          % Solution for target probabilities
+PV =
+0.5500                             % Target probabilities
+0.0500
+</code>
+      </example>
+
+
+<example id="eip-id5943276"><title>An alternate approach</title><para id="id231003">The previous procedure first obtained all minterm probabilities, then used these to
+determine probabilities for the target combinations. The following procedure does not
+require calculation of the minterm probabilities. Sometimes the data are not sufficient to
+calculate all minterm probabilities, yet are sufficient to allow determination of the target
+probabilities.</para>
+      <para id="id231009">Suppose the data minterm vectors are linearly independent, and the target minterm
+vectors are linearly dependent upon the data vectors (i.e., the target vectors can
+be expressed as linear combinations of the data vectors). Now each target probability
+is the same linear combination of the data probabilities. To determine the linear
+combinations, solve the matrix equation</para>
+      <equation id="id231019">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>T</m:mi>
+            <m:mi>V</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mi>T</m:mi>
+            <m:mo>*</m:mo>
+            <m:mi>D</m:mi>
+            <m:mi>V</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>which</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>has</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>MATLAB</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>solution</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>C</m:mi>
+            <m:mi>T</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>T</m:mi>
+            <m:mi>V</m:mi>
+            <m:mo>/</m:mo>
+            <m:mi>D</m:mi>
+            <m:mi>V</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id231101">Then the matrix <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mi>p</m:mi></m:mrow></m:math> of target probabilities is given by <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mi>p</m:mi><m:mo>=</m:mo><m:mi>C</m:mi><m:mi>T</m:mi><m:mo>*</m:mo><m:mi>D</m:mi><m:msup><m:mi>P</m:mi><m:mo>'</m:mo></m:msup></m:mrow></m:math>.  Continuing the MATLAB procedure above, we have:</para>
+      <!--empty paragraphs get left behind.-->
+      <code id="id231155" display="block">&gt;&gt; CT = TV/DV;
+</code>
+      <code id="id231168" display="block">&gt;&gt; tp = CT*DP'
+</code>
+      <code id="id231182" display="block">tp = 0.5500
+         0.0500</code>
+      
+     
+    </example></section>
+    <section id="cid8">
+      <title> The procedure mincalc</title>
+      <para id="id231225">The procedure <emphasis effect="italics">mincalc</emphasis> performs calculations as in the preceding examples.
+The <emphasis effect="italics">refinements</emphasis> consist of determining consistency and computability of various
+individual minterm probabilities and target probilities. The consistency check
+is principally for negative minterm probabilities. The computability tests are
+tests for linear independence by means of calculation of ranks of various
+matrices. The procedure picks out the computable minterm probabilities and the
+computable target probabilities and calculates them.</para>
+      <para id="id231243">To utilize the procedure, the problem must be formulated appropriately and precisely,
+as follows:</para>
+      <list id="id231247" display="block" list-type="enumerated" number-style="arabic"><item id="uid14">Use the MATLAB program <emphasis effect="italics">minvecq</emphasis> to set minterm vectors for each of <emphasis effect="italics">q</emphasis> basic
+events.
+</item>
+        <item id="uid15"><emphasis effect="italics">Data</emphasis> consist of Boolean combinations of the basic events and
+the respective probabilities of these combinations. These are organized into
+two matrices:
+<list id="id231300" display="block" list-type="bulleted"><item id="uid16">The <emphasis effect="italics">data vector matrix </emphasis><m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mi>V</m:mi></m:mrow></m:math> has the data Boolean combinations– one on each row.
+MATLAB translates each row into the minterm vector for the corresponding Boolean combination.
+The first entry (on the first row) is A <m:math overflow="scroll"><m:mo>|</m:mo></m:math>Ac (for <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>), which is the whole space. Its
+minterm vector consists of a row of ones.
+</item><item id="uid17">The <emphasis effect="italics">data probability matrix </emphasis><m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mi>P</m:mi></m:mrow></m:math> is a row matrix of the data probabilities.
+The first entry is one, the probability of the whole space.
+</item></list></item>
+        <item id="uid18">The <emphasis effect="italics">objective</emphasis> is to determine the probability of various <emphasis effect="italics">target</emphasis> Boolean
+combinations. These are put into the <emphasis effect="italics">target vector matrix </emphasis><m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mi>V</m:mi></m:mrow></m:math>, one on each row.
+MATLAB produces the minterm vector for each corresponding target Boolean combination.
+</item>
+      </list>
+      <para id="id231450"><emphasis effect="italics">Computational note</emphasis>. In mincalc, it is necessary to turn the arrays DV and TV consisting of
+zero-one patterns into zero-one matrices. This is accomplished for DV by the
+operation  <code display="inline">DV = ones(size(DV)).*DV</code>.  and similarly for TV. Both the original and the
+transformed matrices have the same zero-one pattern, but MATLAB interprets them differently.</para>
+    
+      <para id="fs-id1170568674162"><emphasis effect="bold"> Usual case</emphasis></para>
+
+      <para id="id231475">Ṡuppose the data minterm vectors are linearly independent and the
+target vectors are each linearly dependent on the data minterm vectors. Then each target
+minterm vector is expressible as a linear combination of data minterm vectors. Thus, there is a
+matrix <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mi>T</m:mi></m:mrow></m:math> such that <m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mi>V</m:mi><m:mo>=</m:mo><m:mi>C</m:mi><m:mi>T</m:mi><m:mo>*</m:mo><m:mi>D</m:mi><m:mi>V</m:mi></m:mrow></m:math>. MATLAB solves this with
+the command <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mi>T</m:mi><m:mo>=</m:mo><m:mi>T</m:mi><m:mi>V</m:mi><m:mo>/</m:mo><m:mi>D</m:mi><m:mi>V</m:mi></m:mrow></m:math>.
+<emphasis effect="italics">The target probabilities are the same linear combinations of the data probabilities</emphasis>.  These are obtained by the MATLAB operation <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mi>p</m:mi><m:mo>=</m:mo><m:mi>D</m:mi><m:mi>P</m:mi><m:mo>*</m:mo><m:mi>C</m:mi><m:msup><m:mi>T</m:mi><m:mo>'</m:mo></m:msup></m:mrow></m:math>.</para>
+      <!--empty paragraphs get left behind.-->
+    
+      <para id="fs-id1170571897972"><emphasis effect="bold"> Cautionary notes</emphasis></para>
+
+      <para id="id231593">The program mincalc depends upon the provision in MATLAB for
+solving equations when less than full data are available (based on the singular value
+decomposition). There are several situations which should be dealt with as
+special cases. It is usually a good idea to check results by hand to determine
+whether they are consistent with data. The checking by hand is usually much easier
+than obtaining the solution unaided, so that use of MATLAB is advantageous even
+in questionable cases.</para>
+      <list id="id231601" display="block" list-type="enumerated">
+        <item id="uid19"><emphasis effect="italics">The Zero Problem</emphasis>.  If the total probability of a group of minterms is zero,
+then it follows that the
+probability of each minterm in the group is zero. However, if mincalc does not have
+enough information to calculate the separate minterm probabilities in the case they are
+not zero, it will not pick up in the zero case the fact that the separate minterm probabilities
+are zero. It simply considers these minterm probabilities not computable.
+</item>
+        <item id="uid20"><emphasis effect="italics">Linear dependence</emphasis>.  In the case of linear dependence, the operation
+called for by the command CT = TV/DV may not be able to solve the equations. The
+matrix may be singular, or it may not be able to decide which of the redundant
+data equations to use. Should it provide a solution, the result should be checked with
+the aid of a minterm map.
+</item>
+        <item id="uid21"><emphasis effect="italics">Consistency check</emphasis>.  Since the consistency check is for negative minterms,
+if there are not enough
+data to calculate the minterm probabilities, there is no simple check on the
+consistency. Sometimes the probability of a target vector included in another
+vector will actually exceed what should be the larger probability. Without considerable
+checking, it may be difficult to determine consistency.
+</item>
+        <item id="uid22">In a few unusual cases, the command CT = TV/DV does not operate appropriately,
+even though the data should be adequate for the problem at hand.
+Apparently the approximation process does not converge.
+</item>
+      </list>
+   
+      <para id="fs-id1170570034839"><emphasis effect="bold"> MATLAB Solutions for examples using mincalc</emphasis></para>
+
+<example id="fs-id1165518153309"><title>Software survey</title><code id="id231700" display="block">% file mcalc01   Data for software survey
+minvec3;
+DV = [A|Ac; A; B; C; A&amp;B&amp;C; Ac&amp;Bc; (A&amp;B)|(A&amp;C)|(B&amp;C); (A&amp;Bc&amp;C)  - 2*(Ac&amp;B&amp;C)];
+DP = [1 0.8 0.65 0.3 0.1 0.05 0.65 0];
+TV = [(A&amp;B&amp;Cc)|(A&amp;Bc&amp;C)|(Ac&amp;B&amp;C); Ac&amp;Bc&amp;C];
+disp('Call for mincalc')
+&gt;&gt; mcalc01         % Call for data
+Call for mincalc   % Prompt supplied in the data file
+&gt;&gt; mincalc
+Data vectors are linearly independent
+Computable target probabilities
+1.0000    0.5500
+2.0000    0.0500
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+&gt;&gt; disp(PMA)       % Optional call for minterm probabilities
+0         0
+1.0000    0.0500
+2.0000    0.1000
+3.0000    0.0500
+4.0000    0.2000
+5.0000    0.1000
+6.0000    0.4000
+7.0000    0.1000
+</code>
+      </example>
+<example id="fs-id1165526384833"><title>Computer survey</title><code id="id231981" display="block">% file mcalc02.m    Data for computer survey
+minvec3
+DV =   [A|Ac; A; B; C; A&amp;B&amp;C; A&amp;C; (A&amp;B)|(A&amp;C)|(B&amp;C); ...
+2*(B&amp;C) - (A&amp;C)];
+DP = 0.001*[1000 565 515 151 51 124 212 0];   TV = [A|B|C; Ac&amp;Bc&amp;C];
+disp('Call for mincalc')
+&gt;&gt; mcalc02
+Call for mincalc
+&gt;&gt; mincalc
+Data vectors are linearly independent
+Computable target probabilities
+1.0000    0.9680
+2.0000    0.0160
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+&gt;&gt; disp(PMA)
+0         0.0320
+1.0000    0.0160
+2.0000    0.3760
+3.0000    0.0110
+4.0000    0.3640
+5.0000    0.0730
+6.0000    0.0770
+7.0000    0.0510
+</code>
+      </example>
+<example id="fs-id1165518492193"><code id="id232262" display="block">% file mcalc03.m    Data for opinion survey
+minvec4
+DV = [A|Ac; A; B; C; D; A&amp;(B|Cc)&amp;Dc; A|((B&amp;C)|Dc) ; Ac&amp;B&amp;Cc&amp;D; ...
+A&amp;B&amp;C&amp;D; A&amp;Bc&amp;C; Ac&amp;Bc&amp;Cc&amp;D; Ac&amp;B&amp;C; Ac&amp;Bc&amp;Dc; A&amp;Cc; A&amp;C&amp;Dc; A&amp;B&amp;Cc&amp;Dc];
+DP =  0.001*[1000 200 500 300 700 55 520 200 15 30 195 120 120 ...
+              140 25 20];
+TV = [Ac&amp;((B&amp;Cc)|(Bc&amp;C)); A|(B&amp;Cc)];
+disp('Call for mincalc')
+&gt;&gt; mincalc03
+Call for mincalc
+&gt;&gt; mincalc
+Data vectors are linearly independent
+Computable target probabilities
+1.0000    0.4000
+2.0000    0.4800
+The number of minterms is 16
+The number of available minterms is 16
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+&gt;&gt; disp(minmap(pma))    % Display arranged as on minterm map
+0.0850    0.0800    0.0200    0.0200
+0.1950    0.2000    0.0500    0.0500
+0.0350    0.0350    0.0100    0.0150
+0.0850    0.0850    0.0200    0.0150
+</code>
+      </example>
+    
+      <para id="fs-id1170574412580"><emphasis effect="bold"> The procedure mincalct</emphasis></para>
+      <para id="id232527">A useful modification, which we call <emphasis effect="italics">mincalct</emphasis>, computes the available target
+probabilities, without checking and computing the minterm probabilities. This procedure
+assumes a data file similar to that for mincalc, except that it does not need the target
+matrix <m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mi>V</m:mi></m:mrow></m:math>, since it prompts for target Boolean combination inputs. The procedure
+mincalct may be used after mincalc has performed its operations to calculate probabilities
+for additional target combinations.</para>
+      <example id="fs-id1165526214922"><title>(continued) Additional target datum for the opinion survey</title><para id="id232560">Suppose mincalc has been applied to the data for the opinion survey and that it
+is desired to determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>D</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:math>. It is not necessary to
+recalculate all the other quantities. We may simply use the procedure mincalct and
+input the desired Boolean combination at the prompt.</para>
+      <code id="id232596" display="block">&gt;&gt; mincalct
+Enter matrix of target Boolean combinations  (A&amp;D)|(B&amp;Dc)
+Computable target probabilities
+    1.0000    0.2850
+</code>
+      <para id="id232637">Repeated calls for mcalct may be used to compute other target probabilities.</para>
+      </example>
+    </section>
+  </content>
+</document>

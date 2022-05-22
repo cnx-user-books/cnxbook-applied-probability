@@ -1,0 +1,493 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Appendix G to Applied Probability: Properties of conditional independence, given a random vector</title>
+  <metadata>
+  <md:content-id>m24003</md:content-id><md:title>Appendix G to Applied Probability: Properties of conditional independence, given a random vector</md:title>
+  <md:abstract>This property lies at the root of the theory of Markov processes, which are characterized by the condition that past and future are conditionally independent, given the present.  The notions of past, present, and future are somewhat elastic.  One may have an extended present, a finite or infinite past or future.  The mathematical patterns of past, present, and future provide important results on the "behavior" of Markov processes.</md:abstract>
+  <md:uuid>0ac0029a-fa9d-4b58-9bfc-04ea9dd47897</md:uuid>
+</metadata>
+
+<content>
+    <para id="id115154"><emphasis effect="bold">Definition</emphasis>. The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is <emphasis effect="italics">conditionally independent, given</emphasis><emphasis effect="italics">Z</emphasis>, denoted
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math> iff</para>
+    <equation id="id115232">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>M</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>M</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mspace width="4pt"/>
+          <m:mi mathvariant="normal">a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi mathvariant="normal">s</m:mi>
+          <m:mo>.</m:mo>
+          <m:mspace width="0.166667em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>for</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>all</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>Borel</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>sets</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mi>M</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mi>N</m:mi>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id115569">An arbitrary class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>t</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi>T</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random vectors is conditionally independent, give <emphasis effect="italics">Z</emphasis>,
+iff such a product rule holds for each finite subclass or two or more members of the class.</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id115617"><emphasis effect="italics">Remark</emphasis>. The expression “for all Borel sets <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>N</m:mi></m:mrow></m:math>,” here and elsewhere, implies the sets are
+on the appropriate codomains. Also, the expressions below “for all Borel functions <emphasis effect="italics">g</emphasis>,” etc.,
+imply that the functions are real-valued, such that the indicated expectations are finite.</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id115660"><emphasis effect="bold">The following are equivalent</emphasis>. Each is necessary and sufficient that <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math>.</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id115707" display="block" list-type="labeled-item"><item id="uid1">
+        <label>(CI1) </label>
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Borel</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>sets</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>M</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>N</m:mi>
+          </m:mrow>
+        </m:math>
+      </item>
+      <item id="uid2">
+        <label>(CI2) </label>
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Borel</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>sets</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>M</m:mi>
+          </m:mrow>
+        </m:math>
+      </item>
+      <item id="uid3">
+        <label>(CI3) </label>
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>Q</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>M</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>Q</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Borel</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>sets</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>M</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Q</m:mi>
+          </m:mrow>
+        </m:math>
+      </item>
+      <item id="uid4"><label>(CI4) </label><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mtext>for</m:mtext><m:mspace width="4.pt"/><m:mtext>all</m:mtext><m:mspace width="4.pt"/><m:mtext>Borel</m:mtext><m:mspace width="4.pt"/><m:mtext>sets</m:mtext><m:mspace width="0.277778em"/><m:mi>M</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>Q</m:mi></m:mrow></m:math>
+<newline/><newline/>
+****
+</item>
+      <item id="uid5">
+        <label>(CI5) </label>
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>g</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Z</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>h</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Z</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>g</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Z</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>h</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Z</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Borel</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>functions</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>g</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>h</m:mi>
+          </m:mrow>
+        </m:math>
+      </item>
+      <item id="uid6">
+        <label>(CI6) </label>
+        <m:math overflow="scroll">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>g</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Z</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>g</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Z</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>|</m:mo>
+            <m:mi>Z</m:mi>
+            <m:mo>]</m:mo>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Borel</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>functions</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>g</m:mi>
+          </m:mrow>
+        </m:math>
+      </item>
+      <item id="uid7"><label>(CI7) </label>For any Borel function <emphasis effect="italics">g</emphasis>, there exists a Borel function <emphasis effect="italics">e<sub>g</sub></emphasis> such that
+<equation id="id116672"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>e</m:mi><m:mi>g</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math></equation></item>
+      <item id="uid8"><label>(CI8) </label><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>{</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo><m:mo>|</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>for</m:mtext><m:mspace width="4.pt"/><m:mtext>all</m:mtext><m:mspace width="4.pt"/><m:mtext>Borel</m:mtext><m:mspace width="4.pt"/><m:mtext>functions</m:mtext><m:mspace width="0.277778em"/><m:mi>g</m:mi></m:mrow></m:math>
+<newline/><newline/>
+****
+</item>
+      <item id="uid9"><label>(CI9) </label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>U</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>V</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math>, where <m:math overflow="scroll"><m:mrow><m:mi>U</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>V</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow></m:math>, for any Borel
+functions <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>h</m:mi></m:mrow></m:math>.
+
+</item>
+    </list>
+    <para id="id117021">
+      <emphasis effect="bold">Additional properties of conditional independence</emphasis>
+    </para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id117032" display="block" list-type="labeled-item"><item id="uid10"><label>(CI10)</label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math> implies <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>U</m:mi><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>V</m:mi><m:mo>)</m:mo></m:mrow></m:math>,  and <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>U</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>V</m:mi><m:mo>)</m:mo></m:mrow></m:math>,
+where <m:math overflow="scroll"><m:mrow><m:mi>U</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>V</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi></m:mrow></m:math> Borel.
+</item>
+      <item id="uid11"><label>(CI11)</label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Y</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>W</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>W</m:mi><m:mo>)</m:mo><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Y</m:mi></m:mrow></m:math>.
+</item>
+      <item id="uid12"><label>(CI12)</label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Y</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>W</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math> implies
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>W</m:mi><m:mo>)</m:mo><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Y</m:mi></m:mrow></m:math>.
+</item>
+      <item id="uid13"><label>(CI13)</label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent and <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Y</m:mi></m:mrow></m:math> iff
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo><m:mo>}</m:mo></m:mrow></m:math> is independent.
+</item>
+      <item id="uid14"><label>(CI14)</label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math> implies <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>u</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>v</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>v</m:mi><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:msub><m:mi>P</m:mi><m:mrow><m:mi>Y</m:mi><m:mi>Z</m:mi></m:mrow></m:msub><m:mo>]</m:mo></m:mrow></m:mrow></m:math></item>
+      <item id="uid15"><label>(CI15)</label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>Z</m:mi></m:mrow></m:math> implies
+<list id="eip-id1172526172911" list-type="enumerated" number-style="lower-alpha">
+<item>
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>e</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>
+</item>
+<item>
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>]</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:math>
+</item>
+</list>
+</item>
+      <item id="uid16"><label>(CI16)</label><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>W</m:mi></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>W</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>W</m:mi><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>Q</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>W</m:mi><m:mo>]</m:mo></m:mrow><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>
+     for all Borel sets <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>N</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>Q</m:mi></m:mrow></m:math></item>
+    </list>
+  </content>
+</document>

@@ -1,0 +1,466 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>The Quantile Function</title>
+  <metadata>
+  <md:content-id>m23385</md:content-id><md:title>The Quantile Function</md:title>
+  <md:abstract>If F is a probability distribution function, the associated quantile function Q is essentially an inverse of F. The quantile function is defined on the unit interval (0,1). For F continuous and strictly increasing at t, then Q(u)=t iff F(t)=u. Thus, if u is a probability value, t=Q(u) is the value of t for which P(X≤t)=u.
+As an application, one may generate independent classes with prescribed distributions. Matlab procedures are developed for a variety of problems involving quantile functions.</md:abstract>
+  <md:uuid>4b61fe3f-6c86-4f8e-80f3-89d294fd595d</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+<section id="fs-id8579704"><title>The Quantile Function</title>
+
+    <para id="id2258257">The quantile function for a probability distribution has many uses in both the theory
+and application of probability. If <emphasis effect="italics">F</emphasis> is a probability distribution function, the
+quantile function may be used to “construct” a random variable having <emphasis effect="italics">F</emphasis> as its
+distributions function. This fact serves as the basis of a method of simulating the
+“sampling” from an arbitrary distribution with the aid of a <emphasis effect="italics">random number generator</emphasis>.  Also, given any finite class</para>
+    <para id="id2258942"><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables, an <emphasis effect="italics">independent class </emphasis><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> may be constructed, with each <emphasis effect="italics">X<sub>i</sub></emphasis> and associated <emphasis effect="italics">Y<sub>i</sub></emphasis> having
+the same (marginal) distribution. Quantile functions for simple random variables may
+be used to obtain an important Poisson approximation theorem (which we do not
+develop in this work). The quantile function is used
+to derive a number of useful special forms for mathematical expectation.</para>
+    
+      <para id="fs-id7842433"><emphasis effect="bold">General concept—properties, and examples</emphasis></para>
+
+      <para id="id2259059">If <emphasis effect="italics">F</emphasis> is a probability distribution function, the associated quantile function <emphasis effect="italics">Q</emphasis> is essentially
+an inverse of <emphasis effect="italics">F</emphasis>. The quantile function is defined on the unit
+interval <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>. For <emphasis effect="italics">F</emphasis> continuous and strictly increasing at <emphasis effect="italics">t</emphasis>, then
+<m:math overflow="scroll"><m:mrow><m:mi>Q</m:mi><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>u</m:mi></m:mrow></m:math>. Thus, if <emphasis effect="italics">u</emphasis> is a probability value, <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>Q</m:mi><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is the value of
+<emphasis effect="italics">t</emphasis> for which <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>u</m:mi></m:mrow></m:math>.</para>
+      
+<example id="fs-id4218085"><title>The Weibull distribution <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math></title><equation id="id2259510">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>F</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>3</m:mn>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>⇒</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>Q</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msqrt>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mo form="prefix">ln</m:mo>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+                <m:mo>)</m:mo>
+                <m:mo>/</m:mo>
+                <m:mn>3</m:mn>
+              </m:mrow>
+            </m:msqrt>
+          </m:mrow>
+        </m:math>
+      </equation></example>
+
+<example id="fs-id8691016"><title>The Normal Distribution</title>
+
+      <para id="id2259633">The m-function <emphasis effect="italics">norminv</emphasis>, based on the MATLAB function <emphasis effect="italics">erfinv</emphasis> (inverse error function),
+calculates values of <emphasis effect="italics">Q</emphasis> for the normal distribution.</para>
+      </example>
+
+
+      <para id="id2259672">The restriction to the continuous case is not essential.
+We consider a general definition which applies to any probability distribution function.</para>
+   
+      <para id="fs-id8269714"><emphasis effect="bold"> Definition</emphasis>: If <emphasis effect="italics">F</emphasis> is a function having the properties of a probability
+distribution function, then the <emphasis effect="italics">quantile function</emphasis> for <emphasis effect="italics">F</emphasis> is given by</para>
+      <equation id="id2259714">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Q</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mo movablelimits="true" form="prefix">inf</m:mo>
+            <m:mo>{</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>:</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>F</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>≥</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>}</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>1</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2259800">We note</para>
+      <list id="fs-id1166194720129" list-type="bulleted" bullet-style="none">
+<item>
+If <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>(</m:mo><m:msup><m:mi>t</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo><m:mo>≥</m:mo><m:mi>u</m:mi><m:mo>*</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:msup><m:mi>t</m:mi><m:mo>*</m:mo></m:msup><m:mo>≥</m:mo><m:mo movablelimits="true" form="prefix">inf</m:mo><m:mrow><m:mo>{</m:mo><m:mi>t</m:mi><m:mo>:</m:mo><m:mspace width="0.166667em"/><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≥</m:mo><m:msup><m:mi>u</m:mi><m:mo>*</m:mo></m:msup><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>Q</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>u</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+      </item>
+      <item>
+If <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>(</m:mo><m:msup><m:mi>t</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mi>u</m:mi><m:mo>*</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:msup><m:mi>t</m:mi><m:mo>*</m:mo></m:msup><m:mo>&lt;</m:mo><m:mo movablelimits="true" form="prefix">inf</m:mo><m:mrow><m:mo>{</m:mo><m:mi>t</m:mi><m:mo>:</m:mo><m:mspace width="0.166667em"/><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≥</m:mo><m:msup><m:mi>u</m:mi><m:mo>*</m:mo></m:msup><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mi>Q</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>u</m:mi><m:mo>*</m:mo></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+      </item></list>
+
+      <para id="id2260016">Hence, we have the important property:</para>
+      <para id="fs-id4636099"><emphasis effect="bold">(Q1)</emphasis><m:math overflow="scroll"><m:mrow><m:mi>Q</m:mi><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo><m:mo>≤</m:mo><m:mi>t</m:mi></m:mrow></m:math>  iff  <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>≤</m:mo><m:mi>F</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>u</m:mi><m:mo>∈</m:mo><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+</para>
+
+      <para id="id2260113">The property (Q1) implies the following important property:</para>
+
+      <para id="fs-id8299295">
+        <emphasis effect="bold">(Q2)</emphasis>If <m:math overflow="scroll"><m:mrow><m:mi>U</m:mi><m:mo>∼</m:mo></m:mrow></m:math> uniform <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>Q</m:mi><m:mo>(</m:mo><m:mi>U</m:mi><m:mo>)</m:mo></m:mrow></m:math> has distribution function
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mo>=</m:mo><m:mi>F</m:mi></m:mrow></m:math>.
+To see this, note that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>[</m:mo><m:mi>Q</m:mi><m:mrow><m:mo>(</m:mo><m:mi>U</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>[</m:mo><m:mi>U</m:mi><m:mo>≤</m:mo><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+</para>
+
+      <para id="id2260297">Property (Q2) implies that if <emphasis effect="italics">F</emphasis> is any distribution function, with quantile function
+<emphasis effect="italics">Q</emphasis>, then the random variable <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>Q</m:mi><m:mo>(</m:mo><m:mi>U</m:mi><m:mo>)</m:mo></m:mrow></m:math>, with <emphasis effect="italics">U</emphasis> uniformly distributed on <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>,
+has distribution function <emphasis effect="italics">F</emphasis>.</para>
+
+<example id="fs-id6349128"><title>Independent classes with prescribed distributions</title><para id="id2260388">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an arbitrary class of random variables with
+corresponding distribution functions <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>F</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>. Let
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Q</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> be the respective quantile functions. There is always
+an independent class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>U</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> iid uniform <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math> (marginals for
+the joint uniform distribution on the unit hypercube with sides <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>). Then
+the random variables <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>Q</m:mi><m:mi>i</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>U</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math>, form an independent class
+with the same marginals as the <emphasis effect="italics">X<sub>i</sub></emphasis>.</para>
+      </example>
+
+
+      <para id="id2260653">Several other important properties of the quantile function may be established.</para>
+      <figure id="uid3"><media id="uid3_media" alt="Figure 1 consists of three graphs. The first is a plot of U = F(t) with t on the horizontal axis, and u on the vertical axis. The plotted curve begins at the point (-1, 0), and increases at a constant slope until t=1. The curve then increases exponentially, beginning with a very shallow slope and increasing in slope to be nearly vertical. At t=3, the curve is cut short and a horizontal line continues to t=4. The horizontal segment is met with a vertical line segment until the curve reaches u=1, at which it again continues horizontally to the right. The second graph is identical in shape to the first graph, except that the graph moves in the downward instead of upward. The third graph plots u on the horizontal axis and t on the vertical axis, plotting t = Q(u). The curve is identical to the curve in the first graph, except with the adjusted axes, the curve is rotated 90 degrees counter-clockwise. There is also a vertical dashed line along u=1 that meets the curve at its rightmost segment.">
+          <image mime-type="image/png" src="../../media/fig10_6_1.png" id="uid3_onlineimage" width="312"><!-- NOTE: attribute width changes image size online (pixels). original width is 312. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_6_1.eps" id="uid3_printimage" print-width="3in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Graph of quantile function from graph of distribution function,</caption></figure>
+      <list id="id2260672" display="block" list-type="enumerated"><item id="uid4"><emphasis effect="italics">Q</emphasis> is left-continuous, whereas <emphasis effect="italics">F</emphasis> is right-continuous.
+</item>
+        <item id="uid5">If jumps are represented by vertical line segments, construction of the graph of
+<m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>Q</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> may be obtained by the following two step procedure:
+<list id="id2260742" display="block" list-type="bulleted"><item id="uid6">Invert the entire figure (including axes), then
+</item><item id="uid7">Rotate the resulting figure 90 degrees counterclockwise
+</item></list>
+This is illustrated in <link target-id="uid3"/>. If jumps are represented by vertical line segments,
+then jumps go into flat segments and flat segments go into vertical segments.
+</item>
+        <item id="uid8">If <emphasis effect="italics">X</emphasis> is discrete with probability <emphasis effect="italics">p<sub>i</sub></emphasis> at <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math>, then
+<emphasis effect="italics">F</emphasis> has jumps in the amount <emphasis effect="italics">p<sub>i</sub></emphasis> at each <emphasis effect="italics">t<sub>i</sub></emphasis> and is constant between. The quantile
+function is a left-continuous step function having value <emphasis effect="italics">t<sub>i</sub></emphasis> on the interval
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>b</m:mi><m:mrow><m:mi>i</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo><m:msub><m:mi>b</m:mi><m:mi>i</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math>, where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>b</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>b</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>i</m:mi></m:munderover><m:msub><m:mi>p</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:mstyle></m:math>. This
+may be stated
+<equation id="id2261003"><m:math overflow="scroll" mode="display"><m:mrow><m:mtext>If</m:mtext><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>b</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mtext>then</m:mtext><m:mi>Q</m:mi><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mtext>for</m:mtext><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mrow><m:mi>i</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+      </list>
+      
+
+
+
+<example id="fs-id5659831"><title>Quantile function for a simple random variable</title><para id="id2261163">Suppose simple random variable <emphasis effect="italics">X</emphasis> has distribution</para>
+      <equation id="id2261175">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mo>-</m:mo>
+            <m:mn>2</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>3</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2261281">Figure 1 shows a plot of the distribution function <emphasis effect="italics">F<sub>X</sub></emphasis>. It is reflected in the
+horizontal axis then rotated counterclockwise to give the graph of <m:math overflow="scroll"><m:mrow><m:mi>Q</m:mi><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> versus <emphasis effect="italics">u</emphasis>.</para>
+<figure id="uid9"><media id="uid9_media" alt="Figure 2 consists of two graphs. The first is a plot of U = F(t) graphed with t as the horizontal axis and u as the vertical axis, starting at (-2, 0) with a small vertical segment that meets a black dot at a right angle. Continuing to the right, the line after the black dot is drawn to the vertical axis, with the number 0.2 labeled above the horizontal segment. At the vertical axis a small vertical line along the axis continues to another black dot on the vertical axis. After the black dot towards the right is another horizontal line with the number 0.3 labeled above the segment. At t=1, the horizontal segment ends, then moving vertically to a third black dot. The next segment of the plot is horizontal, extending from t=1 to t-3, labeled as 0.6. At t=3 the plot moves vertically to a fourth black dot at point (3, 1). The segment after the black dot moves horizontally to the right edge of the graph, labeled as 1. The second graph is a plot of t = Q(u), with u as the horizontal axis and t as the vertical axis. The plot is identical in shape to the plot in the first graph of figure 2 except rotated in the fashion as the axes.">
+          <image mime-type="image/png" src="../../media/fig10_6_2.png" id="uid9_onlineimage" width="376"><!-- NOTE: attribute width changes image size online (pixels). original width is 376. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_6_2.eps" id="uid9_printimage" print-width="3.5in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution and quantile functions for <link target-id="fs-id5659831"/>.</caption></figure>
+      </example>
+
+
+      <para id="id2261341">We use the analytic characterization above in developing a number of m-functions and
+m-procedures.
+</para>
+    
+      <para id="fs-id6410940"><emphasis effect="bold"> m-procedures for a simple random variable</emphasis></para>
+
+      <para id="id2261356">The basis for quantile function calculations for a simple random variable is
+the formula above. This is implemented in the m-function <emphasis effect="italics">dquant</emphasis>, which is used
+as an element of several simulation procedures.
+To plot the quantile function, we use <emphasis effect="italics">dquanplot</emphasis> which employs the stairs function
+and plots <emphasis effect="italics">X</emphasis> vs the distribution function <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mi>X</m:mi></m:mrow></m:math>. The procedure <emphasis effect="italics">dsample</emphasis> employs
+dquant to obtain a “sample” from a population with simple distribution and to
+calculate relative frequencies of the various values.</para>
+      
+
+
+<example id="fs-id11458323"><title>Simple Random Variable</title><code id="id2261428" display="block">X =  [-2.3 -1.1 3.3 5.4 7.1 9.8];
+PX = 0.01*[18 15 23 19 13 12];
+dquanplot
+Enter VALUES for X  X
+Enter PROBABILITIES for X  PX     % See <link target-id="uid10"/> for plot of results
+rand('seed',0)                 % Reset random number generator for reference
+dsample
+Enter row matrix of values  X
+Enter row matrix of probabilities  PX
+Sample size n  10000
+</code>
+      
+      <code id="id2261544" display="block">    Value      Prob    Rel freq
+   -2.3000    0.1800    0.1805
+   -1.1000    0.1500    0.1466
+    3.3000    0.2300    0.2320
+    5.4000    0.1900    0.1875
+    7.1000    0.1300    0.1333
+    9.8000    0.1200    0.1201
+Sample average ex = 3.325
+Population mean E[X] = 3.305
+Sample variance = 16.32
+Population variance Var[X] = 16.33
+</code>
+
+<figure id="uid10"><media id="uid10_media" alt="Figure three is a plot of a quantile function on a square gridded graph. The plot looks like a set of stairs, moving from the bottom-left to the top-right of the figure. The vertical axis is t = Q(u), and the horizontal axis is u. the graph begins just below -2 on the vertical axis, and moves horizontally to just before 0.2, where the plot continues after a small blue circle at the vertex with a vertical line extending upward to approximately -1. At this point, the plot then moves right, horizontally, to approximately u=0.33. There is another small blue circle at this vertex, and then the plot continues vertically for a longer segment to approximately 3.5. The plot continues horizontally to the right after this point to approximately u=0.57. At this point, there is a third small blue circle marking the vertex, and then the plot continues vertically upward to approximately 5.5. The plot continues horizontally to the right after this point to approximately u=0.75 where it is met with a fourth small blue circle. The plot moves upward after this point to 7, and then moves to the right to u=0.88. One more vertical segment follows after another small blue circle nearly to 10, where it finally moves to the right to u=1 and is met with a sixth blue circle.">
+          <image mime-type="image/png" src="../../media/fig10_6_3.png" id="uid10_onlineimage" width="413"><!-- NOTE: attribute width changes image size online (pixels). original width is 413. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_6_3.eps" id="uid10_printimage" print-width="4in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Quantile function for <link target-id="fs-id11458323"/>.</caption></figure>
+
+      </example>
+
+      <para id="id2261670">Sometimes it is desirable to know how many trials are required to reach a certain value, or
+one of a set of values. A pair of m-procedures are available for simulation of that problem.
+The first is called <emphasis effect="italics">targetset</emphasis>.  It calls for the population distribution and then
+for the designation of a “target set” of possible values. The second procedure, <emphasis effect="italics">targetrun</emphasis>,
+calls for the number of repetitions of the experiment, and asks for the number of members of
+the target set to be reached. After the runs are made, various statistics on the runs are
+calculated and displayed.</para>
+     
+<example id="fs-id7245511">
+
+      <code id="id2261702" display="block">X = [-1.3 0.2 3.7 5.5 7.3];     % Population values
+PX = [0.2 0.1 0.3 0.3 0.1];     % Population probabilities
+E = [-1.3 3.7];                 % Set of target states
+targetset
+Enter population VALUES  X
+Enter population PROBABILITIES  PX
+The set of population values is
+   -1.3000    0.2000    3.7000    5.5000    7.3000
+Enter the set of target values  E
+Call for targetrun
+</code>
+      
+      <code id="id2261817" display="block">rand('seed',0)                  % Seed set for possible comparison
+targetrun
+Enter the number of repetitions  1000
+The target set is
+   -1.3000    3.7000
+Enter the number of target values to visit  2
+The average completion time is 6.32
+The standard deviation is 4.089
+The minimum completion time is 2
+The maximum completion time is 30
+To view a detailed count, call for D.
+The first column shows the various completion times;
+the second column shows the numbers of trials yielding those times
+% Figure 10.6.4 shows the fraction of runs requiring t steps or less
+</code>
+      </example>
+
+
+      <figure id="uid11"><media id="uid11_media" alt="Figure four is a fraction of Runs t steps or less. The horizontal axis is t, which is the number of steps to complete the run, and the vertical axis is the fraction of runs. The plot begins from the bottom left with a strong positive slope, and as it moves to the right, the slope becomes more shallow until, at a value of 1 on the horizontal axis, the plot is nearly horizontal, where it terminates exactly at the top-right point on the graph.">
+          <image mime-type="image/png" src="../../media/fig10_6_4.png" id="uid11_onlineimage" width="418"><!-- NOTE: attribute width changes image size online (pixels). original width is 418. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_6_4.eps" id="uid11_printimage" print-width="5in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Fraction of runs requiring <emphasis effect="italics">t</emphasis> steps or less.</caption></figure>
+   
+      <para id="fs-id8147167"><emphasis effect="bold"> m-procedures for distribution functions</emphasis></para>
+
+      <para id="id2262018">A procedure <emphasis effect="italics">dfsetup</emphasis> utilizes the distribution function to set up an
+approximate simple distribution. The m-procedure <emphasis effect="italics">quanplot</emphasis> is used to plot
+the quantile function. This procedure is essentially the same as dquanplot, except
+the ordinary <emphasis effect="italics">plot</emphasis> function is used in the continuous case whereas the plotting function
+<emphasis effect="italics">stairs</emphasis> is used in the discrete case. The m-procedure <emphasis effect="italics">qsample</emphasis> is used to obtain
+a sample from the population. Since there are so many possible values, these are
+not displayed as in the discrete case.</para>
+
+<example id="fs-id5877065"><title>Quantile function associated with a distribution function.</title><code id="id2262066" display="block">F = '0.4*(t + 1).*(t &lt; 0) + (0.6 + 0.4*t).*(t &gt;= 0)';  % String
+dfsetup
+Distribution function F is entered as a string
+variable, either defined previously or upon call
+Enter matrix [a b] of X-range endpoints  [-1 1]
+Enter number of X approximation points  1000
+Enter distribution function F as function of t  F
+Distribution is in row matrices X and PX
+quanplot
+Enter row matrix of values  X
+Enter row matrix of probabilities  PX
+Probability increment h  0.01          % See <link target-id="uid12"/> for plot
+qsample
+Enter row matrix of X values  X
+Enter row matrix of X probabilities  PX
+Sample size n  1000
+Sample average ex = -0.004146
+Approximate population mean E(X) = -0.0004002     % Theoretical = 0
+Sample variance vx = 0.25
+Approximate population variance V(X) = 0.2664
+</code>
+
+<figure id="uid12"><media id="uid12_media" alt="Figure five is a plot of the quantile function for example 7. The horizontal axis is labeled u, and the vertical axis is t = Q(u). The plot on the graph begins at the bottom right corner, with the vertical value of -1 and the horizontal value of 0. The plot has a constant positive slope to (0.4, 0), where it extends horizontally to (0.6, 0). Then, the plot continues with the same positive slope as the first segment, where it terminates at (1, 1).">
+          <image mime-type="image/png" src="../../media/fig10_6_5.png" id="uid12_onlineimage" width="447"><!-- NOTE: attribute width changes image size online (pixels). original width is 447. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_6_5.eps" id="uid12_printimage" print-width="3.5in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Quantile function for <link target-id="fs-id5877065"/>.</caption></figure>
+
+      </example>
+
+
+      
+   
+      <para id="fs-id8757164"><emphasis effect="bold"> m-procedures for density functions</emphasis></para>
+
+      <para id="id2262326">An m- procedure <emphasis effect="italics">acsetup</emphasis> is used to obtain the simple approximate
+distribution. This is essentially the same as the procedure tuappr, except that
+the density function is entered as a string variable. Then the procedures quanplot and
+qsample are used as in the case of distribution functions.</para>
+
+<example id="fs-id4237012"><title>Quantile function associated with a density function.</title><code id="id2262350" display="block">acsetup
+Density f is entered as a string variable.
+either defined previously or upon call.
+Enter matrix [a b] of x-range endpoints  [0 3]
+Enter number of x approximation points  1000
+Enter density as a function of t  '(t.^2).*(t&lt;1) + (1- t/3).*(1&lt;=t)'
+Distribution is in row matrices X and PX
+quanplot
+Enter row matrix of values  X
+Enter row matrix of probabilities  PX
+Probability increment h  0.01               % See <link target-id="uid13"/> for plot
+rand('seed',0)
+qsample
+Enter row matrix of values  X
+Enter row matrix of probabilities  PX
+Sample size n  1000
+Sample average ex = 1.352
+Approximate population mean E(X) = 1.361  % Theoretical = 49/36 = 1.3622
+Sample variance vx = 0.3242
+Approximate population variance V(X) = 0.3474    % Theoretical = 0.3474
+</code>
+
+<figure id="uid13"><media id="uid13_media" alt="Figure six is a plot of the quantile function for example 8. The horizontal axis is labeled u, and the vertical axis is t = Q(u). The plot on the graph begins at the bottom-right at (0, 0) with a very steep positive slope. The plot's slope quickly decreases to a shallow positive slope. The plot increases  across the graph, and about halfway across the page the slope begins to progressively increase in the same form that it was previously decreasing, until it terminates at (1, 3) at a very strong (nearly vertical) positive slope.">
+          <image mime-type="image/png" src="../../media/fig10_6_6.png" id="uid13_onlineimage" width="414"><!-- NOTE: attribute width changes image size online (pixels). original width is 414. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig10_6_6.eps" id="uid13_printimage" print-width="3.5in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Quantile function for <link target-id="fs-id4237012"/>.</caption></figure>
+
+      </example>
+
+
+      
+    </section>
+  </content>
+</document>

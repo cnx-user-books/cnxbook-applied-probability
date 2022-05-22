@@ -1,0 +1,2190 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Random Selection</title>
+  <metadata>
+  <md:content-id>m23652</md:content-id><md:title>Random Selection</md:title>
+  <md:abstract>The usual treatments deal with a single random variable or a fixed, finite
+number of random variables, considered jointly. However, there are many common applications in which we select at random a member of a class of random variables and observe its value, or select a random number of random variables and obtain some function of those selected. This is formulated with the aid of a counting or selecting random variable N, which is nonegative, integer valued. It may be independent of the class selected, or may be related in some sequential way to members of the class. We consider only the independent case. Many
+important problems require optional random variables, sometimes called Markov times. These involve more theory than we develop in this treatment.
+As a basic model, we consider the sum of a random number of members of an iid class. In order to have a concrete interpretation to help visualize the formal patterns, we think of the demand of a random number of customers. We suppose the number of customers N is independent of the individual demands. We formulate a model to be used for a variety of applications. Under standard independence conditions, we obtain expressions for compound demand D, conditional expectation for g(D) given N = n, and moment generating function for D.  These are applied in various situations.</md:abstract>
+  <md:uuid>c540fcd6-bc33-4741-9328-caca40666a50</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1"><title>Introduction</title><para id="id123562">The usual treatments deal with a single random variable or a fixed, finite
+number of random variables, considered jointly. However, there are many common applications
+in which we select at random a member of a class of random variables and observe its value,
+or select a random number of random variables and obtain some function of those selected.
+This is formulated with the aid of a <emphasis effect="italics">counting</emphasis> or <emphasis effect="italics">selecting</emphasis> random variable <emphasis effect="italics">N</emphasis>, which is
+nonegative, integer valued. It may be independent of the class selected, or may be related
+in some sequential way to members of the class. We consider only the independent case. Many
+important problems require <emphasis effect="italics">optional</emphasis> random variables, sometimes
+called <emphasis effect="italics">Markov times</emphasis>.  These involve more theory than we develop in this treatment.</para>
+      <para id="id123600">Some common examples:</para>
+<list id="eip-id1165733289890" list-type="enumerated" number-style="arabic"><item>Total demand of <emphasis effect="italics">N</emphasis> customers— <emphasis effect="italics">N</emphasis> independent of the individual demands.</item>
+      <item>Total service time for <emphasis effect="italics">N</emphasis> units— <emphasis effect="italics">N</emphasis> independent of the individual service times.</item>
+      <item>Net gain in <emphasis effect="italics">N</emphasis> plays of a game— <emphasis effect="italics">N</emphasis> independent of the individual gains.</item>
+      <item>Extreme values of <emphasis effect="italics">N</emphasis> random variables— <emphasis effect="italics">N</emphasis> independent of the individual values.</item>
+      
+      <item>Random sample of size <emphasis effect="italics">N</emphasis>— <emphasis effect="italics">N</emphasis> is usually determined by propereties of the sample observed.</item>
+      <item>Decide when to play on the basis of past results— <emphasis effect="italics">N</emphasis> dependent on past.</item>
+</list>
+    </section>
+    <section id="cid2"><title>A useful model—random sums</title><para id="id123746">As a basic model, we consider the sum of a random number of members of an iid class. In order
+to have a concrete interpretation to help visualize the formal patterns, we think of the demand
+of a random number of customers. We suppose the number of customers <emphasis effect="italics">N</emphasis> is independent of
+the individual demands. We formulate a model to be used for a variety of applications.</para>
+      <list id="eip-id1166975391142" list-type="bulleted" bullet-style="none"><item>      A <emphasis effect="italics">basic sequence</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>                    [Demand of <emphasis effect="italics">n</emphasis> customers]</item>
+      <item>      An <emphasis effect="italics">incremental sequence </emphasis> <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>           [Individual demands]<newline/>These are related as follows:
+      <equation id="id123846"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>&lt;</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="4.pt"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation></item>
+      <item>A <emphasis effect="italics">counting random variable</emphasis> <emphasis effect="italics">N</emphasis>.  If <m:math overflow="scroll"> <m:mrow><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow></m:math> then <emphasis effect="italics">n</emphasis> of the <emphasis effect="italics">Y<sub>k</sub></emphasis> are
+added to give the <emphasis effect="italics"> compound demand </emphasis><emphasis effect="italics">D</emphasis> (the random sum)
+      <equation id="id124112"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>D</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>N</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+</item>
+</list>
+      <para id="id123051"><emphasis effect="italics">Note</emphasis>.  In some applications the counting random variable may take on the idealized value
+<emphasis effect="italics">∞</emphasis>. For example, in a game that is played until some specified result occurs, this
+may never happen, so that no finite value can be assigned to <emphasis effect="italics">N</emphasis>. In such a case, it is
+necessary to decide what value <emphasis effect="italics">X<sub>∞</sub></emphasis> is to be assigned. For <emphasis effect="italics">N</emphasis> independent of the <emphasis effect="italics">Y<sub>n</sub></emphasis> (hence
+of the <emphasis effect="italics">X<sub>n</sub></emphasis>), we rarely need to consider this possibility.</para>
+    
+      <para id="fs-id6434104"><emphasis effect="bold"> Independent selection from an iid incremental sequence</emphasis></para>
+      <para id="id124502"><emphasis effect="italics">We assume throughout</emphasis>, unless specifically stated otherwise, that:</para>
+      <list id="eip-id1166968283423" list-type="enumerated"><item><m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:msub><m:mi>Y</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math></item>
+      <item><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid</item>
+      <item><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>:</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent class</item></list>
+      <para id="id124610">We utilize repeatedly two important propositions:</para>
+      <list id="id124613" display="block" list-type="enumerated">
+        <item id="uid1"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid2"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>D</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>.
+If the <emphasis effect="italics">Y<sub>n</sub></emphasis> are nonnegative integer valued,
+then so is <emphasis effect="italics">D</emphasis> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>D</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:msub><m:mi>g</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math></item>
+      </list>
+      <para id="id124844">DERIVATION</para>
+      <para id="id124847">We utilize properties of generating functions, moment generating functions, and conditional
+expectation.</para>
+      <list id="id124852" display="block" list-type="enumerated">
+        <item id="uid3"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>{</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>]</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+by definition of conditional expectation, given an event.
+Now, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mo>{</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>{</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>   and   <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>{</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>.
+Hence <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>]</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>. Division by <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:math> gives the desired result.
+</item>
+        <item id="uid4">By the law of total probability (CE1b),  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>D</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>D</m:mi></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>{</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>D</m:mi></m:mrow></m:msup><m:mo>|</m:mo><m:mi>N</m:mi><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:mrow></m:math>.  By proposition 1 and the product rule for moment generating functions,
+<equation id="id125315"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>D</m:mi></m:mrow></m:msup><m:mo>|</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msubsup><m:mi>M</m:mi><m:mi>Y</m:mi><m:mi>n</m:mi></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+Hence
+<equation id="id125443"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>D</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msubsup><m:mi>M</m:mi><m:mi>Y</m:mi><m:mi>n</m:mi></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+A parallel argument holds for <emphasis effect="italics">g<sub>D</sub></emphasis> in the integer-valued case.
+</item>
+      </list>
+      <para id="id125566">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+      <para id="id125577"><emphasis effect="italics">Remark</emphasis>.  The result on <emphasis effect="italics">M<sub>D</sub></emphasis> and <emphasis effect="italics">g<sub>D</sub></emphasis> may be developed without use of conditional
+expectation.</para>
+      <equation id="id125612"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>D</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:mi>D</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>{</m:mo>
+                  <m:mi>N</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>}</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:msub>
+                    <m:mi>X</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:msub>
+                    <m:mi>X</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id125772"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mi>n</m:mi>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id125862">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+
+<example id="fs-id1165223988626">
+      <title>  A service shop</title>
+      <para id="id125884">Suppose the number <emphasis effect="italics">N</emphasis> of jobs brought to a service shop in a day is Poisson (8). One
+fourth of these are items under warranty for which no charge is made. Others fall in
+one of two categories. One half of the arriving jobs are charged for one hour of
+shop time; the remaining one fourth are charged for two hours of shop time. Thus, the
+individual shop hour charges <emphasis effect="italics">Y<sub>k</sub></emphasis> have the common distribution</para>
+      <equation id="id125912">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>2</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>probabilities</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>4</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>2</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id126021">Make the basic assumptions of our model. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id126048">SOLUTION</para>
+      <equation id="id126051">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mn>8</m:mn>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>4</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id126151">According to the formula developed above,</para>
+      <equation id="id126157">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>D</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>g</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo form="prefix">exp</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>8</m:mn>
+                <m:mo>/</m:mo>
+                <m:mn>4</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>+</m:mo>
+                <m:mn>2</m:mn>
+                <m:mi>s</m:mi>
+                <m:mo>+</m:mo>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mn>4</m:mn>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mn>2</m:mn>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>6</m:mn>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id126303">Expand the exponentials in power series about the origin, multiply out to get enough
+terms. The result of straightforward but somewhat tedious calculations is</para>
+      <equation id="id126310">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>D</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>6</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>4</m:mn>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>10</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mn>56</m:mn>
+                <m:mn>3</m:mn>
+              </m:mfrac>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mn>86</m:mn>
+                <m:mn>3</m:mn>
+              </m:mfrac>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>4</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mo>⋯</m:mo>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id126410">Taking the coefficients of the generating function, we get</para>
+      <equation id="id126416">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>≈</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>6</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>10</m:mn>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mn>56</m:mn>
+                <m:mn>3</m:mn>
+              </m:mfrac>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mn>86</m:mn>
+                <m:mn>3</m:mn>
+              </m:mfrac>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>6</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mfrac>
+              <m:mn>187</m:mn>
+              <m:mn>3</m:mn>
+            </m:mfrac>
+            <m:mo>≈</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1545</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+</example>
+
+<example id="fs-id1165224059744"><title> A result on Bernoulli trials</title><para id="id126522">Suppose the counting random variable <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:math>,
+with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub></m:mrow></m:math>.  Then</para>
+      <equation id="id126623">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>q</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>p</m:mi>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>q</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mi>s</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id126726">By the basic result on random selection, we have</para>
+      <equation id="id126732">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>D</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>g</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>q</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>p</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>q</m:mi>
+                    <m:mn>0</m:mn>
+                  </m:msub>
+                  <m:mo>+</m:mo>
+                  <m:msub>
+                    <m:mi>p</m:mi>
+                    <m:mn>0</m:mn>
+                  </m:msub>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>-</m:mo>
+                  <m:mi>p</m:mi>
+                  <m:msub>
+                    <m:mi>p</m:mi>
+                    <m:mn>0</m:mn>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>+</m:mo>
+                <m:mi>p</m:mi>
+                <m:msub>
+                  <m:mi>p</m:mi>
+                  <m:mn>0</m:mn>
+                </m:msub>
+                <m:mi>s</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id126877">so that <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      </example>
+
+
+
+      <para id="id126938">In the next section we establish useful m-procedures for determining the generating function
+<emphasis effect="italics">g<sub>D</sub></emphasis> and the moment generating function <emphasis effect="italics">M<sub>D</sub></emphasis> for the compound demand for simple random
+variables, hence for determining the complete distribution. Obviously, these will not work
+for all problems. It may helpful, if not entirely sufficient, in such cases to be able to
+determine the mean value <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>]</m:mo></m:mrow></m:math> and variance <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>]</m:mo></m:mrow></m:math>. To this end, we establish the
+following expressions for the mean and variance.</para>
+
+<example id="fs-id1165221331004">
+      <title>Mean and variance of the compound demand</title>
+      <equation id="id127017">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id127161">DERIVATION</para>
+      <equation id="id127167"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>{</m:mo>
+                  <m:mi>N</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>}</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id127287"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>n</m:mi>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id127362"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>D</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msubsup>
+                <m:mi>X</m:mi>
+                <m:mi>n</m:mi>
+                <m:mn>2</m:mn>
+              </m:msubsup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi> Var </m:mi>
+              <m:mspace width="0.166667em"/>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id127517"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>n</m:mi>
+              <m:mi> Var </m:mi>
+              <m:mspace width="0.166667em"/>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>n</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:msup>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>N</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id127662">Hence</para>
+      <equation id="id127668">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mtext>Var</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>N</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mi>E</m:mi>
+            <m:msup>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:msup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+<example id="fs-id1165231226736"><title>Mean and variance for <link target-id="fs-id1165223988626"/></title><para id="id127856"><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>N</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>N</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>8</m:mn></m:mrow></m:math>.  By symmetry <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>25</m:mn><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>+</m:mo><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>4</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math>.  Hence,</para>
+      <equation id="id127970">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mo>[</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>·</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>12</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+    </section>
+    <section id="cid4">
+      <title>Calculations for the compound demand</title>
+      <para id="id128083">We have m-procedures for performing the calculations necessary to determine the distribution
+for a composite demand <emphasis effect="italics">D</emphasis> when the counting random variable <emphasis effect="italics">N</emphasis> and the individual demands
+<emphasis effect="italics">Y<sub>k</sub></emphasis> are simple random variables with not too many values. In some cases, such as for
+a Poisson counting random variable, we are able to approximate by a simple random variable.</para>
+      <para id="id128121">
+        <emphasis effect="italics">The procedure gend</emphasis>
+      </para>
+      <para id="id128127">If the <emphasis effect="italics">Y<sub>i</sub></emphasis> are nonnegative, integer valued, then so is <emphasis effect="italics">D</emphasis>, and there is a
+generating function. We examine a strategy for computation which is implemented in
+the m-procedure <emphasis effect="italics">gend</emphasis>. Suppose</para>
+      <equation id="id128160">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mi>s</m:mi>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mo>⋯</m:mo>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id128245">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>π</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>π</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mi>s</m:mi>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>π</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mo>⋯</m:mo>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>π</m:mi>
+              <m:mi>m</m:mi>
+            </m:msub>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mi>m</m:mi>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id128330">The coefficients of <emphasis effect="italics">g<sub>N</sub></emphasis> and <emphasis effect="italics">g<sub>Y</sub></emphasis> are the probabilities of the values of <emphasis effect="italics">N</emphasis> and
+<emphasis effect="italics">Y</emphasis>, respectively. We enter these and calculate the coefficients
+for powers of <emphasis effect="italics">g<sub>Y</sub></emphasis>:</para>
+      <equation id="eip-452"><m:math overflow="scroll">
+          <m:mtable>
+            <m:mtr>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mi>g</m:mi>
+                  <m:mi>N</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>[</m:mo>
+                  <m:msub>
+                    <m:mi>p</m:mi>
+                    <m:mn>0</m:mn>
+                  </m:msub>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>p</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:msub>
+                  <m:mspace width="0.277778em"/>
+                  <m:mo>⋯</m:mo>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>p</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mo>×</m:mo>
+                  <m:mo>(</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mtext>Coefficients</m:mtext>
+                  <m:mspace width="4.pt"/>
+                  <m:mtext>of</m:mtext>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mi>N</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mspace width="0.277778em"/>
+                  <m:mspace width="0.277778em"/>
+                  <m:mspace width="0.277778em"/>
+                  <m:mo>=</m:mo>
+                  <m:mo>[</m:mo>
+                  <m:msub>
+                    <m:mi>π</m:mi>
+                    <m:mn>0</m:mn>
+                  </m:msub>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>π</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:msub>
+                  <m:mspace width="0.277778em"/>
+                  <m:mo>⋯</m:mo>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>π</m:mi>
+                    <m:mi>m</m:mi>
+                  </m:msub>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mo>×</m:mo>
+                  <m:mo>(</m:mo>
+                  <m:mi>m</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mtext>Coefficients</m:mtext>
+                  <m:mspace width="4.pt"/>
+                  <m:mtext>of</m:mtext>
+                  <m:mspace width="0.277778em"/>
+                  <m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mi>Y</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mspace width="0.277778em"/>
+                  <m:mspace width="0.277778em"/>
+                  <m:mspace width="0.277778em"/>
+                  <m:mo>⋯</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mspace width="4pt"/>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mspace width="4pt"/>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mn>2</m:mn>
+                  <m:mo>=</m:mo>
+                  <m:mtext>conv</m:mtext>
+                  <m:mo>(</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mo>×</m:mo>
+                  <m:mo>(</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mi>m</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mtext>Coefficients</m:mtext>
+                  <m:mspace width="4.pt"/>
+                  <m:mtext>of</m:mtext>
+                  <m:mspace width="0.277778em"/>
+                  <m:msubsup>
+                    <m:mi>g</m:mi>
+                    <m:mi>Y</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msubsup>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mn>3</m:mn>
+                  <m:mo>=</m:mo>
+                  <m:mtext>conv</m:mtext>
+                  <m:mo>(</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mn>2</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mo>×</m:mo>
+                  <m:mo>(</m:mo>
+                  <m:mn>3</m:mn>
+                  <m:mi>m</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mtext>Coefficients</m:mtext>
+                  <m:mspace width="4.pt"/>
+                  <m:mtext>of</m:mtext>
+                  <m:mspace width="0.277778em"/>
+                  <m:msubsup>
+                    <m:mi>g</m:mi>
+                    <m:mi>Y</m:mi>
+                    <m:mn>3</m:mn>
+                  </m:msubsup>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mspace width="0.277778em"/>
+                  <m:mspace width="0.277778em"/>
+                  <m:mspace width="0.277778em"/>
+                  <m:mo>⋯</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mspace width="0.277778em"/>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mtext>conv</m:mtext>
+                  <m:mo>(</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mo>×</m:mo>
+                  <m:mo>(</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mi>m</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mtd>
+              <m:mtd columnalign="left">
+                <m:mrow>
+                  <m:mtext>Coefficients</m:mtext>
+                  <m:mspace width="4.pt"/>
+                  <m:mtext>of</m:mtext>
+                  <m:mspace width="0.277778em"/>
+                  <m:msubsup>
+                    <m:mi>g</m:mi>
+                    <m:mi>Y</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msubsup>
+                </m:mrow>
+              </m:mtd>
+            </m:mtr>
+          </m:mtable>
+        </m:math>
+      </equation>
+      <para id="id128890">We wish to generate a matrix <emphasis effect="italics">P</emphasis> whose rows contain the joint probabilities. The
+probabilities in the <emphasis effect="italics">i</emphasis>th row consist of the coefficients for the appropriate power
+of <emphasis effect="italics">g<sub>Y</sub></emphasis> multiplied by the probability <emphasis effect="italics">N</emphasis> has that value. To achieve this, we need a matrix,
+each of whose <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math> rows has <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>m</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math> elements, the length of <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mi>n</m:mi></m:mrow></m:math>. We begin by
+“preallocating” zeros to the rows. That is, we set <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>=</m:mo><m:mtext>zeros</m:mtext><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mi>n</m:mi><m:mo>*</m:mo><m:mi>m</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+We then replace the appropriate elements of the successive rows. The replacement probabilities
+for the <emphasis effect="italics">i</emphasis>th row are obtained by the convolution of <emphasis effect="italics">g<sub>Y</sub></emphasis> and the power of <emphasis effect="italics">g<sub>Y</sub></emphasis> for the
+previous row. When the matrix <emphasis effect="italics">P</emphasis> is completed, we remove zero rows and columns, corresponding
+to missing values of <emphasis effect="italics">N</emphasis> and <emphasis effect="italics">D</emphasis> (i.e., values with zero probability).
+To orient the joint probabilities as on the plane, we rotate <emphasis effect="italics">P</emphasis> ninety degrees counterclockwise.
+With the joint distribution, we may then calculate any desired quantities.</para>
+
+<example id="fs-id1165224929355"><title>A compound demand</title><para id="id129101">The number of customers in a major appliance store is equally likely to be 1, 2, or 3.
+Each customer buys 0, 1, or 2 items with respective probabilities 0.5, 0.4, 0.1.
+Customers buy independently, regardless of the number of customers.
+First we determine the matrices representing <emphasis effect="italics">g<sub>N</sub></emphasis> and <emphasis effect="italics">g<sub>Y</sub></emphasis>. The coefficients
+are the probabilities that each
+integer value is observed. Note that the <emphasis effect="italics">zero coefficients for any
+missing powers</emphasis> must be included.</para>
+      <code id="id129142" display="block">gN = (1/3)*[0 1 1 1];    % Note zero coefficient for missing zero power
+gY = 0.1*[5 4 1];        % All powers 0 thru 2 have positive coefficients
+gend
+ Do not forget zero coefficients for missing powers
+Enter the gen fn COEFFICIENTS for gN gN    % Coefficient matrix named gN
+Enter the gen fn COEFFICIENTS for gY gY    % Coefficient matrix named gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view distribution for D, call for gD
+disp(gD)                  % Optional display of complete distribution
+         0    0.2917
+    1.0000    0.3667
+    2.0000    0.2250
+    3.0000    0.0880
+    4.0000    0.0243
+    5.0000    0.0040
+    6.0000    0.0003
+EN = N*PN'
+EN =   2
+EY = Y*PY'
+EY =  0.6000
+ED = D*PD'
+ED =  1.2000                % Agrees with theoretical EN*EY
+P3 = (D&gt;=3)*PD'
+P3  = 0.1167                
+[N,D,t,u,PN,PD,PL] = jcalcf(N,D,P);
+EDn = sum(u.*P)./sum(P);
+disp([N;EDn]')
+    1.0000    0.6000        % Agrees with theoretical E[D|N=n] = n*EY
+    2.0000    1.2000
+    3.0000    1.8000
+VD = (D.^2)*PD' - ED^2
+VD =  1.1200                % Agrees with theoretical EN*VY + VN*EY^2
+</code>
+      </example>
+
+
+
+<example id="fs-id1165225148854"><title>A numerical example</title><equation id="id129495">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>5</m:mn>
+            </m:mfrac>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>4</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>5</m:mn>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>3</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id129655">Note that the zero power is missing from <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mi>Y</m:mi></m:mrow></m:math>, corresponding to the fact
+that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.</para>
+      <code id="id129703" display="block">gN = 0.2*[1 1 1 1 1];
+gY = 0.1*[0 5 3 2];      % Note the zero coefficient in the zero position
+gend
+Do not forget zero coefficients for missing powers
+Enter the gen fn COEFFICIENTS for gN  gN
+Enter the gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view distribution for D, call for gD
+disp(gD)                 % Optional display of complete distribution
+         0    0.2000
+    1.0000    0.1000
+    2.0000    0.1100
+    3.0000    0.1250
+    4.0000    0.1155
+    5.0000    0.1110
+    6.0000    0.0964
+    7.0000    0.0696
+    8.0000    0.0424
+    9.0000    0.0203
+   10.0000    0.0075
+   11.0000    0.0019
+   12.0000    0.0003
+</code>
+      
+      <code id="id129920" display="block">p3 = (D == 3)*PD'        % P(D=3)
+P3 =  0.1250
+P4_12 = ((D &gt;= 4)&amp;(D &lt;= 12))*PD'
+P4_12 = 0.4650           % P(4 &lt;= D &lt;= 12)
+</code>
+      </example>
+
+<example id="fs-id1165230645226">
+      <title>Number of successes for random number <emphasis effect="italics">N</emphasis> of trials.</title>
+      <para id="id130003">We are interested in the number of successes in <emphasis effect="italics">N</emphasis> trials for a general counting random variable.
+This is a generalization of the Bernoulli case in <link target-id="fs-id1165224059744"/>. Suppose, as in <link target-id="fs-id1165224929355"/>,
+the number of customers in a major appliance store is equally likely to be 1, 2, or 3, and each
+buys at least one item with probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn></m:mrow></m:math>. Determine the distribution for the number
+<emphasis effect="italics">D</emphasis> of buying customers.</para>
+      <para id="id130045">SOLUTION</para>
+      <para id="id130050">We use <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mi>N</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>g</m:mi><m:mi>Y</m:mi></m:mrow></m:math>,  and gend.</para>
+      <code id="id130086" display="block">gN = (1/3)*[0 1 1 1]; % Note zero coefficient for missing zero power
+gY = [0.4 0.6];       % Generating function for the indicator function
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view distribution for D, call for gD
+disp(gD)
+         0    0.2080
+    1.0000    0.4560
+    2.0000    0.2640
+    3.0000    0.0720
+</code>
+      </example>
+
+
+      <para id="id130233">The procedure gend is limited to simple <emphasis effect="italics">N</emphasis> and <emphasis effect="italics">Y<sub>k</sub></emphasis>, with nonnegative
+integer values. Sometimes, a random variable with unbounded range may be approximated by a simple
+random variable. The solution in the following example utilizes such an approximation
+procedure for the counting random variable <emphasis effect="italics">N</emphasis>.</para>
+
+<example id="fs-id1165223542537"><title>Solution of the shop time <link target-id="fs-id1165223988626"/></title><para id="id130278">The number <emphasis effect="italics">N</emphasis> of jobs brought to a service shop in a day is Poisson (8). The
+individual shop hour charges <emphasis effect="italics">Y<sub>k</sub></emphasis> have the common distribution  <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>0</m:mn><m:mn>1</m:mn><m:mn>2</m:mn><m:mo>]</m:mo></m:mrow></m:math> with probabilities <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Y</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn><m:mo>]</m:mo></m:mrow></m:math>.</para>
+      <para id="id130385">Under the basic assumptions of our model, determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id130412">SOLUTION</para>
+      <para id="id130415">Since Poisson <emphasis effect="italics">N</emphasis> is unbounded, we need to check for a sufficient number of terms
+in a simple approximation. Then we proceed as in the simple case.</para>
+      <code id="id130431" display="block">pa = cpoisson(8,10:5:30)     % Check for sufficient number of terms
+pa =   0.2834    0.0173    0.0003    0.0000    0.0000
+p25 = cpoisson(8,25)         % Check on choice of n = 25
+p25 =  1.1722e-06
+gN = ipoisson(8,0:25);       % Approximate gN
+gY = 0.25*[1 2 1];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view distribution for D, call for gD
+disp(gD(D&lt;=20,:))            % Calculated values to D = 50
+         0    0.0025         % Display for D &lt;= 20
+    1.0000    0.0099
+    2.0000    0.0248
+    3.0000    0.0463
+    4.0000    0.0711
+    5.0000    0.0939
+    6.0000    0.1099
+    7.0000    0.1165
+    8.0000    0.1132
+    9.0000    0.1021
+   10.0000    0.0861
+   11.0000    0.0684
+   12.0000    0.0515
+   13.0000    0.0369
+   14.0000    0.0253
+   15.0000    0.0166
+   16.0000    0.0105
+   17.0000    0.0064
+   18.0000    0.0037
+   19.0000    0.0021
+   20.0000    0.0012
+sum(PD)                       % Check on sufficiency of approximation
+ans =  1.0000
+P4 = (D&lt;=4)*PD'
+P4 =   0.1545                 % Theoretical value (4  places) = 0.1545
+ED = D*PD'
+ED =   8.0000                 % Theoretical = 8  (<link target-id="fs-id1165231226736"/>)
+VD = (D.^2)*PD' - ED^2
+VD =  11.9999                 % Theoretical = 12 (<link target-id="fs-id1165231226736"/>)
+</code>
+      </example>
+
+
+   
+      <para id="fs-id1167297055248"><emphasis effect="bold"> The m-procedures mgd and jmgd</emphasis></para>
+
+      <para id="id130870">The next example shows a fundamental limitation of the gend procedure. The
+values for the individual demands are not limited to integers, and there are considerable
+gaps between the values. In this case, we need to implement the
+moment generating function <emphasis effect="italics">M<sub>D</sub></emphasis> rather than the generating function <emphasis effect="italics">g<sub>D</sub></emphasis>.</para>
+      <para id="id130903">In the generating function case, it is as easy to develop the joint distribution
+for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> as to develop the marginal distribution for <emphasis effect="italics">D</emphasis>. For the moment
+generating function, the joint distribution requires considerably more computation.
+As a consequence, we find it convenient to have two m-procedures: <emphasis effect="italics">mgd</emphasis> for the
+marginal distribution and <emphasis effect="italics">jmgd</emphasis> for the joint distribution.</para>
+      <para id="id130948">Instead of the convolution procedure used in gend to determine the distribution for
+the sums of the individual demands, the m-procedure mgd utilizes the
+m-function mgsum to obtain these distributions. The distributions for the various
+sums are concatenated into two row vectors, to which csort is applied to obtain the distribution
+for the compound demand. The procedure requires as input the generating function for
+<emphasis effect="italics">N</emphasis> and the actual distribution, <emphasis effect="italics">Y</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Y</m:mi></m:mrow></m:math>, for the individual demands. For <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mi>N</m:mi></m:mrow></m:math>, it is
+necessary to treat the coefficients as in gend. However, the actual values and probabilities
+in the distribution for <emphasis effect="italics">Y</emphasis> are put into a pair of row matrices. <emphasis effect="italics">If <emphasis effect="italics">Y</emphasis> is
+integer valued, there are no zeros in the probability matrix for missing values.</emphasis></para>
+
+<example id="fs-id1165230852444"><title>Noninteger values</title><para id="id131027">A service shop has three standard charges for a certain class of warranty services
+it performs: $10, $12.50, and $15. The number of jobs received in a normal work
+day can be considered a random variable <emphasis effect="italics">N</emphasis> which takes on values 0, 1, 2, 3, 4 with
+equal probabilities 0.2. The job types for arrivals may be represented by an iid
+class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>4</m:mn><m:mo>}</m:mo></m:mrow></m:math>, independent of the arrival process. The <emphasis effect="italics">Y<sub>i</sub></emphasis>
+take on values 10, 12.5, 15 with respective probabilities 0.5, 0.3, 0.2. Let <emphasis effect="italics">C</emphasis> be
+the total amount of services rendered in a day. Determine the distribution for <emphasis effect="italics">C</emphasis>.</para>
+<para id="eip-id6753542">SOLUTION</para>
+      <code id="id131112" display="block">gN = 0.2*[1 1 1 1 1];         % Enter data
+Y = [10 12.5 15];
+PY = 0.1*[5 3 2];
+mgd                           % Call for procedure
+Enter gen fn COEFFICIENTS for gN  gN
+Enter VALUES for Y  Y
+Enter PROBABILITIES for Y  PY
+Values are in row matrix D; probabilities are in PD.
+To view the distribution, call for mD.
+disp(mD)                      % Optional display of distribution
+         0    0.2000
+   10.0000    0.1000
+   12.5000    0.0600
+   15.0000    0.0400
+   20.0000    0.0500
+   22.5000    0.0600
+   25.0000    0.0580
+   27.5000    0.0240
+   30.0000    0.0330
+   32.5000    0.0450
+   35.0000    0.0570
+   37.5000    0.0414
+   40.0000    0.0353
+   42.5000    0.0372
+   45.0000    0.0486
+   47.5000    0.0468
+   50.0000    0.0352
+   52.5000    0.0187
+   55.0000    0.0075
+   57.5000    0.0019
+   60.0000    0.0003
+</code>
+      </example>
+
+
+      <para id="id131410">We next recalculate <link target-id="fs-id1165225148854"/>, above, using mgd rather than gend.</para>
+
+<example id="fs-id1165232385153"><title>Recalculation of <link target-id="fs-id1165225148854"/></title><para id="id131422">In <link target-id="fs-id1165225148854"/>, we have</para>
+      <equation id="id131426">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>5</m:mn>
+            </m:mfrac>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>4</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>5</m:mn>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>3</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id131586">This means that the distribution for <emphasis effect="italics">Y</emphasis> is
+<m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>1</m:mn><m:mn>2</m:mn><m:mn>3</m:mn><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Y</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn><m:mo>*</m:mo><m:mo>[</m:mo><m:mn>5</m:mn><m:mn>3</m:mn><m:mn>2</m:mn><m:mo>]</m:mo></m:mrow></m:math>.</para>
+      <para id="id131683">We use the same expression for <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mi>N</m:mi></m:mrow></m:math> as in <link target-id="fs-id1165225148854"/>.</para>
+      <code id="id131702" display="block">gN = 0.2*ones(1,5);
+Y = 1:3;
+PY = 0.1*[5 3 2];
+mgd
+Enter gen fn COEFFICIENTS for gN  gN
+Enter VALUES for Y  Y
+Enter PROBABILITIES for Y  PY
+Values are in row matrix D; probabilities are in PD.
+To view the distribution, call for mD.
+disp(mD)
+         0    0.2000
+    1.0000    0.1000
+    2.0000    0.1100
+    3.0000    0.1250
+    4.0000    0.1155
+    5.0000    0.1110
+    6.0000    0.0964
+    7.0000    0.0696
+    8.0000    0.0424
+    9.0000    0.0203
+   10.0000    0.0075
+   11.0000    0.0019
+   12.0000    0.0003
+P3 = (D==3)*PD'
+P3 =   0.1250
+ED = D*PD'
+ED =   3.4000
+P_4_12 = ((D&gt;=4)&amp;(D&lt;=12))*PD'
+P_4_12 =  0.4650
+P7 = (D&gt;=7)*PD'
+P7 =   0.1421
+</code>
+      <para id="id131992">As expected, the results are the same as those obtained with gend.</para>
+      </example>
+
+
+      <para id="id132013">If it is desired to obtain the joint distribution for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>, we use a modification
+of mgd called <emphasis effect="italics">jmgd</emphasis>. The complications come in placing the probabilities in the
+<emphasis effect="italics">P</emphasis> matrix in the desired positions. This requires some calculations to determine
+the appropriate size of the matrices used as well as a procedure to put each probability in the
+position corresponding to its <emphasis effect="italics">D</emphasis> value. Actual operation is quite similar to the
+operation of mgd, and requires the same data format.</para>
+      <para id="id132062">A principle use of the joint distribution is to demonstrate
+features of the model, such as <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>|</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>n</m:mi><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>, etc. This, of course, is
+utilized in obtaining the expressions for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>D</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> in terms of <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+This result guides the development of the computational procedures, but these do not
+depend upon this result. However, it is usually helpful to demonstrate the validity of
+the assumptions in typical examples.</para>
+      <para id="id132174"><emphasis effect="italics">Remark</emphasis>.  In general, if the use of gend is appropriate, it is faster and more efficient
+than mgd (or jmgd). And it will handle somewhat larger problems. But both m-procedures work
+quite well for problems of moderate size, and are convenient tools for solving various “compound
+demand” type problems.
+</para>
+    </section>
+  </content>
+</document>

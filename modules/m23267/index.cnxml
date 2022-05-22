@@ -1,0 +1,916 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Distribution and Density Functions</title>
+  <metadata>
+  <md:content-id>m23267</md:content-id><md:title>Distribution and Density Functions</md:title>
+  <md:abstract>In the unit on Random Variables and Probability, we introduce real random variables as mappings from the basic space to the real line. The mapping induces a transfer of the probability mass on the basic space to subsets of the real line in such a way that the probability that X takes a value in a set M is exactly the mass assigned to that set by the transfer. To perform probability calculations, we need to describe analytically the distribution on the line. For simple random variables, we have at each possible value of X a point mass equal to the probability X takes that value. For more general cases, we need a more useful description: the distribution function which at each t has the value of the probability mass at or to the left of t.
+If the probability mass in the induced distribution is spread smoothly along the real line, with no point mass concentrations, there is a probability density function such that the probability mass in any interval is the area under the curve over that interval.</md:abstract>
+  <md:uuid>689d9344-9964-4722-926d-37deaecc843f</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title> Introduction</title>
+      <para id="id249139">In the unit on <link document="m23260">Random Variables and Probability</link> we introduce real random variables
+as mappings from the basic space <emphasis effect="italics">Ω</emphasis>
+to the real line. The mapping induces a transfer of the probability mass on the basic space
+to subsets of the real line in such a way that the probability that <emphasis effect="italics">X</emphasis> takes a value in a
+set <emphasis effect="italics">M</emphasis> is exactly the mass assigned to that set by the transfer. To perform probability
+calculations, we need to describe analytically the distribution on the line. For
+simple random variables this is easy. We have at each possible value of <emphasis effect="italics">X</emphasis> a point
+mass equal to the probability <emphasis effect="italics">X</emphasis> takes that value. For more general cases, we need a
+more useful description than that provided by the induced probability measure <emphasis effect="italics">P<sub>X</sub></emphasis>.</para>
+    </section>
+    <section id="cid2"><title>The distribution function</title><para id="id249210">In the theoretical discussion on <link document="m23260">Random Variables and Probability</link>, we note that
+the probability distribution induced by
+a random variable <emphasis effect="italics">X</emphasis> is determined uniquely by a consistent assignment of mass to semi-infinite
+intervals of the form <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math> for each real <emphasis effect="italics">t</emphasis>.  This suggests that a natural description
+is provided by the following.</para>
+
+<para id="eip-id1168081060909"><emphasis effect="bold">Definition</emphasis>
+</para>
+
+      <para id="id248641">The <emphasis effect="italics">distribution function </emphasis><emphasis effect="italics">F<sub>X</sub></emphasis> for random variable <emphasis effect="italics">X</emphasis> is given by</para>
+      <equation id="id249472">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>t</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mi mathvariant="bold">R</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id249565">In terms of the mass distribution on the line, this is the probability mass <emphasis effect="italics">at or to
+the left of the point </emphasis><emphasis effect="italics">t</emphasis>. As a consequence, <emphasis effect="italics">F<sub>X</sub></emphasis> has the following properties:</para>
+      <list id="id249598" display="block" list-type="labeled-item"><item id="uid1"><label>(F1) </label><emphasis effect="italics">F<sub>X</sub></emphasis> must be a nondecreasing function, for if <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>&gt;</m:mo><m:mi>s</m:mi></m:mrow></m:math> there must be at least
+as much probability mass at or to the left of <emphasis effect="italics">t</emphasis> as there is for <emphasis effect="italics">s</emphasis>.
+</item>
+        <item id="uid2"><label>(F2) </label><emphasis effect="italics">F<sub>X</sub></emphasis> is continuous from the right, with a jump in the amount <emphasis effect="italics">p<sub>0</sub></emphasis> at
+<emphasis effect="italics">t<sub>0</sub></emphasis> iff
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub></m:mrow></m:math>.  If the point <emphasis effect="italics">t</emphasis> approaches <emphasis effect="italics">t<sub>0</sub></emphasis> from the left, the interval
+does not include the probability mass at <emphasis effect="italics">t<sub>0</sub></emphasis> until <emphasis effect="italics">t</emphasis> reaches that value, at which point the
+amount at or to the left of <emphasis effect="italics">t</emphasis> increases ("jumps") by amount <emphasis effect="italics">p<sub>0</sub></emphasis>; on the other hand, if <emphasis effect="italics">t</emphasis> approaches <emphasis effect="italics">t<sub>0</sub></emphasis>
+from the right, the interval includes the mass <emphasis effect="italics">p<sub>0</sub></emphasis> all the way to and including <emphasis effect="italics">t<sub>0</sub></emphasis>, but drops
+immediately as <emphasis effect="italics">t</emphasis> moves to the left of <emphasis effect="italics">t<sub>0</sub></emphasis>.
+</item>
+        <item id="uid3"><label>(F3) </label>Except in very unusual cases involving random variables which may take “infinite”
+values, the probability mass included in <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math> must increase to one as
+<emphasis effect="italics">t</emphasis> moves to the right; as <emphasis effect="italics">t</emphasis> moves to the left, the probability mass included must decrease
+to zero, so that
+<equation id="id249940"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munder><m:mo movablelimits="true" form="prefix">lim</m:mo><m:mrow><m:mi>t</m:mi><m:mo>→</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi></m:mrow></m:munder><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munder><m:mo movablelimits="true" form="prefix">lim</m:mo><m:mrow><m:mi>t</m:mi><m:mo>→</m:mo><m:mi>∞</m:mi></m:mrow></m:munder><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id250081">A distribution function determines the probability mass in each semiinfinite interval
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math>.  According to the discussion referred to above, this determines uniquely
+the induced distribution.</para>
+      <para id="id250108">The distribution function <emphasis effect="italics">F<sub>X</sub></emphasis> for a simple random variable is easily visualized. The
+distribution consists of point mass <emphasis effect="italics">p<sub>i</sub></emphasis> at each point <emphasis effect="italics">t<sub>i</sub></emphasis> in the range. To the left of
+the smallest value in the range, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>; as <emphasis effect="italics">t</emphasis> increases to the smallest value <emphasis effect="italics">t<sub>1</sub></emphasis>,
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> remains constant at zero until it jumps by the amount <emphasis effect="italics">p<sub>1</sub>.</emphasis>.  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> remains constant
+at <emphasis effect="italics">p<sub>1</sub></emphasis> until <emphasis effect="italics">t</emphasis> increases to <emphasis effect="italics">t<sub>2</sub></emphasis>, where it jumps by an amount <emphasis effect="italics">p<sub>2</sub></emphasis> to the value <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mo>+</m:mo><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math>.  This continues until the value of <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>reaches 1 at the largest value <emphasis effect="italics">t<sub>n</sub></emphasis>. The
+graph of <emphasis effect="italics">F<sub>X</sub></emphasis> is thus a step function, continuous from the right, with a jump in the amount
+<emphasis effect="italics">p<sub>i</sub></emphasis> at the corresponding point <emphasis effect="italics">t<sub>i</sub></emphasis> in the range. A similar situation exists for a discrete-valued
+random variable which may take on an infinity of values (e.g., the geometric distribution
+or the Poisson distribution considered below). In this case, there is always some probability
+at points to the right of any <emphasis effect="italics">t<sub>i</sub></emphasis>, but this must become vanishingly small as <emphasis effect="italics">t</emphasis> increases,
+since the total probability mass is one.</para>
+      <para id="id250428">The procedure <emphasis effect="italics">ddbn</emphasis> may be used to plot the distributon function for a simple
+random variable from a matrix <emphasis effect="italics">X</emphasis> of values and a corresponding matrix <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math> of
+probabilities.</para>
+
+<example id="fs-id1171297576066"><title>Graph of <emphasis effect="italics">F<sub>X</sub></emphasis> for a simple random variable</title><code id="id250477" display="block">&gt;&gt; c = [10 18 10 3];             % Distribution for X in Example 6.5.1
+&gt;&gt; pm = minprob(0.1*[6 3 5]);
+&gt;&gt; canonic
+ Enter row vector of coefficients  c
+ Enter row vector of minterm probabilities  pm
+Use row matrices X and PX for calculations
+Call for XDBN to view the distribution
+&gt;&gt; ddbn                          % Circles show values at jumps
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX
+%  Printing details   See <link target-id="uid4"/>
+</code>
+</example>
+
+      <figure id="uid4"><media id="uid4_media" alt="A graph of Distributive Function F. The range of u=F(t) is represented on the y-axis (0.1-1.1), while the t value is represented on the x-axis (0-50). The points that are plotted on the graph ascend to the right.">
+          <image mime-type="image/png" src="../../media/fig7_1_1.png" id="uid4_onlineimage" width="418"><!-- NOTE: attribute width changes image size online (pixels). original width is 418. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_1_1.eps" id="uid4_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution function for <link target-id="fs-id1171297576066"/></caption></figure>
+    
+    </section>
+    
+    <section id="cid4"><title>Description of some common discrete distributions</title><para id="id250621">We make repeated use of a number of common distributions which are used in many practical situations.
+This collection includes several distributions which are studied in the chapter <link document="m23260">"Random Variables and Probabilities"</link>.</para>
+      
+
+
+<list id="id250626" display="block" list-type="enumerated" number-style="arabic"><item id="uid5"><emphasis effect="bold">Indicator function</emphasis>.  <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>E</m:mi></m:msub></m:mrow></m:math> <m:math overflow="scroll"><m:mrow> <m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>E</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>q</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>p</m:mi></m:mrow></m:math>.
+The distribution function has a jump in the amount <emphasis effect="italics">q</emphasis> at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and an additional jump
+of <emphasis effect="italics">p</emphasis> to the value 1 at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.
+</item>
+        
+<item id="uid6"><emphasis effect="bold">Simple random variable</emphasis> <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>  (canonical form)
+<equation id="id250850"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math></equation>
+The distribution function is a step function, continuous from the right, with jump of <emphasis effect="italics">p<sub>i</sub></emphasis>
+at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math> (See <link target-id="uid4"/> for <link target-id="fs-id1171297576066"/>)
+</item>
+
+<item id="uid7"><emphasis effect="bold">Binomial</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  This random variable appears as the number of successes
+in a sequence of <emphasis effect="italics">n</emphasis> Bernoulli trials with probability <emphasis effect="italics">p</emphasis> of success. In its simplest form
+<equation id="id251003"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>with</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>independent</m:mtext></m:mrow></m:math></equation><equation id="id251104"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>p</m:mi><m:mi>k</m:mi></m:msup><m:msup><m:mi>q</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:msup></m:mrow></m:math></equation>
+As pointed out in the study of Bernoulli sequences in the unit on Composite Trials,
+two m-functions
+<emphasis effect="italics">ibinom</emphasis> and<emphasis effect="italics">cbinom</emphasis> are available for computing the individual and
+cumulative binomial probabilities.
+</item>
+        
+<item id="uid8"><emphasis effect="bold">Geometric</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>  There are two related distributions, both arising in the
+study of continuing Bernoulli sequences. The first counts the number of failures <emphasis effect="italics">before</emphasis>
+the first success. This is sometimes called the “waiting time.” The event <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+consists of a sequence of <emphasis effect="italics">k</emphasis> failures, then a success. Thus
+<equation id="id251295"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>q</m:mi><m:mi>k</m:mi></m:msup><m:mi>p</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi></m:mrow></m:math></equation>
+The second designates the component trial on which the first success occurs. The event
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:math> consists of <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> failures, then a success on the <emphasis effect="italics">k</emphasis>th component trial. We have
+<equation id="id251398"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>q</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mi>p</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi></m:mrow></m:math></equation>
+We say <emphasis effect="italics">X</emphasis> has the geometric distribution with parameter <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>, which we often designate by
+<m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Now <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math> or <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>=</m:mo><m:mi>X</m:mi></m:mrow></m:math>. For this reason, it is
+customary to refer to the distribution for the number of the trial for the first success
+by saying <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>. The probability of <emphasis effect="italics">k</emphasis> or more failures before
+the first success is <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>q</m:mi><m:mi>k</m:mi></m:msup></m:mrow></m:math>.  Also
+<equation id="id251621"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:mo>=</m:mo><m:msup><m:mi>q</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mi>k</m:mi></m:mrow></m:msup><m:mo>/</m:mo><m:msup><m:mi>q</m:mi><m:mi>n</m:mi></m:msup><m:mo>=</m:mo><m:msup><m:mi>q</m:mi><m:mi>k</m:mi></m:msup><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+This suggests that a Bernoulli sequence essentially "starts over" on each trial. If it has
+failed <emphasis effect="italics">n</emphasis> times, the probability of failing an additional <emphasis effect="italics">k</emphasis> or more times before the next
+success is the same as the initial probability of failing <emphasis effect="italics">k</emphasis> or more times before the first success.
+
+
+<example id="fs-id1171297786985"><title>The geometric distribution</title><para id="id251789">A statistician is taking a random sample from a population in which two percent of the
+members own a BMW automobile. She takes a sample of size 100. What is the probability
+of finding no BMW owners in the sample?</para>
+      
+      <para id="id251797"><title>SOLUTION</title>The sampling process may be viewed as a sequence of Bernoulli trials with probability
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>02</m:mn></m:mrow></m:math> of success. The probability of
+100 or more failures before the first success is <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>.</m:mo><m:msup><m:mn>98</m:mn><m:mn>100</m:mn></m:msup><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1326</m:mn></m:mrow></m:math> or about 1/7.5.</para>
+      </example>
+</item>
+
+<item id="uid9"><emphasis effect="bold">Negative binomial</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  <emphasis effect="italics">X</emphasis> is the number of failures before the <emphasis effect="italics">m</emphasis>th
+success. It is generally more convenient to work with <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>m</m:mi></m:mrow></m:math>, the number of the
+trial on which the <emphasis effect="italics">m</emphasis>th success occurs. An examination of the possible patterns and
+elementary combinatorics show that
+<equation id="id251950"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:msup><m:mi>p</m:mi><m:mi>m</m:mi></m:msup><m:msup><m:mi>q</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mi>m</m:mi></m:mrow></m:msup><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>m</m:mi><m:mo>≤</m:mo><m:mi>k</m:mi></m:mrow></m:math></equation>
+There are <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> successes in the first <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> trials, then a success. Each combination
+has probability <m:math overflow="scroll"><m:mrow><m:msup><m:mi>p</m:mi><m:mi>m</m:mi></m:msup><m:msup><m:mi>q</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mi>m</m:mi></m:mrow></m:msup></m:mrow></m:math>.  We have an m-function <emphasis effect="italics">nbinom</emphasis> to calculate these
+probabilities.
+
+
+<example id="fs-id1171297566780"><title>A game of chance</title><para id="id252114">A player throws a single six-sided die repeatedly. He scores if he throws a 1 or a 6. What
+is the probability he scores five times in ten or fewer throws?</para>
+      <code id="id252119" display="block">&gt;&gt; p = sum(nbinom(5,1/3,5:10))
+p  =  0.2131
+</code>
+      <para id="id252142">An <emphasis effect="italics">alternate solution</emphasis> is possible with the use of the <emphasis effect="italics">binomial distribution</emphasis>. The <emphasis effect="italics">m</emphasis>th
+success comes not later than the <emphasis effect="italics">k</emphasis>th trial iff the number of successes in <emphasis effect="italics">k</emphasis> trials is
+greater than or equal to <emphasis effect="italics">m</emphasis>.</para>
+      <code id="id252195" display="block">&gt;&gt; P = cbinom(10,1/3,5)
+P  =  0.2131
+</code>
+      </example>
+</item>
+
+<item id="uid10"><emphasis effect="bold">Poisson</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  This distribution is assumed in a wide variety
+of applications.
+It appears as a counting variable for items arriving with exponential interarrival times (see
+the relationship to the gamma distribution below). For large <emphasis effect="italics">n</emphasis> and small <emphasis effect="italics">p</emphasis> (which may not
+be a value found in a table), the binomial distribution is approximately Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+Use of the generating function (see Transform Methods) shows the sum of
+independent Poisson random variables
+is Poisson. The Poisson distribution is integer valued, with
+<equation id="id252308"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow></m:msup><m:mfrac><m:msup><m:mi>μ</m:mi><m:mi>k</m:mi></m:msup><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi></m:mrow></m:math></equation>
+Although Poisson probabilities are usually easier to calculate with scientific calculators
+than binomial probabilities, the use of tables is often quite helpful. As in the
+case of the binomial distribution, we have two m-functions for calculating Poisson
+probabilities. These have advantages of speed and parameter range similar to those for ibinom
+and cbinom.
+<list id="id249042" display="block" list-type="labeled-item">
+<item id="uid11"><label/><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> is calculated by <code display="inline">P =  ipoisson(mu,k)</code>, where <emphasis effect="italics">k</emphasis> is a row or
+column vector of integers and the result <emphasis effect="italics">P</emphasis> is a row matrix of the probabilities.
+</item>
+<item id="uid12"><label/><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> is calculated by <code display="inline">P = cpoisson(mu,k)</code>, where <emphasis effect="italics">k</emphasis> is a row
+or column vector of integers and the result <emphasis effect="italics">P</emphasis> is a row matrix of the probabilities.
+</item>
+</list>
+
+<example id="eip-id1168089140186"><title>Poisson counting random variable</title>
+
+<para id="id252583">The number of messages arriving in a one minute period at a communications network junction
+is a random variable <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (130). What is the probability the number of
+arrivals is greater than equal to 110, 120, 130, 140, 150, 160 ?</para>
+      <code id="id252600" display="block">&gt;&gt; p = cpoisson(130,110:10:160)
+p  =  0.9666  0.8209  0.5117  0.2011  0.0461  0.0060
+</code>
+      <para id="id252624">The descriptions of these distributions, along with a number of other facts, are
+summarized in the table DATA ON SOME COMMON DISTRIBUTIONS in <link document="m23992">Appendix C</link>.</para></example>
+    </item>
+</list></section>
+    <section id="cid5"><title>The density function</title><para id="id252639">If the probability mass in the induced distribution is spread smoothly along the real line,
+with no point mass concentrations, there is a <emphasis effect="italics">probability density</emphasis> function <m:math>
+<m:msub>
+<m:mi>f</m:mi>
+<m:mi>X</m:mi>
+</m:msub>
+</m:math> which
+satisfies</para>
+      <equation id="id252664">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>∈</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mo>∫</m:mo>
+              <m:mi>M</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(area</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>under</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>graph</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mspace width="4.pt"/>
+            <m:mtext>over</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>M</m:mi>
+            <m:mtext>)</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id252799">At each <emphasis effect="italics">t</emphasis>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the mass per unit length in the probability distribution. The density function has
+three characteristic properties:</para>
+      <equation id="id252838">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mtext>(f1)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(f2)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mo>∫</m:mo>
+              <m:mi mathvariant="bold">R</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(f3)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id252990">A random variable (or distribution) which has a density is called <emphasis effect="italics">absolutely continuous</emphasis>.  This term comes from measure theory. We often simply abbreviate as <emphasis effect="italics">continuous</emphasis>
+distribution.</para>
+      
+      <list id="id253015" display="block" list-type="enumerated" number-style="arabic"><title>Remarks</title><item id="uid13">There is a technical mathematical description of the condition “spread
+smoothly with no point mass concentrations.” And strictly speaking the integrals are
+Lebesgue integrals rather than the ordinary Riemann kind. But for practical cases, the
+two agree, so that we are free to use ordinary integration techniques.
+</item>
+        <item id="uid14">By the fundamental theorem of calculus
+<equation id="id253052"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msubsup><m:mi>F</m:mi><m:mi>X</m:mi><m:mo>'</m:mo></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>at</m:mtext><m:mspace width="4.pt"/><m:mtext>every</m:mtext><m:mspace width="4.pt"/><m:mtext>point</m:mtext><m:mspace width="4.pt"/><m:mtext>of</m:mtext><m:mspace width="4.pt"/><m:mtext>continuity</m:mtext><m:mspace width="4.pt"/><m:mtext>of</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub></m:mrow></m:math></equation></item>
+        <item id="uid15">Any integrable, nonnegative function <m:math><m:mi>f</m:mi></m:math> with <m:math overflow="scroll"><m:mrow><m:mo>∫</m:mo><m:mi>f</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> determines a distribution
+function <m:math><m:mi>F</m:mi>
+</m:math>, which in turn determines a probability distribution. If <m:math overflow="scroll"><m:mrow><m:mo>∫</m:mo><m:mi>f</m:mi><m:mo>≠</m:mo><m:mn>1</m:mn></m:mrow></m:math>,
+multiplication by the appropriate positive constant gives a suitable <m:math>
+<m:mi>f</m:mi>
+</m:math>. An
+argument based on the Quantile Function shows the existence of a random
+variable with that distribution.
+</item>
+        <item id="uid16">In the literature on probability, it is customary to omit the indication
+of the region of integration when integrating over the whole line. Thus
+<equation id="id253241"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>∫</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mo>∫</m:mo><m:mi mathvariant="bold">R</m:mi></m:msub><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:math></equation>
+The first expression is <emphasis effect="italics">not</emphasis> an indefinite integral. In many situations, <m:math>
+<m:msub>
+<m:mi>f</m:mi>
+<m:mi>X</m:mi>
+</m:msub>
+</m:math> will
+be zero outside an interval. Thus, the integrand effectively determines the region of
+integration.
+</item>
+      </list>
+      <figure id="uid28"><media id="uid28_media" alt="A graph of the Weibull(alpha,lambda) density for alpha = 2. The x-axis show the range of t from 0-3, while the y-axis shows the Density ranging from 0-1.8. On the graph there are three distributions plotted. The first distribution has a rapid rise and peaks at a density of about 1.7 and a t value of about 0.4. this line is labeled lambda=4. The second line peaks at a density of a little less than 0.9 and a t value of  about 0.75. This distribution is labeled lambda = 1. The third line peaks at a density just above 0.4 and a t value of about 1.5. This distribution is labeled lambda = 0.25">
+          <image mime-type="image/png" src="../../media/fig7_4_5.png" id="uid28_onlineimage" width="416"><!-- NOTE: attribute width changes image size online (pixels). original width is 416. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_5.eps" id="uid28_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The Weibull density for <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>25</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>4</m:mn></m:mrow></m:math>.</caption></figure>
+      <figure id="uid29"><media id="uid29_media" alt="A graph of the Weibull(alpha,lambda) density for alpha = 10. The x-axis show the range of t from 0-3, while the y-axis shows the Density ranging from 0-8. On the graph there are three distributions plotted. The first distribution has a rapid rise and peaks at a density of about 7.5 and a t value of about 0.5. this line is labeled lambda = 1000. The second line peaks at a density of a little more than 3.5 and a t value of  about 1. This distribution is labeled lambda = 1. The third line peaks at a density just less than 2 and a t value of about 2. This distribution is labeled lambda = 0.001">
+          <image mime-type="image/png" src="../../media/fig7_4_6.png" id="uid29_onlineimage" width="407"><!-- NOTE: attribute width changes image size online (pixels). original width is 407. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_6.eps" id="uid29_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The Weibull density for <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>001</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>1000</m:mn></m:mrow></m:math>.</caption></figure>
+    
+</section>
+    <section id="cid6"><title>Some common absolutely continuous distributions</title><list id="id253367" display="block" list-type="enumerated" number-style="arabic"><item id="uid17">
+<emphasis effect="bold">Uniform</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow></m:math>. 
+<newline/>
+ Mass is spread uniformly on the interval <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow></m:math>. It
+is immaterial whether or not the end points are included, since probability associated with
+each individual point is zero. The probability of any subinterval is proportional to the
+length of the subinterval. The probability of being in any two subintervals of the same
+length is the same. This distribution is used to model situations in which it is known that
+<emphasis effect="italics">X</emphasis> takes on values in <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow></m:math> but is equally likely to be in any subinterval of a given
+length. The density must be constant over the interval (zero outside), and the distribution
+function increases linearly with <emphasis effect="italics">t</emphasis> in the interval. Thus,
+<equation id="id253478"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mrow><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>a</m:mi><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mi>b</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>(zero</m:mtext><m:mspace width="4.pt"/><m:mtext>outside</m:mtext><m:mspace width="4.pt"/><m:mtext>the</m:mtext><m:mspace width="4.pt"/><m:mtext>interval)</m:mtext></m:mrow></m:math></equation>
+The graph of <emphasis effect="italics">F<sub>X</sub></emphasis> rises linearly, with slope <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow></m:math> from zero at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>a</m:mi></m:mrow></m:math> to
+one at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>b</m:mi></m:mrow></m:math>.
+</item>
+
+
+        <item id="uid18"><emphasis effect="bold">Symmetric triangular</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow></m:math>.    <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfenced separators="" open="{" close=""><m:mtable><m:mtr><m:mtd columnalign="left"><m:mrow><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>+</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:msup><m:mi>a</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mn>0</m:mn></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd columnalign="left"><m:mrow><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:msup><m:mi>a</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:mtd><m:mtd columnalign="left"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mi>a</m:mi></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:mstyle></m:math>
+<newline/>
+This distribution is used frequently in instructional numerical examples because probabilities
+can be obtained geometrically. It can be shifted, with a shift of the graph, to different
+sets of values. It appears naturally (in shifted form) as the distribution for the sum or
+difference of two independent random variables uniformly distributed on intervals of the same
+length. This fact is established with the use of the moment generating function
+(see Transform Methods).
+More generally, the density may have a triangular graph which is not symmetric.
+
+
+<example id="fs-id1171300069490"><title>Use of a triangular distribution</title><para id="id253828">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> symmetric triangular <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>100</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>300</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>120</m:mn><m:mo>&lt;</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>250</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id253891"><emphasis effect="italics">Remark</emphasis>.  Note that in the continuous case, it is immaterial whether the end
+point of the intervals are included or not.</para>
+      
+      <para id="id253905"><title>SOLUTION</title>To get the area under the triangle between 120 and 250, we take one minus the area of
+the right triangles between 100 and 120 and between 250 and 300. Using the fact that
+areas of similar triangles are proportional to the square of any side, we have</para>
+      <equation id="id253910">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>20</m:mn>
+                  <m:mo>/</m:mo>
+                  <m:mn>100</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>50</m:mn>
+                  <m:mo>/</m:mo>
+                  <m:mn>100</m:mn>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>855</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+</item>
+
+
+<item id="uid19"><emphasis effect="bold">Exponential</emphasis> <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo> <m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>λ</m:mi><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>  (zero elsewhere).
+<newline/>
+Integration shows <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>  (zero elsewhere).
+We note that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>. This leads to
+an extremely important property of the exponential distribution. Since <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>h</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>
+implies <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi></m:mrow></m:math>, we have
+<equation id="id254288"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>)</m:mo></m:mrow></m:msup><m:mo>/</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>h</m:mi></m:mrow></m:msup><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>h</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+Because of this property, the exponential distribution is often used in reliability problems.
+Suppose <emphasis effect="italics">X</emphasis> represents the time to failure (i.e., the life duration) of a device put into service
+at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>. If the distribution is exponential, this property says that if the device
+survives to time <emphasis effect="italics">t</emphasis> (i.e., <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi></m:mrow></m:math>) then the (conditional) probability it will survive <emphasis effect="italics">h</emphasis> more
+units of time is the same as the original probability of surviving for <emphasis effect="italics">h</emphasis> units of time.
+Many devices have the property that they do not wear out. Failure is due
+to some stress of external origin. Many solid state electronic devices behave essentially
+in this way, once initial “burn in” tests have removed defective units.
+Use of Cauchy's equation (Appendix B) shows that the exponential distribution is the only
+continuous distribution with this property.
+</item>
+
+        
+<item id="uid20"><emphasis effect="bold">Gamma distribution</emphasis>  <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>    <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:msup><m:mi>λ</m:mi><m:mi>α</m:mi></m:msup><m:msup><m:mi>t</m:mi><m:mrow><m:mi>α</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup></m:mrow><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:mstyle></m:math>  (zero elsewhere)
+<newline/>
+We have an m-function <emphasis effect="italics">gammadbn</emphasis> to determine values of the distribution function
+for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Use of moment generating functions shows
+that for <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow></m:math>, a random variable <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> has the same distribution
+as the sum of <emphasis effect="italics">n</emphasis> independent random variables, each exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>. A relation to
+the Poisson distribution is described in Sec 7.5.
+
+
+<example id="fs-id1171303084580"><title>An arrival problem</title><para id="id254775">On a Saturday night, the times (in hours) between arrivals in a hospital emergency unit
+may be represented by a random quantity which is exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math>. As we show in the chapter <link document="m23387">Mathematical Expectation</link>,
+this means that the average interarrival time is 1/3 hour or 20 minutes. What is the
+probability of ten or more arrivals in four hours? In six hours?</para>
+      
+      <para id="id254804"><title>SOLUTION</title>The time for ten arrivals is the sum of ten interarrival times. If we suppose these are
+independent, as is usually the case, then the time for ten arrivals is
+gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <code id="id254830" display="block">&gt;&gt; p = gammadbn(10,3,[4 6])
+p  =  0.7576    0.9846
+</code>
+      </example>
+</item>
+
+
+      <item id="uid21"><emphasis effect="bold">Normal, or Gaussian </emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mrow><m:mi>σ</m:mi><m:msqrt><m:mrow><m:mn>2</m:mn><m:mi>π</m:mi></m:mrow></m:msqrt></m:mrow></m:mfrac><m:mo form="prefix">exp</m:mo><m:mfenced separators="" open="(" close=")"><m:mo>-</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow><m:mi>σ</m:mi></m:mfrac></m:mfenced><m:mn>2</m:mn></m:msup></m:mfenced><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>t</m:mi></m:mrow></m:mstyle></m:math>
+<newline/>
+
+We generally indicate that a random variable <emphasis effect="italics">X</emphasis> has the normal or gaussian distribution by
+writing <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow></m:math>, putting in the actual values for the parameters.
+The gaussian distribution plays a central role in many aspects of applied probability theory, particularly
+in the area of statistics. Much of its importance comes from the <emphasis effect="italics">central limit theorem</emphasis>
+(CLT), which is a term applied to a number of theorems in analysis. Essentially, the
+CLT shows that the
+distribution for the sum of a sufficiently large number of independent random variables has
+approximately the gaussian distribution. Thus, the gaussian distribution appears naturally
+in such topics as
+theory of errors or theory of noise, where the quantity observed is an additive combination
+of a large number of essentially independent quantities.
+
+Examination of the expression shows that the graph for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is symmetric about its
+maximum at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>μ</m:mi></m:mrow></m:math>. The greater the parameter <emphasis effect="italics">σ<sup>2</sup></emphasis>, the smaller the maximum
+value and the more slowly the curve decreases with distance from <emphasis effect="italics">μ</emphasis>. Thus parameter <emphasis effect="italics">μ</emphasis>
+locates the center of the mass distribution and <emphasis effect="italics">σ<sup>2</sup></emphasis> is a measure of the spread of mass
+about <emphasis effect="italics">μ</emphasis>. The parameter <emphasis effect="italics">μ</emphasis> is called the <emphasis effect="italics">mean value</emphasis> and <emphasis effect="italics">σ<sup>2</sup></emphasis> is
+the <emphasis effect="italics">variance</emphasis>. The parameter <emphasis effect="italics">σ</emphasis>, the positive square root of the variance, is called the
+<emphasis effect="italics">standard deviation</emphasis>. While we have an explicit formula for the density function, it is
+known that the distribution function, as the integral of the density function, cannot be expressed
+in terms of elementary functions. 
+
+The usual procedure is to use tables obtained by
+numerical integration.
+
+
+
+<newline/>
+Since there are two parameters, this raises the question whether a separate table is needed
+for each pair of parameters. It is a remarkable fact that this is not the case. 
+
+We need only
+have a table of the distribution function for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>. This is refered to as
+the <emphasis effect="italics">standardized normal</emphasis> distribution. We use <emphasis effect="italics">φ</emphasis> and <emphasis effect="italics">Φ</emphasis> for the standardized
+normal density and distribution functions, respectively.
+<newline/>
+<emphasis effect="bold">Standardized normal</emphasis><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:msqrt><m:mrow><m:mn>2</m:mn><m:mi>π</m:mi></m:mrow></m:msqrt></m:mfrac><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:msup></m:mrow></m:mstyle></m:math>  so that the distribution function is <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msubsup><m:mo>∫</m:mo><m:mrow><m:mo>-</m:mo><m:mi>∞</m:mi></m:mrow><m:mi>t</m:mi></m:msubsup><m:mi>φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>u</m:mi></m:mrow></m:mstyle></m:math>.  <newline/> The graph of the density function is the well known bell shaped curve, symmetrical about
+the origin (see <link target-id="uid22"/>). The symmetry about the origin contributes to its usefulness.
+
+
+
+<equation id="id255414"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mspace width="0.277778em"/><m:mtext>area</m:mtext><m:mspace width="4.pt"/><m:mtext>under</m:mtext><m:mspace width="4.pt"/><m:mtext>the</m:mtext><m:mspace width="4.pt"/><m:mtext>curve</m:mtext><m:mspace width="4.pt"/><m:mtext>to</m:mtext><m:mspace width="4.pt"/><m:mtext>the</m:mtext><m:mspace width="4.pt"/><m:mtext>left</m:mtext><m:mspace width="4.pt"/><m:mtext>of</m:mtext><m:mspace width="0.277778em"/><m:mi>t</m:mi></m:mrow></m:math></equation>
+
+<newline/>
+Note that the area to the left of <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math> is the same as the area to the right of <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math>, so that
+<m:math overflow="scroll"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math>. The same is true for any <emphasis effect="italics">t</emphasis>, so that we have
+
+
+<equation id="id255589"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>t</m:mi></m:mrow></m:math></equation>
+
+
+<newline/>
+This indicates that we need only a table of values of <m:math overflow="scroll"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> to
+be able to determine <m:math overflow="scroll"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for any <emphasis effect="italics">t</emphasis>. We may use the symmetry for any case. Note
+that 
+<m:math overflow="scroll"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>,
+<figure id="uid22"><media id="uid22_media" alt="A graph of the density function for the standardized normal distribution. The plotted distributions rises and falls at an equal rate. The distribution peaks at a density of 0.4 and a t value of 0. "><image mime-type="image/png" src="../../media/fig7_4_1.png" id="uid22_onlineimage" width="484"><!-- NOTE: attribute width changes image size online (pixels). original width is 484. --></image><image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_1.eps" id="uid22_printimage" print-width="5.4in"><!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)--></image></media><caption>The standardized normal distribution.</caption></figure>
+
+<example id="fs-id1171302695027"><title>Standardized normal calculations</title><para id="id255753">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>|</m:mo><m:mo>&gt;</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      
+      <para id="id255838"><title>SOLUTION</title>1.  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math></para>
+      <para id="id255947">2.  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>|</m:mo><m:mo>&gt;</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math></para>
+      <para id="id256057">From a table of standardized normal distribution function (see <link document="m23995">Appendix D</link>), we find</para>
+      <para id="id256061"><m:math overflow="scroll"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9772</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8413</m:mn></m:mrow></m:math> which gives <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8185</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>|</m:mo><m:mo>&gt;</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3174</m:mn></m:mrow></m:math></para>
+      </example>
+
+
+<emphasis effect="bold">General gaussian distribution</emphasis>
+<newline/>
+      For <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow></m:math>, the density maintains
+the bell shape, but is shifted with different spread and height. <link target-id="uid23"/> shows the
+distribution function and density function for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  The density is centered
+about <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>.  It has height 1.2616 as compared with 0.3989 for the standardized
+normal density. Inspection shows that the graph is narrower than that for the
+standardized normal. The distribution function reaches 0.5 at the mean value 2.
+      <figure id="uid23"><media id="uid23_media" alt="Density and Distribution Function for X normal(2,0.1). The x-axis represents the range of t values 1-3, while the y-axis show the range of values for f(t) or F(t) ranging from 0-1.4. There are two distributions plotted. The first rises and falls at an equal rate, with its peak at (1,1.3). It is labeled density. The other function rises gradually and plateaus at (1.8,1). It is labeled Distribution Function.">
+          <image mime-type="image/png" src="../../media/fig7_4_2.png" id="uid23_onlineimage" width="416"><!-- NOTE: attribute width changes image size online (pixels). original width is 416. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_2.eps" id="uid23_printimage" print-width="4.3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The normal density and distribution functions for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</caption></figure>
+      <para id="id256346">A change of variables in the integral shows that the
+table for standardized normal distribution function can be used for any case.</para>
+      <equation id="id256350">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>σ</m:mi>
+                <m:msqrt>
+                  <m:mrow>
+                    <m:mn>2</m:mn>
+                    <m:mi>π</m:mi>
+                  </m:mrow>
+                </m:msqrt>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:mo form="prefix">exp</m:mo>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mo>-</m:mo>
+              <m:mfrac>
+                <m:mn>1</m:mn>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:msup>
+                <m:mfenced separators="" open="(" close=")">
+                  <m:mfrac>
+                    <m:mrow>
+                      <m:mi>x</m:mi>
+                      <m:mo>-</m:mo>
+                      <m:mi>μ</m:mi>
+                    </m:mrow>
+                    <m:mi>σ</m:mi>
+                  </m:mfrac>
+                </m:mfenced>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mfenced>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>x</m:mi>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:mi>φ</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mfrac>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>μ</m:mi>
+                </m:mrow>
+                <m:mi>σ</m:mi>
+              </m:mfrac>
+            </m:mfenced>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>σ</m:mi>
+            </m:mfrac>
+            <m:mi>d</m:mi>
+            <m:mi>x</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id256507">Make the change of variable and corresponding formal changes</para>
+      <equation id="id256513">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>x</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+              <m:mi>σ</m:mi>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>σ</m:mi>
+            </m:mfrac>
+            <m:mi>d</m:mi>
+            <m:mi>x</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>x</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>∼</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+              <m:mi>σ</m:mi>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id256602">to get</para>
+      <equation id="id256608">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+                <m:mo>)</m:mo>
+                <m:mo>/</m:mo>
+                <m:mi>σ</m:mi>
+              </m:mrow>
+            </m:msubsup>
+            <m:mi>φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>Φ</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mfrac>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>μ</m:mi>
+                </m:mrow>
+                <m:mi>σ</m:mi>
+              </m:mfrac>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+
+
+
+<example id="fs-id7840223"><title>General gaussian calculation</title><para id="id256715">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>16</m:mn><m:mo>)</m:mo></m:mrow></m:math> (i.e., <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>16</m:mn></m:mrow></m:math>). Determine
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>11</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>|</m:mo><m:mo>&gt;</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id256835">SOLUTION</para>
+      <list id="eip-id1169925839844" list-type="enumerated" number-style="arabic"><item>  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mn>11</m:mn><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:mn>11</m:mn><m:mo>-</m:mo><m:mn>3</m:mn></m:mrow><m:mn>4</m:mn></m:mfrac></m:mfenced><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mn>3</m:mn></m:mrow><m:mn>4</m:mn></m:mfrac></m:mfenced><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8185</m:mn></m:mrow></m:mstyle></m:math></item>
+      <item>  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>&lt;</m:mo><m:mo>-</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>&gt;</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mrow><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3174</m:mn></m:mrow></m:mstyle></m:math></item>
+</list>
+      <para id="id257112">In each case the problem reduces to that in <link target-id="fs-id1171302695027"/></para>
+      </example>
+
+      We have m-functions <emphasis effect="italics">gaussian</emphasis> and <emphasis effect="italics">gaussdensity</emphasis> to calculate
+values of the distribution and density function for any reasonable value of the parameters.
+<newline/>
+The following are solutions of <link target-id="fs-id1171302695027"/> and <link target-id="fs-id7840223"/>, using the m-function gaussian.
+
+<example id="fs-id1171299341120"><title><link target-id="fs-id1171302695027"/> and <link target-id="fs-id7840223"/> (continued)</title><code id="id257155" display="block">&gt;&gt; P1 = gaussian(0,1,2) - gaussian(0,1,-1)
+P1 =  0.8186
+&gt;&gt; P2 = 2*(1 - gaussian(0,1,1))
+P2 =  0.3173
+&gt;&gt; P1 = gaussian(3,16,11) - gaussian(3,16,-1)
+P2 =  0.8186
+&gt;&gt; P2 = gaussian(3,16,-1)) + 1 - (gaussian(3,16,7)
+P2 =  0.3173
+</code>
+      <para id="id257263">The differences in these results and those above (which used tables) are due to the roundoff to four places in the tables.</para>
+      </example>
+</item>
+<item id="uid24"><emphasis effect="bold">Beta</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>r</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>.   <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>)</m:mo><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:msup><m:mi>t</m:mi><m:mrow><m:mi>r</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:mstyle></m:math>
+<newline/>
+Analysis is based on the integrals
+<equation id="id257479"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mo>∫</m:mo><m:mn>0</m:mn><m:mn>1</m:mn></m:msubsup><m:msup><m:mi>u</m:mi><m:mrow><m:mi>r</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>u</m:mi><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>)</m:mo><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>r</m:mi><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>with</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>Γ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>t</m:mi><m:mi>Γ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+<link target-id="uid25"/> and <link target-id="uid26"/> show graphs of the densities for various values of <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>s</m:mi></m:mrow></m:math>. The
+usefulness comes in approximating densities on the unit interval. By using scaling and
+shifting, these can be extended to other intervals. The special case <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> gives
+the uniform distribution on the unit interval. The Beta distribution is quite useful
+in developing the Bayesian statistics for the problem of sampling to determine a
+population proportion.
+If <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi></m:mrow> </m:math> are integers, the density function is a polynomial. For the general case
+we have two m-functions, <emphasis effect="italics">beta</emphasis> and <emphasis effect="italics">betadbn</emphasis> to perform the calculatons.
+<figure id="uid25"><media id="uid25_media" alt="A graph displaying Beta(r,s) density--r=2. The x-axis represents the range of t values 0-1, while the y-axis show the range of values for density ranging from 0-4.5. There are three distributions plotted. The first rises at a rapid rate, with its peak at (0.1,4.25). It is labeled s=10. The next function looks like a half circle with its peak at (0.5,1.5). It is labeled s=2. The final distribution is a straight line beginning at (0,0) and ending at (1,2). It is labeled s=1."><image mime-type="image/png" src="../../media/fig7_4_3.png" id="uid25_onlineimage" width="414"><!-- NOTE: attribute width changes image size online (pixels). original width is 414. --></image><image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_3-bec4.eps" id="uid25_printimage" print-width="5in"><!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)--></image></media><caption>The Beta(r,s) density for <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>10</m:mn></m:mrow></m:math>.</caption></figure><figure id="uid26"><media id="uid26_media" alt="A graph displaying Beta(r,s) density--r=5. The x-axis represents the range of t values 0-1, while the y-axis show the range of values for density 0-3.5. There are three distributions plotted. The first rises at a rapid rate, with its peak at (0.3,3.25). It is labeled s=10. The next function rises and falls at an equal rate with its peak at (0.5,2.5). It is labeled s=5. The final distribution rises gradually and peaks at (0.8,2.5) and then falls rapidly. It is labeled s=2."><image mime-type="image/png" src="../../media/fig7_4_4.png" id="uid26_onlineimage" width="414"><!-- NOTE: attribute width changes image size online (pixels). original width is 414. --></image><image for="pdf" mime-type="application/postscript" src="../../media/fig7_4_4-cb83.eps" id="uid26_printimage" print-width="5in"><!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)--></image></media><caption>The Beta(r,s) density for <m:math overflow="scroll"><m:mrow><m:mi>r</m:mi><m:mo>=</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>10</m:mn></m:mrow></m:math>.</caption></figure></item>
+        <item id="uid27"><emphasis effect="bold">Weibull</emphasis><m:math overflow="scroll"><m:mrow><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>ν</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:msup><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>ν</m:mi><m:mo>)</m:mo></m:mrow><m:mi>α</m:mi></m:msup></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>α</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>λ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>ν</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mi>ν</m:mi></m:mrow></m:math>
+<newline/>
+The parameter <emphasis effect="italics">ν  </emphasis> is a shift parameter. Usually we assume <m:math overflow="scroll"><m:mrow><m:mi>ν</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>. Examination
+shows that for <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> the distribution is exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>. The
+parameter <emphasis effect="italics">α</emphasis> provides a distortion of the time scale for the exponential distribution.
+<link target-id="uid25"/> and <link target-id="uid26"/> show graphs of the Weibull density for some representative values of
+<emphasis effect="italics">α</emphasis> and <emphasis effect="italics">λ</emphasis> (<m:math overflow="scroll"><m:mrow><m:mi>ν</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>). The distribution is used in reliability theory. We
+do not make much use of it. However, we have m-functions <emphasis effect="italics">weibull</emphasis> (density) and
+<emphasis effect="italics">weibulld</emphasis> (distribution function) for shift parameter <m:math overflow="scroll"><m:mrow><m:mi>ν</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> only. The shift can
+be obtained by subtracting a constant from the <emphasis effect="italics">t</emphasis> values.
+</item>
+</list>
+
+
+    </section>
+    
+  </content>
+</document>

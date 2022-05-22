@@ -1,0 +1,959 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Simple Random Samples and Statistics</title>
+  <metadata>
+  <md:content-id>m23496</md:content-id><md:title>Simple Random Samples and Statistics</md:title>
+  <md:abstract>The (simple) random sample, is basic to much of classical statistics. Once formulated, we may apply probability theory to exhibit several basic ideas of statistical analysis.
+A population may be most any collection of individuals or entities. Associated with each member is a quantity or a feature that can be assigned a number. The population distribution is the distribution of that quantity among the members of the population.
+To obtain information about the population distribution, we select “at random” a subset of the population and observe how the quantity varies over the sample. Hopefully, the distribution in the sample will give a useful approximation to the population distribution.  We obtain values of such quantities as the mean and variance in the sample (which are random quantities) and use these as estimators for corresponding population parameters (which are fixed).  Probability analysis provides estimates of the variation of the sample parameters about the corresponding population parameters.</md:abstract>
+  <md:uuid>af80b74f-3382-4768-9338-0a31c233be79</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+  <section id="cid1">
+    <title>Simple Random Samples and Statistics</title><para id="id118942">We formulate the notion of a (simple) <emphasis effect="italics">random sample</emphasis>, which is basic to much of
+classical statistics. Once formulated, we may apply probability theory to exhibit
+several basic ideas of statistical analysis.</para>
+    <para id="id118956">We begin with the notion of a <emphasis effect="italics">population distribution</emphasis>.  A population may be
+most any collection of individuals or entities. Associated with each member is a
+quantity or a feature that can be assigned a number. The quantity varies throughout
+the population. The population distribution is the distribution of that quantity
+among the members of the population.</para>
+    <para id="id118967">If each member could be observed, the population distribution could be determined
+completely. However, that is not always feasible. In order to obtain information
+about the population distribution, we select “at random” a subset of the
+population and observe how the quantity varies over the sample. Hopefully, the
+sample distribution will give a useful approximation to the population distribution.</para>
+  
+<para id="fs-id14896946"><emphasis effect="bold"> The sampling process</emphasis></para>
+
+      <para id="id118985">We take a sample of size <emphasis effect="italics">n</emphasis>, which means we select <emphasis effect="italics">n</emphasis> members of the population and
+observe the quantity associated with each. The selection is done in such a manner that
+on any trial each member is equally likely to be selected. Also, the sampling is done
+in such a way that the result of any one selection does not affect, and is not affected by,
+the others. It appears that we are describing a composite trial. We model the <emphasis effect="italics">sampling
+process</emphasis> as follows:</para>
+      <list id="fs-id14352194" list-type="bulleted" bullet-style="none"><item>Let <emphasis effect="italics">X<sub>i</sub></emphasis>, <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math> be the random variable for the <emphasis effect="italics">i</emphasis>th component trial. Then
+the class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid, with each member having the population distribution.</item></list>
+
+      <para id="id119088">This provides a model for sampling either from a very large population (often referred to
+as an infinite population) or sampling with replacement from a small population.</para>
+
+      <para id="id119093">The goal is to determine as much as possible about the character of the population. Two
+important parameters are the mean and the variance. We want the population mean and the
+population variance. If the sample is representative of the population, then the
+sample mean and the sample variance should approximate the population quantities.</para>
+
+      <list id="id119099" display="block" list-type="bulleted">
+        <item id="uid1">The <emphasis effect="italics">sampling process</emphasis> is the iid class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid2">A <emphasis effect="italics">random sample</emphasis> is an observation, or realization, <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>
+of the sampling process.
+</item>
+      </list>
+ 
+      <para id="fs-id14634580"><emphasis effect="bold"> The sample average and the population mean</emphasis></para>
+
+      <para id="id119230">Consider the numerical average of the values in the sample
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mover><m:mi>x</m:mi><m:mo>¯</m:mo></m:mover><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>n</m:mi></m:mfrac><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math>.  This is an observation of
+the <emphasis effect="italics">sample average</emphasis></para>
+      <equation id="id119468"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id119532">The sample sum <emphasis effect="italics">S<sub>n</sub></emphasis> and the sample average <emphasis effect="italics">A<sub>n</sub></emphasis> are random variables. If another
+observation were made (another sample taken), the observed value of these quantities would
+probably be different. Now <emphasis effect="italics">S<sub>n</sub></emphasis> and <emphasis effect="italics">A<sub>n</sub></emphasis> are functions of the random variables
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> in the sampling process. As such, they have distributions
+related to the <emphasis effect="italics">population distribution</emphasis> (the common distribution of the <emphasis effect="italics">X<sub>i</sub></emphasis>). According
+to the central limit theorem, for any reasonable sized sample they should be approximately
+normally distributed. As the examples demonstrating the central limit theorem show, the
+sample size need not be large in many cases. Now if the <emphasis effect="italics">population</emphasis> mean <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> is <emphasis effect="italics">μ</emphasis> and
+the <emphasis effect="italics">population variance</emphasis><m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> is <emphasis effect="italics">σ<sup>2</sup></emphasis>, then</para>
+      <equation id="id119709"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mi>μ</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:msup>
+              <m:mi>σ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id119890">so that</para>
+      <equation id="id119895">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>μ</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:msup>
+                <m:mi>n</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mfrac>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>σ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>/</m:mo>
+            <m:mi>n</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id120037">Herein lies the key to the usefulness of a large sample. The mean of the sample average
+<emphasis effect="italics">A<sub>n</sub></emphasis> is the same as the population mean, but the variance of the sample average is
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>n</m:mi></m:mrow></m:math> times the population variance. Thus, <emphasis effect="italics">for large enough sample, the probability
+is high that the observed value of the sample average will be close to the population mean</emphasis>.
+The population standard deviation, as a measure of the variation is reduced by a factor
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:msqrt><m:mi>n</m:mi></m:msqrt></m:mrow></m:math>.</para>
+
+<example id="fs-id1172131064745"><title>Sample size</title><para id="id120099">Suppose a population has mean <emphasis effect="italics">μ</emphasis> and variance <emphasis effect="italics">σ<sup>2</sup></emphasis>. A sample of size <emphasis effect="italics">n</emphasis> is
+to be taken. There are complementary questions:</para>
+      <list id="id120132" display="block" list-type="enumerated">
+        <item id="uid3">If <emphasis effect="italics">n</emphasis> is given, what is the probability the sample average lies within distance <emphasis effect="italics">a</emphasis> from
+the population mean?
+</item>
+        <item id="uid4">What value of <emphasis effect="italics">n</emphasis> is required to ensure a probability of at least <emphasis effect="italics">p</emphasis> that the sample average
+lies within distance <emphasis effect="italics">a</emphasis> from the population mean?
+</item>
+      </list>
+      <para id="id120201">SOLUTION</para>
+      <para id="id120204">Suppose the sample variance is known or can be approximated reasonably. If the sample
+size <emphasis effect="italics">n</emphasis> is reasonably large, depending on the population distribution (as seen in the
+previous demonstrations), then <emphasis effect="italics">A<sub>n</sub></emphasis> is approximately
+<m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <list id="id120262" display="block" list-type="enumerated">
+        <item id="uid5">Sample size given, probability to be determined.
+<equation id="id120277"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo></m:mrow><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>-</m:mo><m:mi>μ</m:mi><m:mrow><m:mo>|</m:mo><m:mo>≤</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mfenced separators="" open="|" close="|"><m:mfrac><m:mrow><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow><m:mrow><m:mi>σ</m:mi><m:mo>/</m:mo><m:msqrt><m:mi>n</m:mi></m:msqrt></m:mrow></m:mfrac></m:mfenced><m:mo>≤</m:mo><m:mfrac><m:mrow><m:mi>a</m:mi><m:msqrt><m:mi>n</m:mi></m:msqrt></m:mrow><m:mi>σ</m:mi></m:mfrac></m:mfenced><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:msqrt><m:mi>n</m:mi></m:msqrt><m:mo>/</m:mo><m:mi>σ</m:mi><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math></equation></item>
+        <item id="uid6">Sample size to be determined, probability specified.
+<equation id="id120415"><m:math overflow="scroll" mode="display"><m:mrow><m:mn>2</m:mn><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:msqrt><m:mi>n</m:mi></m:msqrt><m:mo>/</m:mo><m:mi>σ</m:mi><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≥</m:mo><m:mi>p</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>iff</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:msqrt><m:mi>n</m:mi></m:msqrt><m:mo>/</m:mo><m:mi>σ</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≥</m:mo><m:mfrac><m:mrow><m:mi>p</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow><m:mn>2</m:mn></m:mfrac></m:mrow></m:math></equation>
+Find from a table or by use of the inverse normal function the value of <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:msqrt><m:mi>n</m:mi></m:msqrt><m:mo>/</m:mo><m:mi>σ</m:mi></m:mrow></m:math>
+required to make <m:math overflow="scroll"><m:mrow><m:mi>Φ</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>)</m:mo></m:mrow></m:math> at least <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>. Then
+<equation id="id120566"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>n</m:mi><m:mo>≥</m:mo><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>/</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mi>σ</m:mi><m:mi>a</m:mi></m:mfrac></m:mfenced><m:mn>2</m:mn></m:msup><m:mspace width="0.166667em"/><m:msup><m:mi>x</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id120636">We may use the MATLAB function <emphasis effect="italics">norminv</emphasis> to calculate values of <emphasis effect="italics">x</emphasis> for various <emphasis effect="italics">p</emphasis>.</para>
+      <code id="id120660" display="block">p = [0.8 0.9 0.95 0.98 0.99];
+x = norminv(0,1,(1+p)/2);
+disp([p;x;x.^2]')
+    0.8000    1.2816    1.6424
+    0.9000    1.6449    2.7055
+    0.9500    1.9600    3.8415
+    0.9800    2.3263    5.4119
+    0.9900    2.5758    6.6349
+</code>
+      <para id="id120733">For <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>95</m:mn><m:mo>,</m:mo><m:mi>σ</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mi>a</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>≥</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>8415</m:mn><m:mo>=</m:mo><m:mn>384</m:mn><m:mo>.</m:mo><m:mn>15</m:mn></m:mrow></m:math>. Use at least
+385 or perhaps 400 because of uncertainty about the actual <emphasis effect="italics">σ<sup>2</sup></emphasis></para>
+      </example>
+
+      <para id="id120869">
+        <emphasis effect="bold">The idea of a statistic</emphasis>
+      </para>
+
+      <para id="id120878">As a function of the random variables in the sampling process, the sample average is
+an example of a statistic.</para>
+
+      <para id="id120884"><emphasis effect="bold">Definition</emphasis>.  A <emphasis effect="italics">statistic</emphasis> is a function of the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+which uses explicitly no unknown parameters of the population.</para>
+
+
+<example id="fs-id1172131236659"><title>Statistics as functions of the sampling process</title><para id="id120939">The random variable</para>
+      <equation id="id120942"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>μ</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121037">is <emphasis effect="italics">not</emphasis> a statistic, since it uses the unknown parameter <emphasis effect="italics">μ</emphasis>.  However, the
+following <emphasis effect="italics">is</emphasis> a statistic.</para>
+      <equation id="id121063"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>V</m:mi>
+              <m:mi>n</m:mi>
+              <m:mo>*</m:mo>
+            </m:msubsup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mspace width="0.277778em"/>
+            <m:mo>-</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msubsup>
+              <m:mi>A</m:mi>
+              <m:mi>n</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+      <para id="id121206">It would appear that <m:math overflow="scroll"><m:msubsup><m:mi>V</m:mi><m:mi>n</m:mi><m:mo>*</m:mo></m:msubsup></m:math> might be a reasonable estimate of the population variance.
+However, the following result shows that a slight modification is desirable.</para>
+
+
+<example id="fs-id7474509"><title>An estimator for the population variance</title><para id="id121236">The statistic</para>
+      <equation id="id121240"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>V</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121315">is an estimator for the population variance.</para>
+      <para id="id121320">VERIFICATION</para>
+      <para id="id121326">Consider the statistic</para>
+      <equation id="id121329"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>V</m:mi>
+              <m:mi>n</m:mi>
+              <m:mo>*</m:mo>
+            </m:msubsup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mspace width="0.277778em"/>
+            <m:mo>-</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msubsup>
+              <m:mi>A</m:mi>
+              <m:mi>n</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121457">Noting that <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:msup><m:mi>μ</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:math>, we use the last expression to show</para>
+      <equation id="id121506">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msubsup>
+                <m:mi>V</m:mi>
+                <m:mi>n</m:mi>
+                <m:mo>*</m:mo>
+              </m:msubsup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:mi>n</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>σ</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>μ</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mfrac>
+                <m:msup>
+                  <m:mi>σ</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mi>n</m:mi>
+              </m:mfrac>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mi>μ</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:msup>
+              <m:mi>σ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121620">The quantity has a <emphasis effect="italics">bias</emphasis> in the average. If we consider</para>
+      <equation id="id121631"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>V</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>n</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mi>V</m:mi>
+              <m:mi>n</m:mi>
+              <m:mo>*</m:mo>
+            </m:msubsup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>then</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>n</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:mfrac>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:msup>
+              <m:mi>σ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>σ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121810">The quantity <emphasis effect="italics">V<sub>n</sub></emphasis> with <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math> rather than <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>n</m:mi></m:mrow></m:math> is often called the <emphasis effect="italics">sample
+variance</emphasis> to distinguish it from the population variance. If the set of numbers</para>
+      <equation id="id121873">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>⋯</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121928">represent the complete set of values in a population of <emphasis effect="italics">N</emphasis> members, the variance
+for the population would be given by</para>
+      <equation id="id121944"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mi>σ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>N</m:mi>
+            </m:mfrac>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>N</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mfenced separators="" open="(" close=")">
+                <m:mfrac>
+                  <m:mn>1</m:mn>
+                  <m:mi>N</m:mi>
+                </m:mfrac>
+                <m:munderover>
+                  <m:mrow><m:mo>∑</m:mo></m:mrow>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>N</m:mi>
+                </m:munderover>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mfenced>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id122041">Here we use <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>N</m:mi></m:mrow></m:math> rather than <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      </example>
+
+
+
+
+      <para id="id122099">Since the statistic <emphasis effect="italics">V<sub>n</sub></emphasis> has mean value <emphasis effect="italics">σ<sup>2</sup></emphasis>, it seems a reasonable candidate for
+an estimator of the population variance. If we ask how good is it, we need to consider
+its variance. As a random variable, it has a variance. An evaluation similar to that
+for the mean, but more complicated in detail, shows that</para>
+      <equation id="id122133">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>n</m:mi>
+            </m:mfrac>
+            <m:mfenced separators="" open="(" close=")">
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>-</m:mo>
+              <m:mfrac>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>3</m:mn>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:mfrac>
+              <m:msup>
+                <m:mi>σ</m:mi>
+                <m:mn>4</m:mn>
+              </m:msup>
+            </m:mfenced>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>μ</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>4</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id122268">For large <emphasis effect="italics">n</emphasis>, <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math> is small, so that <emphasis effect="italics">V<sub>n</sub></emphasis> is a good large-sample estimator
+for <emphasis effect="italics">σ<sup>2</sup></emphasis>.</para>
+
+
+<example id="fs-id2932130"><title> A sampling demonstration of the CLT</title><para id="id122344">Consider a population random variable <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> uniform [-1, 1]. Then <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>3</m:mn></m:mrow></m:math>. We take 100 samples of size 100, and determine the
+sample sums. This gives a sample of size 100 of the sample sum random variable <emphasis effect="italics">S<sub>100</sub></emphasis>,
+which has mean zero and variance 100/3.
+For each observed value of the sample sum random variable, we plot the
+fraction of observed sums less than or equal to that value. This
+yields an experimental distribution function for <emphasis effect="italics">S<sub>100</sub></emphasis>, which is compared with the
+distribution function for a random variable <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>100</m:mn><m:mo>/</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <code id="id122470" display="block">rand('seed',0)    % Seeds random number generator for later comparison
+tappr                                         % Approximation setup
+Enter matrix [a b] of x-range endpoints  [-1 1]
+Enter number of x approximation points  100
+Enter density as a function of t  0.5*(t&lt;=1)
+Use row matrices X and PX as in the simple case
+</code>
+      
+      <code id="id122546" display="block">qsample                                 % Creates sample
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX
+Sample size n =  10000                  % Master sample size 10,000
+Sample average ex = 0.003746
+Approximate population mean E(X) = 1.561e-17
+Sample variance vx = 0.3344
+Approximate population variance V(X) = 0.3333
+m = 100;
+a = reshape(T,m,m);                     % Forms 100 samples of size 100
+A = sum(a);                             % Matrix A of sample sums
+[t,f] = csort(A,ones(1,m));             % Sorts A and determines cumulative
+p = cumsum(f)/m;                        % fraction of elements &lt;= each value
+pg = gaussian(0,100/3,t);               % Gaussian dbn for sample sum values
+plot(t,p,'k-',t,pg,'k-.')               % Comparative plot
+% Plotting details                      (see <link target-id="uid7"/>)
+</code>
+      </example>
+
+
+
+      <figure id="uid7"><media id="uid7_media" alt="Figure one is a graph of two plots, titled, Central limit theorem for sample sums. The horizontal axis is labeled, sample sum values, and the vertical axis is labeled, cumulative fraction. The values on the horizontal axis range from -15 to 20 in increments of 5. The values on the vertical axis range from 0 to 1 in increments of 0.1. There are two captions inside the graph. The first reads, X uniform on [-1 1], and the second reads, E[X] = 0 Var[X] = 1/3. The first plot is a smooth, dashed line, labeled gaussian. The second plot is a wavering, jagged solid line labeled experimental. Both plots follow generally the same shape. They begin in the bottom right at approximately (-12, 0) with a positive slope, and they move to the right, increasing at an increasing rate. At nearly the midpoint in the graph, approximately (0, 0.5), the graphs adjust and begin increasing at a decreasing rate, approaching the top-right corner of the graph while tapering off to a horizontal line. The gaussian, dashed line follows this path's description more accurately, while the solid experimental line seems to be closely fitted to the gaussian line's path with some imperfections causing it to waver jaggedly at a couple spots along the path.">
+          <image mime-type="image/png" src="../../media/fig13_4_1.png" id="uid7_onlineimage" width="418"><!-- NOTE: attribute width changes image size online (pixels). original width is 418. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig13_4_1.eps" id="uid7_printimage" print-width="4.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The central limit theorem for sample sums.</caption></figure>
+    </section>
+  </content>
+</document>

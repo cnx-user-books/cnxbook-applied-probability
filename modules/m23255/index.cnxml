@@ -1,0 +1,1854 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  <title>MATLAB and Independent Classes</title>
+  <metadata>
+  <md:content-id>m23255</md:content-id><md:title>MATLAB and Independent Classes</md:title>
+  <md:abstract>In the independent case, we may calculate all minterm probabilities from the probabilities of the basic events. These calculations are straightforward, but may be tedious and subject to errors. An m-function minprob calculates all minterm probabilities from the probabilities of the basic or generating sets. To arrange these as on a minterm map, m-function minmap reshapes the row matrix pm. When minterm probabilities are available, m-function ikn(P,k) calculates individual probabilities and ckn(P,k) calculates the probabilities that k or more occur.  These provide the basis of a variety of useful calculations.
+The m-function imintest checks a vector of minterm probabilities for feasible size, determines the number of variables, and performs a check for independence.
+As in the nonindependent case, we may utilize the minterm expansion and the minterm
+probabilities to calculate the probabilities of Boolean combinations of events. However,
+it is frequently more efficient to manipulate the expressions for the Boolean combination
+to be a disjoint union of intersections.
+Various Matlab calculations on independent Boolean combinations are readily performed.</md:abstract>
+  <md:uuid>581a0a2d-19cb-4f0b-9cf5-45c05b740077</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title>MATLAB and Independent Classes</title>
+      <para id="id90112">In the unit on <link document="m23247">Minterms</link>, we show how to use minterm probabilities and minterm vectors to calculate
+probabilities of Boolean combinations of events. In Independence of Events we show that in the
+independent case, we may calculate all minterm probabilities from the probabilities of
+the basic events. While these calculations are straightforward, they may be tedious and
+subject to errors. Fortunately, in this case we have an
+m-function <emphasis effect="italics">minprob</emphasis> which calculates all minterm probabilities from the probabilities
+of the basic or generating sets. This function uses the m-function mintable to set up
+the patterns of <emphasis effect="italics">p</emphasis>'s and <emphasis effect="italics">q</emphasis>'s for the various minterms and then takes the products to
+obtain the set of minterm probabilities.</para>
+
+<example id="fs-id3482703"><code id="id90149" display="block">&gt;&gt; pm = minprob(0.1*[4 7 6])
+   pm = 0.0720  0.1080  0.1680  0.2520  0.0480  0.0720  0.1120  0.1680
+</code>
+      <para id="id90172">It may be desirable to arrange these as on a minterm map. For this we have an m-function
+<emphasis effect="italics">minmap</emphasis> which reshapes the row matrix <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mi>m</m:mi></m:mrow></m:math>, as follows:</para>
+      <code id="id90194" display="block">&gt;&gt; t = minmap(pm)
+t = 0.0720    0.1680    0.0480    0.1120
+    0.1080    0.2520    0.0720    0.1680
+</code>
+</example>
+    
+      <para id="fs-id4501872"><emphasis effect="bold">Probability of occurrence of k of n independent events</emphasis></para>
+
+      <para id="id90235">In Example 2, we show how to use the m-functions mintable and csort to obtain the
+probability of the occurrence of <emphasis effect="italics">k</emphasis> of <emphasis effect="italics">n</emphasis> events, when minterm probabilities are available.
+In the case of an independent class, the minterm probabilities are calculated easily
+by minprob, It is only necessary to specify the probabilities for the <emphasis effect="italics">n</emphasis> basic
+events and the numbers <emphasis effect="italics">k</emphasis> of events. The size of the class, hence the mintable, is
+determined, and the minterm probabilities are calculated by minprob. We have two
+useful m-functions. If <emphasis effect="italics">P</emphasis> is a matrix of the <emphasis effect="italics">n</emphasis> individual event probabilities,
+and <emphasis effect="italics">k</emphasis> is a matrix of integers less than or equal to <emphasis effect="italics">n</emphasis>, then</para>
+      <para id="id90306"><m:math>
+<m:mtext>function </m:mtext> 
+<m:mi>y</m:mi>
+<m:mo>=</m:mo>
+<m:mi>ikn</m:mi>
+<m:mo>(</m:mo>
+<m:mi>P</m:mi>
+<m:mo>,</m:mo>
+<m:mi>k</m:mi>
+<m:mo>)</m:mo>
+</m:math>  calculates individual probabilities that <m:math>
+<m:mi>k</m:mi>
+</m:math> of <m:math>
+<m:mi>n</m:mi>
+</m:math> occur</para>
+      <para id="id90331"><m:math>
+<m:mtext>function</m:mtext>
+<m:mi>y</m:mi>
+<m:mo>=</m:mo>
+<m:mi>ckn</m:mi>
+<m:mo>(</m:mo>
+<m:mi>P</m:mi>
+<m:mo>,</m:mo>
+<m:mi>k</m:mi>
+<m:mo>)</m:mo>
+</m:math>  calculates the probabilities that <m:math><m:mi>k</m:mi></m:math> or more occur</para>
+
+
+<example id="fs-id3489332">
+      
+      <code id="id90356" display="block">&gt;&gt; p = 0.01*[13 37 12 56 33 71 22 43 57 31];
+&gt;&gt; k = [2 5 7];
+&gt;&gt; P = ikn(p,k)
+P =    0.1401    0.1845    0.0225       % individual probabilities
+&gt;&gt; Pc = ckn(p,k)
+Pc =   0.9516    0.2921    0.0266       % cumulative probabilities
+</code>
+</example>
+    
+      <para id="fs-id1171969439031"><emphasis effect="bold">Reliability of systems with independent components</emphasis></para>
+
+      <para id="id90437">Suppose a system has <emphasis effect="italics">n</emphasis> components which fail independently. Let <emphasis effect="italics">E<sub>i</sub></emphasis> be the event
+the <emphasis effect="italics">i</emphasis>th component survives the designated time period. Then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>R</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is defined
+to be the <emphasis effect="italics">reliability</emphasis> of that component. The reliability <emphasis effect="italics">R</emphasis> of the complete system
+is a function of the component reliabilities. There are three basic configurations.
+General systems may be decomposed into subsystems of these types. The subsystems
+become components in the larger configuration. The three fundamental configurations
+are:</para>
+      <list id="id90696" display="block" list-type="enumerated"><item id="uid1"><emphasis effect="bold">Series</emphasis>. The system operates iff <emphasis effect="italics">all</emphasis><emphasis effect="italics"> n</emphasis> components <emphasis effect="italics">operate</emphasis>:  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>R</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∏</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>R</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math></item>
+        <item id="uid2"><emphasis effect="bold">Parallel</emphasis>. The system operates iff <emphasis effect="italics">not all</emphasis> components <emphasis effect="italics">fail</emphasis>:  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>R</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:munderover><m:mo>∏</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>R</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math></item>
+        <item id="uid3"><emphasis effect="bold">k of n</emphasis>. The system operates iff <emphasis effect="italics">k</emphasis> or more components operate. <emphasis effect="italics">R</emphasis> may be
+calculated with the m-function ckn. If the component probabilities are all the same, it
+is more efficient to use the m-function cbinom (see Bernoulli trials and the
+binomial distribution, below).
+</item>
+      </list>
+      <para id="id90886"><emphasis effect="bold">MATLAB solution</emphasis>.   Put the component reliabilities in matrix
+<m:math overflow="scroll"><m:mrow><m:mi>R</m:mi><m:mi>C</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>R</m:mi><m:mn>1</m:mn><m:mspace width="0.277778em"/><m:mi>R</m:mi><m:mn>2</m:mn><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mspace width="0.277778em"/><m:mi>R</m:mi><m:mi>n</m:mi><m:mo>]</m:mo></m:mrow></m:math></para>
+      <list id="id90935" display="block" list-type="enumerated">
+        <item id="uid4">
+          <emphasis effect="bold">Series Configuration</emphasis>
+          <code id="id90952" display="block">  &gt;&gt; R = prod(RC)     % prod is a built in MATLAB function
+</code>
+        </item>
+        <item id="uid5">
+          <emphasis effect="bold">Parallel Configuration</emphasis>
+          <code id="id90982" display="block">  &gt;&gt; R = parallel(RC) % parallel is a user defined function
+</code>
+        </item>
+        <item id="uid6">
+          <emphasis effect="bold">k of n Configuration</emphasis>
+          <code id="id91012" display="block">  &gt;&gt; R = ckn(RC,k)    % ckn is a user defined function (in file ckn.m).
+</code>
+        </item>
+      </list>
+<example id="fs-id3418406">
+      
+      <para id="id91036">There are eight components, numbered 1 through 8. Component 1 is in series with a
+parallel combination of components 2 and 3, followed by
+a 3 of 5 combination of components 4 through 8 (see Figure 1 for a schematic
+representation). Probabilities of the components in order are</para>
+      <equation id="id91041">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>95</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>90</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>92</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>80</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>83</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>91</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>85</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>85</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id91123">The second and third probabilities are for the parallel pair, and the last five
+probabilities are for the 3 of 5 combination.</para>
+      <code id="id91129" display="block">&gt;&gt; RC = 0.01*[95 90 92 80 83 91 85 85];        % Component reliabilities
+&gt;&gt; Ra = RC(1)*parallel(RC(2:3))*ckn(RC(4:8),3) % Solution
+Ra = 0.9172
+</code>
+</example>
+      <figure id="uid7"><media id="uid7_media" alt="a representation of a system with 8 components">
+          <image mime-type="image/png" src="../../media/fig4_4_1.png" id="uid7_onlineimage" width="436"><!-- NOTE: attribute width changes image size online (pixels). original width is 436. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig4_4_1.eps" id="uid7_printimage" print-width="5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Schematic representation of the system in <link target-id="fs-id3418406"/></caption></figure>
+
+<example id="fs-id2995076">
+      
+      
+      <code id="id91192" display="block">&gt;&gt; RC = 0.01*[95 90 92 80 83 91 85 85];    % Component reliabilities 1--8
+&gt;&gt; Rb = prod(RC(1:2))*parallel([RC(3),ckn(RC(4:8),3)])     % Solution
+Rb = 0.8532
+</code>
+</example>
+
+      <figure id="uid8"><media id="uid8_media" alt="Another 8 component system schematic">
+          <image mime-type="image/png" src="../../media/fig4_4_2.png" id="uid8_onlineimage" width="421"><!-- NOTE: attribute width changes image size online (pixels). original width is 421. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig4_4_2.eps" id="uid8_printimage" print-width="5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Schematic representation of the system in <link target-id="fs-id2995076"/></caption></figure>
+    
+      <para id="fs-id1171972448850"><emphasis effect="bold">A test for independence</emphasis></para>
+
+      <para id="id91256">It is difficult to look at a list of minterm probabilities and determine
+whether or not the generating events form an independent class.
+The m-function <emphasis effect="italics">imintest</emphasis> has as argument a vector of minterm probabilities. It
+checks for feasible size, determines the number of variables, and performs a
+check for independence.</para>
+
+<example id="fs-id2797502">
+      
+      <code id="id91273" display="block">&gt;&gt; pm = 0.01*[15 5 2 18 25 5 18 12];   % An arbitrary class
+&gt;&gt; disp(imintest(pm))
+The class is NOT independent
+Minterms for which the product rule fails
+     1     1     1     0
+     1     1     1     0
+ 
+</code>
+</example><example id="eip-925"><code id="eip-id1164797501393" display="block">
+&gt;&gt; pm = [0.10 0.15 0.20 0.25 0.30]: %An improper number of probabilities
+&gt;&gt; disp(imintest(pm))
+The number of minterm probabilities incorrect
+</code></example><example id="eip-19"><code id="eip-id1163965713592" display="block">
+&gt;&gt; pm = minprob([0.5 0.3 0.7]);
+&gt;&gt; disp(imintest(pm))
+The class is independent
+</code></example>
+
+    </section>
+    <section id="cid5"><title>Probabilities of Boolean combinations</title><para id="id91432">As in the nonindependent case, we may utilize the minterm expansion and the minterm
+probabilities to calculate the probabilities of Boolean combinations of events. However,
+it is frequently more efficient to manipulate the expressions for the Boolean combination
+to be a disjoint union of intersections.</para>
+<example id="eip-id4459203"><title>A simple Boolean combination</title><para id="id91447">Suppose the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math>   is independent, with respective probabilities
+0.4, 0.6, 0.8. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>. The minterm expansion is</para>
+      <equation id="id91501">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>M</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>4</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>5</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>6</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>7</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>4</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>5</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>6</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>7</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id91635">It is not difficult to use the product rule and the replacement theorem to calculate the
+needed minterm probabilities. Thus
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>⋅</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>⋅</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2280</m:mn></m:mrow></m:math>. Similarly
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0320</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1280</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>6</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0480</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>7</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1920</m:mn></m:mrow></m:math> . The desired
+probability is the sum of these, 0.6880.</para>
+      <para id="id91834">As an alternate approach, we write</para>
+      <equation id="id91838">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>⋁</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>∪</m:mo>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6880</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id91955">Considerbly fewer arithmetic operations are required in this calculation.</para>
+</example>      
+
+<para id="id91961">In larger problems, or in situations where probabilities of several Boolean combinations
+are to be determined, it may be desirable to calculate all minterm probabilities then use the
+minterm vector techniques introduced earlier to calculate probabilities for various
+Boolean combinations. As a larger example for which computational aid is highly desirable, consider
+again the class and the probabilities utilized in <link target-id="fs-id3489332"/>, above.</para>
+     
+<example id="fs-id3231854">
+ 
+      <para id="id91977">Consider again the independent class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>10</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> with respective
+probabilities <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>13</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>37</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>12</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>56</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>33</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>71</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>22</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>43</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>57</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>31</m:mn><m:mo>}</m:mo></m:mrow></m:math>. We wish to calculate</para>
+      
+      <equation id="id92145">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>F</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>∪</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>4</m:mn>
+                </m:msub>
+                <m:mo>∪</m:mo>
+                <m:msubsup>
+                  <m:mi>E</m:mi>
+                  <m:mn>7</m:mn>
+                  <m:mi>c</m:mi>
+                </m:msubsup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∪</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msubsup>
+                  <m:mi>E</m:mi>
+                  <m:mn>5</m:mn>
+                  <m:mi>c</m:mi>
+                </m:msubsup>
+                <m:mo>∪</m:mo>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>6</m:mn>
+                </m:msub>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>8</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∪</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>9</m:mn>
+              </m:msub>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mn>10</m:mn>
+                </m:mrow>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id92284">There are <m:math overflow="scroll"><m:mrow><m:msup><m:mn>2</m:mn><m:mn>10</m:mn></m:msup><m:mo>=</m:mo><m:mn>1024</m:mn></m:mrow></m:math> minterm probabilities to be calculated. Each requires the
+multiplication of ten numbers. The solution with MATLAB is easy, as follows:</para>
+      <code id="id92311" display="block">&gt;&gt; P = 0.01*[13 37 12 56 33 71 22 43 57 31];
+&gt;&gt; minvec10
+Vectors are A1 thru A10 and A1c thru A10c
+They may be renamed, if desired.
+&gt;&gt; F = (A1|(A3&amp;(A4|A7c)))|(A2&amp;(A5c|(A6&amp;A8)))|(A9&amp;A10c);
+&gt;&gt; pm = minprob(P);
+&gt;&gt; PF = F*pm'
+PF =  0.6636
+</code>
+      <para id="id92409">Writing out the expression for <emphasis effect="italics">F</emphasis> is tedious and error prone. We could simplify
+as follows:</para>
+      <code id="id92425" display="block">&gt;&gt; A = A1|(A3&amp;(A4|A7c));
+&gt;&gt; B = A2&amp;(A5c|(A6&amp;A8));
+&gt;&gt; C = A9&amp;A10c;
+&gt;&gt; F = A|B|C;               % This minterm vector is the same as for F above
+</code>
+      <para id="id92481">This decomposition of the problem indicates that it may be solved as a series of
+smaller problems. First, we need some central facts about independence of
+Boolean combinations.</para>
+</example>
+    </section>
+    <section id="cid6"><title>Independent Boolean combinations</title><para id="id92498">Suppose we have a Boolean combination of the events in the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+and a second combination the events in the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math>. If
+the combined class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent,
+we would expect the combinations of the subclasses to be independent. It is important
+to see that this is in fact a consequence of the product rule, for it is further evidence
+that the product rule has captured the essence of the intuitive notion of independence.
+In the following discussion, we exhibit the essential structure which provides the basis
+for the following general proposition.</para>
+      <para id="id92635"><emphasis effect="italics">Proposition</emphasis>.  Consider <emphasis effect="italics">n</emphasis> distinct subclasses of an independent class of events. If for each <emphasis effect="italics">i</emphasis> the
+event <emphasis effect="italics">A<sub>i</sub></emphasis> is a Boolean (logical) combination of members of the <emphasis effect="italics">i</emphasis>th subclass, then
+the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is an independent class.</para>
+      <para id="id92754">Verification of this far reaching result rests on the minterm expansion and two elementary
+facts about the disjoint subclasses of an independent class. We state these facts and
+consider in each case an example which exhibits the essential structure. Formulation of the
+general result, in each case, is simply a matter of careful use of notation.</para>
+      <list id="id92763" display="block" list-type="enumerated" number-style="arabic"><item id="uid9">A class each of whose members is a minterm formed by members of a distinct subclass
+of an independent class is itself an independent class.
+
+<example id="fs-id3044424">
+      
+      <para id="id92791">Consider the independent class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>3</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mn>3</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mn>4</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math>, with
+respective probabilities 0.4, 0.7, 0.3, 0.5, 0.8, 0.3, 0.6. Consider <emphasis effect="italics">M<sub>3</sub></emphasis>, minterm three
+for the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>3</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math>, and <emphasis effect="italics">N<sub>5</sub></emphasis>, minterm five for the class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mn>3</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mn>4</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math>.  Then</para>
+      <equation id="id93026"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>126</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+          </m:mrow>
+    <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:msubsup>
+                <m:mi>B</m:mi>
+                <m:mn>3</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>168</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      
+      <para id="id93243">Also</para>
+      <equation id="id93249"><m:math overflow="scroll" mode="display">
+<m:mtable>
+<m:mtr>
+<m:mtd>
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:msubsup>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:msubsup>
+                <m:mi>B</m:mi>
+                <m:mn>3</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>8</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+          </m:mrow>
+      </m:mtd>
+</m:mtr>
+<m:mtr>
+<m:mtd>
+   <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>6</m:mn>
+              <m:mo>⋅</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>⋅</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>⋅</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>⋅</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>⋅</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>⋅</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>6</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>0212</m:mn>
+          </m:mrow>
+</m:mtd>
+</m:mtr>      
+</m:mtable>
+  </m:math>
+      </equation>
+      
+      <para id="id93536">The product rule shows the desired independence.</para>
+</example>      
+<para id="id93542">Again, it should be apparent that the result holds for any number of <emphasis effect="italics">A<sub>i</sub></emphasis> and <emphasis effect="italics">B<sub>j</sub></emphasis>;  and it can be extended to any number of distinct subclasses of an independent class.</para></item>
+        <item id="uid10">Suppose each member of a class can be expressed as a disjoint union.
+If each auxiliary class formed by taking one member from each of the disjoint unions is
+an independent class, then the original class is independent.      
+<example id="fs-id3604155">
+
+      <para id="id93604">Suppose <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>⋁</m:mo><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋁</m:mo><m:msub><m:mi>A</m:mi><m:mn>3</m:mn></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo><m:msub><m:mi>B</m:mi><m:mn>1</m:mn></m:msub><m:mo>⋁</m:mo><m:msub><m:mi>B</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math>
+independent for each pair <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mo>,</m:mo><m:mi>j</m:mi></m:mrow></m:math>. Suppose</para>
+      <equation id="id93728">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id93889">We wish to show that the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent; i.e., the product rule <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> holds.</para>
+      <!--empty paragraphs get left behind.-->
+      
+      <para id="id93965">COMPUTATION</para>
+      <equation id="id93968"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>8</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+          </m:mrow>
+    <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7</m:mn>
+          </m:mrow>
+      
+
+        </m:math>
+      </equation>
+      
+      <para id="id94161">Now</para>
+      <equation id="id94166">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>⋁</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>⋁</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>⋁</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id94340">By additivity and pairwise independence, we have</para>
+      <equation id="id94348"><m:math overflow="scroll" mode="display">
+ 
+<m:mtable>
+<m:mtr>
+<m:mtd>
+         <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+      </m:mtd>
+</m:mtr>
+<m:mtr>
+<m:mtd>
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>56</m:mn>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+      </m:mtd>
+</m:mtr>
+</m:mtable>
+</m:math></equation>
+      
+      <para id="id94702">The product rule can also be established algebraically from the expression for <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>, as
+follows:</para>
+      <equation id="id94728"><m:math overflow="scroll" mode="display">
+<m:mtable>
+<m:mtr>
+<m:mtd>
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+      </m:mtd>
+</m:mtr>
+<m:mtr>
+<m:mtd>
+ <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>+</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>B</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+      </m:mtd>
+</m:mtr>
+</m:mtable>
+</m:math></equation>
+      
+</example>
+
+      <para id="id95038">It should be clear that the pattern just illustrated can be extended to the general case. If</para>
+      <equation id="id95042"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>B</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>j</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>m</m:mi>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>each</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>pair</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>independent</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id95226">then the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent. Also, we may extend this rule to the triple
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math></para>
+      <equation id="id95283"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>B</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>j</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>m</m:mi>
+              </m:munderover>
+               </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>r</m:mi>
+              </m:munderover>
+              </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>each</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>class</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>k</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>independent</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id95531">and similarly for any finite number of such combinations, so that the second proposition
+holds.</para>
+</item>
+      
+        <item id="uid11">Begin with an independent class <m:math overflow="scroll"><m:mi mathvariant="script">E</m:mi></m:math> of <emphasis effect="italics">n</emphasis> events. Select <emphasis effect="italics">m</emphasis> distinct subclasses and form Boolean combinations for each of these. Use of the minterm expansion for each of these Boolean combinations and the two propositions just illustrated shows that the class of Boolean combinations is independent
+      <para id="id95588">To illustrate, we return to <link target-id="fs-id3231854"/>, which involves an independent class of ten events.</para>
+
+<example id="fs-id4054028"><title>A hybrid approach</title><para id="id95600">Consider again the independent class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>10</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> with respective
+probabilities <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>13</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>37</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>12</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>56</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>33</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>71</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>22</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>43</m:mn><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mspace width="0.277778em"/><m:mn>57</m:mn><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>31</m:mn><m:mo>}</m:mo></m:mrow></m:math>. We wish to calculate</para>
+      
+      <equation id="id95770">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>F</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>∪</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>4</m:mn>
+                </m:msub>
+                <m:mo>∪</m:mo>
+                <m:msubsup>
+                  <m:mi>E</m:mi>
+                  <m:mn>7</m:mn>
+                  <m:mi>c</m:mi>
+                </m:msubsup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∪</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msubsup>
+                  <m:mi>E</m:mi>
+                  <m:mn>5</m:mn>
+                  <m:mi>c</m:mi>
+                </m:msubsup>
+                <m:mo>∪</m:mo>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>6</m:mn>
+                </m:msub>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>8</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∪</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>9</m:mn>
+              </m:msub>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mn>10</m:mn>
+                </m:mrow>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id95908">In the previous solution, we use minprob to calculate the <m:math overflow="scroll"><m:mrow><m:msup><m:mn>2</m:mn><m:mn>10</m:mn></m:msup><m:mo>=</m:mo><m:mn>1024</m:mn></m:mrow></m:math> minterms for all ten of
+the <emphasis effect="italics">E<sub>i</sub></emphasis> and determine the minterm vector for <emphasis effect="italics">F</emphasis>. As we note in the alternate expansion of <emphasis effect="italics">F</emphasis>,</para>
+      <equation id="id95967">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>F</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>∪</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>∪</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>7</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>B</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>5</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>∪</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>8</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>9</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mn>10</m:mn>
+              </m:mrow>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id96149">We may calculate directly <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>57</m:mn><m:mo>⋅</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>69</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3933</m:mn></m:mrow></m:math>. Now <emphasis effect="italics">A</emphasis> is a Boolean
+combination of <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>4</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>7</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> and <emphasis effect="italics">B</emphasis> is a combination of
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>5</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>6</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>8</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math>. By the result on independence of Boolean combinations, the
+class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.
+We use the m-procedures to calculate <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Then we deal with
+the independent class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> to obtain the probability of <emphasis effect="italics">F</emphasis>.</para>
+      <code id="id96435" display="block">&gt;&gt; p  = 0.01*[13 37 12 56 33 71 22 43 57 31];
+&gt;&gt; pa = p([1 3 4 7]);     % Selection of probabilities for A
+&gt;&gt; pb = p([2 5 6 8]);     % Selection of probabilities for B
+&gt;&gt; pma = minprob(pa);     % Minterm probabilities for calculating P(A)
+&gt;&gt; pmb = minprob(pb);     % Minterm probabilities for calculating P(B)
+&gt;&gt; minvec4;
+&gt;&gt; a = A|(B&amp;(C|Dc));      % A corresponds to E1, B to E3, C to E4, D to E7
+&gt;&gt; PA = a*pma'
+PA = 0.2243
+&gt;&gt; b = A&amp;(Bc|(C&amp;D));      % A corresponds to E2, B to E5, C to E6, D to E8
+&gt;&gt; PB = b*pmb'
+PB = 0.2852
+&gt;&gt; PC = p(9)*(1 - p(10))
+PC = 0.3933
+&gt;&gt; pm = minprob([PA PB PC]);
+&gt;&gt; minvec3                % The problem becomes a three variable problem
+&gt;&gt; F = A|B|C;             % with {A,B,C} an independent class
+&gt;&gt; PF = F*pm'
+PF = 0.6636               % Agrees with the result of <link target-id="eip-19"/>
+</code>
+      <!--empty paragraphs get left behind.-->
+</example>
+    </item>
+</list></section>
+  </content>
+</document>

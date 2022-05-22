@@ -1,0 +1,3926 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Some Random Selection Problems</title>
+  <metadata>
+  <md:content-id>m23664</md:content-id><md:title>Some Random Selection Problems</md:title>
+  <md:abstract>In the unit on Random Selection, we develop some general theoretical results and computational procedures using MATLAB.  In this unit, we extend the treatment to a variety of problems. We establish some useful theoretical results and in some cases use MATLAB procedures, including those in the unit on random selection.</md:abstract>
+  <md:uuid>dabe1505-856d-4191-9ccd-21a6704a913a</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+      
+      <para id="id253576">In the unit on <link document="m23652">Random Selection</link>, we develop some general theoretical results
+and computational procedures using MATLAB. In this unit, we extend the treatment to a
+variety of problems. We establish some useful theoretical results and in some cases use
+MATLAB procedures, including those in the unit on random selection.</para>
+
+    <section id="cid2"><title>The Poisson decomposition</title><para id="id253592">In many problems, the individual demands may be categorized in one of <emphasis effect="italics">m</emphasis> types. If the
+random variable <emphasis effect="italics">T<sub>i</sub></emphasis> is the type of the <emphasis effect="italics">i</emphasis>th arrival and the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>T</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid,
+we have <emphasis effect="italics">multinomial trials</emphasis>.  For <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math> we have the Bernoulli or binomial case, in
+which one type is called a success and the other a failure.</para>
+    
+      <para id="fs-id1170682811968"><emphasis effect="bold"> Multinomial trials</emphasis></para>
+      <para id="id253680">We analyze such a sequence of trials as follows. Suppose there are <emphasis effect="italics">m</emphasis> types, which we
+number 1 through <emphasis effect="italics">m</emphasis>.  Let <m:math overflow="scroll"><m:msub><m:mi>E</m:mi><m:mrow><m:mi>k</m:mi><m:mi>i</m:mi></m:mrow></m:msub></m:math> be the event that type <emphasis effect="italics">k</emphasis> occurs on the <emphasis effect="italics">i</emphasis>th component
+trial. For each <emphasis effect="italics">i</emphasis>, the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mrow><m:mi>k</m:mi><m:mi>i</m:mi></m:mrow></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a partition, since on each
+component trial exactly one of the types will occur. The type on the <emphasis effect="italics">i</emphasis>th trial may be
+represented by the type random variable</para>
+      <equation id="id253783"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>T</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mi>i</m:mi>
+                </m:mrow>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id253836">We assume</para>
+      <equation id="id253841">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>T</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>i</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>iid,</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>T</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mi>i</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>invariant</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>i</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id254155">In a sequence of <emphasis effect="italics">n</emphasis> trials, we let <m:math overflow="scroll"><m:msub><m:mi>N</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub></m:math> be the number of occurrences of type <emphasis effect="italics">k</emphasis>.  Then</para>
+      <equation id="id254192"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mi>i</m:mi>
+                </m:mrow>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id254298">Now each <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>.  The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math> cannot
+be independent, since it sums to <emphasis effect="italics">n</emphasis>. If the values of <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> of them are known, the
+value of the other is determined. If <m:math overflow="scroll"><m:mrow><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub><m:mo>+</m:mo><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mo>+</m:mo><m:msub><m:mi>n</m:mi><m:mi>m</m:mi></m:msub><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow></m:math>, the event</para>
+      <equation id="id254447">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>{</m:mo>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>n</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mrow>
+                <m:mn>2</m:mn>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>n</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mo>⋯</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mrow>
+                <m:mi>m</m:mi>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>n</m:mi>
+              <m:mi>m</m:mi>
+            </m:msub>
+            <m:mo>}</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id254539">is one of the</para>
+      <equation id="id254544">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>;</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>!</m:mo>
+            <m:mo>/</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>!</m:mo>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>!</m:mo>
+              <m:mo>⋯</m:mo>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>!</m:mo>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id254652">ways of arranging <emphasis effect="italics">n<sub>1</sub></emphasis> of the <m:math overflow="scroll"><m:msub><m:mi>E</m:mi><m:mrow><m:mn>1</m:mn><m:mi>i</m:mi></m:mrow></m:msub></m:math>, <emphasis effect="italics">n<sub>2</sub></emphasis> of the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mrow><m:mn>2</m:mn><m:mi>i</m:mi></m:mrow></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo></m:mrow></m:math> , <emphasis effect="italics">n<sub>m</sub></emphasis> of the
+<m:math overflow="scroll"><m:msub><m:mi>E</m:mi><m:mrow><m:mi>m</m:mi><m:mi>i</m:mi></m:mrow></m:msub></m:math>.  Each such arrangement has probability <m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>p</m:mi><m:mn>1</m:mn><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub></m:msubsup><m:msubsup><m:mi>p</m:mi><m:mn>2</m:mn><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub></m:msubsup><m:mo>⋯</m:mo><m:msubsup><m:mi>p</m:mi><m:mi>m</m:mi><m:msub><m:mi>n</m:mi><m:mi>m</m:mi></m:msub></m:msubsup></m:mrow></m:math>, so that</para>
+      <equation id="id254812"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mi>n</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mrow>
+                  <m:mn>2</m:mn>
+                  <m:mi>n</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mo>⋯</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mrow>
+                  <m:mi>m</m:mi>
+                  <m:mi>n</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>n</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>!</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∏</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msubsup>
+                <m:mi>p</m:mi>
+                <m:mi>k</m:mi>
+                <m:msub>
+                  <m:mi>n</m:mi>
+                  <m:mi>k</m:mi>
+                </m:msub>
+              </m:msubsup>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>n</m:mi>
+                  <m:mi>k</m:mi>
+                </m:msub>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id254956">This set of joint probabilities constitutes the <emphasis effect="italics">multinomial distribution</emphasis>.  For <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>,
+and type 1 a success, this is the binomial distribution with parameter <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    
+      <para id="fs-id4498347"><emphasis effect="bold"> A random number of multinomial trials</emphasis></para>
+      <para id="id255013">We consider, in particular, the case of a random number <emphasis effect="italics">N</emphasis> of multinomial trials, where <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math>
+Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Let <emphasis effect="italics">N<sub>k</sub></emphasis> be the number of results of type <emphasis effect="italics">k</emphasis> in a random number <emphasis effect="italics">N</emphasis> of multinomial trials.</para>
+      <equation id="id255078"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>N</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mi>i</m:mi>
+                </m:mrow>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mi>n</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>N</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id255220">
+        <emphasis effect="bold">Poisson decomposition</emphasis>
+      </para>
+      <para id="id255228">Suppose</para>
+      <list id="id255233" display="block" list-type="enumerated">
+        <item id="uid1"><m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math></item>
+        <item id="uid2"><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>T</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>T</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi></m:mrow></m:math></item>
+        <item id="uid3"><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>T</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent
+</item>
+      </list>
+      <para id="id255412">Then</para>
+      <list id="id255416" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid4">Each <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>k</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math></item>
+        <item id="uid5"><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mi>k</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.
+</item>
+      </list>
+      <para id="id255517">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+      <para id="id255530">The usefulness of this remarkable result is enhanced by the fact that the sum of
+independent Poisson random variables is also Poisson, with <emphasis effect="italics">μ</emphasis> for the sum
+the sum of the <emphasis effect="italics">μ<sub>i</sub></emphasis> for the variables added. This is readily established
+with the aid of the generating function. Before verifying the propositions above,
+we consider some examples.</para>
+
+<example id="fs-id4337155"><title>A shipping problem</title><para id="id255569">The number <emphasis effect="italics">N</emphasis> of orders per day received by a mail order house is Poisson (300). Orders
+are shipped by next day express, by second day priority, or by regular parcel mail. Suppose
+4/10 of the customers want next day express, 5/10 want second day priority, and 1/10
+require regular mail. Make the usual assumptions on compound demand. What is the probability
+that fewer than 150 want next day express? What is the probability that fewer than 300 want
+one or the other of the two faster deliveries?</para>
+      <para id="id255588">SOLUTION</para>
+      <para id="id255593">Model as a random number of multinomial trials, with three outcome types: Type 1 is next
+day express, Type 2 is second day priority, and Type 3 is regular mail, with respective
+probabilities <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>. Then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn><m:mo>·</m:mo><m:mn>300</m:mn><m:mo>=</m:mo><m:mn>120</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>·</m:mo><m:mn>300</m:mn><m:mo>=</m:mo><m:mn>150</m:mn><m:mo>)</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>3</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn><m:mo>·</m:mo><m:mn>300</m:mn><m:mo>=</m:mo><m:mn>30</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Also <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>+</m:mo><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson (120 + 150 = 270).</para>
+      <code id="id255843" display="block">P1 = 1 - cpoisson(120,150)
+P1  =  0.9954
+P12 = 1 - cpoisson(270,300)
+P12 =  0.9620
+</code>
+      </example>
+
+<example id="fs-id5614409">
+      <title>  Message routing</title>
+      <para id="id255907">A junction point in a network has two incoming lines and two outgoing lines.
+The number of incoming messages <emphasis effect="italics">N<sub>1</sub></emphasis> on line one in one hour is Poisson (50); on line 2 the
+number is <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson (45). On incoming line 1 the messages have probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mi>a</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>33</m:mn></m:mrow></m:math> of leaving on outgoing line a and <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mi>a</m:mi></m:mrow></m:msub></m:mrow></m:math> of leaving on line b. The messages
+coming in on line 2 have probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>2</m:mn><m:mi>a</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>47</m:mn></m:mrow></m:math> of leaving on line a. Under the
+usual independence assumptions, what is the distribution of outgoing messages on line a?
+What are the probabilities of at least 30, 35, 40 outgoing messages on line a?</para>
+      <para id="id256023">SOLUTION</para>
+      <para id="id256027">By the Poisson decomposition, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>a</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>50</m:mn><m:mo>·</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>33</m:mn><m:mo>+</m:mo><m:mn>45</m:mn><m:mo>·</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>47</m:mn><m:mo>=</m:mo><m:mn>37</m:mn><m:mo>.</m:mo><m:mn>65</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <code id="id256094" display="block">ma = 50*0.33 + 45*0.47
+ma =  37.6500
+Pa = cpoisson(ma,30:5:40)
+Pa =   0.9119    0.6890    0.3722
+</code>
+      </example>
+
+
+      <para id="id256147"><emphasis effect="bold">VERIFICATION of the Poisson decomposition</emphasis></para>
+      <list id="id256151" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid6"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>N</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mrow><m:mi>k</m:mi><m:mi>i</m:mi></m:mrow></m:msub></m:msub></m:mrow></m:mstyle></m:math>.
+<newline/>This is composite demand with <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mrow><m:mi>k</m:mi><m:mi>i</m:mi></m:mrow></m:msub></m:msub></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>q</m:mi><m:mi>k</m:mi></m:msub><m:mo>+</m:mo><m:mi>s</m:mi><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+Therefore,
+<equation id="id256336"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>g</m:mi><m:msub><m:mi>N</m:mi><m:mi>k</m:mi></m:msub></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:msub><m:mi>g</m:mi><m:msub><m:mi>Y</m:mi><m:mi>k</m:mi></m:msub></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:msup></m:mrow></m:math></equation>
+which is the generating function for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>k</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+        <item id="uid7">For any <m:math overflow="scroll"><m:mrow><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>n</m:mi><m:mi>m</m:mi></m:msub></m:mrow></m:math>, let <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub><m:mo>+</m:mo><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mo>+</m:mo><m:msub><m:mi>n</m:mi><m:mi>m</m:mi></m:msub></m:mrow></m:math>,
+and consider
+     <equation id="id256717"><m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>N</m:mi><m:mi>m</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mi>m</m:mi></m:msub><m:mo>}</m:mo></m:mrow><m:mrow><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow><m:mo>∩</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mrow><m:mn>1</m:mn><m:mi>n</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>N</m:mi><m:mrow><m:mn>2</m:mn><m:mi>n</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>N</m:mi><m:mrow><m:mi>m</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mi>m</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation>
+Since <emphasis effect="italics">N</emphasis> is independent of the class of <m:math overflow="scroll"><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mrow><m:mi>k</m:mi><m:mi>i</m:mi></m:mrow></m:msub></m:msub></m:math>, the class
+<equation id="id256864"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>{</m:mo><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mrow><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mrow><m:mn>1</m:mn><m:mi>n</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>N</m:mi><m:mrow><m:mn>2</m:mn><m:mi>n</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>N</m:mi><m:mrow><m:mi>m</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mi>m</m:mi></m:msub><m:mo>}</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:math></equation>
+is independent. By the product rule and the multinomial distribution
+<equation id="id256984"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow></m:msup><m:mfrac><m:msup><m:mi>μ</m:mi><m:mi>n</m:mi></m:msup><m:mrow><m:mi>n</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac><m:mo>·</m:mo><m:mi>n</m:mi><m:mo>!</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:mfrac><m:msubsup><m:mi>p</m:mi><m:mi>k</m:mi><m:msub><m:mi>n</m:mi><m:mi>k</m:mi></m:msub></m:msubsup><m:mrow><m:mo>(</m:mo><m:msub><m:mi>n</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo><m:mo>!</m:mo></m:mrow></m:mfrac><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>μ</m:mi><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub></m:mrow></m:msup><m:mfrac><m:msubsup><m:mi>p</m:mi><m:mi>k</m:mi><m:msub><m:mi>n</m:mi><m:mi>k</m:mi></m:msub></m:msubsup><m:mrow><m:msub><m:mi>n</m:mi><m:mi>k</m:mi></m:msub><m:mo>!</m:mo></m:mrow></m:mfrac><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>N</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>n</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+The second product uses the fact that
+<equation id="id257202"><m:math overflow="scroll" mode="display"><m:mrow><m:msup><m:mi>e</m:mi><m:mi>μ</m:mi></m:msup><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mo>+</m:mo><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mo>+</m:mo><m:msub><m:mi>p</m:mi><m:mi>m</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:msup><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub></m:mrow></m:msup></m:mrow></m:math></equation>
+Thus, the product rule holds for the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mi>k</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math>, so that
+it is independent.
+</item>
+      </list>
+    </section>
+    <section id="cid5"><title>Extreme values</title><para id="id257351">Consider an iid class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> of nonnegative random variables. For any
+positive integer <emphasis effect="italics">n</emphasis> we let</para>
+      <equation id="id257393">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>V</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mo movablelimits="true" form="prefix">min</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mo movablelimits="true" form="prefix">max</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>Y</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id257551">Then</para>
+      <equation id="id257557">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>P</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="4.pt"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>P</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id257674">Now consider a random number <emphasis effect="italics">N</emphasis> of the <emphasis effect="italics">Y<sub>i</sub></emphasis>.  The minimum and maximum random variables are</para>
+      <equation id="id257705"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>V</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:msub>
+              <m:mi>V</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id257841">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+    
+      <para id="fs-id7308778"><emphasis effect="bold"> Computational formulas</emphasis></para>
+      <para id="id257866">If we set <m:math overflow="scroll"><m:mrow><m:msub><m:mi>V</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:msub><m:mi>W</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, then</para>
+      <list id="eip-id1170425530568" display="block" list-type="enumerated" number-style="lower-alpha"> 
+<item>
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>V</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>V</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>
+</item>
+<item><m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>W</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>
+</item>
+</list>
+      <para id="id258046">These results are easily established as follows.
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mrow><m:mo>{</m:mo><m:msub><m:mi>V</m:mi><m:mi>N</m:mi></m:msub><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow><m:mrow><m:mo>{</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:mstyle></m:math>.  By additivity and independence of <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> for each <emphasis effect="italics">n</emphasis></para>
+      <equation id="id258174"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>P</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>since</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id258351">If we add into the last sum the term <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:msup><m:mi>P</m:mi><m:mn>0</m:mn></m:msup><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math> then subtract it, we have</para>
+      <equation id="id258414"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>P</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>&gt;</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id258556">A similar argument holds for proposition (b). In this case, we do not have
+the extra term for <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>}</m:mo></m:mrow></m:math>, since <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>W</m:mi><m:mn>0</m:mn></m:msub><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+      <para id="id258612"><emphasis effect="italics">Special case</emphasis>.  In some cases, <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> does not correspond to
+an admissible outcome (see <link target-id="eip-id1170350946951"/>, below, on lowest bidder and <link target-id="fs-id1165740261040"/>).
+In that case</para>
+      <equation id="eip-id2496996">
+        <m:math overflow="scroll">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:msub>
+                <m:mi>F</m:mi>
+                <m:mi>V</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>V</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>≤</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>P</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo>&gt;</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mstyle>
+ 
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mi>P</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id258873">Add <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>P</m:mi><m:mn>0</m:mn></m:msup><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math> to each of the sums to get</para>
+      <equation id="id258937"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>V</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mi>P</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>&gt;</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id259050">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+
+<example id="fs-id8592951">
+      <title>Maximum service time</title>
+      <para id="id259073">The number <emphasis effect="italics">N</emphasis> of jobs coming into a service center in a week is a random quantity
+having a Poisson (20) distribution. Suppose the service times (in hours) for individual
+units are iid, with common distribution exponential (1/3). What is the probability
+the maximum service time for the units is no greater than 6, 9, 12, 15, 18 hours?
+SOLUTION</para>
+      <para id="eip-497"><title>SOLUTION</title></para><equation id="id259091">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>N</m:mi>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>≤</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mn>20</m:mn>
+                <m:mo>[</m:mo>
+                <m:msub>
+                  <m:mi>F</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mo form="prefix">exp</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mn>20</m:mn>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>/</m:mo>
+                  <m:mn>3</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <code id="id259214" display="block">t = 6:3:18;
+PW = exp(-20*exp(-t/3));
+disp([t;PW]')
+    6.0000    0.0668
+    9.0000    0.3694
+   12.0000    0.6933
+   15.0000    0.8739
+   18.0000    0.9516
+</code></example>
+
+<example id="eip-id1170350946951"><title>Lowest Bidder </title><para id="eip-id5149574">A manufacturer seeks bids on a modification of one of his processing units. Twenty
+contractors are invited to bid. They bid with probability 0.3, so that the number
+of bids <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (20,0.3). Assume the bids <emphasis effect="italics">Y<sub>i</sub></emphasis> (in thousands of dollars)
+form an iid class. The market is such that the bids have a common distribution
+symmetric triangular on (150,250). What is the probability of at least one bid
+no greater than 170, 180, 190, 200, 210? Note that no bid is <emphasis effect="italics">not</emphasis> a low bid of
+zero, hence we must use the special case.</para><para id="eip-924"><title>Solution</title></para><para id="eip-988"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>V</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>&gt;</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>7</m:mn>
+                <m:mo>+</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>3</m:mn>
+                <m:mi>p</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>20</m:mn>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>p</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </para><para id="eip-719">Solving graphically for <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>V</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> , we get</para><para id="eip-460"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>p</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>23</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>25</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>41</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>50</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>17</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>25</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>2</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>8</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>25</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>170</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>180</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>190</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>200</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>210</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </para><para id="eip-397">Now <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>7</m:mn><m:mo>+</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mn>20</m:mn></m:msup></m:mrow></m:math>.  We use MATLAB to obtain</para>
+
+<code id="eip-id3146029" display="block">t = [170 180 190 200 210];
+p = [23/25 41/50 17/25 1/2 8/25];
+PV = 1 - (0.7 + 0.3*p).^20; 
+disp([t;p;PV]')
+170.0000    0.9200    0.3848
+180.0000    0.8200    0.6705
+190.0000    0.6800    0.8671
+200.0000    0.5000    0.9612
+210.0000    0.3200    0.9896
+
+</code>
+
+      </example>
+
+
+
+<example id="fs-id3755738"><title><link target-id="eip-id1170350946951"/> with a general counting variable</title><para id="id259836">Suppose the number of bids is 1, 2 or 3 with probabilities 0.3, 0.5, 0.2, respectively.</para>
+      <para id="id259840">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>V</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> in each case.</para>
+      <para id="id259867">SOLUTION.</para>
+      <para id="id259870">The minimum of the selected <m:math overflow="scroll"><m:mrow><m:msup><m:mi>Y</m:mi><m:mo>'</m:mo></m:msup><m:mi>s</m:mi></m:mrow></m:math> is no greater than <emphasis effect="italics">t</emphasis> if and only if there is at
+least one <emphasis effect="italics">Y</emphasis> less than or equal to <emphasis effect="italics">t</emphasis>.
+We determine in each case probabilities for the number of bids satisfying <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi></m:mrow></m:math>. For each <emphasis effect="italics">t</emphasis>, we are
+interested in the probability of one or more occurrences of the event <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi></m:mrow></m:math>. This is
+essentially the problem in <link document="m23652" target-id="fs-id1165230645226">Example 7</link> from "Random Selection", with probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <code id="id259982" display="block">t = [170 180 190 200 210];
+p = [23/25 41/50 17/25 1/2 8/25]; % Probabilities Y &lt;= t are 1 - p
+gN = [0 0.3 0.5 0.2];             % Zero for missing value
+PV = zeros(1,length(t));
+for i=1:length(t)
+gY = [p(i),1 - p(i)];
+[d,pd] = gendf(gN,gY);
+PV(i) = (d&gt;0)*pd';                 % Selects positions for d &gt; 0 and
+end                                % adds corresponding probabilities
+disp([t;PV]')
+  170.0000    0.1451
+  180.0000    0.3075
+  190.0000    0.5019
+  200.0000    0.7000
+  210.0000    0.8462
+</code>
+      <para id="id260138"><link target-id="eip-id1170350946951"/> may be worked in this manner by using
+<code display="inline">gN = ibinom(20,0.3,0:20)</code>. The results, of course, are the same as in the previous solution.
+The fact that the probabilities in this example are lower for each <emphasis effect="italics">t</emphasis> than in <link target-id="eip-id1170350946951"/> reflects the fact that
+there are probably fewer bids in each case.</para>
+      </example>
+
+<example id="fs-id1165740261040">
+      <title>Batch testing</title>
+      <para id="id260185">Electrical units from a production line are first inspected for operability. However,
+experience indicates that a fraction <emphasis effect="italics">p</emphasis> of those passing the initial operability
+test are defective. All operable units are subsequenly tested in a batch under continuous
+operation ( a “burn in” test). Statistical data indicate the defective units have times
+to failure <emphasis effect="italics">Y<sub>i</sub></emphasis> iid, exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, whereas good units have very long life
+(infinite from the point of view of the test). A batch of <emphasis effect="italics">n</emphasis> units is tested. Let <emphasis effect="italics">V</emphasis>
+be the time of the first failure and <emphasis effect="italics">N</emphasis> be the number of defective units in the batch.
+If the test goes <emphasis effect="italics">t</emphasis> units of time with no failure (i.e., <m:math overflow="scroll"><m:mrow><m:mi>V</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi></m:mrow></m:math>), what is the probability
+of no defective units?</para>
+      <para id="id260282">SOLUTION</para>
+      <para id="id260285">Since no defective units implies no failures in any reasonable test time, we have</para>
+      <equation id="id260289">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>⊂</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>V</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>|</m:mo>
+              <m:mi>V</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>N</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>V</m:mi>
+                <m:mo>&gt;</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id260408">Since <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> does not yield a minimum value, we have <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>V</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>.  Now under the condition above, the number of defective units <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>q</m:mi><m:mo>+</m:mo><m:mi>p</m:mi><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mi>n</m:mi></m:msup></m:mrow></m:math>.  If <emphasis effect="italics">N</emphasis> is large and <emphasis effect="italics">p</emphasis> is reasonably
+small, <emphasis effect="italics">N</emphasis> is approximately Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math> with <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>n</m:mi><m:mi>p</m:mi></m:mrow></m:msup></m:mrow></m:math>. Now <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup></m:mrow></m:math>; for large <emphasis effect="italics">n</emphasis></para>
+      <equation id="id260729">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>|</m:mo>
+              <m:mi>V</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mi>p</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mi>p</m:mi>
+                  <m:mo>[</m:mo>
+                  <m:mi>P</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo>&gt;</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+              </m:msup>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>n</m:mi>
+                <m:mi>p</m:mi>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>&gt;</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>n</m:mi>
+                <m:mi>p</m:mi>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mi>t</m:mi>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id260866">For <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>5000</m:mn><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>001</m:mn><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>5</m:mn></m:mrow></m:math>, MATLAB
+calculations give</para>
+      <code id="id260965" display="block">t = 1:5;
+n = 5000;
+p = 0.001;
+lambda = 2;
+P = exp(-n*p*exp(-lambda*t));
+disp([t;P]')
+    1.0000    0.5083
+    2.0000    0.9125
+    3.0000    0.9877
+    4.0000    0.9983
+    5.0000    0.9998
+</code>
+      <para id="id261071">It appears that a test of three to five hours should give reliable results. In actually
+designing the test, one should probably make calculations with a number of different
+assumptions on the fraction of defective units and the life duration of defective units.
+These calculations are relatively easy to make with MATLAB.</para>
+      </example>
+
+    </section>
+    <section id="cid7"><title>Bernoulli trials with random execution times or costs</title><para id="id261110">Consider a Bernoulli sequence with probability <emphasis effect="italics">p</emphasis> of success on any component trial.
+Let <emphasis effect="italics">N</emphasis> be the number of the trial on which the first success occurs. Let <emphasis effect="italics">Y<sub>i</sub></emphasis> be
+the time (or cost) to execute the <emphasis effect="italics">i</emphasis>th trial. Then the total time (or cost) from
+the beginning to the completion of the first success is</para>
+      <equation id="id261156"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>T</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>N</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(composite</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>``demand''</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:mi>N</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>∼</m:mo>
+            </m:mrow>
+            <m:mspace width="4.pt"/>
+            <m:mtext>geometric</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:mi>p</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id261248">We suppose the <emphasis effect="italics">Y<sub>i</sub></emphasis> form an iid class, independent of <emphasis effect="italics">N</emphasis>.  Now <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math> implies</para>
+      <para id="id261308"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:mi>s</m:mi><m:mo>/</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, so that</para>
+      <equation id="id261358">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>T</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>p</m:mi>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>q</m:mi>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id261457">There are two useful special cases:</para>
+      <list id="id261463" display="block" list-type="enumerated">
+        <item id="uid8"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>λ</m:mi><m:mrow><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math>.
+<equation id="id261551"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>T</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>p</m:mi><m:mi>λ</m:mi><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:mi>λ</m:mi><m:mo>/</m:mo><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>p</m:mi><m:mi>λ</m:mi></m:mrow><m:mrow><m:mi>p</m:mi><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac></m:mrow></m:math></equation>
+which implies <m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid9"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mi>s</m:mi></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>q</m:mi><m:mn>0</m:mn></m:msub><m:mi>s</m:mi></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math><equation id="id261785"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>T</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>p</m:mi><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mi>s</m:mi><m:mo>/</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>q</m:mi><m:mn>0</m:mn></m:msub><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>p</m:mi><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mi>s</m:mi><m:mo>/</m:mo><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>q</m:mi><m:mn>0</m:mn></m:msub><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mfrac><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>p</m:mi><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mi>s</m:mi></m:mrow><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>p</m:mi><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac></m:mrow></m:math></equation>
+so that <m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+      </list>
+
+<example id="fs-id5847631">
+      <title>Job interviews</title>
+      <para id="id261981">Suppose a prospective employer is interviewing candidates for a job from a pool in which
+twenty percent are qualified. Interview times (in hours) <emphasis effect="italics">Y<sub>i</sub></emphasis> are presumed to form an
+iid class, each exponential (3). Thus, the average interview time is 1/3 hour (twenty
+minutes). We take the probability for success on any interview to be <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math>. What
+is the probability a satisfactory candidate will be found in four hours or less?
+What is the probability the maximum interview time will be no greater than 0.5, 0.75,
+1, 1.25, 1.5 hours?</para>
+      <para id="id262021">SOLUTION</para>
+      <para id="id262024"><m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>·</m:mo><m:mn>3</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>)</m:mo></m:mrow></m:math>, so that  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>T</m:mi><m:mo>≤</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>·</m:mo><m:mn>4</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9093</m:mn></m:mrow></m:math>.</para>
+      <equation id="id262126">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>W</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>≤</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mn>3</m:mn>
+                    <m:mi>t</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>8</m:mn>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mn>3</m:mn>
+                    <m:mi>t</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mn>3</m:mn>
+                    <m:mi>t</m:mi>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>+</m:mo>
+                <m:mn>4</m:mn>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mn>3</m:mn>
+                    <m:mi>t</m:mi>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id262288">MATLAB computations give</para>
+      <code id="id262295" display="block">t = 0.5:0.25:1.5;
+PWt = (1 - exp(-3*t))./(1 + 4*exp(-3*t));
+disp([t;PWt]')
+    0.5000    0.4105
+    0.7500    0.6293
+    1.0000    0.7924
+    1.2500    0.8925
+    1.5000    0.9468
+</code>
+      <para id="id262377">The average interview time is 1/3 hour; with probability 0.63 the maximum is 3/4 hour
+or less; with probability 0.79 the maximum is one hour or less; etc.</para>
+      </example>
+
+
+      <para id="id262399">In the general case, solving for the distribution of <emphasis effect="italics">T</emphasis> requires transform theory,
+and may be handled best by a program such as Maple or Mathematica.</para>
+      <para id="id262412">For the case of <emphasis effect="italics"> simple</emphasis> <emphasis effect="italics">Y<sub>i</sub></emphasis>, we may use approximation procedures based on
+properties of the geometric series. Since <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>,</para>
+      <equation id="id262466"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>p</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>q</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mi>s</m:mi>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>q</m:mi>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mi>s</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>q</m:mi>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>q</m:mi>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mi>s</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>q</m:mi>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>q</m:mi>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>q</m:mi>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id262728"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mi>s</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>q</m:mi>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+            </m:mfenced>
+            <m:mo>+</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>q</m:mi>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>q</m:mi>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id262875">Note that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> has the form of the generating function for a simple approximation
+<emphasis effect="italics">N<sub>n</sub></emphasis> which matches values and probabilities with <emphasis effect="italics">N</emphasis> up to <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow></m:math>. Now</para>
+      <equation id="id262942">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>T</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>g</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>q</m:mi>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>g</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id263046">The evaluation involves convolution of coefficients which effectively sets <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>. Since
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>,</para>
+      <equation id="id263111">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>q</m:mi>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>g</m:mi>
+                <m:mi>Y</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>s</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>reduces</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>to</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>q</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>&gt;</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id263239">which is negligible if <emphasis effect="italics">n</emphasis> is large enough. Suitable <emphasis effect="italics">n</emphasis> may be determined in each case.
+With such an <emphasis effect="italics">n</emphasis>, if the <emphasis effect="italics">Y<sub>i</sub></emphasis> are nonnegative, integer-valued, we may use the gend procedure
+on <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:msub><m:mi>g</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>, where</para>
+      <equation id="id263322">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mi>s</m:mi>
+            <m:mo>+</m:mo>
+            <m:mi>p</m:mi>
+            <m:mi>q</m:mi>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mi>p</m:mi>
+            <m:msup>
+              <m:mi>q</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mn>3</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mo>⋯</m:mo>
+            <m:mo>+</m:mo>
+            <m:mi>p</m:mi>
+            <m:msup>
+              <m:mi>q</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id263416">For the integer-valued case, as in the general case of simple <emphasis effect="italics">Y<sub>i</sub></emphasis>, we could use mgd. However,
+gend is usually faster and more efficient for the integer-valued case. Unless <emphasis effect="italics">q</emphasis> is small,
+the number of terms needed to approximate <emphasis effect="italics">g<sub>n</sub></emphasis> is likely to be too great.</para>
+
+
+<example id="fs-id4496365">
+      <title>  Approximating the generating function</title>
+      <para id="id263469">Let <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:math> and <emphasis effect="italics">Y</emphasis> be uniformly distributed on <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>10</m:mn><m:mo>}</m:mo></m:mrow></m:math>. Determine
+the distribution for</para>
+      <equation id="id263537"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>T</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>N</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id263576">SOLUTION</para>
+      <code id="id263581" display="block">p = 0.3;
+q = 1 - p;
+a = [30 35 40];          % Check for suitable n
+b = q.^a
+b =  1.0e-04 *           % Use n = 40
+     0.2254    0.0379    0.0064
+n = 40;
+k = 1:n;
+gY = 0.1*[0 ones(1,10)];
+gN = p*[0 q.^(k-1)];     % Probabilities, 0 &lt;= k &lt;= 40
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Values are in row matrix D; probabilities are in PD.
+To view the distribution, call for gD.
+sum(PD)                % Check sum of probabilities
+ans =  1.0000
+FD = cumsum(PD);       % Distribution function for D
+plot(0:100,FD(1:101))  % See <link target-id="uid10"/>
+P50 = (D&lt;=50)*PD'
+P50 =  0.9497
+P30 = (D&lt;=30)*PD'
+P30 =  0.8263
+</code>
+      </example>
+
+
+      <figure id="uid10"><media id="uid10_media" alt="Figure one is a graph labeled, execution time distribution function. The horizontal axis is labeled, Time, and the vertical axis is labeled, probability. The values on the horizontal axis range from 0 to 100 in increments of 10. The values on the vertical axis range from 0 to 1 in increments of 0.1. There is one plotted distribution function on this graph. It begins in the bottom-left corner, at the point (0, 0), and moves right at a strong positive slope. As the plot moves from left to right, the slope decreases as the function increases. About midway across the graph horizontally, the plot is nearly at the top, at a probability value above 0.9. The plot continues to increase at a decreasing rate until it tapers off to a horizontal line by the point (80, 1), at which it continues and terminates at the top-right corner.">
+          <image mime-type="image/png" src="../../media/fig15_5_1.png" id="uid10_onlineimage" width="421"><!-- NOTE: attribute width changes image size online (pixels). original width is 421. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig15_5_1.eps" id="uid10_printimage" print-width="4.2in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Execution Time Distribution Function <emphasis effect="italics">F<sub>D</sub></emphasis>.</caption></figure>
+      <para id="id263865">The same results may be achieved with mgd, although at the cost of more computing time.
+In that case, use <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mi>N</m:mi></m:mrow></m:math> as in <link target-id="fs-id4496365"/>, but use the actual distribution for <emphasis effect="italics">Y</emphasis>.
+</para>
+    </section>
+    <section id="cid8"><title>Arrival times and counting processes</title><para id="id263901">Suppose we have phenomena which take place at discrete instants of time, separated by
+random waiting or interarrival times. These may be arrivals of customers in a store,
+of noise pulses on a communications line, vehicles passing a position on a road, the
+failures of a system, etc. We refer to these occurrences as <emphasis effect="italics">arrivals</emphasis> and
+designate the times of occurrence as <emphasis effect="italics">arrival times</emphasis>.  A stream of arrivals may be described in three equivalent ways.</para>
+      <list id="id263919" display="block" list-type="bulleted">
+        <item id="uid11"><emphasis effect="italics">Arrival times</emphasis>:    <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>=</m:mo><m:msub><m:mi>S</m:mi><m:mn>0</m:mn></m:msub><m:mo>&lt;</m:mo><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub><m:mo>&lt;</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>  (basic sequence)
+</item>
+        <item id="uid12"><emphasis effect="italics">Interarrival times</emphasis>: <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>W</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math>, with each <m:math overflow="scroll"><m:mrow><m:msub><m:mi>W</m:mi><m:mi>i</m:mi></m:msub><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mspace width="4pt"/><m:mi mathvariant="normal">a</m:mi><m:mo>.</m:mo><m:mi mathvariant="normal">s</m:mi><m:mo>.</m:mo><m:mspace width="0.166667em"/></m:mrow></m:math>  (incremental sequence)
+</item>
+      </list>
+      <para id="id264110">The strict inequalities imply that with probability one there are no simultaneous arrivals.
+The relations between the two sequences are simply</para>
+      <equation id="id264115"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id264260">The formulation indicates the essential equivalence of the problem with that of the
+<link document="m23652" target-id="cid4">compound demand</link>. The notation and terminology are changed to correspond to that
+customarily used in the treatment of arrival and counting processes.</para>
+      <para id="id264268">The stream of arrivals may be described in a third way.</para>
+      <list id="id264272" display="block" list-type="bulleted">
+        <item id="uid13"><emphasis effect="italics">Counting processes</emphasis>:  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>=</m:mo><m:mi>N</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the number of arrivals in time period
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math>.  It should be clear that this is a random quantity for each nonnegative
+<emphasis effect="italics">t</emphasis>.  For a given <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>ω</m:mi></m:mrow></m:math> the value is <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Such a family of random
+variables constitutes a <emphasis effect="italics">random process</emphasis>.  In this
+case the random process is a <emphasis effect="italics">counting process</emphasis>.
+</item>
+      </list>
+      <para id="id264404">We thus have three equivalent descriptions for the stream of arrivals.</para>
+      <equation id="id264408">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>t</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id264518">Several properties of the counting process <emphasis effect="italics">N</emphasis> should be noted:</para>
+      <list id="id264533" display="block" list-type="enumerated">
+        <item id="uid14"><m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> counts the arrivals in the interval <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>,
+so that <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>)</m:mo><m:mo>≥</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid15"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> we have
+<equation id="id264715"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mrow><m:mo>{</m:mo><m:mi>n</m:mi><m:mo>:</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mrow><m:mo>{</m:mo><m:mi>n</m:mi><m:mo>:</m:mo><m:msub><m:mi>S</m:mi><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid16">For any given <emphasis effect="italics">ω</emphasis>,  <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mo>·</m:mo><m:mo>,</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math> is a nondecreasing, right-continuous,
+integer-valued function defined on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+</item>
+      </list>
+      <para id="id264942">The essential relationships between the three ways of describing the stream of arrivals
+is displayed in</para>
+      <equation id="id264946">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>t</m:mi>
+              </m:msub>
+              <m:mo>≥</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>t</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>&lt;</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id265102">This imples</para>
+      <equation id="id265108">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>t</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>+</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msub>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>&gt;</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id265234">Although there are many possibilities for the interarrival time distributions, we assume</para>
+      <equation id="id265240">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>W</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>i</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>iid,</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>W</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>&gt;</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="4pt"/>
+            <m:mi mathvariant="normal">a</m:mi>
+            <m:mo>.</m:mo>
+            <m:mi mathvariant="normal">s</m:mi>
+            <m:mo>.</m:mo>
+            <m:mspace width="0.166667em"/>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id265330">Under such assumptions, the counting process is often referred to as a <emphasis effect="italics">renewal
+process</emphasis> and the interrarival times are called <emphasis effect="italics">renewal times</emphasis>.  In the literature
+on renewal processes, it is common for the random variable to count an arrival at
+<m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  This requires an adjustment of the expressions relating <emphasis effect="italics">N<sub>t</sub></emphasis> and the
+<emphasis effect="italics">S<sub>i</sub></emphasis>.  We use the convention above.</para>
+    
+      <para id="fs-id1170687061432"><emphasis effect="bold"> Exponential iid interarrival times</emphasis></para>
+      <para id="id265403">The case of exponential interarrival times is natural in many applications and
+leads to important mathematical results. We utilize the following
+propositions about the arrival times <emphasis effect="italics">S<sub>n</sub></emphasis>, the interarrival times <emphasis effect="italics">W<sub>i</sub></emphasis>, and the
+counting process <emphasis effect="italics">N</emphasis>.</para>
+      <list id="id265446" display="block" list-type="enumerated" number-style="lower-alpha">
+        <item id="uid17">If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>W</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math>
+gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>1</m:mn></m:mrow></m:math>.
+This is worked out in the unit on TRANSFORM METHODS, in the discussion
+of the connection between the
+gamma distribution and the exponential distribution.
+</item>
+        <item id="uid18"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>1</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>,
+iff <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+This follows the result in the unit DISTRIBUTION APPROXI9MATIONS on
+the relationship between the Poisson and gamma
+distributions, along with the fact that <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>≥</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math>.
+</item>
+      </list>
+      <para id="id265750"><emphasis effect="italics">Remark</emphasis>.  The counting process is a Poisson process in the sense that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math>
+Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>. More advanced treatments
+show that the process has independent, stationary increments. That is</para>
+      <list id="id265808" display="block" list-type="enumerated">
+        <item id="uid19"><m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>h</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>h</m:mi><m:mo>)</m:mo></m:mrow></m:math>  for all <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>h</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>, and
+</item>
+        <item id="uid20">For <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>≤</m:mo><m:msub><m:mi>t</m:mi><m:mn>3</m:mn></m:msub><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mn>4</m:mn></m:msub><m:mo>≤</m:mo><m:mo>⋯</m:mo><m:mo>≤</m:mo><m:msub><m:mi>t</m:mi><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mi>m</m:mi></m:msub></m:mrow></m:math>, the class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>N</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>N</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mn>4</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>N</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mn>3</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>N</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>m</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>N</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mrow><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>)</m:mo></m:mrow><m:mo>}</m:mo></m:mrow></m:math> is independent.
+</item>
+      </list>
+      <para id="id266108">In words, the number of arrivals in any time interval depends upon the length of the
+interval and not its location in time, and the numbers of arrivals in nonoverlapping
+time intervals are independent.</para>
+
+
+<example id="fs-id8302988">
+      <title>Emergency calls</title>
+      <para id="id266121">Emergency calls arrive at a police switchboard with interarrival times (in hours)
+exponential (15). Thus, the average interarrival time is 1/15 hour (four minutes).
+What is the probability the number of calls in an eight hour shift is no more than
+100, 120, 140?</para>
+      <code id="id266126" display="block">p = 1 - cpoisson(8*15,[101 121 141])
+p  =  0.0347    0.5243    0.9669
+</code>
+      </example>
+      <para id="id266164">We develop next a simple computational result for arrival processes for which <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</para>
+
+<example id="fs-id8887537">
+<title>  Gamma arrival times</title>
+      <para id="id266217">Suppose the arrival times <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <emphasis effect="italics">g</emphasis> is such that</para>
+      <equation id="id266270"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>|</m:mo>
+            </m:mrow>
+            <m:mo>&lt;</m:mo>
+            <m:mi>∞</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mrow>
+                <m:mo>|</m:mo>
+                <m:mi>g</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mo>&lt;</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id266379">Then</para>
+      <equation id="id266385"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>S</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>λ</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:mi>g</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id266453">VERIFICATION</para>
+      <para id="id266459">We use the countable sums property <link document="m23998" target-id="uid15">(E8b)</link> for expectation and the corresponding property
+for integrals to assert</para>
+      <equation id="id266463"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>S</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>S</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mi>t</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mi>t</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mi>n</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id266706">We may apply <link document="m23998" target-id="uid15">(E8b)</link> to assert</para>
+      <equation id="id266712"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:mi>g</m:mi>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:mi>g</m:mi>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id266798">Since</para>
+      <equation id="id266804"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>λ</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mi>λ</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mi>λ</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id266949">the proposition is established.</para>
+      </example>
+
+<example id="fs-id8136620">
+      <title>  Discounted replacement costs</title>
+      <para id="id266978">A critical unit in a production system has life duration exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  Upon failure the unit is replaced immediately by a similar unit. Units fail independently.
+Cost of replacement of a unit is <emphasis effect="italics">c</emphasis> dollars. If money is discounted at a rate <emphasis effect="italics">α</emphasis>,
+then a dollar spent <emphasis effect="italics">t</emphasis> units of time in the future has a current value <m:math overflow="scroll"><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>α</m:mi><m:mi>t</m:mi></m:mrow></m:msup></m:math>.  If <emphasis effect="italics">S<sub>n</sub></emphasis> is the time of replacement of the <emphasis effect="italics">n</emphasis>th unit, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>
+and the present value of all future replacements is</para>
+      <equation id="id267107"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>c</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>α</m:mi>
+                <m:msub>
+                  <m:mi>S</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id267158">The expected replacement cost is</para>
+      <equation id="id267164"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>S</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>c</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>α</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id267272">Hence</para>
+      <equation id="id267278">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>λ</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:mi>c</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>α</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:mi>c</m:mi>
+              </m:mrow>
+              <m:mi>α</m:mi>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id267348">Suppose unit replacement cost <m:math overflow="scroll"><m:mrow><m:mi>c</m:mi><m:mo>=</m:mo><m:mn>1200</m:mn></m:mrow></m:math>, average time (in years) to failure <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>λ</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>, and the discount rate per year <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>08</m:mn></m:mrow></m:math> (eight percent). Then</para>
+      <equation id="id267410">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>1200</m:mn>
+                <m:mo>·</m:mo>
+                <m:mn>4</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>08</m:mn>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mn>60</m:mn>
+            <m:mo>,</m:mo>
+            <m:mn>000</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+<example id="fs-id5861618">
+      <title>  Random costs</title>
+      <para id="id267480">Suppose the cost of the <emphasis effect="italics">n</emphasis>th replacement in <link target-id="fs-id8136620"/> is a random quantity <emphasis effect="italics">C<sub>n</sub></emphasis>, with
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> independent and <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>c</m:mi></m:mrow></m:math>, invariant with <emphasis effect="italics">n</emphasis>.  Then</para>
+      <equation id="id267575"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>c</m:mi>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:mi>c</m:mi>
+              </m:mrow>
+              <m:mi>α</m:mi>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+      <para id="id267781">The analysis to this point assumes the process will continue endlessly into the future. Often,
+it is desirable to plan for a specific, finite period. The result of <link target-id="fs-id8887537"/> may be
+modified easily to account for a finite period, often referred to as a <emphasis effect="italics">finite horizon</emphasis>.</para>
+
+
+<example id="fs-id6693024">
+      <title>  Finite horizon</title>
+      <para id="id267799">Under the conditions assumed in <link target-id="fs-id8887537"/>, above, let <emphasis effect="italics">N<sub>t</sub></emphasis> be the counting random
+variable for arrivals in the interval <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math>.</para>
+      <equation id="id267839"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mtext>If</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>Z</m:mi>
+              <m:mi>t</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>t</m:mi>
+              </m:msub>
+            </m:munderover>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>then</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>Z</m:mi>
+                <m:mi>t</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>λ</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id267973">VERIFICATION</para>
+      <para id="id267979">Since <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>≥</m:mo><m:mi>n</m:mi></m:mrow></m:math> iff <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≤</m:mo><m:mi>t</m:mi></m:mrow></m:math>,  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub></m:munderover><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>.  In the result of <link target-id="fs-id8887537"/>,
+replace <emphasis effect="italics">g</emphasis> by <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:msub><m:mi>g</m:mi></m:mrow></m:math> and note that</para>
+      <equation id="id268175">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>,</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+</example>
+
+<example id="eip-id6876529">
+<title>Replacement costs, finite horizon</title>
+      <para id="id268289">Under the conditions of <link target-id="fs-id8136620"/>, consider the replacement costs over a two-year
+period.</para>
+      <para id="id268293">SOLUTION</para>
+      <equation id="id268296">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>λ</m:mi>
+            <m:mi>c</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>α</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:mi>c</m:mi>
+              </m:mrow>
+              <m:mi>α</m:mi>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:mi>t</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id268389">Thus, the expected cost for the infinite horizon <m:math overflow="scroll"><m:mrow><m:mi>λ</m:mi><m:mi>c</m:mi><m:mo>/</m:mo><m:mi>α</m:mi></m:mrow></m:math> is reduced by the
+factor <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>α</m:mi><m:mi>t</m:mi></m:mrow></m:msup></m:mrow></m:math>.  For <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math> and the numbers in <link target-id="fs-id8136620"/>, the
+reduction factor is <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>16</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1479</m:mn></m:mrow></m:math> to give
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>C</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>60000</m:mn><m:mo>·</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1479</m:mn><m:mo>=</m:mo><m:mn>8</m:mn><m:mo>,</m:mo><m:mn>871</m:mn><m:mo>.</m:mo><m:mn>37</m:mn></m:mrow></m:math>.</para>
+      </example>
+
+      <para id="id268545">In the important special case that <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>c</m:mi><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>α</m:mi><m:mi>u</m:mi></m:mrow></m:msup></m:mrow></m:math>, the expression for
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>E</m:mi><m:mfenced separators="" open="[" close="]"><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mfenced></m:mrow></m:mstyle></m:math> may be put into a form which
+does not require the interarrival times to be exponential.</para>
+    
+
+<example id="fs-id6067762">
+  <title>  General interarrival, exponential <emphasis effect="italics">g</emphasis></title>
+      <para id="id268653">Suppose <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>W</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math>, where <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>W</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid.
+Let <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> be a class such that each <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>c</m:mi></m:mrow></m:math> and each pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math>
+is independent. Then for <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math></para>
+      <equation id="id268852"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>c</m:mi>
+            <m:mo>·</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>W</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>W</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id268974">where <emphasis effect="italics">M<sub>W</sub></emphasis> is the moment generating function for <emphasis effect="italics">W</emphasis>.</para>
+      <para id="id269003">DERIVATION</para>
+      <para id="id269006">First we note that</para>
+      <equation id="id269010">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>V</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:msub>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>c</m:mi>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>α</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>c</m:mi>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>W</m:mi>
+              <m:mi>n</m:mi>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>α</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id269104">Hence, by properties of expectation and the geometric series</para>
+      <equation id="id269111"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>c</m:mi>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>W</m:mi>
+              <m:mi>n</m:mi>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>α</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>W</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>W</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>α</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>provided</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>W</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>-</m:mo>
+                <m:mi>α</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+            </m:mrow>
+            <m:mo>&lt;</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id269265">Since <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>, we have <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>&lt;</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>α</m:mi><m:mi>W</m:mi></m:mrow></m:msup><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>, so that
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>W</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>α</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>α</m:mi><m:mi>W</m:mi></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+      </example>
+
+
+<example id="fs-id7379456">
+<title>Uniformly distributed interarrival times</title>
+      <para id="id269404">Suppose each <m:math overflow="scroll"><m:mrow><m:msub><m:mi>W</m:mi><m:mi>i</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> uniform <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Then (see <link document="m23992">Appendix C</link>),</para>
+      <equation id="id269447">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>W</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>α</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>α</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mi>α</m:mi>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>α</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>c</m:mi>
+            <m:mo>·</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>α</m:mi>
+                  </m:mrow>
+                </m:msup>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mi>α</m:mi>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>α</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>-</m:mo>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:msup>
+                    <m:mi>e</m:mi>
+                    <m:mrow>
+                      <m:mo>-</m:mo>
+                      <m:mi>a</m:mi>
+                      <m:mi>α</m:mi>
+                    </m:mrow>
+                  </m:msup>
+                  <m:mo>-</m:mo>
+                  <m:msup>
+                    <m:mi>e</m:mi>
+                    <m:mrow>
+                      <m:mo>-</m:mo>
+                      <m:mi>b</m:mi>
+                      <m:mi>α</m:mi>
+                    </m:mrow>
+                  </m:msup>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id269644">Let <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>b</m:mi><m:mo>=</m:mo><m:mn>5</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>c</m:mi><m:mo>=</m:mo><m:mn>100</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>08</m:mn></m:mrow></m:math>.  Then,</para>
+      <code id="id269711" display="block">a = 1;
+b = 5;
+c = 100;
+A = 0.08;
+MW = (exp(-a*A) - exp(-b*A))/(A*(b - a))
+MW =    0.7900
+EC = c*MW/(1 - MW)
+EC =  376.1643
+</code>
+      </example>
+    </section>
+    
+  </content>
+</document>

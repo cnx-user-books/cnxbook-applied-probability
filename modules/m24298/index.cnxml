@@ -1,0 +1,1775 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Problems on Independent Classes of Random Variables</title>
+  <metadata>
+  <md:content-id>m24298</md:content-id><md:title>Problems on Independent Classes of Random Variables</md:title>
+  <md:abstract/>
+  <md:uuid>4f3414e4-f656-4d7f-9630-750fef90c248</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of useful matlab files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+
+<exercise id="fs-id1166354847565" print-placement="end">
+<problem id="fs-id1166355487739">
+    <para id="id2258267">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has the joint distribution (in m-file <link window="new" document="m24179" target-id="cid42">npr08_06.m</link>):</para>
+    <equation id="id2258942">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mo>-</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>7</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>1</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>9</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>2</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>4</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id2259335">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfenced separators="" open="[" close="]">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0483</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0357</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0420</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0399</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0441</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0437</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0323</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0380</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0361</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0399</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0713</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0527</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0620</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0609</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0551</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0667</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0493</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0580</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0651</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0589</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id2259573">Determine whether or not the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+</problem>
+<solution id="fs-id1166359609606">
+
+    <code id="id262855" display="block"><link window="new" document="m24179" target-id="cid42">npr08_06</link>
+Data are in X, Y, P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D
+disp(D)
+     0     0     0     1     1
+     0     0     0     1     1
+     1     1     1     1     1
+     1     1     1     1     1
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id8738376" print-placement="end">
+<problem id="fs-id4185617">
+    <para id="id2259596">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has the joint distribution (in m-file <link window="new" document="m24179" target-id="eip-744">npr09_02.m</link>):</para>
+    <equation id="id2259626">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>9</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>7</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>1</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>2</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>8</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>4</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>2</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>2</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>6</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id2259776">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>=</m:mo>
+          <m:mfenced separators="" open="[" close="]">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0589</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0342</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0304</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0456</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0209</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0961</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0556</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0498</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0744</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0341</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0682</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0398</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0350</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0528</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0242</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0868</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0504</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0448</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0672</m:mn>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>0308</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id2260013">Determine whether or not the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+</problem>
+<solution id="fs-id2563372">
+
+    <code id="id262959" display="block"><link window="new" document="m24179" target-id="eip-744">npr09_02</link>
+Data are in X, Y, P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D
+disp(D)
+     0     0     0     0     0
+     0     1     1     0     0
+     0     1     1     0     0
+     0     0     0     0     0
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1166356299251" print-placement="end">
+<problem id="fs-id1166357652759">
+    <para id="id2260037">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has the joint distribution (in m-file <link window="new" document="m24179" target-id="cid43">npr08_07.m</link>):</para>
+    <equation id="id2260066">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>u</m:mi>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+<!--empty paragraphs get left behind.-->
+    <table id="id2260107" summary="Table of values, with header row of t-values and header column of u-values.">
+<tgroup cols="7"><tbody>
+          <row>
+            <entry>t =</entry>
+            <entry>-3.1</entry>
+            <entry>-0.5</entry>
+            <entry>1.2</entry>
+            <entry>2.4</entry>
+            <entry>3.7</entry>
+            <entry>4.9</entry>
+          </row>
+          <row>
+            <entry>u = 7.5</entry>
+            <entry>0.0090</entry>
+            <entry>0.0396</entry>
+            <entry>0.0594</entry>
+            <entry>0.0216</entry>
+            <entry>0.0440</entry>
+            <entry>0.0203</entry>
+          </row>
+          <row>
+            <entry>4.1</entry>
+            <entry>0.0495</entry>
+            <entry>0</entry>
+            <entry>0.1089</entry>
+            <entry>0.0528</entry>
+            <entry>0.0363</entry>
+            <entry>0.0231</entry>
+          </row>
+          <row>
+            <entry>-2.0</entry>
+            <entry>0.0405</entry>
+            <entry>0.1320</entry>
+            <entry>0.0891</entry>
+            <entry>0.0324</entry>
+            <entry>0.0297</entry>
+            <entry>0.0189</entry>
+          </row>
+          <row>
+            <entry>-3.8</entry>
+            <entry>0.0510</entry>
+            <entry>0.0484</entry>
+            <entry>0.0726</entry>
+            <entry>0.0132</entry>
+            <entry>0</entry>
+            <entry>0.0077</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+<!--empty paragraphs get left behind.-->
+    <para id="id2260394">Determine whether or not the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+<!--empty paragraphs get left behind.-->
+</problem>
+<solution id="fs-id5139565">
+
+    <code id="id263059" display="block"><link window="new" document="m24179" target-id="cid43">npr08_07</link>
+Data are in X, Y, P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D
+disp(D)
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+</code>
+    <para id="id263157"/>
+</solution>
+</exercise>
+
+
+
+
+    <para id="id2260421"><emphasis effect="bold">For the distributions in Exercises 4-10 below</emphasis>
+    </para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2260435" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1">Determine whether or not the pair is independent.
+
+</item>
+      <item id="uid2">Use a discrete approximation and an independence test to
+verify results in part (a).
+</item>
+    </list>
+
+
+
+<exercise id="fs-id1166356430899" print-placement="end">
+<problem id="fs-id1166361064029">
+    <para id="id2260474"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>π</m:mi></m:mrow></m:math> on the circle with radius one, center at (0,0).</para>
+</problem>
+<solution id="fs-id2874259">
+<para id="id263162"> Not independent by the rectangle test.</para>
+    <code id="id263166" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [-1 1]
+Enter matrix [c d] of Y-range endpoints  [-1 1]
+Enter number of X approximation points  100
+Enter number of Y approximation points  100
+Enter expression for joint density  (1/pi)*(t.^2 + u.^2&lt;=1)
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D  % Not practical-- too large
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1166360365357" print-placement="end">
+<problem id="fs-id1166361041874">
+    <para id="id2260518"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math> on the square with vertices at
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math> (see <link document="m24244" target-id="fs-id5330701">Exercise 11</link> from "Problems on Random Vectors and Joint Distributions").</para>
+</problem>
+<solution id="fs-id1166356383958">
+ <para id="id263282">Not independent, by the rectangle test.</para>
+    <code id="id263286" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 2]
+Enter matrix [c d] of Y-range endpoints  [0 2]
+Enter number of X approximation points  200
+Enter number of Y approximation points  200
+Enter expression for joint density  (1/2)*(u&lt;=min(1+t,3-t)).* ...
+   (u&gt;=max(1-t,t-1))
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1166356300296" print-placement="end">
+<problem id="fs-id1166357646409">
+    <para id="id2260638"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>4</m:mn><m:mi>t</m:mi><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>
+(see <link document="m24244" target-id="fs-id3864404">Exercise 12</link> from "Problems on Random Vectors and Joint Distributions").</para>
+</problem>
+<solution id="fs-id8240598">
+<para id="id263411">From the solution for <link document="m24244" target-id="fs-id3864404">Exercise 12</link> from "Problems on Random Vectors and Joint Distributions" we have</para>
+    <equation id="id263414">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>t</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>≤</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>Y</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>≤</m:mo>
+          <m:mi>u</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mrow>
+              <m:mi>X</m:mi>
+              <m:mi>Y</m:mi>
+            </m:mrow>
+          </m:msub>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>Y</m:mi>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id263738">so the pair is independent.</para>
+    <code id="id263743" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  100
+Enter number of Y approximation points  100
+Enter expression for joint density  4*t.*(1-u)
+Use array operations on X, Y, PX, PY, t, u, and P
+ 
+ 
+ 
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is independent
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id4599744" print-placement="end">
+<problem id="fs-id1166359393860">
+    <para id="id2260729"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>8</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math> (see <link document="m24244" target-id="fs-id7639318">Exercise 13</link> from "Problems on Random Vectors and Joint Distributions").</para>
+</problem>
+<solution id="fs-id4490451">
+<para id="id263865">From the solution of <link document="m24244" target-id="fs-id7639318">Exercise 13</link> from "Problems on Random Vectors and Joint Distributions" we have</para>
+    <equation id="id263869">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>Y</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:mn>1</m:mn>
+            <m:mn>4</m:mn>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>≤</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>2</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id263949">so 
+<m:math overflow="scroll">
+<m:mrow>
+<m:msub>
+<m:mi>f</m:mi>
+<m:mrow>
+<m:mi>X</m:mi>
+<m:mi>Y</m:mi>
+</m:mrow>
+</m:msub>
+<m:mo>≠</m:mo>
+<m:msub>
+<m:mi>f</m:mi>
+<m:mi>X</m:mi>
+</m:msub>
+<m:msub>
+<m:mi>f</m:mi>
+<m:mi>Y</m:mi>
+</m:msub>
+</m:mrow>
+</m:math> 
+which implies the pair is not independent.</para>
+    <code id="id263989" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 2]
+Enter matrix [c d] of Y-range endpoints  [0 2]
+Enter number of X approximation points  100
+Enter number of Y approximation points  100
+Enter expression for joint density  (1/8)*(t+u)
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1166357640809" print-placement="end">
+<problem id="fs-id3236983">
+    <para id="id2260827"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>4</m:mn><m:mi>u</m:mi><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>t</m:mi></m:mrow></m:msup></m:mrow></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>
+(see <link document="m24244" target-id="fs-id8745553">Exercise 14</link> from "Problems on Random Vectors and Joint Distributions").</para>
+</problem>
+<solution id="fs-id1166358100358">
+ <para id="id264095">From the solution for <link document="m24244" target-id="fs-id8745553">Exercise 14</link> from "Problems on Random Vectors and Joint Distribution" we have</para>
+    <equation id="id264099">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>t</m:mi>
+            </m:mrow>
+          </m:msup>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>≤</m:mo>
+          <m:mi>t</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>Y</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>u</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>≤</m:mo>
+          <m:mi>u</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>1</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id264203">so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:msub><m:mi>f</m:mi><m:mi>Y</m:mi></m:msub></m:mrow></m:math>
+ and the pair is independent.</para>
+    <code id="id264242" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 5]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  500
+Enter number of Y approximation points  100
+Enter expression for joint density  4*u.*exp(-2*t)
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is independent       % Product rule holds to within 10^{-9}
+</code>
+    
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1166357490271" print-placement="end">
+<problem id="fs-id1166359393391">
+    <para id="id2260915"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>12</m:mn><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mi>u</m:mi></m:mrow></m:math> on the parallelogram with vertices <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math></para>
+    <para id="id2261042">(see <link document="m24244" target-id="fs-id8741636">Exercise 16</link> from "Problems on Random Vectors and Joint Distributions").</para>
+</problem>
+<solution id="fs-id1166356090683">
+ <para id="id264349">Not independent by the rectangle test.</para>
+    <code id="id264353" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [-1 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  200
+Enter number of Y approximation points  100
+Enter expression for joint density  12*t.^2.*u.*(u&lt;=min(t+1,1)).* ...
+          (u&gt;=max(0,t))
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D
+</code>
+</solution>
+</exercise>  
+
+
+
+<exercise id="fs-id8923901" print-placement="end">
+<problem id="fs-id1166357676592">
+  <para id="id2261048"><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>24</m:mn><m:mn>11</m:mn></m:mfrac><m:mi>t</m:mi><m:mi>u</m:mi></m:mrow></m:mstyle></m:math>  for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mo movablelimits="true" form="prefix">min</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math> (see <link document="m24244" target-id="fs-id8742791">Exercise 17</link> from "Problems on Random Vectors and Joint Distributions").</para>
+</problem>
+<solution id="fs-id1166356143907">
+<para id="id264474">By the rectangle test, the pair is not independent.</para>
+    <code id="id264477" display="block">tuappr
+Enter matrix [a b] of X-range endpoints  [0 2]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  200
+Enter number of Y approximation points  100
+Enter expression for joint density  (24/11)*t.*u.*(u&lt;=min(1,2-t))
+Use array operations on X, Y, PX, PY, t, u, and P
+itest
+Enter matrix of joint probabilities  P
+The pair {X,Y} is NOT independent
+To see where the product rule fails, call for D
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1166356657984" print-placement="end">
+<problem id="fs-id4627086">
+    <para id="id2261158">Two software companies, MicroWare and BusiCorp, are preparing a new business
+package in time for a computer trade show 180 days in the future. They work independently.
+MicroWare has anticipated completion time, in days, exponential (1/150). BusiCorp has
+time to completion, in days, exponential (1/130). What is the probability both will
+complete on time; that at least one will complete on time; that neither will complete
+on time?</para>
+</problem>
+<solution id="fs-id4998317">
+    <code id="id264590" display="block">p1 = 1 - exp(-180/150)
+p1 =  0.6988
+p2 = 1 - exp(-180/130)
+p2 =  0.7496
+Pboth = p1*p2
+Pboth =  0.5238
+Poneormore = 1 - (1 - p1)*(1 - p2) % 1 - Pneither
+Poneormore =  0.9246
+Pneither = (1 - p1)*(1 - p2)
+Pneither =    0.0754
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1166359880081" print-placement="end">
+<problem id="fs-id1166357495231">
+    <para id="id2258793">Eight similar units are put into operation at a given time. The time
+to failure (in hours) of each unit is exponential (1/750). If the units fail
+independently, what is the probability that five or more units will be operating
+at the end of 500 hours?</para>
+</problem>
+<solution id="fs-id1166356663597">
+    <code id="id264700" display="block">p = exp(-500/750);  % Probability any one will survive
+P = cbinom(8,p,5)   % Probability five or more will survive
+P =  0.3930
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id4503291" print-placement="end">
+<problem id="fs-id1166358742198">
+    <para id="id2258800">The location of ten points along a line may be considered iid random
+variables with symmytric triangular distribution on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>]</m:mo></m:mrow></m:math>.  What is the
+probability that three or more will lie within distance 1/2 of the point <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>?</para>
+</problem>
+<solution id="fs-id8870282">
+<para id="id264730">Geometrically, <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>, so that <code display="inline">P = cbinom(10,p,3) = 0.9996</code>.</para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1166359523598" print-placement="end">
+<problem id="fs-id7834239">
+    <para id="id2258841">A Christmas display has 200 lights. The times to failure are iid, exponential
+(1/10000). The display is on continuously for 750 hours (approximately
+one month). Determine the probability the number of lights which survive the entire period
+is at least 175, 180, 185, 190.</para>
+</problem>
+<solution id="fs-id1166355589908">
+    <code id="id264761" display="block">p = exp(-750/10000)
+p =  0.9277
+k = 175:5:190;
+P = cbinom(200,p,k);
+disp([k;P]')
+  175.0000    0.9973
+  180.0000    0.9449
+  185.0000    0.6263
+  190.0000    0.1381
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id7474543" print-placement="end">
+<problem id="fs-id1166357622603">
+    <para id="id2258849"> A critical module in a network server has time to failure (in hours of
+machine time) exponential (1/3000). The machine operates continuously, except for brief
+times for maintenance or repair. The module is replaced routinely every 30 days
+(720 hours), unless failure occurs. If successive units fail independently, what
+is the probability of no breakdown due to the module for one year?</para>
+</problem>
+<solution id="fs-id1166356002440">
+    <code id="id264848" display="block">p = exp(-720/3000)
+p = 0.7866     % Probability any unit survives
+P = p^12    % Probability all twelve survive (assuming 12 periods)
+P = 0.056
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1166355492243" print-placement="end">
+<problem id="fs-id1166356036539">
+    <para id="id2258859"> Joan is trying to decide which of two sales opportunities to take.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2258867" display="block" list-type="bulleted">
+      <item id="uid3">In the first, she makes three independent calls. Payoffs are $570, $525, and
+$465, with respective probabilities of 0.57, 0.41, and 0.35.
+
+</item>
+      <item id="uid4">In the second, she makes eight independent calls, with probability of success on each call
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>57</m:mn></m:mrow></m:math>. She realizes $150 profit on each successful sale.
+
+</item>
+    </list>
+    <para id="id2261441">Let <emphasis effect="italics">X</emphasis> be the net profit on the first alternative and <emphasis effect="italics">Y</emphasis> be the net gain on the
+second. Assume the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+<!--empty paragraphs get left behind.-->
+    
+    <list id="id2261495" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid5">Which alternative offers the maximum possible gain?
+
+</item>
+      <item id="uid6">Compare probabilities in the two schemes that total sales are at least $600, $900,
+$1000, $1100.
+
+</item>
+      <item id="uid7">What is the probability the second exceeds the first— i.e., what is
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>?
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1166358084202">
+<para id="id264889"><m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mn>570</m:mn><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>+</m:mo><m:mn>525</m:mn><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>+</m:mo><m:mn>465</m:mn><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub></m:mrow></m:math> with <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>]</m:mo><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>57</m:mn><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>41</m:mn><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>35</m:mn><m:mo>]</m:mo></m:mrow></m:math>. <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mn>150</m:mn><m:mi>S</m:mi></m:mrow></m:math>, where <m:math overflow="scroll"><m:mrow><m:mi>S</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (8, 0.57).</para>
+    <code id="id265056" display="block">c = [570 525 465 0];
+pm = minprob([0.57 0.41 0.35]);
+canonic                              % Distribution for X
+ Enter row vector of coefficients  c
+ Enter row vector of minterm probabilities  pm
+Use row matrices X and PX for calculations
+Call for XDBN to view the distribution
+Y = 150*[0:8];                       % Distribution for Y
+PY = ibinom(8,0.57,0:8);
+icalc                                % Joint distribution
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+xmax = max(X)
+xmax =   1560
+ymax = max(Y)
+ymax =   1200
+k = [600 900 1000 1100];
+px = zeros(1,4);
+ 
+ 
+ 
+for i = 1:4
+    px(i) = (X&gt;=k(i))*PX';
+end
+py = zeros(1,4);
+for i = 1:4
+  py(i) = (Y&gt;=k(i))*PY';
+end
+disp([px;py]')
+    0.4131    0.7765
+    0.4131    0.2560
+    0.3514    0.0784
+    0.0818    0.0111
+M = u &gt; t;
+PM = total(M.*P)
+PM = 0.5081          % P(Y&gt;X)
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1166357960976" print-placement="end">
+<problem id="fs-id1166359791329">
+    <para id="id2261581">Margaret considers five purchases in the amounts 5, 17, 21, 8, 15 dollars
+with respective probabilities 0.37, 0.22, 0.38, 0.81, 0.63. Anne contemplates six
+purchases in the amounts 8, 15, 12, 18, 15, 12 dollars. with respective probabilities
+0.77, 0.52, 0.23, 0.41, 0.83, 0.58. Assume that all eleven possible purchases form an
+independent class.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2261594" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid8">What is the probability Anne spends at least twice as much as Margaret?
+</item>
+      <item id="uid9">What is the probability Anne spends at least $30 more than Margaret?
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1166356036133">
+    <code id="id265433" display="block">cx = [5 17 21 8 15 0];
+pmx = minprob(0.01*[37 22 38 81 63]);
+cy = [8 15 12 18 15 12 0];
+pmy = minprob(0.01*[77 52 23 41 83 58]);
+[X,PX] = canonicf(cx,pmx);
+[Y,PY] = canonicf(cy,pmy);
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+M1 = u &gt;= 2*t;
+PM1 = total(M1.*P)
+PM1 =  0.3448
+M2 = u - t &gt;=30;
+PM2 = total(M2.*P)
+PM2 =  0.2431
+</code>
+    
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1166356821362" print-placement="end">
+<problem id="fs-id1166356562814">
+    <para id="id2261634">James is trying to decide which of two sales opportunities to take.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2261643" display="block" list-type="bulleted">
+      <item id="uid10">In the first, he makes three independent calls. Payoffs are $310, $380, and
+$350, with respective probabilities of 0.35, 0.41, and 0.57.
+</item>
+      <item id="uid11">In the second, he makes eight independent calls, with probability of success on each call
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>57</m:mn></m:mrow></m:math>. He realizes $100 profit on each successful sale.
+</item>
+    </list>
+    <para id="id2261695">Let <emphasis effect="italics">X</emphasis> be the net profit on the first alternative and <emphasis effect="italics">Y</emphasis> be the net gain on the
+second. Assume the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2261744" display="block" list-type="bulleted">
+      <item id="uid12">Which alternative offers the maximum possible gain?
+
+</item>
+      <item id="uid13">What is the probability the second exceeds the first— i.e., what is
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>?
+
+</item>
+      <item id="uid14">Compare probabilities in the two schemes that total sales are at least
+$600, $700, $750.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1166356164782">
+    <code id="id265617" display="block">cx = [310 380 350 0];
+pmx = minprob(0.01*[35 41 57]);
+Y  = 100*[0:8];
+PY = ibinom(8,0.57,0:8);
+canonic
+ Enter row vector of coefficients  cx
+ Enter row vector of minterm probabilities  pmx
+Use row matrices X and PX for calculations
+Call for XDBN to view the distribution
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+xmax = max(X)
+xmax =  1040
+ymax = max(Y)
+ymax =   800
+PYgX = total((u&gt;t).*P)
+PYgX =  0.5081
+k = [600 700 750];
+px = zeros(1,3);
+py = zeros(1,3);
+for i = 1:3
+    px(i) = (X&gt;=k(i))*PX';
+end
+for i = 1:3
+    py(i) = (Y&gt;=k(i))*PY';
+end
+disp([px;py]')
+    0.4131    0.2560
+    0.2337    0.0784
+    0.0818    0.0111
+</code>
+    
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id5055966" print-placement="end"><problem id="fs-id1166356717522">
+    <para id="id2261823">A residential College plans to raise money by selling “chances”
+on a board. There are two games:</para>
+<!--empty paragraphs get left behind.-->
+    <list id="eip-id3649019" list-type="labeled-item"><item><label>Game 1</label> Pay $5 to play;  win $20 with probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math> (one in twenty)</item>
+    <item><label>Game 2</label> Pay $10 to play; win $30 with probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math> (one in five)</item></list>
+<!--empty paragraphs get left behind.-->
+    <para id="id2261901">Thirty chances are sold on Game 1 and fifty chances are sold on Game 2. If <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> are
+the profits on the respective games, then</para>
+    <equation id="id2261927"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>30</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>20</m:mn>
+          <m:msub>
+            <m:mi>N</m:mi>
+            <m:mn>1</m:mn>
+          </m:msub>
+          <m:mspace width="5pt"/>
+          <m:mtext>and</m:mtext>
+          <m:mspace width="5pt"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>50</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>10</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>30</m:mn>
+          <m:msub>
+            <m:mi>N</m:mi>
+            <m:mn>2</m:mn>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id2262004">where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math> are the numbers of winners on the respective games. It is reasonable
+to suppose <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>30</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>50</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+It is reasonable to suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent, so that <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+is independent. Determine the marginal distributions for <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> then use icalc to
+obtain the joint distribution and the calculating matrices. The total profit for the College is
+<m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:math>.   What is the probability the College will lose money? What is the
+probability the profit will be $400 or more, less than $200, between $200 and $450?</para>
+</problem>
+<solution id="fs-id1166357985760">
+    <code id="id265950" display="block">N1 = 0:30;
+PN1 = ibinom(30,0.05,0:30);
+x  = 150 - 20*N1;
+[X,PX] = csort(x,PN1);
+N2 = 0:50;
+PN2 = ibinom(50,0.2,0:50);
+y  = 500 - 30*N2;
+[Y,PY] = csort(y,PN2);
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+G = t + u;
+Mlose = G &lt; 0;
+Mm400  = G &gt;= 400;
+Ml200  = G &lt; 200;
+M200_450  = (G&gt;=200)&amp;(G&lt;=450);
+Plose = total(Mlose.*P)
+Plose =   3.5249e-04
+Pm400 = total(Mm400.*P)
+Pm400 =   0.1957
+Pl200 = total(Ml200.*P)
+Pl200 =
+    0.0828
+P200_450 = total(M200_450.*P)
+P200_450 =  0.8636
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1166358712650" print-placement="end">
+<problem id="fs-id1166357619114">
+    <para id="id2262227">The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Z</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables is iid (independent, identically
+distributed) with common distribution</para>
+    <equation id="id2262262">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>5</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>3</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>4</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>7</m:mn>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>01</m:mn>
+          <m:mo>*</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>15</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>20</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>30</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>25</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>10</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id2262379">Let <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>4</m:mn><m:mi>Y</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>Z</m:mi></m:mrow></m:math>. Determine the distribution for <emphasis effect="italics">W</emphasis> and from this determine
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>20</m:mn><m:mo>≤</m:mo><m:mi>W</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Do this with icalc, then repeat with icalc3
+and compare results.</para>
+</problem>
+<solution id="fs-id1166358534730">
+   <para id="id266228">Since icalc uses <emphasis effect="italics">X</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math> in its output, we avoid a renaming problem
+by using <emphasis effect="italics">x</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mi>x</m:mi></m:mrow></m:math> for data vectors <emphasis effect="italics">X</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math>.</para>
+    <code id="id266293" display="block">x = [-5 -1 3 4 7];
+px = 0.01*[15 20 30 25 10];
+icalc
+Enter row matrix of X-values  3*x
+Enter row matrix of Y-values  -4*x
+Enter X probabilities  px
+Enter Y probabilities  px
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+a = t + u;
+[V,PV] = csort(a,P);
+icalc
+Enter row matrix of X-values  V
+Enter row matrix of Y-values  2*x
+Enter X probabilities  PV
+Enter Y probabilities  px
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+b = t + u;
+[W,PW] = csort(b,P);
+P1 = (W&gt;0)*PW'
+P1 =  0.5300
+P2 = ((-20&lt;=W)&amp;(W&lt;=10))*PW'
+P2 =  0.5514
+icalc3                           % Alternate using icalc3
+Enter row matrix of X-values  x
+Enter row matrix of Y-values  x
+Enter row matrix of Z-values  x
+Enter X probabilities  px
+Enter Y probabilities  px
+Enter Z probabilities  px
+Use array operations on matrices X, Y, Z,
+PX, PY, PZ, t, u, v, and P
+a = 3*t - 4*u + 2*v;
+[W,PW] = csort(a,P);
+P1 = (W&gt;0)*PW'
+P1 = 0.5300
+P2 = ((-20&lt;=W)&amp;(W&lt;=10))*PW'
+P2 = 0.5514
+</code>
+    
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id7211050" print-placement="end">
+<problem id="fs-id4459466">
+    <para id="id2262474">The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>E</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>F</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent; the respective probabilites
+for these events are <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>46</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>27</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>33</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>47</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>37</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>41</m:mn><m:mo>}</m:mo></m:mrow></m:math>.
+Consider the simple random variables</para>
+    <equation id="id2262611">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>A</m:mi>
+          </m:msub>
+          <m:mo>-</m:mo>
+          <m:mn>9</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>B</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>4</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>C</m:mi>
+          </m:msub>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>2</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>D</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>6</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>E</m:mi>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>2</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mi>F</m:mi>
+          </m:msub>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>and</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Z</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>X</m:mi>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:mi>Y</m:mi>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id2262754">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>≤</m:mo><m:mi>Z</m:mi><m:mo>≤</m:mo><m:mn>25</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1166357698948">
+    <code id="id266688" display="block">cx = [3 -9 4 0];
+pmx = minprob(0.01*[42 27 33]);
+cy = [-2 6 2 -3];
+pmy = minprob(0.01*[47 37 41]);
+[X,PX] = canonicf(cx,pmx);
+[Y,PY] = canonicf(cy,pmy);
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+G = 2*t - 3*u;
+[Z,PZ] = csort(G,P);
+PYgX = total((u&gt;t).*P)
+PYgX =  0.3752
+PZpos = (Z&gt;0)*PZ'
+PZpos = 0.5654
+P5Z25 = ((5&lt;=Z)&amp;(Z&lt;=25))*PZ'
+P5Z25 = 0.4745
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1166355807100" print-placement="end">
+<problem id="fs-id1166358631757">
+    <para id="id2262827">Two players, Ronald and Mike, throw a pair of dice 30 times each. What
+is the probability Mike throws more “sevens” than does Ronald?</para>
+</problem>
+<solution id="fs-id1166355748598">    
+ <para id="id266896"><code>P = (ibinom(30,1/6,0:29))*(cbinom(30,1/6,1:30))' = 0.4307</code>
+</para>
+</solution>
+</exercise>
+
+<exercise id="fs-id1166358704009" print-placement="end">
+<problem id="fs-id3146070">
+<para id="id2262835">A class has fifteen boys and fifteen girls. They pair up and each tosses a
+coin 20 times. What is the probability that at least eight girls throw more heads than
+their partners?</para>
+</problem>
+<solution id="fs-id5932554">
+    <code id="id266915" display="block">pg = (ibinom(20,1/2,0:19))*(cbinom(20,1/2,1:20))'
+pg =  0.4373             % Probability each girl throws more
+P = cbinom(15,pg,8)
+P =   0.3100             % Probability eight or more girls throw more
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1166356705648" print-placement="end">
+<problem id="fs-id5281879">
+    <para id="id2262842">Glenn makes five sales calls, with probabilities 
+<m:math overflow="scroll"><m:mn>0.37</m:mn></m:math>,
+<m:math><m:mn>0.52</m:mn></m:math>,
+<m:math><m:mn>0.48</m:mn></m:math>,
+<m:math><m:mn>0.71</m:mn></m:math>,
+<m:math><m:mn>0.63</m:mn></m:math>,
+of success on the respective calls. Margaret makes four sales calls with probabilities
+<m:math><m:mn>0.77</m:mn></m:math>,
+<m:math><m:mn>0.82</m:mn></m:math>,
+<m:math><m:mn>0.75</m:mn></m:math>,
+<m:math><m:mn>0.91</m:mn></m:math>, of success on the respective calls. Assume that all nine events form
+an independent class. If Glenn realizes a profit of $18.00 on each sale and Margaret earns
+$20.00 on each sale, what is the probability Margaret's gain is at least $10.00 more than
+Glenn's?</para>
+</problem>
+<solution id="fs-id7155938">
+    <code id="id266960" display="block">cg = [18*ones(1,5) 0];
+cm = [20*ones(1,4) 0];
+pmg = minprob(0.01*[37 52 48 71 63]);
+pmm = minprob(0.01*[77 82 75 91]);
+[G,PG] = canonicf(cg,pmg);
+[M,PM] = canonicf(cm,pmm);
+icalc
+Enter row matrix of X-values  G
+Enter row matrix of Y-values  M
+Enter X probabilities  PG
+Enter Y probabilities  PM
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+H = u-t&gt;=10;
+p1 = total(H.*P)
+p1 =  0.5197
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1166355818011" print-placement="end">
+<problem id="fs-id1166358603368">
+    <para id="id2262972">Mike and Harry have a basketball shooting contest.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2262980" display="block" list-type="bulleted">
+      <item id="uid15">Mike shoots 10 ordinary free throws, worth two points each, with probability
+0.75 of success on each shot.
+
+</item>
+      <item id="uid16">Harry shoots 12 “three point” shots, with probability 0.40 of success on each
+shot.
+
+</item>
+    </list>
+    <para id="id2263022">Let <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi></m:mrow></m:math> be the number of points scored by Mike and Harry, respectively.
+Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>15</m:mn><m:mo>)</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≥</m:mo><m:mn>15</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</para>
+</problem>
+<solution id="fs-id1166357656294">
+    <code id="id267110" display="block">X = 2*[0:10];
+PX = ibinom(10,0.75,0:10);
+Y = 3*[0:12];
+PY = ibinom(12,0.40,0:12);
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+PX15 = (X&gt;=15)*PX'
+PX15 = 0.5256
+PY15 = (Y&gt;=15)*PY'
+PY15 = 0.5618
+G = t&gt;=u;
+PG = total(G.*P)
+PG =   0.5811
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1166356835352" print-placement="end">
+<problem id="fs-id1166357952477">
+    <para id="id2263109">Martha has the choice of two games.</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2263117" display="block" list-type="labeled-item"><item id="uid17"><label>Game 1</label>Pay ten dollars for each “play.”  If she wins, she receives $20, for a
+net gain of $10 on the play; otherwise, she loses her $10. The probability of a win
+is 1/2, so the game is “fair.”
+</item>
+      <item id="uid18"><label>Game 2</label>Pay five dollars to play; receive $15 for a win. The probability of a
+win on any play is 1/3.
+</item>
+    </list>
+    <para id="id2263158">Martha has $100 to bet. She is trying to decide whether to play Game 1 ten times or Game 2
+twenty times. Let <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mn>2</m:mn></m:mrow></m:math> be the respective net winnings (payoff minus fee to play).</para>
+<!--empty paragraphs get left behind.-->
+    <list id="id2263194" display="block" list-type="bulleted">
+      <item id="uid19">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mn>2</m:mn><m:mo>≥</m:mo><m:mi>W</m:mi><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+      <item id="uid20">Compare the two games further by calculating <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mn>1</m:mn><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mn>2</m:mn><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math></item>
+    </list>
+    <para id="id2263298">Which game seems preferable?</para>
+</problem>
+<solution id="fs-id5129514">
+    <code id="id267282" display="block">W1 = 20*[0:10] - 100;
+PW1 = ibinom(10,1/2,0:10);
+W2 = 15*[0:20] - 100;
+PW2 = ibinom(20,1/3,0:20);
+P1pos = (W1&gt;0)*PW1'
+P1pos = 0.3770
+P2pos = (W2&gt;0)*PW2'
+P2pos = 0.5207
+icalc
+Enter row matrix of X-values  W1
+Enter row matrix of Y-values  W2
+Enter X probabilities  PW1
+Enter Y probabilities  PW2
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+G = u &gt;= t;
+PG = total(G.*P)
+PG =  0.5182
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1166359848295" print-placement="end">
+<problem id="fs-id7535485">
+    <para id="id2263302">Jim and Bill of the men's basketball team challenge women
+players Mary and Ellen to a free throw contest. Each takes five free throws.
+Make the usual independence assumptions. Jim, Bill, Mary, and Ellen have
+respective probabilities <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0.82</m:mn><m:mo>,</m:mo><m:mn>0.87</m:mn><m:mo>,</m:mo><m:mn>0.80</m:mn></m:mrow></m:math>, and 0.85 of making each
+shot tried. What is the probability Mary and Ellen make a total number of free throws
+at least as great as the total made by the guys?</para>
+</problem>
+<solution id="fs-id3830792">
+    <code id="id267459" display="block">x = 0:5;
+PJ = ibinom(5,0.82,x);
+PB = ibinom(5,0.87,x);
+PM = ibinom(5,0.80,x);
+PE = ibinom(5,0.85,x);
+ 
+icalc
+Enter row matrix of X-values  x
+Enter row matrix of Y-values  x
+Enter X probabilities  PJ
+Enter Y probabilities  PB
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+H = t+u;
+[Tm,Pm] = csort(H,P);
+icalc
+Enter row matrix of X-values  x
+Enter row matrix of Y-values  x
+Enter X probabilities  PM
+Enter Y probabilities  PE
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+G = t+u;
+[Tw,Pw] = csort(G,P);
+icalc
+Enter row matrix of X-values  Tm
+Enter row matrix of Y-values  Tw
+Enter X probabilities  Pm
+Enter Y probabilities  Pw
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+Gw = u&gt;=t;
+PGw = total(Gw.*P)
+PGw = 0.5746
+ 
+icalc4               % Alternate using icalc4
+Enter row matrix of X-values  x
+Enter row matrix of Y-values  x
+Enter row matrix of Z-values  x
+Enter row matrix of W-values  x
+Enter X probabilities  PJ
+Enter Y probabilities  PB
+Enter Z probabilities  PM
+Enter W probabilities  PE
+Use array operations on matrices X, Y, Z,W
+PX, PY, PZ, PW t, u, v, w, and P
+H = v+w &gt;= t+u;
+PH = total(H.*P)
+PH =  0.5746
+</code>
+</solution>
+</exercise>
+
+
+
+
+  </content>
+</document>

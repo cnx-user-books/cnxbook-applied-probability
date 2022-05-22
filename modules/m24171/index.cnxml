@@ -1,0 +1,1396 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Problems on Minterm Analysis</title>
+  <metadata>
+  <md:content-id>m24171</md:content-id><md:title>Problems on Minterm Analysis</md:title>
+  <md:abstract/>
+  <md:uuid>05635aa6-de31-47a8-a841-94ec46b8e983</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of useful matlab files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+    <!--empty paragraphs get left behind.-->
+
+
+
+<exercise id="fs-id1171588758034" print-placement="end">
+<problem id="fs-id1171589436000">
+    <para id="id321026">Consider the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> of events. Suppose
+the probability that at least one of the events <emphasis effect="italics">A</emphasis> or <emphasis effect="italics">C</emphasis> occurs is
+0.75 and the probability that at least one of the four events occurs is 0.90.
+Determine the probability that neither of the events <emphasis effect="italics">A</emphasis> or <emphasis effect="italics">C</emphasis> but
+at least one of the events <emphasis effect="italics">B</emphasis> or <emphasis effect="italics">D</emphasis> occurs.</para>
+</problem>
+<solution id="fs-id1171589048316">
+    <para id="id157858">Use the pattern <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>E</m:mi><m:mo>∪</m:mo><m:mi>F</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>E</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>E</m:mi><m:mi>c</m:mi></m:msup><m:mi>F</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mi>c</m:mi></m:msup><m:mo>=</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>.</para>
+    <equation id="id157957">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>D</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>+</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>∪</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>so</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>that</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>∪</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>90</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>75</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>15</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1171591025070" print-placement="end"><problem id="fs-id1171589062696">
+    <list id="eip-id3109514" list-type="enumerated" number-style="arabic"><item> Use minterm maps to show which of the
+following statements are true for any class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math>: 
+   <list id="eip-id7928658" list-type="enumerated" number-style="lower-alpha"><item><m:math overflow="scroll" mode="display">
+       
+         
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>A</m:mi>
+          <m:mo>∪</m:mo>
+          <m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:mi>A</m:mi>
+          <m:mo>∪</m:mo>
+          <m:mi>B</m:mi>
+          <m:mo>∪</m:mo>
+          <m:msup>
+            <m:mi>B</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:msup>
+            <m:mi>C</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+     </m:math></item><item><m:math overflow="scroll" mode="display">
+          
+       <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>∪</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>A</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:mi>C</m:mi>
+          <m:mo>∪</m:mo>
+          <m:msup>
+            <m:mi>B</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:mi>C</m:mi>
+        
+</m:math></item>
+<item><m:math overflow="scroll" mode="display">
+        <m:mrow>
+         
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>A</m:mi>
+          <m:mo>⊂</m:mo>
+          <m:mi>A</m:mi>
+          <m:mi>B</m:mi>
+          <m:mo>∪</m:mo>
+          <m:mi>A</m:mi>
+          <m:mi>C</m:mi>
+          <m:mo>∪</m:mo>
+          <m:mi>B</m:mi>
+          <m:mi>C</m:mi>
+        </m:mrow>
+      </m:math></item></list>
+    </item>
+    <item>  Repeat part (1) using indicator functions (evaluated on minterms).</item>
+    <item>  Repeat part (1) using the m-procedure minvec3 and MATLAB logical operations.</item></list>
+</problem>
+<solution id="fs-id1171598313747">
+ <para id="id157368"> We use the MATLAB procedure, which displays the essential patterns.</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id158313" display="block">minvec3
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+E = A|~(B&amp;C);
+F = A|B|(Bc&amp;Cc);
+disp([E;F])
+     1     1     1     0     1     1     1     1   % Not equal
+     1     0     1     1     1     1     1     1
+G = ~(A|B);
+H = (Ac&amp;C)|(Bc&amp;C);
+disp([G;H])
+     1     1     0     0     0     0     0     0   % Not equal
+     0     1     0     1     0     1     0     0
+K = (A&amp;B)|(A&amp;C)|(B&amp;C);
+disp([A;K])
+     0     0     0     0     1     1     1     1   % A not contained in K
+     0     0     0     1     0     1     1     1
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1170878566703" print-placement="end"><problem id="fs-id1170881322113">
+    <para id="id321323">Use (1) minterm maps, (2) indicator functions (evaluated on minterms),
+(3) the m-procedure minvec3 and MATLAB logical operations to show that</para>
+    <list id="eip-id8620960" list-type="enumerated" number-style="lower-alpha"><item>
+      <m:math overflow="scroll" mode="display">
+        
+         
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>A</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>∪</m:mo>
+          <m:msup>
+            <m:mi>A</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:mi>B</m:mi>
+          <m:mi>C</m:mi>
+          <m:mo>⊂</m:mo>
+          <m:mi>A</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>∪</m:mo>
+          <m:msup>
+            <m:mi>A</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:mi>B</m:mi>
+          </m:math></item><item><m:math overflow="scroll" mode="display">
+          
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>A</m:mi>
+          <m:mo>∪</m:mo>
+          <m:msup>
+            <m:mi>A</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:mi>B</m:mi>
+          <m:mi>C</m:mi>
+          <m:mo>=</m:mo>
+          <m:mi>A</m:mi>
+          <m:mi>B</m:mi>
+          <m:mo>∪</m:mo>
+          <m:mi>B</m:mi>
+          <m:mi>C</m:mi>
+          <m:mo>∪</m:mo>
+          <m:mi>A</m:mi>
+          <m:mi>C</m:mi>
+          <m:mo>∪</m:mo>
+          <m:mi>A</m:mi>
+          <m:msup>
+            <m:mi>B</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+          <m:msup>
+            <m:mi>C</m:mi>
+            <m:mi>c</m:mi>
+          </m:msup>
+       
+      </m:math></item></list>
+    
+</problem>    
+
+<solution id="fs-id1170880816289">
+
+ <para id="id158462">We use the MATLAB procedure, which displays the essential patterns.</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id158470" display="block">minvec3
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+E = (A&amp;(B|Cc))|(Ac&amp;B&amp;C);
+F = (A&amp;((B&amp;C)|Cc))|(Ac&amp;B);
+disp([E;F])
+     0     0     0     1     1     0     1     1   % E subset of F
+     0     0     1     1     1     0     1     1
+G = A|(Ac&amp;B&amp;C);
+H = (A&amp;B)|(B&amp;C)|(A&amp;C)|(A&amp;Bc&amp;Cc);
+disp([G;H])
+     0     0     0     1     1     1     1     1    % G = H
+     0     0     0     1     1     1     1     1
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1170893222483" print-placement="end">
+<problem id="fs-id1170880967186">
+<para id="id321491">Minterms for the events <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math>, arranged as on a minterm map
+are</para>
+    <code id="id321520" display="block">                     0.0168    0.0072    0.0252    0.0108
+                     0.0392    0.0168    0.0588    0.0252
+                     0.0672    0.0288    0.1008    0.0432
+                     0.1568    0.0672    0.2352    0.1008
+</code>
+    <!--empty paragraphs get left behind.-->
+    <para id="id321563">What is the probability that three or more of the events occur on a trial? Of exactly two?
+Of two or fewer?</para>
+</problem>
+<solution id="fs-id1171588884433">
+<para id="id158586">We use mintable(4) and determine positions with correct number(s) of
+ones (number of occurrences). An alternate is to use minvec4 and express the
+Boolean combinations which give the correct number(s) of ones.</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id158596" display="block"><link window="new" document="m24179" target-id="cid3">npr02_04</link>
+Minterm probabilities are in pm.  Use mintable(4)
+a = mintable(4);
+s = sum(a);         % Number of ones in each minterm position
+P1 = (s&gt;=3)*pm'   % Select and add minterm probabilities
+P1 =  0.4716
+P2 = (s==2)*pm'
+P2 =  0.3728
+P3 = (s&lt;=2)*pm'
+P3 =  0.5284
+</code>
+</solution>
+</exercise>
+
+
+
+    
+<exercise id="fs-id1171588330027" print-placement="end"><problem id="fs-id3662580">
+<para id="id321570"> Minterms for the events <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>,</m:mo><m:mi>E</m:mi><m:mo>}</m:mo></m:mrow></m:math>, arranged as on a minterm map
+are</para>
+    <code id="id321603" display="block">       0.0216  0.0324  0.0216  0.0324  0.0144  0.0216  0.0144  0.0216
+       0.0144  0.0216  0.0144  0.0216  0.0096  0.0144  0.0096  0.0144
+       0.0504  0.0756  0.0504  0.0756  0.0336  0.0504  0.0336  0.0504
+       0.0336  0.0504  0.0336  0.0504  0.0224  0.0336  0.0224  0.0336
+</code>
+    <!--empty paragraphs get left behind.-->
+    <para id="id321646">What is the probability that three or more of the events occur on a trial? Of exactly four?
+Of three or fewer? Of either two or four?</para>
+</problem>
+<solution id="fs-id1171587907130">
+<para id="id158691"> We use mintable(5) and determine positions with correct number(s) of
+ones (number of occurrences).</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id158699" display="block"><link window="new" document="m24179" target-id="cid4">npr02_05</link>
+Minterm probabilities are in pm.  Use mintable(5)
+a = mintable(5);
+s = sum(a);         % Number of ones in each minterm position
+P1 = (s&gt;=3)*pm'   % Select and add minterm probabilities
+P1 =  0.5380
+P2 = (s==4)*pm'
+P2 =  0.1712
+P3 = (s&lt;=3)*pm'
+P3 =  0.7952
+P4 = ((s==2)|(s==4))*pm'
+P4 =  0.4784
+</code>
+</solution>
+</exercise>
+
+    
+<exercise id="fs-id8332277" print-placement="end"><problem id="fs-id1171588984168">
+<para id="id321653"> Suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>25</m:mn></m:mrow></m:math></para> 
+    <para id="id321933"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>25</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>30</m:mn></m:mrow></m:math>.  Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup></m:mfenced></m:mrow></m:math>.</para>
+    <para id="id322059">Then determine
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mfenced></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:math>, if possible.</para>
+</problem>
+<solution id="fs-id2687821">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id158820" display="block">% file <link window="new" document="m24179" target-id="cid5">npr02_06.m</link>       % Data file
+% Data for <link target-id="fs-id8332277"/>
+minvec3
+DV = [A|Ac; A|(Bc&amp;C); A&amp;C; Ac&amp;B; Ac&amp;Cc; B&amp;Cc];
+DP = [1      0.65     0.20 0.25  0.25   0.30];
+TV = [((A&amp;Cc)|(Ac&amp;C))&amp;Bc; ((A&amp;Bc)|Ac)&amp;Cc; Ac&amp;(B|Cc)];
+disp('Call for mincalc')
+npr02_06             % Call for data
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ 
+ Computable target probabilities
+    1.0000    0.3000     % The first and third target probability
+    3.0000    0.3500     % is calculated. Check with minterm map.
+The number of minterms is 8
+The number of available minterms is 4
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+    
+
+<exercise id="fs-id4332493" print-placement="end"><problem id="fs-id1171589073653">
+<para id="id322150"> Suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo><m:mi>C</m:mi></m:mfenced><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mfenced></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:math>,
+if possible.</para>
+</problem>
+<solution id="fs-id1171587664657">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id159022" display="block">% file <link window="new" document="m24179" target-id="cid6">npr02_07.m</link>
+% Data for <link target-id="fs-id4332493"/>
+minvec3
+DV = [A|Ac; ((A&amp;Bc)|(Ac&amp;B))&amp;C; A&amp;B; Ac&amp;Cc;  A;  C; A&amp;Bc&amp;Cc];
+DP = [ 1        0.4            0.2   0.3   0.6 0.5   0.1];
+TV = [(Ac&amp;Cc)|(A&amp;C); ((A&amp;Bc)|Ac)&amp;Cc; Ac&amp;(B|Cc)];
+disp('Call for mincalc')
+npr02_07             % Call for data
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.7000    % All target probabilities calculable
+    2.0000    0.4000    % even though not all minterms are available
+    3.0000    0.4000
+The number of minterms is 8
+The number of available minterms is 6
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1171591809192" print-placement="end"><problem id="fs-id1171588411776">
+    <para id="id322493"> Suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>,</m:mo></m:mrow></m:math></para>
+    <para id="id322611">and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+    <para id="id322660">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mfenced></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>, and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>, if possible.</para>
+</problem>
+<solution id="fs-id1171587705579">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id159223" display="block">% file <link window="new" document="m24179" target-id="cid7">npr02_08.m</link>
+% Data for <link target-id="fs-id1171591809192"/>
+minvec3
+DV = [A|Ac; A;  C;  A&amp;C; Ac&amp;B; Ac&amp;Bc&amp;Cc];
+DP = [ 1   0.6 0.4  0.3  0.2     0.1];
+TV = [(A|B)&amp;Cc; (A&amp;Cc)|(Ac&amp;C); (A&amp;Cc)|(Ac&amp;B)];
+disp('Call for mincalc')
+ 
+ 
+npr02_08             % Call for data
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.5000    % All target probabilities calculable
+    2.0000    0.4000    % even though not all minterms are available
+    3.0000    0.5000
+The number of minterms is 8
+The number of available minterms is 4
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1171592023314" print-placement="end"><problem id="fs-id1171590356681">
+    <para id="id322769"> Suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+    <para id="id322884">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mi>A</m:mi><m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>c</m:mi></m:msup></m:mfenced></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    <para id="id322959">Then repeat with additional data <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id8825868">
+ 
+    <!--empty paragraphs get left behind.-->
+    <code id="id159439" display="block">% file <link window="new" document="m24179" target-id="cid8">npr02_09.m</link>
+% Data for <link target-id="fs-id1171592023314"/>
+minvec3
+DV = [A|Ac;  A; A&amp;B; A&amp;C; A&amp;B&amp;Cc];
+DP = [ 1    0.5 0.3  0.3   0.1];
+TV = [A&amp;(~(B&amp;Cc)); (A&amp;B)|(A&amp;C)|(B&amp;C)];
+disp('Call for mincalc')
+ 
+% Modification for part 2
+% DV = [DV; Ac&amp;Bc&amp;Cc; Ac&amp;B&amp;C];
+% DP = [DP 0.1 0.05];
+npr02_09             % Call for data
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.4000    % Only the first target probability calculable
+The number of minterms is 8
+The number of available minterms is 4
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+DV = [DV; Ac&amp;Bc&amp;Cc; Ac&amp;B&amp;C];  % Modification of data
+DP = [DP 0.1 0.05];
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.4000             % Both target probabilities calculable
+    2.0000    0.4500             % even though not all minterms are available
+The number of minterms is 8
+The number of available minterms is 6
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1171592893953" print-placement="end"><problem id="fs-id1171587672810">
+    <para id="id323042"> Given: <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn></m:mrow></m:math>, and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+    <para id="id323170">Determine  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>A</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:mi>D</m:mi><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1171591264374">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id159757" display="block">% file <link window="new" document="m24179" target-id="cid9">npr02_10.m</link>
+% Data for <link target-id="fs-id1171592893953"/>
+minvec4
+DV = [A|Ac;  A;  Ac&amp;Bc; A&amp;Cc; A&amp;C&amp;Dc];
+DP = [1     0.6  0.2    0.4    0.1];
+TV = [(Ac&amp;B)|(A&amp;(Cc|D))];
+disp('Call for mincalc')
+npr02_10
+Variables are A, B, C, D, Ac, Bc, Cc, Dc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.7000             % Checks with minterm map solution
+The number of minterms is 16
+The number of available minterms is 0
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id4889487" print-placement="end"><problem id="fs-id1171589245724">
+    <para id="id323220">A survey of a represenative group of students yields the following information:<list id="eip-id1166786998705"><item>
+    52 percent are male</item>
+    <item>85 percent live on campus</item>
+    <item>78 percent are male or are active in intramural sports (or both)</item>
+    <item>30 percent live on campus but are not active in sports</item>
+    <item>32 percent are male, live on campus, and are active in sports</item>
+    <item>8  percent are male and live off campus</item>
+    <item>17 percent are male students inactive in sports</item></list></para>
+    <list id="eip-id1166796010400" list-type="enumerated" number-style="lower-alpha"><item>  What is the probability that a randomly chosen student
+          is male and lives on campus?</item>
+    <item> What is the probability of a male, on campus student who is not active in sports?</item>
+    <item> What is the probability of a female student active in sports?</item></list>
+</problem>
+<solution id="fs-id1171595128069">
+ 
+    <!--empty paragraphs get left behind.-->
+    <code id="id159947" display="block">% file <link window="new" document="m24179" target-id="cid10">npr02_11.m</link>
+% Data for <link target-id="fs-id4889487"/>
+% A = male;  B = on campus;  C = active in sports
+minvec3
+DV = [A|Ac;  A;   B;  A|C; B&amp;Cc; A&amp;B&amp;C; A&amp;Bc; A&amp;Cc];
+DP = [ 1    0.52 0.85 0.78 0.30  0.32   0.08 0.17];
+TV = [A&amp;B; A&amp;B&amp;Cc; Ac&amp;C];
+disp('Call for mincalc')
+ 
+npr02_11
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.4400
+    2.0000    0.1200
+    3.0000    0.2600
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+  
+<exercise id="fs-id1171587815710" print-placement="end"><problem id="fs-id1171590657094">
+  <para id="id323285"> A survey of 100 persons of voting age reveals that 60 are male, 30
+of whom do not identify with a political party; 50 are members of a political party;
+20 nonmembers of a party voted in the last election, 10 of whom are female. How
+many nonmembers of a political party did not vote? <emphasis effect="italics">Suggestion</emphasis>  Express
+the numbers as a fraction, and treat as probabilities.</para>
+</problem>
+<solution id="fs-id1171593613203">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id160172" display="block">% file <link window="new" document="m24179" target-id="cid11">npr02_12.m</link>
+% Data for <link target-id="fs-id1171587815710"/>
+% A = male;  B = party member; C = voted last election
+minvec3
+DV = [A|Ac;  A;  A&amp;Bc;  B;  Bc&amp;C; Ac&amp;Bc&amp;C];
+DP = [  1   0.60 0.30  0.50 0.20  0.10];
+TV = [Bc&amp;Cc];
+disp('Call for mincalc')
+npr02_12
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.3000
+The number of minterms is 8
+The number of available minterms is 4
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+    
+</solution>
+</exercise>
+
+ 
+<exercise id="fs-id1171593183625" print-placement="end"><problem id="fs-id2294322">
+   <para id="id323297"> During a period of unsettled weather, let <emphasis effect="italics">A</emphasis> be the event of
+rain in Austin, <emphasis effect="italics">B</emphasis> be the event of rain in Houston, and <emphasis effect="italics">C</emphasis> be the
+event of rain in San Antonio. Suppose:</para>
+    <equation id="id323325">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>35</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>15</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>20</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>45</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id323473">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>30</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>05</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>15</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <list id="id323592" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1">What is the probability of rain in all three cities?
+
+</item>
+      <item id="uid2">What is the probability of rain in exactly two of the three cities?
+
+</item>
+      <item id="uid3">What is the probability of rain in exactly one of the cities?
+</item>
+    </list>
+</problem>
+<solution id="fs-id4694905">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id160375" display="block">% file <link window="new" document="m24179" target-id="cid12">npr02_13.m</link>
+% Data for <link target-id="fs-id1171593183625"/>
+% A = rain in Austin;  B = rain in Houston;
+% C = rain in San Antonio
+minvec3
+DV = [A|Ac; A&amp;B; A&amp;Bc; A&amp;C; (A&amp;Bc)|(Ac&amp;B); B&amp;C; Bc&amp;C; Ac&amp;Bc&amp;Cc];
+DP = [  1   0.35 0.15  0.20    0.45        0.30 0.05   0.15];
+TV = [A&amp;B&amp;C; (A&amp;B&amp;Cc)|(A&amp;Bc&amp;C)|(Ac&amp;B&amp;C); (A&amp;Bc&amp;Cc)|(Ac&amp;B&amp;Cc)|(Ac&amp;Bc&amp;C)];
+disp('Call for mincalc')
+npr02_13
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.2000
+    2.0000    0.2500
+    3.0000    0.4000
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1171590269390" print-placement="end"><problem id="fs-id1171587478589">
+    <para id="id323648"> One hundred students are questioned about their course of study and
+plans for graduate study. Let <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the student is male;  <m:math overflow="scroll"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event
+the student is studying engineering;  <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the student plans at least one
+year of foreign language;  <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the student is planning graduate study
+(including professional school). The results of the survey are:</para>
+    <para id="id323702">There are 55 men students;  23 engineering students, 10 of whom are women;
+75 students will take foreign language classes, including all of the women;  26 men and 19 women plan graduate study;  13 male engineering students and 8 women
+engineering students plan graduate study;  20 engineering students will take a foreign language and plan graduate study;
+5 non engineering students plan graduate study but no foreign language courses;
+11 non engineering, women students plan foreign language study and graduate study.</para>
+    <list id="eip-id1172546259923" list-type="enumerated" number-style="lower-alpha"><item> What is the probability of selecting a student who plans foreign language classes and
+graduate study?</item>
+    <item> What is the probability of selecting a women engineer who does not plan graduate study?</item>
+    <item>What is the probability of selecting a male student who either studies a foreign language
+but does not intend graduate study or will not study a foreign language but plans graduate study?</item></list>
+</problem>
+<solution id="fs-id1171591975317">
+    
+    <!--empty paragraphs get left behind.-->
+    <code id="id160599" display="block">% file <link window="new" document="m24179" target-id="cid13">npr02_14.m</link>
+% Data for <link target-id="fs-id1171590269390"/>
+% A = male;  B = engineering;
+% C = foreign language; D = graduate study
+minvec4
+DV = [A|Ac; A; B; Ac&amp;B; C; Ac&amp;C; A&amp;D; Ac&amp;D; A&amp;B&amp;D; ...
+      Ac&amp;B&amp;D; B&amp;C&amp;D; Bc&amp;Cc&amp;D; Ac&amp;Bc&amp;C&amp;D];
+DP = [1 0.55 0.23 0.10 0.75 0.45 0.26 0.19 0.13 0.08 0.20 0.05 0.11];
+TV = [C&amp;D; Ac&amp;Dc; A&amp;((C&amp;Dc)|(Cc&amp;D))];
+disp('Call for mincalc')
+npr02_14
+Variables are A, B, C, D, Ac, Bc, Cc, Dc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.3900
+    2.0000    0.2600          % Third target probability not calculable
+The number of minterms is 16
+The number of available minterms is 4
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1171589785473" print-placement="end"><problem id="fs-id1171591099954">
+ <para id="id323732"> A survey of 100 students shows that:  60 are men students;  55 students live on campus, 25 of whom are women;  40 read the student newspaper regularly, 25 of whom are women;  70 consider themselves reasonably active in student affairs—50 of these live on campus;  35 of the reasonably active students read the newspaper regularly;  All women who live on campus and 5 who live off campus consider themselves to be active;  10 of the on-campus women readers consider themselves active, as do 5 of the off campus women;  5 men are active, off-campus, non readers of the newspaper.</para>
+    <list id="eip-id4817108" list-type="enumerated" number-style="lower-alpha"><item>How many active men are either not readers or off campus?</item>
+    <item> How many inactive men are not regular readers?</item></list>
+</problem>
+<solution id="fs-id1171595465304">   
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id160826" display="block">% file <link window="new" document="m24179" target-id="cid14">npr02_15.m</link>
+% Data for <link target-id="fs-id1171589785473"/>
+% A = men; B = on campus; C = readers; D = active
+minvec4
+DV = [A|Ac; A;  B;  Ac&amp;B;  C;  Ac&amp;C;  D;  B&amp;D; C&amp;D; ...
+     Ac&amp;B&amp;D; Ac&amp;Bc&amp;D; Ac&amp;B&amp;C&amp;D; Ac&amp;Bc&amp;C&amp;D; A&amp;Bc&amp;Cc&amp;D];
+DP = [1  0.6 0.55 0.25 0.40 0.25 0.70 0.50 0.35 0.25 0.05 0.10 0.05 0.05];
+TV = [A&amp;D&amp;(Cc|Bc); A&amp;Dc&amp;Cc];
+disp('Call for mincalc')
+npr02_15
+Variables are A, B, C, D, Ac, Bc, Cc, Dc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.3000
+    2.0000    0.2500
+The number of minterms is 16
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1171594448324" print-placement="end"><problem id="fs-id1171589874162">
+ <para id="id323757"> A television station runs a telephone survey to determine how many persons
+in its primary viewing area have watched three recent special programs, which we
+call a, b, and c. Of the 1000 persons surveyed, the results are:</para>
+    <para id="id323762">221 have seen at least a;  209 have seen at least b;  112 have seen at least c;  197 have seen at least two of the programs;  45  have seen all three;  62  have seen at least a and c;  the number having seen at least a and b is twice as large as the number who have
+seen at least b and c.</para>
+    <list id="eip-id1166796756383"><item>(a)  How many have seen at least one special?</item>
+    <item>(b)  How many have seen only one special program?
+</item></list>
+</problem>
+<solution id="fs-id1171587877366">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id161045" display="block">% file <link window="new" document="m24179" target-id="cid15">npr02_16.m</link>
+% Data for <link target-id="fs-id1171594448324"/>
+minvec3
+DV = [A|Ac; A;    B;    C; (A&amp;B)|(A&amp;C)|(B&amp;C); A&amp;B&amp;C; A&amp;C; (A&amp;B)-2*(B&amp;C)];
+DP = [ 1  0.221 0.209 0.112   0.197           0.045  0.062      0];
+TV = [A|B|C; (A&amp;Bc&amp;Cc)|(Ac&amp;B&amp;Cc)|(Ac&amp;Bc&amp;C)];
+npr02_16
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.3000
+    2.0000    0.1030
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id3519662" print-placement="end"><problem id="fs-id8733261">
+    <para id="id323783">An automobile safety inspection station found that in 1000 cars tested:
+    <!--empty paragraphs get left behind.-->
+   <list id="eip-id19562932"><item>100 needed wheel alignment, brake repair, and headlight adjustment</item>
+    <item>325 needed at least two of these three items</item>
+    <item>125 needed headlight and brake work</item>
+    <item>550 needed at wheel alignment</item></list></para>
+    <!--empty paragraphs get left behind.-->
+    <list id="eip-id22708870" list-type="enumerated" number-style="lower-alpha"><item>How many needed only wheel alignment?</item>
+    <item>How many who do not need wheel alignment need one or none of the other items?</item></list>
+</problem>
+<solution id="fs-id2827654">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id161234" display="block">% file <link window="new" document="m24179" target-id="cid16">npr02_17.m</link>
+% Data for <link target-id="fs-id3519662"/>
+% A = alignment;  B = brake work;  C = headlight
+minvec3
+DV = [A|Ac; A&amp;B&amp;C; (A&amp;B)|(A&amp;C)|(B&amp;C); B&amp;C;    A  ];
+DP = [ 1    0.100      0.325          0.125 0.550];
+TV = [A&amp;Bc&amp;Cc; Ac&amp;(~(B&amp;C))];
+disp('Call for mincalc')
+npr02_17
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.2500
+    2.0000    0.4250
+The number of minterms is 8
+The number of available minterms is 3
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+    
+<exercise id="fs-id3281453" print-placement="end"><problem id="fs-id1171591039456">
+<para id="id323838">Suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mi>A</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mfenced><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>and</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>.</para>
+    <para id="id323968">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi></m:mfenced></m:mrow></m:math>,
+and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mfenced separators="" open="(" close=")"><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mfenced></m:mrow></m:math>, if possible.</para>
+    <para id="id324094">Repeat the problem with the additional data <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id2408915">
+  
+    <!--empty paragraphs get left behind.-->
+    <code id="id161442" display="block">% file <link window="new" document="m24179" target-id="cid17">npr02_18.m</link>
+% Date for <link target-id="fs-id3281453"/>
+minvec3
+DV = [A|Ac; A&amp;(B|C); Ac; Ac&amp;Bc&amp;Cc];
+DP = [ 1     0.3     0.6    0.1];
+TV = [B|C; (((A&amp;B)|(Ac&amp;Bc))&amp;Cc)|(A&amp;C); Ac&amp;(B|Cc)];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; Ac&amp;B&amp;C; Ac&amp;B];
+% DP = [DP   0.2     0.3];
+npr02_18
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.8000
+    2.0000    0.4000
+The number of minterms is 8
+The number of available minterms is 2
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+DV = [DV; Ac&amp;B&amp;C; Ac&amp;B];      % Modified data
+DP = [DP   0.2     0.3];
+mincalc                       % New calculation
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.8000
+    2.0000    0.4000
+    3.0000    0.4000
+The number of minterms is 8
+The number of available minterms is 5
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id5687953" print-placement="end"><problem id="fs-id2336295">
+   <para id="id324167"> A computer store sells computers, monitors, printers. A customer enters
+the store. Let <emphasis effect="italics">A</emphasis>, <emphasis effect="italics">B</emphasis>, <emphasis effect="italics">C</emphasis> be the respective events the customer buys a computer, a monitor,
+a printer. Assume the following probabilities:
+    <!--empty paragraphs get left behind.-->
+    <list id="eip-id1168857278464"><item>      <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> of buying both a computer and a monitor
+is 0.49.</item>
+    <item>     <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:math> of buying both a computer and a monitor but not a printer is 0.17.</item>
+    <item>  <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> of buying both a computer and a printer is 0.45.</item>
+    <item>      <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> of buying both a monitor and a printer is 0.39</item>
+    <item>      <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> of buying a computer or a printer,
+            but not both is 0.50.</item>
+    <item>      <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> of buying a computer or a monitor,
+            but not both is 0.43.</item>
+    <item>      <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>⋁</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> of buying a monitor or a printer, but not both is 0.43.</item></list></para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id324577" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid4">What is the probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>, or <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> of buying each?
+
+</item>
+      <item id="uid5">What is the probability of buying exactly two of the three items?
+
+</item>
+      <item id="uid6">What is the probability of buying at least two?
+
+</item>
+      <item id="uid7">What is the probability of buying all three?
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1171594473852">
+  
+    <!--empty paragraphs get left behind.-->
+    <code id="id161780" display="block">% file <link window="new" document="m24179" target-id="cid18">npr02_19.m</link>
+% Data for <link target-id="fs-id5687953"/>
+% A = computer;  B = monitor;  C = printer
+minvec3
+DV = [A|Ac; A&amp;B; A&amp;B&amp;Cc; A&amp;C; B&amp;C; (A&amp;Cc)|(Ac&amp;C); ...
+          (A&amp;Bc)|(Ac&amp;B); (B&amp;Cc)|(Bc&amp;C)];
+DP = [1 0.49 0.17 0.45 0.39 0.50 0.43 0.43];
+TV = [A; B; C; (A&amp;B&amp;Cc)|(A&amp;Bc&amp;C)|(Ac&amp;B&amp;C); (A&amp;B)|(A&amp;C)|(B&amp;C); A&amp;B&amp;C];
+disp('Call for mincalc')
+npr02_19
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.8000
+    2.0000    0.6100
+    3.0000    0.6000
+    4.0000    0.3700
+    5.0000    0.6900
+    6.0000    0.3200
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id6180117" print-placement="end"><problem id="fs-id1171595200461">
+    <para id="id324706">Data are <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>232</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>228</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>045</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>062</m:mn></m:mrow></m:math>,</para>
+    <para id="id324814"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>197</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>2</m:mn><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    <para id="id324893">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mo>∪</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>, if possible.</para>
+    <para id="id324955">Repeat, with the additional data <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>230</m:mn></m:mrow></m:math>.
+</para>
+</problem>
+<solution id="fs-id1171595287179">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id162033" display="block">% file <link window="new" document="m24179" target-id="cid19">npr02_20.m</link>
+% Data for <link target-id="fs-id6180117"/>
+minvec3
+DV = [A|Ac; A;     B;  A&amp;B&amp;C; A&amp;C; (A&amp;B)|(A&amp;C)|(B&amp;C); B&amp;C - 2*(A&amp;C)];
+DP = [  1  0.232 0.228 0.045 0.062      0.197            0];
+TV = [A|B|C; Ac&amp;Bc&amp;Cc];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; C];
+% DP = [DP  0.230 ];
+ 
+<link window="new" document="m24179" target-id="cid19">npr02_20</link>
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+mincalc
+Data vectors are linearly independent
+Data probabilities are INCONSISTENT
+The number of minterms is 8
+The number of available minterms is 6
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+disp(PMA)
+    2.0000    0.0480
+    3.0000   -0.0450    % Negative minterm probabilities indicate
+    4.0000   -0.0100    % inconsistency of data
+    5.0000    0.0170
+    6.0000    0.1800
+    7.0000    0.0450
+DV = [DV; C];
+DP = [DP 0.230];
+mincalc
+Data vectors are linearly independent
+Data probabilities are INCONSISTENT
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1171591157541" print-placement="end"><problem id="fs-id2680961">
+    <para id="id324987"> Data are: <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>25</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>65</m:mn><m:mo>,</m:mo></m:mrow></m:math></para>
+    <para id="id325089"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:math>. Determine available minterm probabilities and the following,</para>
+    <para id="id325132">if computable:</para>
+    <!--empty paragraphs get left behind.-->
+    <equation id="id325141">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:msup>
+              <m:mi>C</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>∪</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:msup>
+              <m:mi>A</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>∪</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:msup>
+              <m:mi>B</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id325270">With only six items of data (including <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>), not
+all minterms are available. Try the additional data <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:math>.  Are these consistent and linearly independent? Are all minterm probabilities available?</para>
+</problem>
+<solution id="fs-id1171588861277">    
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id162396" display="block">% file <link window="new" document="m24179" target-id="cid20">npr02_21.m</link>
+% Data for <link target-id="fs-id1171591157541"/>
+minvec3
+DV = [A|Ac; A;  A&amp;B; A&amp;B&amp;C;  C;  Ac&amp;Cc];
+DP = [ 1   0.4  0.3  0.25   0.65  0.3 ];
+TV = [(A&amp;Cc)|(Ac&amp;C); Ac&amp;Bc; A|B; A&amp;Bc];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+% DP = [DP   0.1      0.3 ];
+</code>
+    <code id="id162495" display="block"><link window="new" document="m24179" target-id="cid20">npr02_21</link>
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.3500
+    4.0000    0.1000
+The number of minterms is 8
+The number of available minterms is 4
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+DP = [DP   0.1      0.3 ];
+mincalc
+Data vectors are linearly independent
+ Computable target probabilities
+    1.0000    0.3500
+    2.0000    0.3000
+    3.0000    0.7000
+    4.0000    0.1000
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id6189756" print-placement="end"><problem id="fs-id6405950">
+<para id="id325399">Repeat <link target-id="fs-id1171591157541"/> with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> changed from 0.3 to 0.5. What is the result?
+Explain the reason for this result.</para>
+</problem>
+<solution id="fs-id1171590378504">    
+ 
+    <!--empty paragraphs get left behind.-->
+    <code id="id162742" display="block">% file <link window="new" document="m24179" target-id="cid21">npr02_22.m</link>
+% Data for <link target-id="fs-id6189756"/>
+minvec3
+DV = [A|Ac; A;  A&amp;B; A&amp;B&amp;C;  C;  Ac&amp;Cc];
+DP = [ 1   0.4  0.5  0.25   0.65  0.3 ];
+TV = [(A&amp;Cc)|(Ac&amp;C); Ac&amp;Bc; A|B; A&amp;Bc];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+% DP = [DP   0.1      0.3 ];
+</code>
+   
+    <code id="id162846" display="block"><link window="new" document="m24179" target-id="cid21">npr02_22</link>
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are linearly independent
+Data probabilities are INCONSISTENT
+The number of minterms is 8
+The number of available minterms is 4
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+disp(PMA)
+    4.0000   -0.2000
+    5.0000    0.1000
+    6.0000    0.2500
+    7.0000    0.2500
+DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+DP = [DP   0.1      0.3 ];
+mincalc
+Data vectors are linearly independent
+Data probabilities are INCONSISTENT
+The number of minterms is 8
+The number of available minterms is 8
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+disp(PMA)
+         0    0.2000
+    1.0000    0.1000
+    2.0000    0.1000
+    3.0000    0.2000
+    4.0000   -0.2000
+    5.0000    0.1000
+    6.0000    0.2500
+    7.0000    0.2500
+</code>
+   
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1171589960985" print-placement="end"><problem id="fs-id3993660">
+<para id="id325421">Repeat <link target-id="fs-id1171591157541"/> with the original data probability matrix, but with
+<m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>B</m:mi></m:mrow></m:math> replaced by <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>C</m:mi></m:mrow></m:math> in the data vector matrix. What is the result? Does
+mincalc work in this case? Check results on a minterm map.</para>
+</problem>
+<solution id="fs-id1171589678142">
+    <!--empty paragraphs get left behind.-->
+    <code id="id163175" display="block">% file <link window="new" document="m24179" target-id="cid22">npr02_23.m</link>
+% Data for <link target-id="fs-id1171589960985"/>
+minvec3
+DV = [A|Ac; A;  A&amp;C; A&amp;B&amp;C;  C;  Ac&amp;Cc];
+DP = [ 1   0.4  0.3  0.25   0.65  0.3 ];
+TV = [(A&amp;Cc)|(Ac&amp;C); Ac&amp;Bc; A|B; A&amp;Bc];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+% DP = [DP   0.1      0.3 ];
+npr02_23
+Variables are A, B, C, Ac, Bc, Cc
+They may be renamed, if desired.
+Call for mincalc
+mincalc
+Data vectors are NOT linearly independent
+Warning: Rank deficient, rank = 5  tol =    5.0243e-15
+ Computable target probabilities
+    1.0000    0.4500
+The number of minterms is 8
+The number of available minterms is 2
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+DP = [DP   0.1      0.3 ];
+mincalc
+Data vectors are NOT linearly independent
+Warning: Matrix is singular to working precision.
+ Computable target probabilities
+     1   Inf             % Note that p(4) and p(7) are given in data
+     2   Inf
+     3   Inf
+The number of minterms is 8
+The number of available minterms is 6
+Available minterm probabilities are in vector pma
+To view available minterm probabilities, call for PMA
+</code>
+</solution>
+</exercise>
+
+
+  </content>
+</document>

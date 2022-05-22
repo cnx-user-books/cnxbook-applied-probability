@@ -1,0 +1,785 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Composite Trials</title>
+  <metadata>
+  <md:content-id>m23256</md:content-id><md:title>Composite Trials</md:title>
+  <md:abstract>We examine how to model composite trials in terms of events determined
+by the components of the trials. In the subsequent section, we illustrate this approach
+in the important special case of Bernoulli trials, in which each outcome
+results in a success or failure to achieve a specified condition.</md:abstract>
+  <md:uuid>6c5908a6-3fe0-4bcc-85c0-f06d0ef8151f</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title> Composite trials and component events</title>
+      <para id="id144964">Often a trial is a composite one. That is, the fundamental trial is completed
+by performing several steps. In some cases, the steps are carried out
+sequentially in time. In other situations, the order of performance plays
+no significant role. Some of the examples in the unit on <link document="m23252">Conditional
+Probability</link> involve such multistep trials. We examine more
+systematically how to model composite trials in terms of events determined
+by the components of the trials. In the subsequent section, we illustrate this approach
+in the important special case of Bernoulli trials, in which each outcome
+results in a success or failure to achieve a specified condition.</para>
+      <para id="id144973">We call the individual steps in the composite trial <emphasis effect="italics">component trials</emphasis>.  For
+example, in the experiment of flipping a coin ten times, we refer the <emphasis effect="italics">i</emphasis>th toss as the
+<emphasis effect="italics">i</emphasis>th component trial. In many cases, the component trials will be performed
+sequentially in time. But we may have an experiment in which ten coins are
+flipped simultaneously. For purposes of analysis, we impose an ordering—
+usually by assigning indices. The question is how to model these repetitions.
+Should they be considered as ten trials of a single simple experiment? It
+turns out that this is not a useful formulation. We need to consider the
+composite trial as a single outcome— i.e., represented by a single point in
+the basic space <emphasis effect="italics">Ω</emphasis>.</para>
+      <para id="id145015">Some authors give considerable attention the the nature of the basic space,
+describing it as a Cartesian product space, with each coordinate corresponding
+to one of the component outcomes. We find that unnecessary, and often confusing,
+in setting up the basic model. We simply suppose the basic space has enough
+elements to consider each possible outcome. For the experiment of
+flipping a coin ten times, there must be at least <m:math overflow="scroll"><m:mrow><m:msup><m:mn>2</m:mn><m:mn>10</m:mn></m:msup><m:mo>=</m:mo><m:mn>1024</m:mn></m:mrow></m:math> elements, one
+for each possible sequence of heads and tails.</para>
+      <para id="id145041">Of more importance is describing the various events associated with the experiment.
+We begin by identifying the appropriate <emphasis effect="italics">component events</emphasis>.  A component event
+is determined by propositions about the outcomes of the corresponding component trial.</para>
+
+<example id="fs-id7467252"><title>Component events</title><list id="id145059" display="block" list-type="bulleted">
+        <item id="uid1">In the coin flipping experiment, consider the event <emphasis effect="italics">H<sub>3</sub></emphasis> that the third
+toss results in a head. Each outcome <emphasis effect="italics">ω</emphasis> of the experiment may be represented
+by a sequence of <emphasis effect="italics">H</emphasis>'s and <emphasis effect="italics">T</emphasis>'s, representing heads and tails. The event <emphasis effect="italics">H<sub>3</sub></emphasis>
+consists of those outcomes represented by sequences with <emphasis effect="italics">H</emphasis> in the third position.
+Suppose <emphasis effect="italics">A</emphasis> is the event of a head on the third toss and a tail on the ninth toss.
+This consists of those outcomes corresponding to sequences with <emphasis effect="italics">H</emphasis> in the third
+position and <emphasis effect="italics">T</emphasis> in the ninth. Note that this event is the intersection <m:math overflow="scroll"><m:mrow><m:msub><m:mi>H</m:mi><m:mn>3</m:mn></m:msub><m:msubsup><m:mi>H</m:mi><m:mn>9</m:mn><m:mi>c</m:mi></m:msubsup></m:mrow></m:math>.
+</item>
+        <item id="uid2">A somewhat more complex example is as follows. Suppose there are two boxes,
+each containing some red and some blue balls. The experiment consists of selecting
+at random a ball from the first box, placing it in the second box, then making a
+random selection from the modified contents of the second box. The composite
+trial is made up of two component selections. We may let <emphasis effect="italics">R<sub>1</sub></emphasis> be the event of
+selecting a red ball on the first component trial (from the first box), and <emphasis effect="italics">R<sub>2</sub></emphasis>
+be the event of selecting a red ball on the second component trial. Clearly
+<emphasis effect="italics">R<sub>1</sub></emphasis> and <emphasis effect="italics">R<sub>2</sub></emphasis> are component events.
+</item>
+      </list>
+</example>
+
+
+      <para id="id145266">In the first example, it is reasonable to assume that the class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>H</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>}</m:mo></m:mrow></m:math> is independent, and each component
+probability is usually taken to be 0.5. In the second case, the assignment
+of probabilities is somewhat more involved. For one thing, it is necessary to
+know the numbers of red and blue balls in each box before the composite trial
+begins. When these are known, the usual assumptions and the properties of
+conditional probability suffice to assign probabilities. This approach of utilizing
+component events is used tacitly in some of the
+examples in the unit on Conditional Probability.</para>
+      <para id="id145306">When appropriate component events are determined, various Boolean combinations of these
+can be expressed as minterm expansions.</para>
+
+<example id="fs-id8130642">
+      
+      <para id="id145317">Four persons take one shot each at a target. Let <emphasis effect="italics">E<sub>i</sub></emphasis> be the event the
+<emphasis effect="italics">i</emphasis>th shooter hits the target center. Let <emphasis effect="italics">A<sub>3</sub></emphasis> be the event exacty three hit
+the target. Then <emphasis effect="italics">A<sub>3</sub></emphasis> is the union of those minterms generated by the
+<emphasis effect="italics">E<sub>i</sub></emphasis> which have three places uncomplemented.</para>
+      <equation id="id145383">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>4</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id145540">Usually we would be able to assume the <emphasis effect="italics">E<sub>i</sub></emphasis> form an independent class. If each
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is known, then all minterm probabilities can be calculated easily.</para>
+      </example>
+
+
+
+      <para id="id145772">The following is a somewhat more complicated example of this type.</para>
+
+<example id="fs-id6459998">
+      
+      <para id="id145782">Ten race cars are involved in time trials to determine pole positions for an
+upcoming race. To qualify, they must post an average speed of 125 mph or more on a
+trial run. Let <emphasis effect="italics">E<sub>i</sub></emphasis> be the event the <emphasis effect="italics">i</emphasis>th car makes qualifying speed. It seems reasonable
+to suppose the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>}</m:mo></m:mrow></m:math> is independent. If the
+respective probabilities for success are 0.90, 0.88, 0.93, 0.77, 0.85, 0.96,
+0.72, 0.83, 0.91, 0.84, what is the probability that <emphasis effect="italics">k</emphasis> or more will qualify
+(<m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>7</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>8</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>9</m:mn><m:mo>,</m:mo><m:mn>10</m:mn></m:mrow></m:math>)?</para>
+      <para id="id145894"><title>SOLUTION</title>Let <emphasis effect="italics">A<sub>k</sub></emphasis> be the event exactly <emphasis effect="italics">k</emphasis> qualify. The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>}</m:mo></m:mrow></m:math>
+generates <m:math overflow="scroll"><m:mrow><m:msup><m:mn>2</m:mn><m:mn>10</m:mn></m:msup><m:mo>=</m:mo><m:mn>1024</m:mn></m:mrow></m:math> minterms. The event <emphasis effect="italics">A<sub>k</sub></emphasis> is the union of those minterms
+which have exactly <emphasis effect="italics">k</emphasis> places uncomplemented. The event <emphasis effect="italics">B<sub>k</sub></emphasis> that <emphasis effect="italics">k</emphasis> or more
+qualify is given by</para>
+      <equation id="id146013">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>r</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>k</m:mi>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>r</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id146071">The task of computing and adding the minterm probabilities by hand would be tedious,
+to say the least. However, we may use the function ckn, introduced in the unit on MATLAB and Independent Classes and
+illustrated in Example 4.4.2, to determine the desired probabilities quickly and easily.</para>
+      
+      <code id="id146084" display="block">&gt;&gt; P = [0.90, 0.88, 0.93, 0.77, 0.85, 0.96,0.72, 0.83, 0.91, 0.84];
+&gt;&gt; k = 6:10;
+&gt;&gt; PB = ckn(P,k)
+PB =   0.9938    0.9628    0.8472    0.5756    0.2114
+</code>
+      </example>
+
+
+      <para id="id146146">An alternate approach is considered in the treatment of random variables.</para>
+    </section>
+    
+<section id="cid2">
+      <title> Bernoulli trials and the binomial distribution</title>
+      <para id="id146160">Many composite trials may be described as a sequence of <emphasis effect="italics">success-failure</emphasis> trials. For
+each component trial in the sequence, the outcome is one of two kinds. One we designate
+a <emphasis effect="italics">success</emphasis> and the other a <emphasis effect="italics">failure</emphasis>. Examples abound: heads or tails in a
+sequence of coin flips, favor or disapprove of a proposition in a survey sample, and items
+from a production line meet or fail to meet specifications in a sequence of quality control
+checks. To represent the situation, we let <emphasis effect="italics">E<sub>i</sub></emphasis> be the event of a success on the <emphasis effect="italics">i</emphasis>th
+component trial in the sequence. The event of a failure on the <emphasis effect="italics">i</emphasis>th component trial
+is thus <emphasis effect="italics">E<sub>i</sub><sup>c</sup></emphasis>.</para>
+      <para id="id146228">In many cases, we model the sequence as a <emphasis effect="italics">Bernoulli sequence</emphasis>, in which the results
+on the successive component trials are independent and have the same probabilities. Thus,
+formally, a sequence of success-failure trials is Bernoulli iff</para>
+      <list id="id146239" display="block" list-type="enumerated">
+        <item id="uid3">The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.
+</item>
+        <item id="uid4">The probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:math>, invariant with <emphasis effect="italics">i</emphasis>.
+</item>
+      </list>
+    
+      <para id="fs-id1170078477749"><emphasis effect="bold"> Simulation of Bernoulli trials</emphasis></para>
+
+      <para id="id146339">It is frequently desirable to simulate Bernoulli trials. By flipping coins, rolling a die
+with various numbers of sides (as used in certain games), or using spinners, it is
+relatively easy to carry this out physically. However, if the number of trials is large—say
+several hundred—the process may be time consuming. Also, there are limitations on
+the values of <emphasis effect="italics">p</emphasis>, the probability of success. We have a convenient two-part
+m-procedure for simulating Bernoulli sequences. The
+first part, called <emphasis effect="italics">btdata</emphasis>, sets the parameters. The second, called
+<emphasis effect="italics">bt</emphasis>, uses the random number generator in MATLAB to produce a sequence of zeros and
+ones (for failures and successes). Repeated calls for bt produce new sequences.</para>
+<example id="fs-id7705442">
+      
+      <code id="id146376" display="block">&gt;&gt; btdata
+Enter n, the number of trials  10
+Enter p, the probability of success on each trial  0.37
+ Call for bt
+ &gt;&gt; bt
+n = 10   p = 0.37     % n is kept small to save printout space
+Frequency = 0.4
+To view the sequence, call for SEQ
+&gt;&gt; disp(SEQ)          % optional call for the sequence
+     1     1               
+     2     1               
+     3     0               
+     4     0               
+     5     0              
+     6     0
+     7     0
+     8     0
+     9     1
+    10     1</code>
+      <para id="id146514">Repeated calls for bt yield new sequences with the same parameters.</para>
+      </example>
+
+      <para id="id146533">To illustrate the power of the program, it was used to take a run of 100,000 component
+trials, with probability <emphasis effect="italics">p</emphasis> of success 0.37, as above. Successive runs gave
+relative frequencies 0.37001 and 0.36999. Unless the random number generator is
+“seeded” to make the same starting point each time, successive runs will give
+different sequences and usually different relative frequencies.
+</para>
+    
+      <para id="fs-id1170090290778"><emphasis effect="bold"> The binomial distribution</emphasis></para>
+      <para id="id146560">A basic problem in Bernoulli sequences is to determine the probability of <emphasis effect="italics">k</emphasis> successes
+in <emphasis effect="italics">n</emphasis> component trials. We let <emphasis effect="italics">S<sub>n</sub></emphasis> be the number of successes in <emphasis effect="italics">n</emphasis> trials. This is a
+special case of a simple random variable, which we study in more detail in the chapter on <link document="m23260">"Random Variables and Probabilities"</link>.</para>
+      <para id="id146602">Let us characterize the events <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math>. As noted above,
+the event <m:math overflow="scroll"><m:msub><m:mi>A</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub></m:math> of exactly <emphasis effect="italics">k</emphasis> successes is the union of the minterms generated by
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> in which there are <emphasis effect="italics">k</emphasis> successes (represented by <emphasis effect="italics">k</emphasis> uncomplemented
+<emphasis effect="italics">E<sub>i</sub></emphasis>) and <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:math> failures (represented by <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:math> complemented <emphasis effect="italics">E<sub>i</sub><sup>c</sup></emphasis>). Simple
+combinatorics show there are <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> ways to choose the <emphasis effect="italics">k</emphasis> places to be uncomplemented.
+Hence, among the <emphasis effect="italics">2<sup>n</sup></emphasis> minterms, there are <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mi>n</m:mi><m:mo>!</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>)</m:mo><m:mo>!</m:mo></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math>
+which have <emphasis effect="italics">k</emphasis> places uncomplemented. Each such minterm has probability
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>p</m:mi><m:mi>k</m:mi></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:msup></m:mrow></m:math>. Since the minterms are mutually exclusive, their probabilities add.
+We conclude that</para>
+      <equation id="id146946">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>p</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mi>q</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>q</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>p</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>n</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id147124">These probabilities and the corresponding values form the <emphasis effect="italics">distribution</emphasis> for <emphasis effect="italics">S<sub>n</sub></emphasis>.
+This distribution is known as the <emphasis effect="italics">binomial distribution</emphasis>, with parameters <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+We shorten this to binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>, and often write <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>. A
+related set of probabilities is <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math>.
+If the number <emphasis effect="italics">n</emphasis> of component trials is small, direct computation of the probabilities
+is easy with hand calculators.</para>
+<example id="fs-id2058171"><title>A reliability problem</title><para id="id147323">A remote device has five similar components which fail independently, with equal probabilities.
+The system remains operable if three or more of the components are operative. Suppose
+each unit remains active for one year with probability 0.8. What is the probability
+the system will remain operative for that long?</para>
+      <para id="id147329">SOLUTION</para>
+      <equation id="id147332">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>3</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>8</m:mn>
+              <m:mn>3</m:mn>
+            </m:msup>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>2</m:mn>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>4</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>8</m:mn>
+              <m:mn>4</m:mn>
+            </m:msup>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mn>5</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>8</m:mn>
+              <m:mn>5</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>8</m:mn>
+              <m:mn>3</m:mn>
+            </m:msup>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>2</m:mn>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>8</m:mn>
+              <m:mn>4</m:mn>
+            </m:msup>
+            <m:mo>⋅</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:msup>
+              <m:mn>8</m:mn>
+              <m:mn>5</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>9421</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+      <para id="id147558">Because Bernoulli sequences are used in so many practical situations as models for
+success-failure trials, the probabilities <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> have
+been calculated and tabulated for a variety of combinations of the parameters <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+Such tables are found in most mathematical handbooks. Tables of <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> are
+usually given a title such as <emphasis effect="italics">binomial distribution, individual terms</emphasis>. Tables of
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> have a designation such as <emphasis effect="italics">binomial distribution, cumulative terms</emphasis>.
+Note, however, some tables for cumulative terms give <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Care should
+be taken to note which convention is used.
+</para>
+
+<example id="fs-id8309877"><title>A reliability problem</title><para id="id147734">Consider again the system of Example 5, above. Suppose we attempt to enter a table of
+Cumulative Terms, Binomial Distribution at <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>5</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:math>. Most tables
+will <emphasis effect="italics">not</emphasis> have probabilities greater than 0.5. In this case, we may work with <emphasis effect="italics">failures</emphasis>.  We just interchange the role of <emphasis effect="italics">E<sub>i</sub></emphasis> and <emphasis effect="italics">E<sub>i</sub><sup>c</sup></emphasis>. Thus, the number of failures
+has the binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>q</m:mi><m:mo>)</m:mo></m:mrow></m:math> distribution. Now there are three or more successes iff
+there are <emphasis effect="italics">not</emphasis> three or more failures. We go the the table of cumulative terms
+at <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>5</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math>. The probability entry is 0.0579. The desired
+probability is 1 - 0.0579 = 0.9421.</para>
+      </example>
+      
+
+<para id="id147918">In general, there are <emphasis effect="italics">k</emphasis> or more successes in <emphasis effect="italics">n</emphasis> trials iff there are not <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math>
+or more failures.</para>
+    
+      <para id="fs-id5253117"><emphasis effect="bold"> m-functions for binomial probabilities</emphasis></para>
+      <para id="id147970">Although tables are convenient for calculation,
+they impose serious limitations on the available parameter values, and when the values are
+found in a table, they must still be entered into the problem. Fortunately,
+we have convenient m-functions for these distributions. When MATLAB
+is available, it is much easier to generate the needed probabilities than to look them
+up in a table, and the numbers are entered directly into the MATLAB workspace. And we have great
+freedom in selection of parameter values. For example we may use <emphasis effect="italics">n</emphasis> of a thousand or more,
+while tables are usually limited to <emphasis effect="italics">n</emphasis> of 20, or at most 30. The two m-functions for calculating
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:math> are</para>
+      <list id="id148046" display="block" list-type="labeled-item">
+        <item id="uid5"><label/><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:math> is calculated by <code display="inline">y = ibinom(n,p,k)</code>, where <emphasis effect="italics">k</emphasis> is a row or
+column vector of integers between 0 and <emphasis effect="italics">n</emphasis>. The result <emphasis effect="italics">y</emphasis> is a row vector of the same
+size as <emphasis effect="italics">k</emphasis>.
+</item>
+        <item id="uid6"><label/><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:math> is calculated by <code display="inline">y = cbinom(n,p,k)</code>, where <emphasis effect="italics">k</emphasis> is a row or
+column vector of integers between 0 and <emphasis effect="italics">n</emphasis>. The result <emphasis effect="italics">y</emphasis> is a row vector of the same
+size as <emphasis effect="italics">k</emphasis>.
+</item>
+      </list>
+
+<example id="fs-id7602538"><title>Use of m-functions ibinom and cbinom</title><para id="id148218">If <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>10</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>39</m:mn></m:mrow></m:math>, determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>B</m:mi><m:mrow><m:mi>k</m:mi><m:mi>n</m:mi></m:mrow></m:msub><m:mo>)</m:mo></m:mrow></m:math> for
+<m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>6</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>8</m:mn></m:mrow></m:math>.</para>
+      <code id="id148340" display="block">&gt;&gt; p = 0.39;
+&gt;&gt; k = [3 5 6 8];
+&gt;&gt; Pi = ibinom(10,p,k)  % individual probabilities
+Pi = 0.2237    0.1920    0.1023    0.0090
+&gt;&gt; Pc = cbinom(10,p,k)  % cumulative probabilities
+Pc = 0.8160    0.3420    0.1500    0.0103
+</code>
+      </example>
+
+
+      <para id="id148430">Note that we have used probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>39</m:mn></m:mrow></m:math>. It is quite unlikely that a table
+will have this probability. Although we use only <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>10</m:mn></m:mrow></m:math>, frequently it is desirable
+to use values of several hundred. The m-functions work well for <emphasis effect="italics">n</emphasis> up to 1000 (and even
+higher for small values of <emphasis effect="italics">p</emphasis> or for values very near to one). Hence, there is great
+freedom from the limitations of tables.
+If a table with a specific range of values is desired, an m-procedure called
+<emphasis effect="italics">binomial</emphasis> produces such a table.  The use of large 
+<emphasis effect="italics">n</emphasis> raises the question of cumulation of errors in sums or products.  The level of precision in MATLAB calculations is sufficient that such roundoff errors are well below pratical concerns.</para>
+      
+
+<example id="fs-id7583570">
+
+      <code id="id148498" display="block">&gt;&gt; binomial                              % call for procedure
+Enter n, the number of trials  13
+Enter p, the probability of success  0.413
+Enter row vector k of success numbers  0:4
+    n            p
+   13.0000    0.4130
+       k      P(X=k)    P(X&gt;=k)
+         0    0.0010    1.0000
+    1.0000    0.0090    0.9990
+    2.0000    0.0379    0.9900
+    3.0000    0.0979    0.9521
+    4.0000    0.1721    0.8542
+</code>
+</example>
+      <para id="id148632"><emphasis effect="italics">Remark</emphasis>.  While the m-procedure binomial is useful for constructing a table, it
+is usually not as convenient for problems as the m-functions ibinom or cbinom. The latter
+calculate the desired values and <emphasis effect="italics">put them directly into the</emphasis> MATLAB <emphasis effect="italics">workspace</emphasis>.</para>
+    </section>
+    <section id="cid6">
+      <title>Joint Bernoulli trials</title>
+      <para id="id148662">Bernoulli trials may be used to model a variety of practical problems.
+One such is to compare the results of two sequences of Bernoulli trials carried out
+independently. The following simple example illustrates the use of MATLAB for this.</para>
+
+<example id="fs-id5149102"><title> A joint Bernoulli trial</title><para id="id148675">Bill and Mary take ten basketball free throws each. We assume
+the two seqences of trials are independent of each other, and each is a
+Bernoulli sequence.</para>
+      <para id="id148680">      Mary:  Has probability 0.80 of success on each trial.</para>
+      <para id="id148683">      Bill:    Has probability 0.85 of success on each trial.</para>
+      <para id="id148690">What is the probability Mary makes more free throws than Bill?</para>
+      <para id="id148693">SOLUTION</para>
+      <para id="id148697">We have two Bernoulli sequences, operating independently.</para>
+      <para id="id148701">      Mary:  <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>80</m:mn></m:mrow></m:math></para>
+      <para id="id148737">      Bill:    <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>85</m:mn></m:mrow></m:math></para>
+      <para id="id148775">Let</para>
+      <para id="id148778">      <emphasis effect="italics">M</emphasis> be the event Mary wins</para>
+      <para id="id148793">      <emphasis effect="italics">M<sub>k</sub></emphasis> be the event Mary makes <emphasis effect="italics">k</emphasis> or more freethrows.</para>
+      <para id="id148821">      <emphasis effect="italics">B<sub>j</sub></emphasis> be the event Bill makes exactly <emphasis effect="italics">j</emphasis> freethrows</para>
+      <para id="id148851">Then Mary wins if Bill makes none and Mary makes one or more, or Bill
+makes one and Mary makes two or more, etc. Thus</para>
+      <equation id="id148855">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>M</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mo>⋯</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>9</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mn>10</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id148930">and</para>
+      <equation id="id148935">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mo>⋯</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>B</m:mi>
+                <m:mn>9</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>10</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id149062">We use cbinom to calculate the cumulative probabilities for Mary and
+ibinom to obtain the individual probabilities for Bill.</para>
+      <code id="id149068" display="block">&gt;&gt; pm = cbinom(10,0.8,1:10);     % cumulative probabilities for Mary
+&gt;&gt; pb = ibinom(10,0.85,0:9);     % individual probabilities for Bill
+&gt;&gt; D = [pm; pb]'                 % display: pm in the first column
+   D =                           % pb in the second column
+    1.0000    0.0000
+    1.0000    0.0000
+    0.9999    0.0000             
+    0.9991    0.0001
+    0.9936    0.0012
+    0.9672    0.0085
+    0.8791    0.0401
+    0.6778    0.1298
+    0.3758    0.2759
+    0.1074    0.3474
+</code>
+      <para id="id149213">To find the probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:math> that Mary wins, we need to multiply each of
+these pairs together, then sum. This is just the dot or scalar product, which MATLAB
+calculates with the command <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mi>m</m:mi><m:mo>*</m:mo><m:mi>p</m:mi><m:msup><m:mi>b</m:mi><m:mo>'</m:mo></m:msup></m:mrow></m:math>.  We may combine the generation of the
+probabilities and the multiplication in one command:</para>
+      <code id="id149262" display="block">&gt;&gt; P = cbinom(10,0.8,1:10)*ibinom(10,0.85,0:9)'
+   P = 0.2738
+</code>
+</example>
+
+      <para id="id149287">The ease and simplicity of calculation with MATLAB make it feasible to consider the
+effect of different values of <emphasis effect="italics">n</emphasis>. Is there an optimum number of throws for Mary?
+Why should there be an optimum?</para>
+      <para id="id149315">An alternate treatment of this problem in the unit on Independent
+Random Variables utilizes techniques for independent simple
+random variables.</para>
+    </section>
+    <section id="cid7">
+      <title> Alternate MATLAB implementations</title>
+      <para id="id149329">Alternate implementations of the functions for probability calculations are found in the <emphasis effect="italics">Statistical
+Package</emphasis> available as a supplementary package. We have utilized our formulation, so that only the basic MATLAB package is needed.</para>
+    </section>
+  </content>
+</document>

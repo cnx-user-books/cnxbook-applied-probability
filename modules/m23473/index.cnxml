@@ -1,0 +1,2742 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Transform Methods</title>
+  <metadata>
+  <md:content-id>m23473</md:content-id><md:title>Transform Methods</md:title>
+  <md:abstract>The mathematical expectation E[X]  of a random variable locates the center of mass for the induced distribution, and the expectation of the square of the distance between X and E[X]  measures the spread of the distribution about its center of mass. These quantities are also known, respectively, as the mean (moment) of X and the variance or second moment of X about the mean. Other moments give added information.  We  examine the expectation of certain functions of X.  Each of these functions involves a parameter, in a manner that completely determines the distribution. We refer to these as transforms.  In particular, we consider three of the most useful of these: the moment generating function,  the characteristic function, and the generating function for nonnegative, integer-valued random variables.</md:abstract>
+  <md:uuid>9086a72c-ca60-4ab5-8085-25a56fdffb0d</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+
+    <para id="id89212">As pointed out in the units on <link document="m23387">Expectation</link> and <link document="m23441">Variance</link>,
+the mathematical expectation <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub></m:mrow></m:math> of a random variable
+<emphasis effect="italics">X</emphasis> locates the center of mass for the induced distribution, and the expectation</para>
+    <equation id="id89255">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>E</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mi> Var </m:mi>
+          <m:mspace width="0.166667em"/>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:msubsup>
+            <m:mi>σ</m:mi>
+            <m:mi>X</m:mi>
+            <m:mn>2</m:mn>
+          </m:msubsup>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id89342">measures the spread of the distribution about its center of mass. These quantities are also
+known, respectively, as the mean (moment) of <emphasis effect="italics">X</emphasis> and the second moment of <emphasis effect="italics">X</emphasis> about the mean. Other moments
+give added information. For example, the third moment about the mean <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mn>3</m:mn></m:msup><m:mo>]</m:mo></m:mrow></m:math> gives
+information about the skew, or asymetry, of the distribution about the mean. We investigate
+further along these lines by examining the expectation of certain functions of <emphasis effect="italics">X</emphasis>.  Each of these
+functions involves a parameter, in a manner that completely determines the distribution.
+For reasons noted below, we refer to these as <emphasis effect="italics">transforms</emphasis>.  We consider three of
+the most useful of these.</para>
+
+
+    <section id="cid1">
+      <title>Three basic transforms</title>
+      <para id="id89426">We define each of three transforms, determine some key properties, and use them to study
+various probability distributions associated with random variables. In the section <link target-id="cid8">on integral transforms</link>, we
+show their relationship to well known integral transforms. These have been studied extensively
+and used in many other applications,
+which makes it possible to utilize the considerable literature on these transforms.</para>
+      <para id="id89435"><emphasis effect="bold">Definition</emphasis>.  The <emphasis effect="italics">moment generating function</emphasis><emphasis effect="italics">M<sub>X</sub></emphasis> for random variable <emphasis effect="italics">X</emphasis> (i.e., for
+its distribution) is the function</para>
+      <equation id="id88719">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(</m:mtext>
+            <m:mi>s</m:mi>
+            <m:mspace width="4.pt"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>a</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>real</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>complex</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>parameter)</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id89737">The <emphasis effect="italics">characteristic function</emphasis><emphasis effect="italics">φ<sub>X</sub></emphasis> for random variable <emphasis effect="italics">X</emphasis> is</para>
+      <equation id="id89768">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>φ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mo>(</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>i</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mspace width="4.pt"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>a</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>real</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>parameter)</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id89871">The <emphasis effect="italics">generating function</emphasis><m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> for a nonnegative, integer-valued random variable <emphasis effect="italics">X</emphasis> is</para>
+      <equation id="id89912"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mi>X</m:mi>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mi>k</m:mi>
+            </m:munder>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id89984">The generating function <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msup><m:mi>s</m:mi><m:mi>X</m:mi></m:msup><m:mo>]</m:mo></m:mrow></m:math> has meaning for more general random variables,
+but its usefulness is greatest for nonnegative, integer-valued variables, and we limit our
+consideration to that case.</para>
+      <para id="id90011">The defining expressions display similarities which show useful relationships. We note
+two which are particularly useful.</para>
+      <equation id="id90015">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msup>
+                    <m:mi>e</m:mi>
+                    <m:mi>s</m:mi>
+                  </m:msup>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>X</m:mi>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mi>s</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>φ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>i</m:mi>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id90187">Because of the latter relationship, we ordinarily use the moment generating function instead
+of the characteristic function to avoid writing the complex unit <emphasis effect="italics">i</emphasis>.  When desirable,
+we convert easily by the change of variable.</para>
+      <para id="id90202">The integral transform character of these entities implies that there is essentially a
+one-to-one relationship between the transform and the distribution.</para>
+    
+     <para id="fs-id1168697143201"><emphasis effect="bold"> Moments</emphasis></para>
+
+      <para id="id90216">The name and some of the importance of the moment generating function arise from the
+fact that the derivatives of <emphasis effect="italics">M<sub>X</sub></emphasis> evaluateed at <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> are the moments about the origin. Specifically</para>
+      <equation id="id90248">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>provided</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>k</m:mi>
+            <m:mtext>th</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>moment</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>exists</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id90333">Since expectation is an integral and because of the regularity of the integrand,
+we may differentiate inside the integral with respect to the parameter.</para>
+      <equation id="id90340">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>d</m:mi>
+              <m:mrow>
+                <m:mi>d</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:mfrac>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mfenced separators="" open="[" close="]">
+              <m:mfrac>
+                <m:mi>d</m:mi>
+                <m:mrow>
+                  <m:mi>d</m:mi>
+                  <m:mi>s</m:mi>
+                </m:mrow>
+              </m:mfrac>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id90451">Upon setting <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, we have <m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>M</m:mi><m:mi>X</m:mi><m:mo>'</m:mo></m:msubsup><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math>. Repeated differentiation gives
+the general result. The corresponding result for the characteristic function is
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>i</m:mi><m:mi>k</m:mi></m:msup><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>X</m:mi><m:mi>k</m:mi></m:msup><m:mo>]</m:mo></m:mrow></m:mrow></m:math>.</para>
+
+<example id="fs-id1164828169458"><title>The exponential distribution</title><para id="id90566">The density function is <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>λ</m:mi><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>.</para>
+      <equation id="id90621">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:mi>λ</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mo>(</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>λ</m:mi>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id90723">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>λ</m:mi>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>'</m:mo>
+                <m:mo>'</m:mo>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>2</m:mn>
+                <m:mi>λ</m:mi>
+              </m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mn>3</m:mn>
+              </m:msup>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id90830">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mi>λ</m:mi>
+              <m:msup>
+                <m:mi>λ</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>λ</m:mi>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>'</m:mo>
+                <m:mo>'</m:mo>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>2</m:mn>
+                <m:mi>λ</m:mi>
+              </m:mrow>
+              <m:msup>
+                <m:mi>λ</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>2</m:mn>
+              <m:msup>
+                <m:mi>λ</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id90970">From this we obtain <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:msup><m:mi>λ</m:mi><m:mn>2</m:mn></m:msup><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:msup><m:mi>λ</m:mi><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:msup><m:mi>λ</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:math>.</para>
+      </example>
+
+      <para id="id91049">The generating function does not lend itself readily to computing moments, except that</para>
+      <equation id="id91053"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msubsup>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id91217">For higher order moments, we may convert the generating function to the moment generating function
+by replacing <emphasis effect="italics">s</emphasis> with <emphasis effect="italics">e<sup>s</sup></emphasis>, then work with <emphasis effect="italics">M<sub>X</sub></emphasis> and its derivatives.</para>
+
+<example id="fs-id1164833433964"><title>The Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math> distribution</title><para id="id91279"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow></m:msup><m:mfrac><m:msup><m:mi>μ</m:mi><m:mi>k</m:mi></m:msup><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>, so that</para>
+      <equation id="id91344"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>μ</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mi>μ</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>μ</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>μ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id91515">We convert to <emphasis effect="italics">M<sub>X</sub></emphasis> by replacing <emphasis effect="italics">s</emphasis> with <emphasis effect="italics">e<sup>s</sup></emphasis> to get <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup></m:mrow></m:math>.  Then</para>
+      <equation id="id91605">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>μ</m:mi>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mi>s</m:mi>
+                </m:msup>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mi>μ</m:mi>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mi>s</m:mi>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>'</m:mo>
+                <m:mo>'</m:mo>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>μ</m:mi>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mi>s</m:mi>
+                </m:msup>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>μ</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mn>2</m:mn>
+                  <m:mi>s</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mi>μ</m:mi>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mi>s</m:mi>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id91764">so that</para>
+      <equation id="id91770">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mo>'</m:mo>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>μ</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>'</m:mo>
+                <m:mo>'</m:mo>
+              </m:mrow>
+            </m:msubsup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>μ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mi>μ</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>μ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>+</m:mo>
+            <m:mi>μ</m:mi>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mi>μ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mi>μ</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id91943">These results agree, of course, with those found by direct computation with the distribution.</para>
+      </example>
+
+      <para id="fs-id1168694930196"><emphasis effect="bold"> Operational properties</emphasis></para>
+
+      <para id="id91974">We refer to the following as <emphasis effect="italics">operational properties</emphasis>.</para>
+
+      <list id="id91982" display="block" list-type="labeled-item">
+        <item id="uid1"><label>(T1)</label>If <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>b</m:mi></m:mrow></m:math>, then
+<equation id="id92021"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>b</m:mi><m:mi>s</m:mi></m:mrow></m:msup><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>φ</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>i</m:mi><m:mi>u</m:mi><m:mi>b</m:mi></m:mrow></m:msup><m:msub><m:mi>φ</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>s</m:mi><m:mi>b</m:mi></m:msup><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msup><m:mi>s</m:mi><m:mi>a</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+For the moment generating function, this pattern follows from
+<equation id="id92244"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>b</m:mi><m:mo>)</m:mo><m:mi>s</m:mi></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>s</m:mi><m:mrow><m:mi>b</m:mi><m:mi>s</m:mi></m:mrow></m:msup><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mi>s</m:mi><m:mo>)</m:mo><m:mi>X</m:mi></m:mrow></m:msup><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+Similar arguments hold for the other two.
+</item>
+        <item id="uid2"><label>(T2)</label>If the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent, then
+<equation id="id92364"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mrow><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>φ</m:mi><m:mrow><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>φ</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>φ</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>g</m:mi><m:mrow><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>g</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+For the moment generating function, <m:math overflow="scroll"><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>X</m:mi></m:mrow></m:msup></m:math> and <m:math overflow="scroll"><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>Y</m:mi></m:mrow></m:msup></m:math> form an independent pair for
+each value of the parameter <emphasis effect="italics">s</emphasis>.  By the product rule for expectation
+<equation id="id92653"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>X</m:mi></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>Y</m:mi></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>X</m:mi></m:mrow></m:msup><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>Y</m:mi></m:mrow></m:msup><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+Similar arguments are used for the other two transforms.<newline/>
+A partial converse for (T2) is as follows:
+</item>
+
+<item id="uid3"><label>(T3)</label>If <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mrow><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, then the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is uncorrelated.
+To show this, we obtain two expressions for <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow></m:math>, one by direct expansion and
+use of linearity, and the other by taking the second derivative of the moment generating
+function.
+<equation id="id92906"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>+</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>Y</m:mi><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation><equation id="id92990"><m:math overflow="scroll" mode="display"><m:mrow><m:msubsup><m:mi>M</m:mi><m:mrow><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>[</m:mo><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msup><m:mo>=</m:mo><m:msubsup><m:mi>M</m:mi><m:mi>X</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msubsup><m:mi>M</m:mi><m:mi>Y</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mn>2</m:mn><m:msubsup><m:mi>M</m:mi><m:mi>X</m:mi><m:mo>'</m:mo></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msubsup><m:mi>M</m:mi><m:mi>Y</m:mi><m:mo>'</m:mo></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+On setting <m:math overflow="scroll"><m:mrow><m:mi>s</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and using the fact that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>, we have
+<equation id="id93256"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>+</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>Y</m:mi><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+which implies the equality <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mi>Y</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+      </list>
+
+      <para id="id93393"><emphasis effect="italics">Note</emphasis> that we have <emphasis effect="italics">not</emphasis> shown that being uncorrelated implies the product rule.</para>
+      <para id="id93406">We utilize these properties in determining the moment generating and generating functions
+for several of our common distributions.</para>
+
+      <para id="fs-id1168694125113"><emphasis effect="bold"> Some discrete distributions</emphasis></para>
+
+      <list id="id93420" display="block" list-type="enumerated"><item id="uid4">
+          <emphasis effect="italics">Indicator function</emphasis>
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mi>E</m:mi>
+              </m:msub>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>E</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>p</m:mi>
+            </m:mrow>
+          </m:math>
+          <equation id="id93482">
+            <m:math overflow="scroll" mode="display">
+              <m:mrow>
+                <m:msub>
+                  <m:mi>g</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>0</m:mn>
+                </m:msup>
+                <m:mi>q</m:mi>
+                <m:mo>+</m:mo>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msup>
+                <m:mi>p</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>q</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>p</m:mi>
+                <m:mi>s</m:mi>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:mspace width="0.277778em"/>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:msub>
+                  <m:mi>g</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:msup>
+                    <m:mi>e</m:mi>
+                    <m:mi>s</m:mi>
+                  </m:msup>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>=</m:mo>
+                <m:mi>q</m:mi>
+                <m:mo>+</m:mo>
+                <m:mi>p</m:mi>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mi>s</m:mi>
+                </m:msup>
+              </m:mrow>
+            </m:math>
+          </equation>
+        </item>
+
+        <item id="uid5"><emphasis effect="italics">Simple random variable</emphasis><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>   (primitive form)   <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math><equation id="id93711"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:msup><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math></equation></item>
+
+        <item id="uid6"><emphasis effect="italics">Binomial</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.    <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>with</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mrow><m:mo>{</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mo>:</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mtext>iid</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:mstyle></m:math><newline/>
+We use the product rule for sums of independent random variables and the generating
+function for the indicator function.
+<equation id="id93946"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∏</m:mo></m:mrow><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:mrow><m:mo>(</m:mo><m:mi>q</m:mi><m:mo>+</m:mo><m:mi>p</m:mi><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>q</m:mi><m:mo>+</m:mo><m:mi>p</m:mi><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mi>n</m:mi></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>q</m:mi><m:mo>+</m:mo><m:mi>p</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>n</m:mi></m:msup></m:mrow></m:math></equation></item>
+
+        <item id="uid7"><emphasis effect="italics">Geometric</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.   <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>p</m:mi><m:msup><m:mi>q</m:mi><m:mi>k</m:mi></m:msup><m:mo>∀</m:mo><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>q</m:mi><m:mo>/</m:mo><m:mi>p</m:mi></m:mrow></m:math>
+We use the formula for the geometric series to get
+<equation id="id94190"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mi>p</m:mi><m:msup><m:mi>q</m:mi><m:mi>k</m:mi></m:msup><m:msup><m:mi>s</m:mi><m:mi>k</m:mi></m:msup><m:mo>=</m:mo><m:mi>p</m:mi><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msup><m:mrow><m:mo>(</m:mo><m:mi>q</m:mi><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mi>k</m:mi></m:msup><m:mo>=</m:mo><m:mfrac><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:mi>s</m:mi></m:mrow></m:mfrac><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow></m:mfrac></m:mrow></m:math></equation></item>
+
+        <item id="uid8"><emphasis effect="italics">Negative binomial</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>
+If <emphasis effect="italics">Y<sub>m</sub></emphasis> is the number of the trial in a Bernoulli sequence on which the <emphasis effect="italics">m</emphasis>th success occurs, and
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>Y</m:mi><m:mi>m</m:mi></m:msub><m:mo>-</m:mo><m:mi>m</m:mi></m:mrow></m:math> is the number of failures before the <emphasis effect="italics">m</emphasis>th success, then
+<equation id="id94456"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>Y</m:mi><m:mi>m</m:mi></m:msub><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>q</m:mi><m:mo>)</m:mo></m:mrow><m:mi>k</m:mi></m:msup><m:msup><m:mi>p</m:mi><m:mi>m</m:mi></m:msup></m:mrow></m:math></equation><equation id="id94555"><m:math overflow="scroll" mode="display"><m:mrow><m:mtext>where</m:mtext><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>⋯</m:mo><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac></m:mrow></m:math></equation>
+The power series expansion about <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> shows that
+<equation id="id94687"><m:math overflow="scroll" mode="display"><m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>-</m:mo><m:mi>m</m:mi></m:mrow></m:msup><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow><m:mi>t</m:mi><m:mo>+</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>+</m:mo><m:mo>⋯</m:mo><m:mtext>for</m:mtext><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math></equation>
+Hence
+<equation id="id94808"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>p</m:mi><m:mi>m</m:mi></m:msup><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>m</m:mi><m:mo>,</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>q</m:mi><m:mo>)</m:mo></m:mrow><m:mi>k</m:mi></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>k</m:mi></m:mrow></m:msup><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="[" close="]"><m:mfrac><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>q</m:mi><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup></m:mrow></m:mfrac></m:mfenced><m:mi>m</m:mi></m:msup></m:mrow></m:math></equation>
+Comparison with the moment generating function for the geometric distribution shows that
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>Y</m:mi><m:mi>m</m:mi></m:msub><m:mo>-</m:mo><m:mi>m</m:mi></m:mrow></m:math> has the same distribution as the sum of <emphasis effect="italics">m</emphasis> iid random variables, each
+geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>. This suggests that the sequence is characterized by independent, successive
+waiting times to success. This also shows that the expectation and variance of <emphasis effect="italics">X<sub>m</sub></emphasis> are
+<emphasis effect="italics">m</emphasis> times the expectation and variance for the geometric. Thus
+<equation id="id95028"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>m</m:mi><m:mi>q</m:mi><m:mo>/</m:mo><m:mi>p</m:mi><m:mtext>and</m:mtext><m:mi> Var </m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>m</m:mi><m:mi>q</m:mi><m:mo>/</m:mo><m:msup><m:mi>p</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:math></equation></item>
+
+        <item id="uid9"><emphasis effect="italics">Poisson</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow></m:msup><m:mfrac><m:msup><m:mi>μ</m:mi><m:mi>k</m:mi></m:msup><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac><m:mo>∀</m:mo><m:mi>k</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:mstyle></m:math>
+In <link target-id="fs-id1164833433964"/>, above, we establish <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>μ</m:mi><m:mo>(</m:mo><m:msup><m:mi>e</m:mi><m:mi>s</m:mi></m:msup><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup></m:mrow></m:math>.
+If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair, with <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>,
+then <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>+</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Follows from (T1) and product of exponentials.
+</item>
+      </list>
+
+   
+      <para id="fs-id1168697393698"><emphasis effect="bold"> Some absolutely continuous distributions</emphasis></para>
+
+      <list id="id95453" display="block" list-type="enumerated"><item id="uid10"><emphasis effect="italics">Uniform</emphasis> on <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mrow><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi></m:mrow></m:mfrac><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>a</m:mi><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mi>b</m:mi></m:mrow></m:mstyle></m:math><equation id="id95556"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mo>∫</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mrow><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi></m:mrow></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mi>a</m:mi><m:mi>b</m:mi></m:msubsup><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi><m:mo>=</m:mo><m:mfrac><m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>b</m:mi></m:mrow></m:msup><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>a</m:mi></m:mrow></m:msup></m:mrow><m:mrow><m:mi>s</m:mi><m:mo>(</m:mo><m:mi>b</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac></m:mrow></m:math></equation></item>
+        <item id="uid11"><emphasis effect="italics">Symmetric triangular</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>c</m:mi><m:mo>,</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>c</m:mi><m:mo>)</m:mo></m:mrow></m:math><equation id="id95746"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mo>-</m:mo><m:mi>c</m:mi><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mfrac><m:mrow><m:mi>c</m:mi><m:mo>+</m:mo><m:mi>t</m:mi></m:mrow><m:msup><m:mi>c</m:mi><m:mn>2</m:mn></m:msup></m:mfrac><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>c</m:mi><m:mo>]</m:mo></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mfrac><m:mrow><m:mi>c</m:mi><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow><m:msup><m:mi>c</m:mi><m:mn>2</m:mn></m:msup></m:mfrac></m:mrow></m:math></equation><equation id="id95861"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>c</m:mi><m:mn>2</m:mn></m:msup></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mrow><m:mo>-</m:mo><m:mi>c</m:mi></m:mrow><m:mn>0</m:mn></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>c</m:mi><m:mo>+</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi><m:mo>+</m:mo><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>c</m:mi><m:mn>2</m:mn></m:msup></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mn>0</m:mn><m:mi>c</m:mi></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>c</m:mi><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi><m:mo>=</m:mo><m:mfrac><m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mi>c</m:mi><m:mi>s</m:mi></m:mrow></m:msup><m:mo>+</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>c</m:mi><m:mi>s</m:mi></m:mrow></m:msup><m:mo>-</m:mo><m:mn>2</m:mn></m:mrow><m:mrow><m:msup><m:mi>c</m:mi><m:mn>2</m:mn></m:msup><m:msup><m:mi>s</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:mfrac></m:mrow></m:math></equation><equation id="id96049"><m:math overflow="scroll" mode="display"><m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mi>c</m:mi><m:mi>s</m:mi></m:mrow></m:msup><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow><m:mrow><m:mi>c</m:mi><m:mi>s</m:mi></m:mrow></m:mfrac><m:mo>·</m:mo><m:mfrac><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>c</m:mi><m:mi>s</m:mi></m:mrow></m:msup></m:mrow><m:mrow><m:mi>c</m:mi><m:mi>s</m:mi></m:mrow></m:mfrac><m:mo>=</m:mo><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>M</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>M</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:msub><m:mi>M</m:mi><m:mrow><m:mo>-</m:mo><m:mi>Z</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation>
+where <emphasis effect="italics">M<sub>Y</sub></emphasis> is the moment generating function for <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> uniform <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>c</m:mi><m:mo>)</m:mo></m:mrow></m:math> and similarly
+for <emphasis effect="italics">M<sub>Z</sub></emphasis>. Thus, <emphasis effect="italics">X</emphasis> has the same distribution as the difference of two independent random
+variables, each uniform on <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>c</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+        <item id="uid12"><emphasis effect="italics">Exponential</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>λ</m:mi><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math> <newline/>
+In example 1, above, we show that <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mi>λ</m:mi><m:mrow><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math>.
+</item>
+
+
+        <item id="uid13"><emphasis effect="italics">Gamma</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math><m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:msup><m:mi>λ</m:mi><m:mi>α</m:mi></m:msup><m:msup><m:mi>t</m:mi><m:mrow><m:mi>α</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:mstyle></m:math><equation id="id96546"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:msup><m:mi>λ</m:mi><m:mi>α</m:mi></m:msup><m:mrow><m:mi>Γ</m:mi><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>)</m:mo></m:mrow></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mn>0</m:mn><m:mi>∞</m:mi></m:msubsup><m:msup><m:mi>t</m:mi><m:mrow><m:mi>α</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo><m:mi>t</m:mi></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="[" close="]"><m:mfrac><m:mi>λ</m:mi><m:mrow><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac></m:mfenced><m:mi>α</m:mi></m:msup></m:mrow></m:math></equation>
+For <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow></m:math>, a positive integer,
+<equation id="id96695"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="[" close="]"><m:mfrac><m:mi>λ</m:mi><m:mrow><m:mi>λ</m:mi><m:mo>-</m:mo><m:mi>s</m:mi></m:mrow></m:mfrac></m:mfenced><m:mi>n</m:mi></m:msup></m:mrow></m:math></equation>
+which shows that in this case <emphasis effect="italics">X</emphasis> has the distribution of the sum of <emphasis effect="italics">n</emphasis> independent
+random variables each exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+</item>
+
+        <item id="uid14"><emphasis effect="italics">Normal</emphasis><m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>)</m:mo></m:mrow></m:math>.
+<list id="id96828" display="block" list-type="bulleted"><item id="uid15">The standardized normal, <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math><equation id="id96867"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:msqrt><m:mrow><m:mn>2</m:mn><m:mi>π</m:mi></m:mrow></m:msqrt></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mrow><m:mo>-</m:mo><m:mi>∞</m:mi></m:mrow><m:mi>∞</m:mi></m:msubsup><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>t</m:mi></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi></m:mrow></m:math></equation>
+Now <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>s</m:mi><m:mi>t</m:mi><m:mo>-</m:mo><m:mfrac><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mn>2</m:mn></m:mfrac><m:mo>=</m:mo><m:mfrac><m:msup><m:mi>s</m:mi><m:mn>2</m:mn></m:msup><m:mn>2</m:mn></m:mfrac><m:mo>-</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac><m:msup><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup></m:mrow></m:mstyle></m:math> so that
+<equation id="id97035"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>Z</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:msup><m:mi>s</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:msup><m:mfrac><m:mn>1</m:mn><m:msqrt><m:mrow><m:mn>2</m:mn><m:mi>π</m:mi></m:mrow></m:msqrt></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mrow><m:mo>-</m:mo><m:mi>∞</m:mi></m:mrow><m:mi>∞</m:mi></m:msubsup><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:msup><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:msup><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>t</m:mi><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:msup><m:mi>s</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:msup></m:mrow></m:math></equation>
+since the integrand (including the constant <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:msqrt><m:mrow><m:mn>2</m:mn><m:mi>π</m:mi></m:mrow></m:msqrt></m:mrow></m:math>) is the density for <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+</item><item id="uid16"><m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>σ</m:mi><m:mi>Z</m:mi><m:mo>+</m:mo><m:mi>μ</m:mi></m:mrow></m:math> implies by property (T1)
+<equation id="id97240"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mi>s</m:mi><m:mi>μ</m:mi></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:msup><m:mi>s</m:mi><m:mn>2</m:mn></m:msup><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:mo form="prefix">exp</m:mo><m:mfenced separators="" open="(" close=")"><m:mfrac><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:msup><m:mi>s</m:mi><m:mn>2</m:mn></m:msup></m:mrow><m:mn>2</m:mn></m:mfrac><m:mo>+</m:mo><m:mi>s</m:mi><m:mi>μ</m:mi></m:mfenced></m:mrow></m:math></equation></item></list></item>
+      </list>
+
+<example id="fs-id1164831796358"><title>Affine combination of independent normal random variables</title><para id="id97354">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair with <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:msub><m:mi>μ</m:mi><m:mi>X</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msubsup><m:mi>σ</m:mi><m:mi>X</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>)</m:mo></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:msub><m:mi>μ</m:mi><m:mi>Y</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msubsup><m:mi>σ</m:mi><m:mi>Y</m:mi><m:mn>2</m:mn></m:msubsup><m:mo>)</m:mo></m:mrow></m:math>.  Let <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>b</m:mi><m:mi>Y</m:mi><m:mo>+</m:mo><m:mi>c</m:mi></m:mrow></m:math>. Then <emphasis effect="italics">Z</emphasis> is normal, for
+by properties of expectation and variance</para>
+      <equation id="id97503">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>a</m:mi>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mi>b</m:mi>
+            <m:msub>
+              <m:mi>μ</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mi>c</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msubsup>
+              <m:mi>σ</m:mi>
+              <m:mi>Z</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>a</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:msubsup>
+              <m:mi>σ</m:mi>
+              <m:mi>X</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+            <m:mo>+</m:mo>
+            <m:msup>
+              <m:mi>b</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:msubsup>
+              <m:mi>σ</m:mi>
+              <m:mi>Y</m:mi>
+              <m:mn>2</m:mn>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id97629">and by the operational properties for the moment generating function</para>
+      <equation id="id97635">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>Z</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>s</m:mi>
+                <m:mi>c</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>a</m:mi>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>b</m:mi>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo form="prefix">exp</m:mo>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mfrac>
+                <m:mrow>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:msup>
+                      <m:mi>a</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:msubsup>
+                      <m:mi>σ</m:mi>
+                      <m:mi>X</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msubsup>
+                    <m:mo>+</m:mo>
+                    <m:msup>
+                      <m:mi>b</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:msubsup>
+                      <m:mi>σ</m:mi>
+                      <m:mi>Y</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msubsup>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:msup>
+                    <m:mi>s</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msup>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>a</m:mi>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+                <m:mo>+</m:mo>
+                <m:mi>b</m:mi>
+                <m:msub>
+                  <m:mi>μ</m:mi>
+                  <m:mi>Y</m:mi>
+                </m:msub>
+                <m:mo>+</m:mo>
+                <m:mi>c</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id97813">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo form="prefix">exp</m:mo>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mfrac>
+                <m:mrow>
+                  <m:msubsup>
+                    <m:mi>σ</m:mi>
+                    <m:mi>Z</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msubsup>
+                  <m:msup>
+                    <m:mi>s</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msup>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:mo>+</m:mo>
+              <m:mi>s</m:mi>
+              <m:msub>
+                <m:mi>μ</m:mi>
+                <m:mi>Z</m:mi>
+              </m:msub>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id97872">The form of <emphasis effect="italics">M<sub>Z</sub></emphasis> shows that <emphasis effect="italics">Z</emphasis> is normally distributed.</para>
+      </example>
+    
+
+      <para id="fs-id1168701432822"><emphasis effect="bold"> Moment generating function and simple random variables</emphasis></para>
+
+      <para id="id97926">Suppose <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math> in canonical form. That is,
+<emphasis effect="italics">A<sub>i</sub></emphasis> is the event <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> for each of the distinct values in the range of <emphasis effect="italics">X</emphasis>,
+with <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. Then the moment generating function for <emphasis effect="italics">X</emphasis> is</para>
+      <equation id="id98096"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>s</m:mi>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id98162">The moment generating function <emphasis effect="italics">M<sub>X</sub></emphasis> is thus related directly and simply to the distribution
+for random variable <emphasis effect="italics">X</emphasis>.</para>
+      <para id="id98191">Consider the problem of determining the sum of an independent pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> of
+simple random variables. The moment generating function for the sum is the product of
+the moment generating functions. Now if <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>B</m:mi><m:mi>j</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>, with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>π</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math>, we have</para>
+      <equation id="id98309"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="(" close=")">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>p</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:msub>
+                    <m:mi>t</m:mi>
+                    <m:mi>i</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+            </m:mfenced>
+            <m:mfenced separators="" open="(" close=")">
+              <m:munderover>
+                <m:mrow><m:mo>∑</m:mo></m:mrow>
+                <m:mrow>
+                  <m:mi>j</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>m</m:mi>
+              </m:munderover>
+              <m:msub>
+                <m:mi>π</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>s</m:mi>
+                  <m:msub>
+                    <m:mi>u</m:mi>
+                    <m:mi>j</m:mi>
+                  </m:msub>
+                </m:mrow>
+              </m:msup>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>j</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>π</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>s</m:mi>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>+</m:mo>
+                <m:msub>
+                  <m:mi>u</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id98505">The various values are sums <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math> of pairs <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> of values. Each
+of these sums has probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>π</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math> for the values corresponding to <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math>.
+Since more than one pair sum may have the same value, we need to sort the values,
+consolidate like values and add the probabilties for like values to achieve the
+distribution for the sum. We have an m-function <emphasis effect="italics">mgsum</emphasis> for
+achieving this directly. It produces the pair-products for the probabilities and the pair-sums for
+the values, then performs a csort operation. Although not directly dependent upon the
+moment generating function analysis, it produces the same result as that produced by multiplying
+moment generating functions.</para>
+
+
+<example id="fs-id1164831955699"><title>Distribution for a sum of independent simple random variables</title><para id="id98638">Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent with distributions</para>
+      <equation id="id98663">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>5</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>7</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>2</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>4</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>4</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>5</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id98888">Determine the distribution for <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>+</m:mo><m:mi>Y</m:mi></m:mrow></m:math>.</para>
+      <code id="id98913" display="block">X = [1 3 5 7];
+Y = 2:4;
+PX = 0.1*[2 4 3 1];
+PY = 0.1*[3 5 2];
+[Z,PZ] = mgsum(X,Y,PX,PY);
+disp([Z;PZ]')
+    3.0000    0.0600
+    4.0000    0.1000
+    5.0000    0.1600
+    6.0000    0.2000
+    7.0000    0.1700
+    8.0000    0.1500
+    9.0000    0.0900
+   10.0000    0.0500
+   11.0000    0.0200
+</code>
+      </example>
+
+
+      <para id="id99065">This could, of course, have been achieved by using icalc and csort, which has the advantage
+that other functions of <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> may be handled. Also, since the random
+variables are nonnegative, integer-valued, the MATLAB convolution function may be
+used (see <link target-id="fs-id1164831872499"/>). By repeated use of the function mgsum, we
+may obtain the distribution for the sum of more than two simple random variables. The
+m-functions mgsum3 and mgsum4 utilize this strategy.</para>
+      <para id="id99090">The techniques for simple random variables may be used with the simple approximations to
+absolutely continuous random variables.</para>
+
+<example id="fs-id1164831906137"><title>Difference of uniform distribution</title><para id="id99102">The moment generating functions for the uniform and the symmetric triangular show that
+the latter appears naturally as the difference of two uniformly distributed random
+variables. We consider <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> iid, uniform on [0,1].</para>
+      <code id="id99124" display="block">tappr
+Enter matrix [a b] of x-range endpoints  [0 1]
+Enter number of x approximation points  200
+Enter density as a function of t  t&lt;=1
+Use row matrices X and PX as in the simple case
+[Z,PZ] = mgsum(X,-X,PX,PX);
+plot(Z,PZ/d)               % Divide by d to recover f(t)
+%  plotting details   ---  see <link target-id="uid17"/></code>
+      <figure id="uid17"><media id="uid17_media" alt="Figure one is a density graph. It is titled, Density for difference two variables, each uniform (0, 1). The horizontal axis of the graph is labeled, t, and the vertical graph is labeled fZ(t). The plot of the density is triangular, beginning at (-1, 0), and increasing at a constant slope to point (0, 1). The graph continues after this point downward with a constant negative slope to point (1, 0).">
+          <image mime-type="image/png" src="../../media/fig13_1_1.png" id="uid17_onlineimage" width="414"><!-- NOTE: attribute width changes image size online (pixels). original width is 414. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig13_1_1.eps" id="uid17_printimage" print-width="3.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Density for the difference of an independent pair, uniform (0,1).</caption></figure>
+</example>
+
+
+   
+      <para id="fs-id4658125"><emphasis effect="bold"> The generating function</emphasis></para>
+
+      <para id="id99253">The form of the generating function for a nonnegative, integer-valued random variable
+exhibits a number of important properties.</para>
+      <equation id="id99257"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(canonical</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>form)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>k</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <list id="id99433" display="block" list-type="enumerated">
+        <item id="uid18">As a power series in <emphasis effect="italics">s</emphasis> with nonnegative coefficients whose partial sums converge to one,
+the series converges at least for <m:math overflow="scroll"><m:mrow><m:mo>|</m:mo><m:mi>s</m:mi><m:mo>|</m:mo><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid19">The coefficients of the power series display the distribution: for value <emphasis effect="italics">k</emphasis> the
+probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the coefficient of <emphasis effect="italics">s<sup>k</sup></emphasis>.
+</item>
+        <item id="uid20">The power series expansion about the origin of an analytic function is unique. If the
+generating function is known in closed form, the unique power series expansion
+about the origin determines the distribution. If the power series converges to a known closed
+form, that form characterizes the distribution,
+</item>
+        <item id="uid21">For a simple random variable (i.e., <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>&gt;</m:mo><m:mi>n</m:mi></m:mrow></m:math>), <emphasis effect="italics">g<sub>X</sub></emphasis> is a polynomial.
+</item>
+      </list>
+
+<example id="fs-id1164831918974"><title>The Poisson distribution</title><para id="id99627">In <link target-id="fs-id1164833433964"/>, above, we establish the generating function for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math> from
+the distribution. Suppose, however, we simply encounter the generating function</para>
+      <equation id="id99658">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>m</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>m</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>m</m:mi>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id99728">From the known power series for the exponential, we get</para>
+      <equation id="id99734"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>m</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>m</m:mi>
+                  <m:mi>s</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>m</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>m</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id99861">We conclude that</para>
+      <equation id="id99867">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>m</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>m</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>k</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id99934">which is the Poisson distribution with parameter <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mi>m</m:mi></m:mrow></m:math>.</para>
+      </example>
+
+
+      <para id="id99969">For simple, nonnegative, integer-valued random variables, the generating
+functions are polynomials. Because of the product rule <link target-id="uid2">(T2)</link>, the
+problem of determining the distribution for the sum of independent
+random variables may be handled by the process of multiplying polynomials.
+This may be done quickly and easily with the MATLAB <emphasis effect="italics">convolution</emphasis> function.</para>
+
+<example id="fs-id1164831872499"><title>Sum of independent simple random variables</title><para id="id99988">Suppose the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent, with</para>
+      <equation id="id100014">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>10</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>+</m:mo>
+              <m:mn>3</m:mn>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>3</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mn>2</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>5</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>g</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mn>10</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>s</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>4</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mn>4</m:mn>
+              <m:msup>
+                <m:mi>s</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id100151">In the MATLAB function convolution, all powers of <emphasis effect="italics">s</emphasis> must be accounted for by
+including zeros for the missing powers.
+</para>
+      <code id="id100168" display="block">gx = 0.1*[2 3 3 0 0 2];      % Zeros for missing powers 3, 4
+gy = 0.1*[0 2 4 4];          % Zero  for missing power 0
+gz = conv(gx,gy);
+a = ['       Z         PZ'];
+b = [0:8;gz]';
+disp(a)
+       Z         PZ          % Distribution for Z = X + Y
+disp(b)
+         0         0
+    1.0000    0.0400
+    2.0000    0.1400
+    3.0000    0.2600
+    4.0000    0.2400
+    5.0000    0.1200
+    6.0000    0.0400
+    7.0000    0.0800
+    8.0000    0.0800
+</code>
+      <para id="id100330">If mgsum were used, it would not be necessary to be concerned about missing powers and
+the corresponding zero coefficients.</para>
+</example>
+
+    </section>
+    <section id="cid8">
+
+      <title>Integral transforms</title>
+      <para id="id100344">We consider briefly the relationship of the moment generating function and the
+characteristic function with well known integral transforms (hence the name of this chapter).</para>
+  
+      <para id="fs-id1907360"><emphasis effect="bold"> Moment generating function and the Laplace transform</emphasis></para>
+
+      <para id="id100360">When we examine the integral forms of the moment generating function, we see that they
+represent forms of the Laplace transform, widely used in engineering and applied mathematics.
+Suppose <emphasis effect="italics">F<sub>X</sub></emphasis> is a probability distribution function with <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  The
+bilateral Laplace transform for <emphasis effect="italics">F<sub>X</sub></emphasis> is given by</para>
+      <equation id="id100424">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id100482">The Laplace-Stieltjes transform for <emphasis effect="italics">F<sub>X</sub></emphasis> is</para>
+      <equation id="id100503">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>d</m:mi>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id100556">Thus, if <emphasis effect="italics">M<sub>X</sub></emphasis> is the moment generating function for <emphasis effect="italics">X</emphasis>, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the
+Laplace-Stieltjes transform for <emphasis effect="italics">X</emphasis> (or, equivalently, for <emphasis effect="italics">F<sub>X</sub></emphasis>).</para>
+      <para id="id100634">The theory of Laplace-Stieltjes transforms shows that under conditions sufficiently
+general to include all practical distribution functions</para>
+      <equation id="id100639">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>d</m:mi>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>s</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id100765">Hence</para>
+      <equation id="id100771">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>s</m:mi>
+            </m:mfrac>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id100856">The right hand expression is the bilateral Laplace transform of <emphasis effect="italics">F<sub>X</sub></emphasis>.  We may use tables
+of Laplace transforms to recover <emphasis effect="italics">F<sub>X</sub></emphasis> when <emphasis effect="italics">M<sub>X</sub></emphasis> is known. This is particularly useful
+when the random variable <emphasis effect="italics">X</emphasis> is nonnegative, so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>&lt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>.</para>
+      <para id="id100957">If <emphasis effect="italics">X</emphasis> is absolutely continuous, then</para>
+      <equation id="id100969">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id101047">In this case, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the bilateral Laplace transform of <emphasis effect="italics">f<sub>X</sub></emphasis>.  For nonnegative
+random variable <emphasis effect="italics">X</emphasis>, we may use ordinary tables of the Laplace transform to recover <emphasis effect="italics">f<sub>X</sub></emphasis>.</para>
+
+
+<example id="fs-id1164831917655"><title>Use of Laplace transform</title><para id="id101123">Suppose nonnegative <emphasis effect="italics">X</emphasis> has moment generating function</para>
+      <equation id="id101136">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id101178">We know that this is the moment generating function for the exponential (1) distribution. Now,</para>
+      <equation id="id101184">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>s</m:mi>
+            </m:mfrac>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mo>-</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>s</m:mi>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mi>s</m:mi>
+            </m:mfrac>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>+</m:mo>
+                <m:mi>s</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id101261">From a table of Laplace transforms, we find <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>s</m:mi></m:mrow></m:math> is the transform for the constant 1 (for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>)
+and <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:math> is the transform for <m:math overflow="scroll"><m:mrow><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow></m:msup><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>, so that  <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow></m:msup><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>, as expected.</para>
+      </example>
+
+<example id="fs-id1164831542316"><title>Laplace transform and the density</title><para id="id101428">Suppose the moment generating function for a nonnegative random variable is</para>
+      <equation id="id101432">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mfenced separators="" open="[" close="]">
+                <m:mfrac>
+                  <m:mi>λ</m:mi>
+                  <m:mrow>
+                    <m:mi>λ</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>s</m:mi>
+                  </m:mrow>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mi>α</m:mi>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id101483">From a table of Laplace transforms, we find that for <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>,</para>
+      <equation id="id101504">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>α</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>s</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>α</m:mi>
+              </m:msup>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>Laplace</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>transform</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mrow>
+                <m:mi>α</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mi>a</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id101618">If we put <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mi>λ</m:mi></m:mrow></m:math>, we find after some algebraic manipulations</para>
+      <equation id="id101641">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>λ</m:mi>
+                  <m:mi>α</m:mi>
+                </m:msup>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mrow>
+                    <m:mi>α</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:msup>
+                <m:msup>
+                  <m:mi>e</m:mi>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>λ</m:mi>
+                    <m:mi>t</m:mi>
+                  </m:mrow>
+                </m:msup>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>α</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id101730">Thus, <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, in keeping with the determination, above, of the
+moment generating function for that distribution.</para>
+      </example>
+
+    
+      <para id="fs-id7832405"><emphasis effect="bold"> The characteristic function</emphasis></para>
+
+      <para id="id101796">Since this function differs from the moment generating function by the interchange of parameter
+<emphasis effect="italics">s</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>i</m:mi><m:mi>u</m:mi></m:mrow></m:math>, where <emphasis effect="italics">i</emphasis> is the imaginary unit, <m:math overflow="scroll"><m:mrow><m:msup><m:mi>i</m:mi><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the integral expressions make
+that change of parameter. The result is that Laplace transforms become Fourier transforms.
+The theoretical and applied literature is even more extensive for the characteristic function.</para>
+      <para id="id101853">Not only do we have the operational properties <link target-id="uid1">(T1)</link> and <link target-id="uid2">(T2)</link> and the result on moments as derivatives
+at the origin, but there is an important expansion for the characteristic function.</para>
+      <para id="id101858">
+        <emphasis effect="italics">An expansion theorem</emphasis>
+      </para>
+      <para id="id101865">If <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:msup><m:mo>|</m:mo><m:mi>n</m:mi></m:msup><m:mo>]</m:mo><m:mo>&lt;</m:mo><m:mi>∞</m:mi></m:mrow></m:math>, then</para>
+      <equation id="id101898"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mi>φ</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>i</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>n</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>i</m:mi>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>o</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mi>n</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>u</m:mi>
+            <m:mo>→</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id102109">We note one limit theorem which has very important consequences.</para>
+      <para id="id102115">
+        <emphasis effect="italics">A fundamental limit theorem</emphasis>
+      </para>
+      <para id="id102122">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a sequence of probability distribution functions and
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>φ</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is the corresponding sequence of characteristic functions.</para>
+      <list id="id102184" display="block" list-type="enumerated"><item id="uid22">If <emphasis effect="italics">F</emphasis> is a distribution function such that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> at every point
+of continuity for <emphasis effect="italics">F</emphasis>, and <emphasis effect="italics">φ</emphasis> is the characteristic function for <emphasis effect="italics">F</emphasis>, then
+<equation id="id102270"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>φ</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>∀</m:mo><m:mspace width="0.277778em"/><m:mi>u</m:mi></m:mrow></m:math></equation></item>
+        <item id="uid23">If <m:math overflow="scroll"><m:mrow><m:msub><m:mi>φ</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> for all <emphasis effect="italics">u</emphasis> and <emphasis effect="italics">φ</emphasis> is continuous at 0, then
+<emphasis effect="italics">φ</emphasis> is the characteristic function for distribution function <emphasis effect="italics">F</emphasis> such that
+<equation id="id102412"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>F</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>at</m:mtext><m:mspace width="4.pt"/><m:mtext>each</m:mtext><m:mspace width="4.pt"/><m:mtext>point</m:mtext><m:mspace width="4.pt"/><m:mtext>of</m:mtext><m:mspace width="4.pt"/><m:mtext>continuity</m:mtext><m:mspace width="4.pt"/><m:mtext>of</m:mtext><m:mspace width="4.pt"/><m:mi>F</m:mi></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id102491">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+    </section>
+  </content>
+</document>

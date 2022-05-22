@@ -1,0 +1,2469 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Problems on Distribution and Density Functions</title>
+  <metadata>
+  <md:content-id>m24209</md:content-id><md:title>Problems on Distribution and Density Functions</md:title>
+  <md:abstract/>
+  <md:uuid>a4fc269b-ca2b-474e-a1c3-a77dff60c850</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of useful matlab files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+    
+
+<exercise id="fs-id2694763" print-placement="end">
+<problem id="fs-id1165818606311">
+<para id="id265692">(See Exercises <link document="m24208" target-id="fs-id2383121">3</link> and <link document="m24208" target-id="fs-id6128390">4</link> from "Problems on Random Variables and Probabilities"). The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>}</m:mo></m:mrow></m:math> is a partition.
+Random variable <emphasis effect="italics">X</emphasis> has values <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>}</m:mo></m:mrow></m:math> on <emphasis effect="italics">C<sub>1</sub></emphasis> through <emphasis effect="italics">C<sub>10</sub></emphasis>,
+respectively, with probabilities 0.08, 0.13, 0.06, 0.09, 0.14, 0.11, 0.12, 0.07, 0.11, 0.09.
+Determine and plot the distribution function <emphasis effect="italics">F<sub>X</sub></emphasis>.</para>
+</problem>
+<solution id="fs-id1165802709141">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id233815" display="block">T = [1 3 2 3 4 2 1 3 5 2];
+pc = 0.01*[8 13 6 9 14 11 12 7 11 9];
+[X,PX] = csort(T,pc);
+ddbn
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX    % See MATLAB plot
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id6646811" print-placement="end">
+<problem id="fs-id1165806413586">
+    <para id="id265827">(See <link document="m24208" target-id="fs-id2392894">Exercise 6</link> from "Problems on Random Variables and Probabilities"). A store has eight items for sale. The prices
+are $3.50, $5.00, $3.50, $7.50, $5.00, $5.00, $3.50, and $7.50, respectively.
+A customer comes in. She purchases
+one of the items with probabilities 0.10, 0.15, 0.15, 0.20, 0.10 0.05, 0.10 0.15. The
+random variable expressing the amount of her purchase may be written</para>
+    <equation id="id265833">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>7</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>5</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>0</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+          </m:msub>
+          <m:mo>+</m:mo>
+          <m:mn>7</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5</m:mn>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>8</m:mn>
+            </m:msub>
+          </m:msub>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id266194">Determine and plot the distribution function for <emphasis effect="italics">X</emphasis>.</para>
+</problem>
+<solution id="fs-id6339846">
+ 
+    <!--empty paragraphs get left behind.-->
+    <code id="id233876" display="block">T = [3.5 5 3.5 7.5 5 5 3.5 7.5];
+pc = 0.01*[10 15 15 20 10 5 10 15];
+[X,PX] = csort(T,pc);
+ddbn
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX    % See MATLAB plot
+</code>
+</solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id8050920" print-placement="end">
+<problem id="fs-id7328124">
+    <para id="id266207">(See <link document="m24208" target-id="fs-id1165810913405">Exercise 12</link> from "Problems on Random Variables and Probabilities"). The class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> has minterm probabilities</para>
+    <equation id="id266245">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>p</m:mi>
+          <m:mi>m</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>001</m:mn>
+          <m:mo>*</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>5</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>7</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>6</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>8</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>9</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>14</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>22</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>33</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>21</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>32</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>50</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>75</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mn>86</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>129</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>201</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>302</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id266390">Determine and plot the distribution function for the random variable  <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>B</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>C</m:mi></m:msub><m:mo>+</m:mo><m:msub><m:mi>I</m:mi><m:mi>D</m:mi></m:msub></m:mrow></m:math>,
+which counts the number of the events which occur on a trial.</para>
+</problem>
+<solution id="fs-id1165806731088">
+ 
+    <!--empty paragraphs get left behind.-->
+    <code id="id233939" display="block"><link window="new" document="m24179" target-id="cid33">npr06_12</link>
+Minterm probabilities in pm, coefficients in c
+T = sum(mintable(4)); % Alternate solution.  See <link document="m24208" target-id="fs-id1165810913405">Exercise 12</link> from "Problems on Random Variables and Probabilities"
+[X,PX] = csort(T,pm);
+ddbn
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX    % See MATLAB plot
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1165806701210" print-placement="end">
+<problem id="fs-id1165806732058">
+    <para id="id266444">Suppose <emphasis effect="italics">a</emphasis> is a ten digit number. A wheel turns up the digits
+0 through 9 with equal probability on each spin. On ten spins what is the probability
+of matching, in order, <emphasis effect="italics">k</emphasis> or more of the ten digits in <emphasis effect="italics">a</emphasis>, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn></m:mrow></m:math>?
+Assume the initial digit may be zero.</para>
+</problem>
+<solution id="fs-id1165806760606">
+<para id="id234004"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>=</m:mo><m:mrow><m:mi mathvariant="monospace">c</m:mi><m:mi mathvariant="monospace">b</m:mi><m:mi mathvariant="monospace">i</m:mi><m:mi mathvariant="monospace">n</m:mi><m:mi mathvariant="monospace">o</m:mi><m:mi mathvariant="monospace">m</m:mi></m:mrow><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>:</m:mo><m:mn>10</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</solution>
+</exercise>
+   
+
+
+<exercise id="fs-id1165813072052" print-placement="end">
+<problem id="fs-id1165806736096">
+ <para id="id266490">In a thunderstorm in a national park there are 127 lightning strikes.
+Experience shows that the probability of of a lightning strike starting a fire is about
+0.0083. What is the probability that <emphasis effect="italics">k</emphasis> fires are started, <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn></m:mrow></m:math>?</para>
+</problem>
+<solution id="fs-id1165806748233">
+<para id="id234069"><code display="inline">P = ibinom(127,0.0083,0:3)   P =  0.3470    0.3688    0.1945    0.0678</code></para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806700553" print-placement="end"><problem id="fs-id1165806725169">
+    <para id="id266529">A manufacturing plant has 350 special lamps on its production lines.
+On any day, each lamp could fail with probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0017</m:mn></m:mrow></m:math>. These lamps are
+critical, and must be replaced as quickly as possible. It takes about one hour to
+replace a lamp, once it has failed. What is the probability that on any day the loss of
+production time due to lamp failaures is <emphasis effect="italics">k</emphasis> or fewer hours, <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>4</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>5</m:mn><m:mtext>?</m:mtext></m:mrow></m:math></para>
+</problem>
+<solution id="fs-id1165806720416">
+   <para id="id234078">P = 1 - cbinom(350,0.0017,1:6)
+</para>
+    <code id="id234087" display="block">=  0.5513    0.8799    0.9775    0.9968    0.9996    1.0000
+</code>
+</solution>
+</exercise> 
+
+
+
+<exercise id="fs-id1165806765058" print-placement="end"><problem id="fs-id1165806711347">
+<para id="id266610">Two hundred persons buy tickets for a drawing. Each ticket has probability
+0.008 of winning. What is the probability of <emphasis effect="italics">k</emphasis> or fewer winners, <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>4</m:mn><m:mtext>?</m:mtext></m:mrow></m:math></para>
+</problem>
+<solution id="fs-id7299646">
+<para id="id234097">P = 1 - cbinom(200,0.008,3:5) =  0.7838  0.9220  0.9768
+</para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806736894" print-placement="end"><problem id="fs-id1165806719794">
+    <para id="id266650">Two coins are flipped twenty times. What is the probability the results
+match (both heads or both tails) <emphasis effect="italics">k</emphasis> times, <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mn>20</m:mn></m:mrow></m:math>?</para>
+</problem>
+<solution id="fs-id1165806724387">
+<para id="id234107"><code display="inline">P = ibinom(20,1/2,0:20)</code></para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806760223" print-placement="end">
+<problem id="fs-id1165806763939">
+    <para id="id266680">Thirty members of a class each flip a coin ten times. What is the probability
+that at least five of them get seven or more heads?</para>
+</problem>
+<solution id="fs-id1165806730023">
+<para id="id234115"><code display="inline">p = cbinom(10,0.5,7) =  0.1719</code></para>
+    <code id="id234123" display="block">P = cbinom(30,p,5) = 0.6052
+</code>
+</solution>
+</exercise>
+
+<exercise id="fs-id1165806700595" print-placement="end"><problem id="fs-id1165806737267">
+    <para id="id266685">For the system in <link target-id="fs-id1165806700553"/>, call a day in which one or more failures occur
+among the 350 lamps a “service day.” Since a Bernoulli sequence “starts over”
+at any time, the sequence of service/nonservice days may be considered a Bernoulli
+sequence with probability <emphasis effect="italics">p<sub>1</sub></emphasis>, the probability of one or more lamp failures in
+a day.</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id266711" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1698767868">Beginning on a Monday morning, what is the
+probability the first service day is the first, second, third, fourth, fifth day
+of the week?
+
+</item>
+      <item id="uid23423423245">What is the probability of no service days in a seven day week?
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1165806735405">
+<para id="id234132">p1 = 1 - (1 - 0.0017)^350 = 0.4487    k = 1:5;
+ (prob given day is a service day)</para>
+    <list id="eip-id1172547606837" list-type="enumerated" number-style="lower-alpha"><item><code id="id234145" display="block">P = p1*(1 - p1).^(k-1) = 0.4487  0.2474  0.1364  0.0752  0.0414
+</code></item>
+    <item><code id="id234159" display="block">P0 = (1 - p1)^7 = 0.0155
+</code></item></list>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806707918" print-placement="end">
+<problem id="fs-id1165806725730">
+    <para id="id266752">For the system in <link target-id="fs-id1165806700553"/> and <link target-id="fs-id1165806700595"/> assume the plant works seven days a week.
+What is the probability the third service day occurs
+by the end of 10 days? Solve using the negative binomial distribution; repeat
+using the binomial distribution.</para>
+</problem>
+<solution id="fs-id1165806700027">    
+ <para id="id234169">p1 = 1 - (1 - 0.0017)^350 = 0.4487
+</para>
+    <para id="id234181"><list id="eip-id2476971"><item><code display="inline">P = sum(nbinom(3,p1,3:10)) = 0.8990</code></item><item><code display="inline">Pa = cbinom(10,p1,3) = 0.8990</code></item></list></para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806737717" print-placement="end">
+<problem id="fs-id1165806730425">
+<para id="id266757">A residential College plans to raise money by selling “chances” on
+a board. Fifty chances are sold. A player pays $10 to play; he or she wins $30
+with probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math>. The profit to the College is</para>
+    <equation id="id266781">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>X</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>50</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>10</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>30</m:mn>
+          <m:mi>N</m:mi>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>where</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mi>N</m:mi>
+          <m:mspace width="4.pt"/>
+          <m:mtext>is</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>the</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>number</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>of</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>winners</m:mtext>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id266852">Determine the distribution for <emphasis effect="italics">X</emphasis> and calculate <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>200</m:mn><m:mo>)</m:mo></m:mrow></m:math>, and</para>
+    <para id="id266904"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>300</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1165806747968">    
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id234204" display="block">N = 0:50;
+PN = ibinom(50,0.2,0:50);
+X = 500 - 30*N;
+Ppos = (X&gt;0)*PN'
+Ppos =  0.9856
+P200 = (X&gt;=200)*PN'
+P200 =  0.5836
+P300 = (X&gt;=300)*PN'
+P300 =  0.1034
+</code></solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1165806730464" print-placement="end"><problem id="fs-id1165806737408">
+<para id="id266928">A single six-sided die is rolled repeatedly until either a one or a six
+turns up. What is the probability that the first appearance of either of these numbers is achieved
+by the fifth trial or sooner?</para>
+</problem>
+<solution id="fs-id1165806734464">
+<para id="id234292">P = 1 - (2/3)^5 = 0.8683
+</para>
+</solution>    
+</exercise>
+
+<exercise id="fs-id1165806729475" print-placement="end"><problem id="fs-id1165806735213">
+<para id="id266933">Consider a Bernoulli sequence with probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>53</m:mn></m:mrow></m:math> of success
+on any component trial.</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id266958" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid3698769658765">The probability the fourth success will occur no
+later than the tenth trial is determined by the negative binomial
+distribution. Use the procedure nbinom to calculate this probability
+
+.
+</item>
+      <item id="uid409234875098734">Calculate this probability using the binomial distribution.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1165806763129">
+<list id="eip-id1167963600725" list-type="enumerated" number-style="lower-alpha"><item><code display="inline">P = sum(nbinom(4,0.53,4:10)) = 0.8729</code></item>
+    <item><code id="id234309" display="inline">Pa = cbinom(10,0.53,4) = 0.8729
+</code></item></list>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806730859" print-placement="end">
+<problem id="fs-id1165806754132">
+    <para id="id267005">Fifty percent of the components coming off an assembly line fail to meet
+specifications for a special job. It is desired to select three units which meet the
+stringent specifications. Items are selected and tested in succession. Under the
+usual assumptions for Bernoulli trials, what is the probability the third satisfactory
+unit will be found on six or fewer trials?</para>
+</problem>
+<solution id="fs-id1698614">
+<para id="id234318"><code display="inline">P = cbinom(6,0.5,3) = 0.6562</code></para></solution>
+</exercise>
+
+<exercise id="fs-id1165806702837" print-placement="end">
+<problem id="fs-id1165806713844">
+    <para id="id267011">The number of cars passing a certain traffic count position in an
+hour has Poisson (53) distribution. What is the probability the number of cars
+passing in an hour lies between 45 and 55 (inclusive)? What is the probability
+of <emphasis effect="italics">more</emphasis> than 55?
+</para>
+</problem>
+<solution id="fs-id1165806759770">
+<para id="id234326">P1 = cpoisson(53,45) - cpoisson(53,56) = 0.5224
+</para>
+    <code id="id234336" display="block">P2 = cpoisson(53,56) = 0.3581
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806763036" print-placement="end">
+<problem id="fs-id1165806725150">
+    <para id="id267023">Compare <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial(5000, 0.001)
+and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (5), for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn></m:mrow></m:math>. Do this directly with ibinom and
+ipoisson. Then use the m-procedure bincomp to obtain graphical results (including a
+comparison with the normal distribution).</para>
+</problem>
+<solution id="fs-id1165807552116">
+ 
+    <!--empty paragraphs get left behind.-->
+    <code id="id234353" display="block">k = 0:10;
+Pb = 1 - cbinom(5000,0.001,k+1);
+Pp = 1 - cpoisson(5,k+1);
+disp([k;Pb;Pp]')
+         0    0.0067    0.0067
+    1.0000    0.0404    0.0404
+    2.0000    0.1245    0.1247
+    3.0000    0.2649    0.2650
+    4.0000    0.4404    0.4405
+    5.0000    0.6160    0.6160
+    6.0000    0.7623    0.7622
+    7.0000    0.8667    0.8666
+    8.0000    0.9320    0.9319
+    9.0000    0.9682    0.9682
+   10.0000    0.9864    0.9863
+</code>
+    
+    <code id="id234495" display="block">bincomp
+Enter the parameter n  5000
+Enter the parameter p  0.001
+Binomial-- stairs
+Poisson--  -.-.
+Adjusted Gaussian-- o o o
+gtext('Exercise 17')
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id5677590" print-placement="end">
+<problem id="fs-id1165806764924">
+    <para id="id267106">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (12, 0.375), <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (4.5), and <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>∼</m:mo></m:mrow></m:math>
+exponential (1/4.5). For each random variable, calculate and tabulate the probability
+of a value at least <emphasis effect="italics">k</emphasis>, for integer values <m:math overflow="scroll"><m:mrow><m:mn>3</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mn>8</m:mn></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1165806766283">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id234766" display="block">k = 3:8;
+Px = cbinom(12,0.375,k);
+Py = cpoisson(4.5,k);
+Pz = exp(-k/4.5);
+disp([k;Px;Py;Pz]')
+    3.0000    0.8865    0.8264    0.5134
+    4.0000    0.7176    0.6577    0.4111
+    5.0000    0.4897    0.4679    0.3292
+    6.0000    0.2709    0.2971    0.2636
+    7.0000    0.1178    0.1689    0.2111
+    8.0000    0.0390    0.0866    0.1690
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806730655" print-placement="end">
+<problem id="fs-id1165806724927">
+    <para id="id267169">The number of noise pulses arriving on a power circuit in an hour is a random
+quantity having Poisson (7) distribution. What is the probability of having at least
+10 pulses in an hour? What is the probability of having at most 15 pulses in an hour?</para>
+</problem>
+<solution id="fs-id1165806742769">
+ <para id="id234867">P1 = cpoisson(7,10) = 0.1695    P2 = 1 - cpoisson(7,16) = 0.9976
+</para>
+</solution>
+</exercise>  
+
+
+<exercise id="fs-id6802703" print-placement="end">
+<problem id="fs-id1165806702898">
+ <para id="id267175">The number of customers arriving in a small specialty store in an hour is
+a random quantity having Poisson (5) distribution. What is the probability the number
+arriving in an hour will be between three and seven, inclusive? What is the probability
+of no more than ten?</para>
+</problem>
+<solution id="fs-id1165806740565">
+<para id="id234877">P1 = cpoisson(5,3) - cpoisson(5,8) = 0.7420
+</para>
+    <code id="id234887" display="block">P2 = 1 - cpoisson(5,11) = 0.9863
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806708722" print-placement="end">
+<problem id="fs-id1165806765505">
+    <para id="id267180">Random variable <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (1000, 0.1).</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id267199" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid5">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>80</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>100</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>120</m:mn><m:mo>)</m:mo></m:mrow></m:math></item>
+      <item id="uid6">Use the appropriate Poisson distribution to approximate these values.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1165806735806">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id234905" display="block">k = [80 100 120];
+P = cbinom(1000,0.1,k)
+P  =  0.9867    0.5154    0.0220
+P1 = cpoisson(100,k)
+P1 =  0.9825    0.5133    0.0282
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806723762" print-placement="end">
+<problem id="fs-id1165806706738">
+    <para id="id267302">The time to failure, in hours of operating time, of a televesion set subject
+to random voltage surges has the exponential (0.002) distribution. Suppose the unit
+has operated successfully for 500 hours. What is the (conditional) probability it will
+operate for another 500 hours?</para>
+</problem>
+<solution id="fs-id1165806761508">    
+<para id="id234951"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mn>500</m:mn><m:mo>+</m:mo><m:mn>500</m:mn><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mn>500</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mn>500</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>002</m:mn><m:mo>·</m:mo><m:mn>500</m:mn></m:mrow></m:msup><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3679</m:mn></m:mrow></m:math></para></solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806708853" print-placement="end">
+<problem id="fs-id1165806720308">
+<para id="id267308">For <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>2</m:mn><m:mo>/</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1165806720349">
+<para id="id235032"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mi>k</m:mi><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>λ</m:mi><m:mi>k</m:mi><m:mo>/</m:mo><m:mi>λ</m:mi></m:mrow></m:msup><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:msup></m:mrow></m:math></para>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806742603" print-placement="end">
+<problem id="fs-id4574958">
+    <para id="id267383">Twenty “identical” units are put into operation. They fail independently.
+The times to failure (in hours) form an iid class, exponential (0.0002). This means the
+“expected” life is 5000 hours. Determine the probabilities that at least <emphasis effect="italics">k</emphasis>,
+for <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>8</m:mn><m:mo>,</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mn>12</m:mn><m:mo>,</m:mo><m:mn>15</m:mn></m:mrow></m:math>, will survive for 5000 hours.</para>
+</problem>
+<solution id="fs-id1165806754801">
+
+    <!--empty paragraphs get left behind.-->
+    <code id="id235096" display="block">p = exp(-0.0002*5000)
+p = 0.3679
+k = [5 8 10 12 15];
+P = cbinom(20,p,k)
+P = 0.9110  0.4655  0.1601  0.0294  0.0006
+</code>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806735274" print-placement="end">
+<problem id="fs-id1165806732052">
+    <para id="id267441">Let <m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma (20, 0.0002) be the total operating time for the units
+described in <link target-id="fs-id1165806742603"/>.</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id267462" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid7">Use the m-function for the gamma distribution to determine
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>T</m:mi><m:mo>≤</m:mo><m:mn>100</m:mn><m:mo>,</m:mo><m:mn>000</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+      <item id="uid8">Use the Poisson distribution to determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>T</m:mi><m:mo>≤</m:mo><m:mn>100</m:mn><m:mo>,</m:mo><m:mn>000</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1165806758150">
+ <para id="id235143"><code display="inline">P1 = gammadbn(20,0.0002,100000) = 0.5297  P2 = cpoisson(0.0002*100000,20) = 0.5297</code></para></solution>
+</exercise>   
+
+
+<exercise id="fs-id1165806753951" print-placement="end">
+<problem id="fs-id1830352">
+<para id="id267555">The sum of the times to failure for five independent units is
+a random variable <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Without using tables or m-programs,
+determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>25</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+</para>
+</problem>
+<solution id="fs-id1165806711997">
+
+    <!--empty paragraphs get left behind.-->
+    <equation id="id235160">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>25</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>≥</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>∼</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>poisson</m:mtext>
+          <m:mo>(</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>15</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>25</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>75</m:mn>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id235240">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>35</m:mn>
+            </m:mrow>
+          </m:msup>
+          <m:mfenced separators="" open="(" close=")">
+            <m:mn>1</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>75</m:mn>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>3</m:mn>
+                <m:mo>.</m:mo>
+                <m:msup>
+                  <m:mn>75</m:mn>
+                  <m:mn>2</m:mn>
+                </m:msup>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>3</m:mn>
+                <m:mo>.</m:mo>
+                <m:msup>
+                  <m:mn>75</m:mn>
+                  <m:mn>3</m:mn>
+                </m:msup>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>3</m:mn>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>3</m:mn>
+                <m:mo>.</m:mo>
+                <m:msup>
+                  <m:mn>75</m:mn>
+                  <m:mn>4</m:mn>
+                </m:msup>
+              </m:mrow>
+              <m:mn>24</m:mn>
+            </m:mfrac>
+          </m:mfenced>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3225</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806705701" print-placement="end">
+<problem id="fs-id1165806736371">
+<para id="id267620">Interarrival times (in minutes) for fax messages on a terminal are
+independent, exponential (<m:math overflow="scroll"><m:mrow><m:mi>λ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>). This means the time <emphasis effect="italics">X</emphasis> for the arrival
+of the fourth message is gamma(4, 0.1). Without using tables or m-programs,
+utilize the relation of the gamma to the Poisson
+distribution to determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>30</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para></problem>
+<solution id="fs-id1165806729239">
+    <!--empty paragraphs get left behind.-->
+    <equation id="id235399">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>30</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>≥</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>∼</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>poisson</m:mtext>
+          <m:mo>(</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>30</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id235476">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>4</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>3</m:mn>
+            </m:mrow>
+          </m:msup>
+          <m:mfenced separators="" open="(" close=")">
+            <m:mn>1</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:msup>
+                <m:mn>3</m:mn>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mo>+</m:mo>
+            <m:mfrac>
+              <m:msup>
+                <m:mn>3</m:mn>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mrow>
+                <m:mn>3</m:mn>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mfenced>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3528</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+   </solution>
+</exercise>
+    
+
+
+
+<exercise id="fs-id1165806707535" print-placement="end">
+<problem id="fs-id1165806740402">
+<para id="id267672">Customers arrive at a service center with independent interarrival
+times in hours, which have exponential (3) distribution. The time <emphasis effect="italics">X</emphasis> for the
+third arrival is thus gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Without using tables or m-programs,
+determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para></problem>
+<solution id="fs-id1165806717992">
+    <!--empty paragraphs get left behind.-->
+    <equation id="id235596">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>≥</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>∼</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>poisson</m:mtext>
+          <m:mo>(</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>6</m:mn>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id235668">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:msup>
+            <m:mi>e</m:mi>
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>6</m:mn>
+            </m:mrow>
+          </m:msup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>36</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>9380</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806740791" print-placement="end">
+<problem id="fs-id1165806705525">
+<para id="id267729">Five people wait to use a telephone, currently in use by a
+sixth person. Suppose time for the six calls (in minutes) are iid, exponential (1/3).
+What is the distribution for the total time <emphasis effect="italics">Z</emphasis> from the present for the six calls? Use an
+appropriate Poisson distribution to determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>≤</m:mo><m:mn>20</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1165806725947">    
+<para id="id235757"><m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma (6,1/3).</para>
+    <equation id="id235771">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Z</m:mi>
+          <m:mo>≤</m:mo>
+          <m:mn>20</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>≥</m:mo>
+          <m:mn>6</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>Y</m:mi>
+          <m:mo>∼</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>poisson</m:mtext>
+          <m:mo>(</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>·</m:mo>
+          <m:mn>20</m:mn>
+          <m:mo>)</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id235846">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>≥</m:mo>
+          <m:mn>6</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mrow>
+            <m:mi mathvariant="monospace">c</m:mi>
+            <m:mi mathvariant="monospace">p</m:mi>
+            <m:mi mathvariant="monospace">o</m:mi>
+            <m:mi mathvariant="monospace">i</m:mi>
+            <m:mi mathvariant="monospace">s</m:mi>
+            <m:mi mathvariant="monospace">s</m:mi>
+            <m:mi mathvariant="monospace">o</m:mi>
+            <m:mi mathvariant="monospace">n</m:mi>
+            <m:mo>(</m:mo>
+            <m:mn mathvariant="monospace">20</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn mathvariant="monospace">3</m:mn>
+            <m:mo>,</m:mo>
+            <m:mn mathvariant="monospace">6</m:mn>
+            <m:mo>)</m:mo>
+            <m:mspace width="3.33333pt"/>
+            <m:mo>=</m:mo>
+            <m:mspace width="3.33333pt"/>
+            <m:mn mathvariant="monospace">0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn mathvariant="monospace">6547</m:mn>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    </solution>
+</exercise>
+
+
+<exercise id="fs-id1165806717157" print-placement="end"><problem id="fs-id1165806752244">
+<para id="id267763"> A random number generator produces a sequence of numbers between
+0 and 1. Each of these can be considered an observed value of a random variable
+uniformly distributed on the interval [0, 1]. They assume their values independently.
+A sequence of 35 numbers is generated. What is the probability 25 or more are
+less than or equal to 0.71? (Assume continuity. Do not make a discrete adjustment.)</para>
+</problem>
+<solution id="fs-id1165806700199">    
+<para id="id235949"><code display="inline">p = cbinom(35,0.71,25) = 0.5620</code></para>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806701022" print-placement="end"><problem id="fs-id1165806714479">
+<para id="id267770">Five “identical” electronic devices are installed at one time. The
+units fail independently, and the time to failure, in days, of each is a random
+variable exponential (1/30). A maintenance check is made each fifteen days. What is
+the probability that at least four are still operating at the maintenance check?</para>
+</problem>
+<solution id="fs-id1165806767119">    
+<para id="id235957">p = exp(-15/30) = 0.6065   P = cbinom(5,p,4) = 0.3483
+</para>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806703328" print-placement="end"><problem id="fs-id1165806760277">
+<para id="id267778">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>,</m:mo><m:mn>81</m:mn><m:mo>)</m:mo></m:mrow></m:math>. That is, <emphasis effect="italics">X</emphasis> has gaussian distribution with mean
+<m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>4</m:mn></m:mrow></m:math> and variance <m:math overflow="scroll"><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>81</m:mn></m:mrow></m:math>.</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id267855" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid9">Use a table of standardized normal distribution to
+determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>&lt;</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mn>8</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>4</m:mn><m:mo>|</m:mo><m:mo>≤</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+      <item id="uid10">Calculate the probabilities in part (a) with the m-function gaussian.
+
+</item>
+    </list>
+    </problem>
+<solution id="fs-id3795555">
+    <!--empty paragraphs get left behind.-->
+    <list id="eip-id3940918" list-type="enumerated" number-style="lower-alpha"><item><equation id="id235976">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>&lt;</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>&lt;</m:mo>
+          <m:mn>8</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>(</m:mo>
+          <m:mn>8</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>(</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id236053">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>+</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>6712</m:mn>
+          <m:mo>+</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5875</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>2587</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id236126">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>-</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>|</m:mo>
+          <m:mo>≤</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>4212</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>4212</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation></item>
+    <!--empty paragraphs get left behind.-->
+    <item><code id="id236208" display="block">P1 = gaussian(4,81,8) - gaussian(4,81,2)
+P1 = 0.2596
+P2 = gaussian(4,81,9) - gaussian(4,84,-1)
+P2 = 0.4181
+</code></item></list>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806754814" print-placement="end"><problem id="fs-id1165806717182">
+<para id="id267951">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>81</m:mn><m:mo>)</m:mo></m:mrow></m:math>. That is, <emphasis effect="italics">X</emphasis> has gaussian distribution with
+<m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>5</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>81</m:mn></m:mrow></m:math>. Use a table of standardized normal distribution to
+determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>&lt;</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mn>9</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>5</m:mn><m:mo>|</m:mo><m:mo>≤</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Check your results using the
+m-function gaussian.</para>
+</problem>
+<solution id="fs-id1165806702608">
+    <!--empty paragraphs get left behind.-->
+    <equation id="id236260">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>&lt;</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>&lt;</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>(</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>(</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>+</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>2</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>6712</m:mn>
+          <m:mo>+</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5875</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>2587</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id236400">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>-</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>|</m:mo>
+          <m:mo>≤</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>5</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>4212</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>4212</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <code id="id236481" display="block">P1 = gaussian(5,81,9) - gaussian(5,81,3)
+P1 = 0.2596
+P2 = gaussian(5,81,10) - gaussian(5,84,0)
+P2 = 0.4181
+</code>
+    </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1165806731015" print-placement="end"><problem id="fs-id1165806765894">
+<para id="id268082"> Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo><m:mi>N</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>64</m:mn><m:mo>)</m:mo></m:mrow></m:math>. That is, <emphasis effect="italics">X</emphasis> has gaussian distribution with
+<m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>64</m:mn></m:mrow></m:math>. Use a table of standardized normal distribution to
+determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>&lt;</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mn>9</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>3</m:mn><m:mo>|</m:mo><m:mo>≤</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Check your results with the
+m-function gaussian.</para>
+</problem>
+<solution id="fs-id1165806752678">    
+    <!--empty paragraphs get left behind.-->
+    <equation id="id236531">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>&lt;</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>&lt;</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>(</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>/</m:mo>
+          <m:mn>8</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>(</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>/</m:mo>
+          <m:mn>9</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id236608">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>75</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>+</m:mo>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>25</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>7734</m:mn>
+          <m:mo>+</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>5987</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3721</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id236681">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mo>(</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>-</m:mo>
+          <m:mn>3</m:mn>
+          <m:mo>|</m:mo>
+          <m:mo>≤</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>=</m:mo>
+          <m:mn>2</m:mn>
+          <m:mi>Φ</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn>4</m:mn>
+          <m:mo>/</m:mo>
+          <m:mn>8</m:mn>
+          <m:mo>)</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3829</m:mn>
+          <m:mo>-</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3829</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <code id="id236762" display="block">P1 = gaussian(3,64,9) - gaussian(3,64,1)
+P1 = 0.3721
+P2 = gaussian(3,64,7) - gaussian(3,64,-1)
+P2 = 0.3829
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806719584" print-placement="end"><problem id="fs-id1165806703070">
+<para id="id268213">Items coming off an assembly line have a critical dimension which
+is represented by a random variable <m:math overflow="scroll"><m:mo>∼</m:mo></m:math> N(10, 0.01). Ten items are selected
+at random. What is the probability that three or more are within 0.05 of the
+mean value <emphasis effect="italics">μ</emphasis>.
+</para>
+</problem>
+<solution id="fs-id5365190">    
+    <!--empty paragraphs get left behind.-->
+    <code id="id236814" display="block">p = gaussian(10,0.01,10.05) - gaussian(10,0.01,9.95)
+p =  0.3829
+P = cbinom(10,p,3)
+P =  0.8036
+</code>
+</solution>
+</exercise>
+
+
+<exercise id="fs-id1165806758992" print-placement="end"><problem id="fs-id1165806708814">
+<para id="id268237">The result of extensive quality control sampling shows that a certain model
+of digital watches coming off a production line have accuracy, in seconds per month,
+that is normally distributed with <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>5</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msup><m:mi>σ</m:mi><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>300</m:mn></m:mrow></m:math>. To achieve
+a top grade, a watch must have an accuracy within the range of -5 to +10 seconds
+per month. What is the probability a watch taken from the production line to be
+tested will achieve top grade? Calculate, using a standardized normal table. Check
+with the m-function gaussian.</para>
+</problem>
+<solution id="fs-id1165806746593">    
+ <para id="id236854"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>5</m:mn><m:mo>&lt;</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mn>10</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>/</m:mo><m:msqrt><m:mn>300</m:mn></m:msqrt><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>/</m:mo><m:msqrt><m:mn>300</m:mn></m:msqrt><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>=</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>289</m:mn><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>577</m:mn><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>614</m:mn><m:mo>+</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>717</m:mn><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>331</m:mn></m:mrow></m:math></para>
+    <equation id="id236990">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi mathvariant="monospace">P</m:mi>
+          <m:mspace width="3.33333pt"/>
+          <m:mo>=</m:mo>
+          <m:mspace width="3.33333pt"/>
+          <m:mi mathvariant="monospace">g</m:mi>
+          <m:mi mathvariant="monospace">a</m:mi>
+          <m:mi mathvariant="monospace">u</m:mi>
+          <m:mi mathvariant="monospace">s</m:mi>
+          <m:mi mathvariant="monospace">s</m:mi>
+          <m:mi mathvariant="monospace">i</m:mi>
+          <m:mi mathvariant="monospace">a</m:mi>
+          <m:mi mathvariant="monospace">n</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn mathvariant="monospace">5</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn mathvariant="monospace">300</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn mathvariant="monospace">10</m:mn>
+          <m:mo>)</m:mo>
+          <m:mspace width="3.33333pt"/>
+          <m:mo>-</m:mo>
+          <m:mspace width="3.33333pt"/>
+          <m:mi mathvariant="monospace">g</m:mi>
+          <m:mi mathvariant="monospace">a</m:mi>
+          <m:mi mathvariant="monospace">u</m:mi>
+          <m:mi mathvariant="monospace">s</m:mi>
+          <m:mi mathvariant="monospace">s</m:mi>
+          <m:mi mathvariant="monospace">i</m:mi>
+          <m:mi mathvariant="monospace">a</m:mi>
+          <m:mi mathvariant="monospace">n</m:mi>
+          <m:mo>(</m:mo>
+          <m:mn mathvariant="monospace">5</m:mn>
+          <m:mo>,</m:mo>
+          <m:mn mathvariant="monospace">300</m:mn>
+          <m:mo>,</m:mo>
+          <m:mo>-</m:mo>
+          <m:mn mathvariant="monospace">5</m:mn>
+          <m:mo>)</m:mo>
+          <m:mspace width="3.33333pt"/>
+          <m:mo>=</m:mo>
+          <m:mspace width="3.33333pt"/>
+          <m:mn mathvariant="monospace">0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn mathvariant="monospace">3317</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+</solution>   
+</exercise>
+
+<exercise id="fs-id1165806761074" print-placement="end"><problem id="fs-id1165806762889">
+<para id="id268278">Use the m-procedure bincomp with various values of <emphasis effect="italics">n</emphasis> from 10 to 500 and
+<emphasis effect="italics">p</emphasis> from 0.01 to 0.7, to observe the approximation of the binomial distribution by
+the Poisson.</para>
+</problem>
+<solution id="fs-id1165806730036">
+<para id="id237159">Experiment with the m-procedure bincomp.</para>
+</solution>    
+</exercise>
+
+<exercise id="fs-id1165806763265" print-placement="end"><problem id="fs-id5792589">
+<para id="id268301">Use the m-procedure poissapp to compare the Poisson and gaussian distributions.
+Use various values of <emphasis effect="italics">μ</emphasis> from 10 to 500.</para>
+</problem>
+<solution id="fs-id1165806748469">    
+ <para id="id237163">Experiment with the m-procedure poissapp.
+</para>
+</solution>
+</exercise>
+
+
+
+<exercise id="fs-id1165806725590" print-placement="end"><problem id="fs-id7440068">
+<para id="id268313">Random variable <emphasis effect="italics">X</emphasis> has density <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>3</m:mn><m:mn>2</m:mn></m:mfrac><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:mstyle></m:math>  (and zero elsewhere).</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id268400" display="block" list-type="enumerated" number-style="lower-alpha">
+      <item id="uid11">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>8</m:mn><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>|</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>25</m:mn><m:mo>|</m:mo><m:mo>≤</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+      <item id="uid12">Determine an expression for the distribution function.
+
+</item>
+      <item id="uid13">Use the m-procedures tappr and cdbn to plot an approximation to the
+distribution function.
+
+</item>
+    </list>
+ </problem>
+<solution id="fs-id6491811">
+    <equation id="id237171">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mfrac>
+            <m:mn>3</m:mn>
+            <m:mn>2</m:mn>
+          </m:mfrac>
+          <m:mo>∫</m:mo>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>=</m:mo>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>3</m:mn>
+          </m:msup>
+          <m:mo>/</m:mo>
+          <m:mn>2</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <list id="id237211" display="block" list-type="enumerated" number-style="lower-alpha">
+      <item id="uid1">
+        
+        <equation id="id237228">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mn>1</m:mn>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>5</m:mn>
+              <m:mo>*</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:msup>
+                  <m:mn>8</m:mn>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mo>-</m:mo>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>3185</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>P</m:mi>
+              <m:mn>2</m:mn>
+              <m:mo>=</m:mo>
+              <m:mn>2</m:mn>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mrow>
+                  <m:mn>0</m:mn>
+                  <m:mo>.</m:mo>
+                  <m:mn>5</m:mn>
+                </m:mrow>
+                <m:mn>1</m:mn>
+              </m:msubsup>
+              <m:mfrac>
+                <m:mn>3</m:mn>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mo>-</m:mo>
+                    <m:mn>0</m:mn>
+                    <m:mo>.</m:mo>
+                    <m:mn>5</m:mn>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>8</m:mn>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <equation id="id237390">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mn>3</m:mn>
+              <m:mo>=</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>|</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>25</m:mn>
+                <m:mo>|</m:mo>
+                <m:mo>≤</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>5</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mo>-</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>25</m:mn>
+                <m:mo>≤</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>≤</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>75</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mn>1</m:mn>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>3</m:mn>
+                    <m:mo>/</m:mo>
+                    <m:mn>4</m:mn>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                    <m:mo>/</m:mo>
+                    <m:mn>4</m:mn>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>32</m:mn>
+            </m:mrow>
+          </m:math>
+        </equation>
+      </item>
+      <item id="uid2">
+        <m:math overflow="scroll">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:msub>
+                <m:mi>F</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>t</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>f</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mn>1</m:mn>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:mstyle>
+        </m:math>
+      </item>
+      <item id="uid3">
+        <code id="id237635" display="block">tappr
+Enter matrix [a b] of x-range endpoints  [-1 1]
+Enter number of x approximation points  200
+Enter density as a function of t  1.5*t.^2
+Use row matrices X and PX as in the simple case
+cdbn
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX    % See MATLAB plot
+</code>
+      </item>
+    </list>
+</solution>
+</exercise>   
+
+
+<exercise id="fs-id1165810924841" print-placement="end"><problem id="fs-id1165810995016">
+<para id="id268564">Random variable <emphasis effect="italics">X</emphasis> has density function <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:mfrac><m:mn>3</m:mn><m:mn>8</m:mn></m:mfrac><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:mstyle></m:math>  (and zero elsewhere).</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id268652" display="block" list-type="enumerated" number-style="lower-alpha">
+      <item id="uid14">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>|</m:mo><m:mo>&lt;</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+      <item id="uid15">Determine an expression for the distribution function.
+
+</item>
+      <item id="uid16">Use the m-procedures tappr and cdbn to plot an approximation to the
+distribution function.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1165807869674">
+    <equation id="id237720">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mo>∫</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:mn>3</m:mn>
+              <m:mn>8</m:mn>
+            </m:mfrac>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfrac>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mn>2</m:mn>
+          </m:mfrac>
+          <m:mo>-</m:mo>
+          <m:mfrac>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>3</m:mn>
+            </m:msup>
+            <m:mn>8</m:mn>
+          </m:mfrac>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <list id="id237784" display="block" list-type="enumerated" number-style="lower-alpha">
+      <item id="uid4">
+        <equation id="id237800">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mn>1</m:mn>
+              <m:mo>=</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:msup>
+                <m:mn>5</m:mn>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:msup>
+                <m:mn>5</m:mn>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>=</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>64</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>P</m:mi>
+              <m:mn>2</m:mn>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>.</m:mo>
+              <m:msup>
+                <m:mn>5</m:mn>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>.</m:mo>
+              <m:msup>
+                <m:mn>5</m:mn>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>-</m:mo>
+              <m:mn>7</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>64</m:mn>
+              <m:mo>=</m:mo>
+              <m:mn>19</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>32</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>P</m:mi>
+              <m:mn>3</m:mn>
+              <m:mo>=</m:mo>
+              <m:mn>79</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>256</m:mn>
+            </m:mrow>
+          </m:math>
+        </equation>
+      </item>
+      <item id="uid57865786547654">
+        <m:math overflow="scroll">
+          <m:mstyle scriptlevel="0" displaystyle="true">
+            <m:mrow>
+              <m:msub>
+                <m:mi>F</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mn>2</m:mn>
+              </m:mfrac>
+              <m:mo>-</m:mo>
+              <m:mfrac>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mn>8</m:mn>
+              </m:mfrac>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mn>0</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mn>2</m:mn>
+            </m:mrow>
+          </m:mstyle>
+        </m:math>
+      </item>
+      <item id="uid66587648653564878">
+       
+        <code id="id238068" display="block">tappr
+Enter matrix [a b] of x-range endpoints  [0 2]
+Enter number of x approximation points  200
+Enter density as a function of t  t - (3/8)*t.^2
+Use row matrices X and PX as in the simple case
+cdbn
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX    % See MATLAB plot
+</code>
+      </item>
+    </list>
+</solution>
+</exercise>   
+    
+
+
+
+<exercise id="fs-id1165811055932" print-placement="end"><problem id="fs-id1165810931362">
+<para id="id268805">Random variable <emphasis effect="italics">X</emphasis> has density function</para>
+    <equation id="id268819">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>f</m:mi>
+            <m:mi>X</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mfenced separators="" open="{" close="">
+            <m:mtable>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mn>6</m:mn>
+                      <m:mo>/</m:mo>
+                      <m:mn>5</m:mn>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:msup>
+                      <m:mi>t</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mtext>for</m:mtext>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mn>0</m:mn>
+                    <m:mo>≤</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>≤</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mn>6</m:mn>
+                    <m:mo>/</m:mo>
+                    <m:mn>5</m:mn>
+                    <m:mo>)</m:mo>
+                    <m:mo>(</m:mo>
+                    <m:mn>2</m:mn>
+                    <m:mo>-</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mtext>for</m:mtext>
+                    <m:mspace width="0.277778em"/>
+                    <m:mspace width="0.277778em"/>
+                    <m:mn>1</m:mn>
+                    <m:mo>&lt;</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>≤</m:mo>
+                    <m:mn>2</m:mn>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:mfenced>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mo>=</m:mo>
+          <m:mi>I</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>,</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+          <m:msup>
+            <m:mi>t</m:mi>
+            <m:mn>2</m:mn>
+          </m:msup>
+          <m:mo>+</m:mo>
+          <m:msub>
+            <m:mi>I</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mfrac>
+            <m:mn>6</m:mn>
+            <m:mn>5</m:mn>
+          </m:mfrac>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <list id="id269056" display="block" list-type="enumerated" number-style="lower-alpha">
+      <item id="uid17">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math>,  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>|</m:mo><m:mo>&lt;</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+      <item id="uid18">Determine an expression for the distribution function.
+
+</item>
+      <item id="uid19">Use the m-procedures tappr and cdbn to plot an approximation to the
+distribution function.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1165807603520">
+    <!--empty paragraphs get left behind.-->
+    <list id="id238159" display="block" list-type="enumerated" number-style="lower-alpha">
+      <item id="uid78576587658764">
+       
+        <equation id="id238177">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mn>1</m:mn>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mn>6</m:mn>
+                <m:mn>5</m:mn>
+              </m:mfrac>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>0</m:mn>
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mo>/</m:mo>
+                  <m:mn>2</m:mn>
+                </m:mrow>
+              </m:msubsup>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>20</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>P</m:mi>
+              <m:mn>2</m:mn>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mn>6</m:mn>
+                <m:mn>5</m:mn>
+              </m:mfrac>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mrow>
+                  <m:mn>1</m:mn>
+                  <m:mo>/</m:mo>
+                  <m:mn>2</m:mn>
+                </m:mrow>
+                <m:mn>1</m:mn>
+              </m:msubsup>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mn>6</m:mn>
+                <m:mn>5</m:mn>
+              </m:mfrac>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>1</m:mn>
+                <m:mrow>
+                  <m:mn>3</m:mn>
+                  <m:mo>/</m:mo>
+                  <m:mn>2</m:mn>
+                </m:mrow>
+              </m:msubsup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>5</m:mn>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <equation id="id238340">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mn>3</m:mn>
+              <m:mo>=</m:mo>
+              <m:mfrac>
+                <m:mn>6</m:mn>
+                <m:mn>5</m:mn>
+              </m:mfrac>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mrow>
+                  <m:mn>3</m:mn>
+                  <m:mo>/</m:mo>
+                  <m:mn>4</m:mn>
+                </m:mrow>
+                <m:mn>1</m:mn>
+              </m:msubsup>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:mfrac>
+                <m:mn>6</m:mn>
+                <m:mn>5</m:mn>
+              </m:mfrac>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>1</m:mn>
+                <m:mrow>
+                  <m:mn>5</m:mn>
+                  <m:mo>/</m:mo>
+                  <m:mn>4</m:mn>
+                </m:mrow>
+              </m:msubsup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mn>79</m:mn>
+              <m:mo>/</m:mo>
+              <m:mn>160</m:mn>
+            </m:mrow>
+          </m:math>
+        </equation>
+      </item>
+      <item id="uid88687598759785">
+       
+        <equation id="id238445">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>F</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:msubsup>
+                <m:mo>∫</m:mo>
+                <m:mn>0</m:mn>
+                <m:mi>t</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>f</m:mi>
+                <m:mi>X</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>[</m:mo>
+                  <m:mn>0</m:mn>
+                  <m:mo>,</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mfrac>
+                <m:mn>2</m:mn>
+                <m:mn>5</m:mn>
+              </m:mfrac>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>3</m:mn>
+              </m:msup>
+              <m:mo>+</m:mo>
+              <m:msub>
+                <m:mi>I</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>1</m:mn>
+                  <m:mo>.</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mo>]</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mo>-</m:mo>
+                <m:mfrac>
+                  <m:mn>7</m:mn>
+                  <m:mn>5</m:mn>
+                </m:mfrac>
+                <m:mo>+</m:mo>
+                <m:mfrac>
+                  <m:mn>6</m:mn>
+                  <m:mn>5</m:mn>
+                </m:mfrac>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mn>2</m:mn>
+                  <m:mi>t</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mfrac>
+                    <m:msup>
+                      <m:mi>t</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mn>2</m:mn>
+                  </m:mfrac>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation>
+      </item>
+      <item id="uid9675876587657665675">
+        
+        <code id="id238618" display="block">tappr
+Enter matrix [a b] of x-range endpoints  [0 2]
+Enter number of x approximation points  400
+Enter density as a function of t  (6/5)*(t&lt;=1).*t.^2 + ...
+      (6/5)*(t&gt;1).*(2 - t)
+Use row matrices X and PX as in the simple case
+cdbn
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX    % See MATLAB plot
+</code>
+      </item>
+    </list>
+</solution>
+</exercise>
+
+  </content>
+</document>

@@ -1,0 +1,911 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Independence of Events</title>
+  <metadata>
+  <md:content-id>m23253</md:content-id><md:title>Independence of Events</md:title>
+  <md:abstract>Historically, the notion of independence has played a prominent role in probability.
+If events form an independent class, much less information is required to determine probabilities of Boolean combinations and calculations are correspondingly easier. We give a precise formulation of the concept of independence in the probability sense. As in the
+case of all concepts which attempt to incorporate intuitive notions, the consequences
+must be evaluated for evidence that these ideas have been captured successfully.
+There are many situations in which we have an “operational independence,” which indicates that knowledge that one of the events has occured does not affect the likelihood that the other will occur. For a pair of events, this is suggested by the condition P(A|B) = P(A), which implies sixteen equivalent conditions. One of these, the product rule P(AB) = P(A)P(B), is taken as definitive. If any one holds so do all the others, including the product rule. For a larger class of events we require that the product rule hold for every finite subclass of two or more events in the class.</md:abstract>
+  <md:uuid>71a3c30c-9d1d-4442-8b91-426b203cae47</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="id280018">Historically, the notion of independence has played a prominent role in probability.
+If events form an independent class, much less
+information is required to determine probabilities of Boolean combinations and
+calculations are correspondingly easier. In this unit, we give a precise
+formulation of the concept of independence in the probability sense. As in the
+case of all concepts which attempt to incorporate intuitive notions, the consequences
+must be evaluated for evidence that these ideas have been captured successfully.</para>
+    <section id="cid1">
+      <title> Independence as lack of conditioning</title>
+      <para id="id280037">There are many situations in which we have an “operational independence.”</para>
+      <list id="id280042" display="block" list-type="bulleted">
+        <item id="uid1">Supose a deck of playing cards is shuffled and a card is selected at random
+then replaced with reshuffling. A second card picked on a repeated try should not be
+affected by the first choice.
+</item>
+        <item id="uid2">If customers come into a well stocked shop at different times, each unaware of the
+choice made by the others, the the item purchased by one should not be affected by
+the choice made by the other.
+</item>
+        <item id="uid3">If two students are taking exams in different courses, the grade one makes
+should not affect the grade made by the other.
+</item>
+      </list>
+      <para id="id280085">The list of examples could be extended indefinitely. In each case, we should expect to
+model the events as independent in some way. How should we incorporate the concept in our
+developing model of probability?</para>
+      <para id="id280090">We take our clue from the examples above. Pairs of events are considered. The “operational
+independence” described indicates that knowledge that one of the events has occured does not
+affect the likelihood that the other will occur. For a pair of events <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math>, this is
+the condition</para>
+      <equation id="id280118">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id280150">Occurrence of the event <emphasis effect="italics">A</emphasis> is not “conditioned by” occurrence of the event <emphasis effect="italics">B</emphasis>. Our
+basic interpretation is that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> indicates of the likelihood of the occurrence of event <emphasis effect="italics">A</emphasis>.
+The development of conditional probability in the module <link document="m23252">Conditional Probability</link>,
+leads to the interpretation of
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> as the likelihood that <emphasis effect="italics">A</emphasis> will occur on a trial, given knowledge that <emphasis effect="italics">B</emphasis> has
+occurred. If such knowledge of the occurrence of <emphasis effect="italics">B</emphasis> does not affect the likelihood of
+the occurrence of <emphasis effect="italics">A</emphasis>, we should be inclined to think of the events <emphasis effect="italics">A</emphasis> and <emphasis effect="italics">B</emphasis> as
+being independent in a probability sense.</para>
+    </section>
+    <section id="cid2">
+      <title> Independent pairs</title>
+      <para id="id280280">We take our clue from the condition <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Property <link document="m23252" target-id="id232641">(CP4)</link>
+for conditional probability (in the case of equality) yields <emphasis effect="italics">sixteen
+equivalent conditions</emphasis> as follows.</para>
+    
+      <table id="id280329" summary="First 12 of the 16 equivalent conditions">
+<tgroup cols="3"><tbody>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mi>B</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+          </tbody>
+        
+
+</tgroup>
+</table>
+      
+      <table id="id280940" summary="last four of the sixteen equivalent conditions">
+<tgroup cols="4"><tbody>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table>
+      
+      <para id="id281164">These conditions are equivalent in the sense that if any one holds, then all hold. We may
+chose any one of these as the defining condition and consider the others as equivalents
+for the defining condition. Because of its simplicity and symmetry with respect to the
+two events, we adopt the <emphasis effect="italics">product rule</emphasis> in the upper right hand corner of the table.</para>
+  
+      <para id="id279514"><emphasis effect="bold">Definition.</emphasis> The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> of events is said to be (stochastically)
+<emphasis effect="italics">independent</emphasis> iff the following <emphasis effect="italics">product rule</emphasis> holds:</para>
+      <equation id="id281396">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id281434"><emphasis effect="italics">Remark</emphasis>. Although the product rule is adopted as the basis for definition, in many
+applications the assumptions leading to independence may be formulated more naturally in
+terms of one or another of the equivalent expressions. We are free to do this, for the effect
+of assuming any one condition is to assume them all.</para>
+      <para id="id281449">The equivalences in the right-hand column of the upper portion of the table may be expressed
+as a <emphasis effect="italics">replacement rule</emphasis>, which we augment and extend below:</para>
+      <para id="id281458">If the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> independent, so is any pair obtained by taking the complement of
+either or both of the events.     </para>
+      <para id="id281485">We note two relevant facts</para>
+      <list id="id281488" display="block" list-type="bulleted"><item id="uid4">Suppose event <emphasis effect="italics">N</emphasis> has probability zero (is a <emphasis effect="italics">null</emphasis> event). Then for any
+event <emphasis effect="italics">A</emphasis>, we have <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>N</m:mi><m:mo>)</m:mo><m:mo>≤</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>N</m:mi><m:mo>)</m:mo></m:mrow></m:math>, so that the product rule
+holds. Thus <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mi>A</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair for any event <emphasis effect="italics">A</emphasis>.
+</item>
+        <item id="uid5">If event <emphasis effect="italics">S</emphasis> has probability one (is an <emphasis effect="italics">almost sure</emphasis> event), then its complement
+<emphasis effect="italics">S<sup>c</sup></emphasis> is a null event. By the replacement rule and the fact just established, <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>S</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mi>A</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+is independent, so <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>S</m:mi><m:mo>,</m:mo><m:mi>A</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent.
+</item>
+      </list>
+      <para id="id281693">The replacement rule may thus be extended to:</para>
+      <para id="id281697"><title>Replacement Rule</title>If the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> independent, so is any pair obtained by replacing either or
+both of the events by their complements or by a null event or by an almost sure event.
+      </para>
+      
+      <list id="id281731" display="block" list-type="enumerated"><title>CAUTION</title><item id="uid6">Unless at least one of the events has probability one or zero, a pair cannot be both
+independent and mutually exclusive. Intuitively, if the pair is mutually exclusive, then
+the occurrence of one requires that the other does not occur. Formally:
+Suppose <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>.
+      <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> mutually exclusive implies <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>∅</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>≠</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+      <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> independent implies <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>∅</m:mi><m:mo>)</m:mo></m:mrow></m:math></item>
+        <item id="uid7">Independence is not a property of events. Two non mutually exclusive events
+may be independent under one probability measure, but may not be independent for another.
+This can be seen by considering various probability distributions on a Venn diagram or
+minterm map.
+</item>
+      </list>
+    </section>
+    <section id="cid5">
+      <title> Independent classes</title>
+      <para id="id281979">Extension of the concept of independence to an arbitrary <emphasis effect="italics">class</emphasis> of events utilizes
+the product rule.</para>
+    
+      <para id="id281997"><emphasis effect="bold">Definition.</emphasis> A <emphasis effect="italics">class</emphasis> of events is said to be (stochastically) <emphasis effect="italics">independent</emphasis>
+iff the product rule holds for every finite subclass of two or more events in the class.</para>
+      <para id="id282012">A class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent iff all four of the following product rules hold</para>
+      <equation id="id282045"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+<m:mspace width="15pt"/>
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+      
+        </m:math>
+      </equation>
+      
+      <para id="id282214">If any <emphasis effect="italics">one or more</emphasis> of these product expressions fail, the class is <emphasis effect="italics">not</emphasis> independent.
+A similar situation holds for a class of four events: the product rule must hold for every pair,
+for every triple, and for the whole class. <emphasis effect="italics">Note</emphasis> that we say “not independent” or
+“nonindependent” rather than dependent. The reason for this becomes clearer in dealing with
+independent random variables.</para>
+      <para id="id282241">We consider some classical exmples of nonindependent classes</para>
+
+
+<example id="fs-id1170770640377"><title>Some nonindependent classes</title><list id="id282253" display="block" list-type="enumerated"><item id="uid8">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>A</m:mi><m:mn>3</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>A</m:mi><m:mn>4</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> is a partition, with each <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>. Let
+<equation id="id282358"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>⋁</m:mo><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mi>B</m:mi><m:mo>=</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>⋁</m:mo><m:msub><m:mi>A</m:mi><m:mn>3</m:mn></m:msub><m:mi>C</m:mi><m:mo>=</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>⋁</m:mo><m:msub><m:mi>A</m:mi><m:mn>4</m:mn></m:msub></m:mrow></m:math></equation>
+Then the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> has <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math> and is pairwise independent,
+but not independent, since
+<equation id="id282542"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="4pt"/><m:mtext>and</m:mtext><m:mspace width="4pt"/><m:mtext>similarly</m:mtext><m:mspace width="4pt"/><m:mtext>for</m:mtext><m:mspace width="4pt"/><m:mtext>the</m:mtext><m:mspace width="4pt"/><m:mtext>other</m:mtext><m:mspace width="4pt"/><m:mtext>pairs,</m:mtext><m:mspace width="4pt"/><m:mtext>but</m:mtext></m:mrow></m:math></equation><equation id="id282652"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn><m:mo>≠</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid9">Consider the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> with <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>D</m:mi><m:mo>=</m:mo><m:mi>B</m:mi><m:mi>D</m:mi><m:mo>=</m:mo><m:mi>∅</m:mi></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>⋁</m:mo><m:mi>D</m:mi></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>64</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>15</m:mn><m:mo>/</m:mo><m:mn>64</m:mn></m:mrow></m:math>.  Use of a minterm maps shows
+these assignments are consistent. Elementary calculations show the product rule applies
+to the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> but no two of these three events forms an independent pair.
+</item>
+      </list>
+      </example>
+
+
+      <para id="id282957">As noted above, the replacement rule holds for any pair of events. It is easy to show,
+although somewhat cumbersome to write out, that if the rule holds for any finite number <emphasis effect="italics">k</emphasis>
+of events in an independent class, it holds for any <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math> of them. By the principle
+of mathematical induction, the rule must hold for any finite subclass. We may
+extend the replacement rule as follows.</para>
+    
+      
+      <para id="id282998"><title>General Replacement Rule</title>If a class is independent, we may replace any of the sets by its complement, by a
+null event, or by an almost sure event, and the resulting class is also independent.
+Such replacements may be made for any number of the sets in the class.
+One immediate and important consequence is the following.</para>
+   
+      <para id="id283014"><title>Minterm Probabilities</title>If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent class and the the class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of individual probabilities is known, then
+the probability of every minterm may be calculated.</para>
+
+
+<example id="fs-id1170759193920"><title>Minterm probabilities for an independent class</title><para id="id283100">Suppose the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent with respective probabilities
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math>. Then</para>
+      <para id="id283209">          <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>}</m:mo></m:mrow></m:math> is independent and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>M</m:mi><m:mn>0</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>14</m:mn></m:mrow></m:math></para>
+      <para id="id283337">          <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>M</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>14</m:mn></m:mrow></m:math></para>
+      <para id="id283455">Similarly, the probabilities of the other six minterms, in order, are 0.21, 0.21, 0.06,
+0.06, 0.09, and 0.09. With these minterm probabilities, the probability of any Boolean
+combination of <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi></m:mrow></m:math>, and <emphasis effect="italics">C</emphasis> may be calculated</para>
+      </example>
+
+
+
+
+      <para id="id283503">In general, eight appropriate probabilities must be specified to determine the minterm
+probabilities for a class of three events. In the independent case, three appropriate probabilities are sufficient.</para>
+
+<example id="fs-id1170768496818"><title>Three probabilities yield the minterm probabilities</title><para id="id283516">Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent with <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>51</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn></m:mrow></m:math>,
+and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>30</m:mn></m:mrow></m:math>. Then  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn><m:mo>/</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and</para>
+      <equation id="id283698">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>A</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>51</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>51</m:mn>
+                <m:mo>-</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>30</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>7</m:mn>
+                <m:mo>×</m:mo>
+                <m:mn>0</m:mn>
+                <m:mo>.</m:mo>
+                <m:mn>5</m:mn>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id283844">With each of the basic probabilities determined, we may calculate the minterm probabilities, hence
+the probability of any Boolean combination of the events.</para>
+      </example>
+
+
+<example id="fs-id1170775708590"><title>MATLAB and the product rule</title><para id="id283874">Frequently we have a large enough independent class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> that
+it is desirable to use MATLAB (or some other computational aid) to calculate the probabilities
+of various “and” combinations (intersections) of the events or
+their complements. Suppose the independent class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>10</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> has respective
+probabilities</para>
+      <equation id="id283988">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>13</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>37</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>12</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>56</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>33</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>71</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>22</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>43</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>57</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>31</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id284122">It is desired to calculate  (a)  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:msubsup><m:mi>E</m:mi><m:mn>3</m:mn><m:mi>c</m:mi></m:msubsup><m:msub><m:mi>E</m:mi><m:mn>4</m:mn></m:msub><m:msubsup><m:mi>E</m:mi><m:mn>5</m:mn><m:mi>c</m:mi></m:msubsup><m:msubsup><m:mi>E</m:mi><m:mn>6</m:mn><m:mi>c</m:mi></m:msubsup><m:msub><m:mi>E</m:mi><m:mn>7</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>, and (b)  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msubsup><m:mi>E</m:mi><m:mn>1</m:mn><m:mi>c</m:mi></m:msubsup><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:msubsup><m:mi>E</m:mi><m:mn>3</m:mn><m:mi>c</m:mi></m:msubsup><m:msub><m:mi>E</m:mi><m:mn>4</m:mn></m:msub><m:msubsup><m:mi>E</m:mi><m:mn>5</m:mn><m:mi>c</m:mi></m:msubsup><m:msubsup><m:mi>E</m:mi><m:mn>6</m:mn><m:mi>c</m:mi></m:msubsup><m:msub><m:mi>E</m:mi><m:mn>7</m:mn></m:msub><m:msub><m:mi>E</m:mi><m:mn>8</m:mn></m:msub><m:msubsup><m:mi>E</m:mi><m:mn>9</m:mn><m:mi>c</m:mi></m:msubsup><m:msub><m:mi>E</m:mi><m:mn>10</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id284309">We may use the MATLAB function <emphasis effect="italics">prod</emphasis> and the scheme for indexing a matrix.</para>
+      <code id="id284318" display="block">&gt;&gt; p = 0.01*[13 37 12 56 33 71 22 43 57 31];
+&gt;&gt; q = 1-p;
+&gt;&gt; % First case
+&gt;&gt; e = [1 2 4 7];                  % Uncomplemented positions
+&gt;&gt; f = [3 5 6];                    % Complemented positions
+&gt;&gt; P = prod(p(e))*prod(q(f))       % p(e) probs of uncomplemented factors
+P = 0.0010                         % q(f) probs of complemented factors
+&gt;&gt; % Case of uncomplemented in even positions; complemented in odd positions
+&gt;&gt; g = find(rem(1:10,2) == 0);     % The even positions
+&gt;&gt; h = find(rem(1:10,2) ~= 0);     % The odd positions
+&gt;&gt; P = prod(p(g))*prod(q(h))
+P = 0.0034
+</code>
+      <para id="id284479">In the unit on MATLAB and Independent Classes, we extend the use of MATLAB in the calculations
+for such classes.
+</para>
+</example>
+    </section>
+  </content>
+</document>

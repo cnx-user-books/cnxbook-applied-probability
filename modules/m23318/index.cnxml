@@ -1,0 +1,943 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Random Vectors and Joint Distributions</title>
+  <metadata>
+  <md:content-id>m23318</md:content-id><md:title>Random Vectors and Joint Distributions</md:title>
+  <md:abstract>Often we have more than one random variable. Each can be considered separately, but usually they have some probabilistic ties which must be taken into account when they are considered jointly. We treat the joint case by considering the individual random variables as coordinates of a random vector. We extend the techniques for a single random variable to the multidimensional case. To simplify exposition and to keep calculations manageable, we consider a pair of random variables as coordinates of a two-dimensional random vector. The concepts and results extend directly to any finite number of random variables considered jointly. If the joint distribution for a random vector is known, then the distribution for each of the component random variables may be determined. These are known as marginal distributions. In general, the converse is not true. However, if the component random variables form an independent pair, the treatment in that case shows that the marginals determine the joint distribution.</md:abstract>
+  <md:uuid>7dae8e7f-f7e7-4572-a349-cc18c70c9f81</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title> Introduction</title>
+      <para id="id287778">A single, real-valued random variable is a function
+(mapping) from the basic space <emphasis effect="italics">Ω</emphasis> to the real line. That is, to each possible outcome <emphasis effect="italics">ω</emphasis>
+of an experiment there corresponds a real value <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math>. The mapping induces a
+probability mass distribution on the real line, which provides a means of making probability
+calculations. The distribution is described by a distribution function <emphasis effect="italics">F<sub>X</sub></emphasis>. In the
+absolutely continuous case, with no point mass concentrations, the distribution may also be
+described by a probability density function <emphasis effect="italics">f<sub>X</sub></emphasis>.  The probability density is the
+linear density of the probability mass along the real line (i.e., mass per unit length).
+The density is thus the derivative of the distribution function. For a
+simple random variable, the probability distribution consists of a point mass <emphasis effect="italics">p<sub>i</sub></emphasis> at
+each possible value <emphasis effect="italics">t<sub>i</sub></emphasis> of the random variable. Various m-procedures and m-functions aid
+calculations for simple distributions. In the absolutely continuous case, a simple approximation
+may be set up, so that calculations for the random variable are approximated by calculations on
+this simple distribution.</para>
+      <para id="id287879">Often we have more than one random variable. Each can be considered separately, but
+usually they have some probabilistic ties which must be taken into account when they
+are considered jointly. We treat the joint case by considering the individual random
+variables as <emphasis effect="italics">coordinates of a random vector</emphasis>.  We extend the techniques for a single
+random variable to the multidimensional case. To simplify exposition and to keep calculations
+manageable, we consider a pair of random variables as coordinates of a two-dimensional
+random vector. The concepts and results extend directly to any finite number of random
+variables considered jointly.</para>
+    </section>
+    <section id="cid2">
+      <title>Random variables considered jointly; random vectors</title>
+      <para id="id287902">As a starting point, consider a simple example in which the probabilistic interaction between
+two random quantities is evident.</para>
+
+
+
+<example id="fs-id8940820"><title>A selection problem</title><para id="id287914">Two campus jobs are open. Two juniors and three seniors apply. They seem equally
+qualified, so it is decided to select them by chance. Each combination of two is
+equally likely. Let <emphasis effect="italics">X</emphasis> be the number of juniors selected (possible values 0, 1, 2) and
+<emphasis effect="italics">Y</emphasis> be the number of seniors selected (possible values 0, 1, 2). However there are only
+three possible pairs of values for <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>, or <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  Others
+have zero probability, since they are impossible. Determine the probability for each of the
+possible pairs.</para>
+      <para id="id288201"><title>SOLUTION</title>There are <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>(</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>10</m:mn></m:mrow></m:math> equally likely pairs. Only one pair can be both juniors. Six
+pairs can be one of each. There are <m:math overflow="scroll"><m:mrow><m:mi>C</m:mi><m:mo>(</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math> ways to select pairs of seniors. Thus</para>
+      <equation id="id288259">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>6</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id288389">These probabilities add to one, as they must, since this exhausts the mutually exclusive
+possibilities. The probability of any other combination must be zero. We also have the
+distributions for the random variables conisidered individually.</para>
+      <equation id="id288396">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>2</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>6</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>2</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>Y</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>6</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>3</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>10</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id288578">We thus have a <emphasis effect="italics">joint distribution</emphasis> and two individual or <emphasis effect="italics">marginal distributions</emphasis>.</para>
+      </example>
+
+
+
+      <para id="id288606">We formalize as follows:</para>
+      <para id="id288610">A pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables considered jointly is treated as the pair
+of coordinate functions for a two-dimensional random vector <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  To each <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>Ω</m:mi></m:mrow></m:math>, <emphasis effect="italics">W</emphasis> assigns the pair of real numbers <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>, where
+<m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>u</m:mi></m:mrow></m:math>. If we represent the pair of values <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>}</m:mo></m:mrow></m:math> as the point
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> on the plane, then <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>, so that</para>
+      <equation id="id288812">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>W</m:mi>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>:</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Ω</m:mi>
+            <m:mo>→</m:mo>
+            <m:msup>
+              <m:mi mathvariant="bold">R</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id288859">is a mapping from the basic space <emphasis effect="italics">Ω</emphasis> to the plane <emphasis effect="italics">R<sup>2</sup></emphasis>. Since <emphasis effect="italics">W</emphasis> is a function,
+all mapping ideas extend. The inverse mapping <m:math overflow="scroll"><m:msup><m:mi>W</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup></m:math> plays a role
+analogous to that of the inverse mapping <m:math overflow="scroll"><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup></m:math> for a real random variable. A two-dimensional
+vector <emphasis effect="italics">W</emphasis> is a <emphasis effect="italics">random vector</emphasis> iff <m:math overflow="scroll"><m:mrow><m:msup><m:mi>W</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>Q</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is an event for each reasonable set
+(technically, each Borel set) on the plane.</para>
+      <para id="id288969">A fundamental result from measure theory ensures</para>
+      <para id="id288972"><m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> is a random vector iff each of the coordinate functions <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> is a random variable.
+      </para>
+      <para id="id289018">In the selection example above, we model <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/></m:mrow></m:math> (the number of juniors selected)   and
+<emphasis effect="italics">Y</emphasis> (the number of seniors selected) as random variables. Hence the vector-valued
+function</para>
+      
+      
+    </section>
+    <section id="cid3"><title>Induced distribution and the joint distribution function</title><para id="id289090">In a manner parallel to that for the single-variable case, we obtain a mapping of
+probability mass from the basic space to the plane. Since <m:math overflow="scroll"><m:mrow><m:msup><m:mi>W</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>Q</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is an event
+for each reasonable set <emphasis effect="italics">Q</emphasis> on the plane, we may assign to <emphasis effect="italics">Q</emphasis> the probability mass</para>
+      <equation id="id289135">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Q</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>W</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Q</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>Y</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>Q</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id289230">Because of the preservation of set operations by inverse mappings as in the single-variable case,
+the mass assignment determines
+<m:math overflow="scroll"><m:msub><m:mi>P</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math> as a probability measure on the subsets of the plane <emphasis effect="italics">R<sup>2</sup></emphasis>.  The argument
+parallels that for the single-variable case. The result is the <emphasis effect="italics">probability distribution
+induced by </emphasis><m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  To determine the probability that the
+vector-valued function <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> takes on a (vector) value in region <emphasis effect="italics">Q</emphasis>, we simply
+determine how much induced probability mass is in that region.</para>
+
+
+<example id="fs-id1171310572766"><title>Induced distribution and probability calculations</title><para id="id289342">To determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math>, we determine the region for which the
+first coordinate value (which we call <emphasis effect="italics">t</emphasis>) is between one and three and the second
+coordinate value (which we call <emphasis effect="italics">u</emphasis>) is greater than zero. This corresponds to
+the set <emphasis effect="italics">Q</emphasis> of points on the plane with <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>3</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>. Gometrically,
+this is the strip on the plane bounded by (but not including) the horizontal axis and by the
+vertical lines <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>3</m:mn></m:mrow></m:math> (included). The problem is to determine how much
+probability mass lies in that strip. How this is acheived depends upon the nature of the
+distribution and how it is described.</para>
+      </example>
+      <para id="id289479">As in the single-variable case, we have a distribution function.</para>
+    
+<para id="eip-id1164815564638"><emphasis effect="bold">Definition</emphasis>
+</para>
+      <para id="id289493">The <emphasis effect="italics">joint distribution function </emphasis><m:math overflow="scroll"><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> is
+given by</para>
+      <equation id="id289546">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>∈</m:mo>
+            <m:msup>
+              <m:mi mathvariant="bold">R</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id289652">This means that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is equal to the probability mass in the region <m:math overflow="scroll"><m:msub><m:mi>Q</m:mi><m:mrow><m:mi>t</m:mi><m:mi>u</m:mi></m:mrow></m:msub></m:math>
+on the plane such that the first coordinate is less than or equal to <emphasis effect="italics">t</emphasis> and the second
+coordinate is less than or equal to <emphasis effect="italics">u</emphasis>.  Formally, we may write</para>
+      <equation id="id289728">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∈</m:mo>
+              <m:msub>
+                <m:mi>Q</m:mi>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mi>u</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>Q</m:mi>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>s</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>:</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>r</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>s</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id289880">Now for a given point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow></m:math>, the region <m:math overflow="scroll"><m:msub><m:mi>Q</m:mi><m:mrow><m:mi>a</m:mi><m:mi>b</m:mi></m:mrow></m:msub></m:math> is the set of points <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> on
+the plane which are on or to the left of the vertical line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math><emphasis effect="italics">and</emphasis>
+on or below the horizontal line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> (see Figure 1 for specific point <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>b</m:mi></m:mrow></m:math>).
+We refer to such regions as semiinfinite intervals on the plane.</para>
+      <para id="id290026">The theoretical result quoted in the real variable case extends to ensure that a distribution on the
+plane is determined uniquely by consistent assignments to the semiinfinite intervals
+<m:math overflow="scroll"><m:msub><m:mi>Q</m:mi><m:mrow><m:mi>t</m:mi><m:mi>u</m:mi></m:mrow></m:msub></m:math>. Thus, the induced distribution is determined completely by the joint
+distribution function.</para>
+      <figure id="uid1"><media id="uid1_media" alt="A diagram showing the ragion of a graph representing Q_ab. It is a shaded square plotted on a typical two dimension graph.">
+          <image mime-type="image/png" src="../../media/fig8_2_1.png" id="uid1_onlineimage" width="275"><!-- NOTE: attribute width changes image size online (pixels). original width is 275. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_2_1.eps" id="uid1_printimage" print-width="3.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The region <m:math overflow="scroll"><m:msub><m:mi>Q</m:mi><m:mrow><m:mi>a</m:mi><m:mi>b</m:mi></m:mrow></m:msub></m:math> for the value <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</caption></figure>
+    <para id="eip-id1165078337048"><emphasis effect="bold">Distribution function for a discrete random vector</emphasis>
+</para>
+      <para id="id290122">The induced distribution consists of point masses. At point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> in the range of
+<m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math> there is probability mass <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>[</m:mo><m:mi>W</m:mi><m:mo>=</m:mo><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  As in the general case, to determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>[</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>Q</m:mi><m:mo>]</m:mo></m:mrow></m:math> we determine how much probability
+mass is in the region. In the discrete case (or in any case where there are point mass
+concentrations) one must be careful to note whether or not the boundaries are
+included in the region, should there be mass concentrations on the boundary.</para>
+      <figure id="uid2"><media id="uid2_media" alt="A graph of the joint distribution for Example 1. ">
+          <image mime-type="image/png" src="../../media/fig8_2_2.png" id="uid2_onlineimage" width="236"><!-- NOTE: attribute width changes image size online (pixels). original width is 236. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_2_2-a3e8.eps" id="uid2_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+
+
+        
+      <caption>The joint distribution for <link target-id="fs-id1171300420813"/>.</caption></figure>
+
+<example id="fs-id1171300420813"><title>Distribution function for the selection problem in <link target-id="fs-id8940820"/></title><para id="id290338">The probability distribution is quite simple. Mass 3/10 at (0,2), 6/10 at (1,1), and
+1/10 at (2,0). This distribution is plotted in <link target-id="uid2"/>. To determine (and visualize)
+the joint distribution function, think of moving the point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> on the plane. The
+region <m:math overflow="scroll"><m:msub><m:mi>Q</m:mi><m:mrow><m:mi>t</m:mi><m:mi>u</m:mi></m:mrow></m:msub></m:math> is a giant “sheet” with corner at <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  The value of <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+is the amount of probability covered by the sheet. This value is constant over any grid
+cell, including the left-hand and lower boundariies, and is the value taken on at the lower
+left-hand corner of the cell. Thus, if <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is in any of the
+three squares on the lower left hand part of the diagram, no probability mass is covered
+by the sheet with corner in the cell. If <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is on or in the square having probability
+6/10 at the lower left-hand corner, then the sheet covers that probability, and the value of
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>6</m:mn><m:mo>/</m:mo><m:mn>10</m:mn></m:mrow></m:math>.  The situation in the other cells may be checked out by this procedure.</para>
+      </example>
+    
+<para id="eip-id21095383"><emphasis effect="bold">Distribution function for a mixed distribution</emphasis></para>
+<example id="fs-id6704650"><title>A mixed distribution</title><para id="id290560">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> produces a mixed distribution as follows (see <link target-id="uid7"/>)</para>
+      <para id="id290587">          Point masses 1/10 at points (0,0), (1,0), (1,1), (0,1)</para>
+      <para id="id290591">          Mass 6/10 spread uniformly over the unit square with these vertices</para>
+      <para id="id290597">The joint distribution function is zero in the second, third, and fourth quadrants.</para>
+      <list id="id290601" display="block" list-type="bulleted">
+        <item id="uid3">If the point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is in the square or on the left and lower boundaries, the
+sheet covers the point mass at (0,0) plus 0.6 times the area covered within the square.
+Thus in this region
+<equation id="id290640"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>10</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mn>6</m:mn><m:mi>t</m:mi><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid4">If the pont <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is above the square (including its upper boundary) but to the
+left of the line <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the sheet covers two point masses plus the portion of the
+mass in the square to the left of the vertical line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  In this case
+<equation id="id290770"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>10</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>6</m:mn><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid5">If the point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is to the right of the square (including its boundary) with
+<m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the sheet covers two point masses and the portion of the mass in the
+square below the horizontal line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>, to give
+<equation id="id290905"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>10</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>6</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid6">If <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is above and to the right of the square (i.e., both <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi></m:mrow></m:math>).
+then all probability mass is covered and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> in this region.
+</item>
+      </list>
+      </example>
+      <!--empty paragraphs get left behind.-->
+      <figure id="uid7"><media id="uid7_media" alt="The Mixed joint distribution for example 1. The graph has a shaded box formed by a two intersecting lines and the x and y axis. The intersection of the two line segments is labeled {l,u}. Further along the x and y axis two more line segments extend perpendicularly to their respective axis and intersect at (1,1). About this box is the phrase 'Point mass 1/10 al each vertex'. Inside the box created by the outer lines is the phrase 'Mass 6/10 spread uniformly on the square. Density 0.6'. Underneath the entire is the phrase 'Mass 0.1+0.6tu in region covered by infinite sheet with corner at (t,u). ">
+          <image mime-type="image/png" src="../../media/fig8_2_3.png" id="uid7_onlineimage" width="295"><!-- NOTE: attribute width changes image size online (pixels). original width is 295. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_2_3.eps" id="uid7_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Mixed joint distribution for <link target-id="fs-id6704650"/>.</caption></figure>
+    </section>
+    
+    
+    
+    <section id="cid7"><title>Marginal distributions</title><para id="id291106">If the joint distribution for a random vector is known, then the distribution for each of the
+component random variables may be determined. These are known as <emphasis effect="italics">marginal distributions</emphasis>.  In general, the converse is not true. However, if the component random variables form an
+independent pair, the treatment in that case shows that the marginals determine the joint
+distribution.</para>
+      <para id="id291118">To begin the investigation, note that</para>
+      <equation id="id291122">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>&lt;</m:mo>
+              <m:mi>∞</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>i.e.,</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>Y</m:mi>
+            <m:mspace width="4.pt"/>
+            <m:mtext>can</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>take</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>any</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>its</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>possible</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>values</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id291248">Thus</para>
+      <equation id="id291254"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>∞</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo movablelimits="true" form="prefix">lim</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>u</m:mi>
+                <m:mo>→</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id291353">This may be interpreted with the aid of <link target-id="uid8"/>. Consider the sheet for point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <figure id="uid8"><media id="uid8_media" alt="A graph showing the construction for obtaining the marginal distribution for X. The x axis is labeled t and the y-axis is labeled u. This diagram is complex. Perpendicular to the x axis there are two line segments. The first line segment is a dotted line and then next to that is the second line which is a solid line. The area between these two lines is shaded gray. These lines and this shaded area extends on both side of the x-axis. Perpendicular to the y-axis, a dashed line extends on both sides of the y-axis and ends when it reaches the solid line ascending from the x-axis forming a box. Inside the resulting box is Q_tu, with an arrow pointing up and intersecting the dashed line. Above this dashed line is the phrase 'Half plane Q_t'. To the right of the solid vertical line and above where the horizontal dashed line ends there is the phrase 'Boundary moves up to include all probability mass in the half plane' with an arrow pointing down and to the left and ending at the horizontal dashed line. To the right of this dashed line and on the right side of the solid vertical line there is the phrase 'u increases without limit'. Below the x-axis and to the right of the solid vertical line is the phrase 'f_X(t)= probability in the half plane=F_XY(t,∞)'.">
+          <image mime-type="image/png" src="../../media/fig8_3_1.png" id="uid8_onlineimage" width="472"><!-- NOTE: attribute width changes image size online (pixels). original width is 472. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_3_1.eps" id="uid8_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Construction for obtaining the marginal distribution for <emphasis effect="italics">X</emphasis>.</caption></figure>
+      <para id="id291405">If we push the point up vertically, the upper boundary of <m:math overflow="scroll"><m:msub><m:mi>Q</m:mi><m:mrow><m:mi>t</m:mi><m:mi>u</m:mi></m:mrow></m:msub></m:math> is pushed up until eventually
+all probability mass on or to the left of the vertical line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math> is included. This
+is the total probability that <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi></m:mrow></m:math>. Now <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> describes probability mass on the line.
+The probability mass described by <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is the same as the total joint probability mass on
+or to the left of the vertical line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  We may think of the mass in the half
+plane being projected onto the horizontal line to give the <emphasis effect="italics">marginal</emphasis> distribution for <emphasis effect="italics">X</emphasis>.
+A parallel argument holds for the marginal for <emphasis effect="italics">Y</emphasis>.</para>
+      <equation id="id291554">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>∞</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mtext>mass</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>on</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>below</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>horizontal</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>line</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>through</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id291680">This mass is projected onto the vertical axis to give the marginal distribution for <emphasis effect="italics">Y</emphasis>.
+</para>
+    <para id="eip-id4108717"><emphasis effect="bold">Marginals for a joint discrete distribution</emphasis>
+</para>
+      <para id="id291707">Consider a joint simple distribution.</para>
+      <equation id="id291710"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id291897">Thus, all the probability mass on the vertical line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math> is projected onto
+the point <emphasis effect="italics">t<sub>i</sub></emphasis> on a horizontal line to give <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>.  Similarly, all the probability
+mass on a horizontal line through <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is projected onto the point <emphasis effect="italics">u<sub>j</sub></emphasis> on a
+vertical line to give <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>.</para>
+
+<example id="fs-id1171310550774"><title>Marginals for a discrete distribution</title><para id="id292046">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> produces a joint distribution that places mass 2/10 at each
+of the five points</para>
+      
+      <para id="eip-447"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>0</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>(</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>1</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>0</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>(</m:mo>
+            <m:mn>2</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>2</m:mn>
+            <m:mo>)</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>(</m:mo>
+            <m:mn>3</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mn>1</m:mn>
+            <m:mo>)</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+          </m:mrow>
+        </m:math>
+(See <link target-id="uid9"/>)</para><para id="id292211">The marginal distribution for <emphasis effect="italics">X</emphasis> has masses 2/10, 2/10, 4/10, 2/10 at points
+<m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mn>3</m:mn></m:mrow></m:math>, respectively. Similarly, the marginal distribution for <emphasis effect="italics">Y</emphasis>
+has masses 4/10, 4/10, 2/10 at points <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>2</m:mn></m:mrow></m:math>, respectively.</para>
+      </example>
+      <figure id="uid9"><media id="uid9_media" alt="A graph showing the marginal distribution for X. The figure consist of a 4x3 grid of dashed lines creating on the positive side of a two dimensional graph. Below this element of the figure is the second element which consist of a line segment with four hollow circle situated on the line.">
+          <image mime-type="image/png" src="../../media/fig8_3_2.png" id="uid9_onlineimage" width="362"><!-- NOTE: attribute width changes image size online (pixels). original width is 362. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_3_2.eps" id="uid9_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Marginal distribution for Example 1.</caption></figure>
+
+
+
+<example id="fs-id5943387"><para id="id292356">Consider again the joint distribution in <link target-id="fs-id6704650"/>.
+The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> produces a mixed distribution as follows:</para>
+      <para id="id292383">          Point masses 1/10 at points (0,0), (1,0), (1,1), (0,1)</para>
+      <para id="id292387">          Mass 6/10 spread uniformly over the unit square with these vertices</para>
+      <para id="id292393">The construction in <link target-id="uid10"/> shows the graph of the marginal distribution function <emphasis effect="italics">F<sub>X</sub></emphasis>.  There is a jump in the amount of 0.2 at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, corresponding to the two point masses
+on the vertical line. Then the mass increases linearly with <emphasis effect="italics">t</emphasis>, slope 0.6, until a final
+jump at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> in the amount of 0.2 produced by the two point masses on the vertical
+line. At <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>, the total mass is “covered” and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is constant at one for
+<m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>≥</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  By symmetry, the marginal distribution for <emphasis effect="italics">Y</emphasis> is the same.</para>
+      </example>
+
+
+      <figure id="uid10"><media id="uid10_media" alt="The figure is very complex. It consist of two separate elements situated vertically to one another. The upper figure is a two dimensional graph, a line segments extends from each of axes  and forms a square. Bisecting this square is another line. To the left of this line the square is shaded, while the an arrow points to the right side with the phrase 'Mass 6/10 spread uniformly on the square. Density 0.6. Above the square there is the phrase 'Point masses 1/10 at each vertex'. Below the square there is a squiggly arrow point to the shaded portion of the square with the phrase 'Mass 0.2+0.6t covered by the half plane.' Below this element is another graph. At 0.3 there is a line extending up and to the right with an arrow pointing to it labeled F_X(t)=0.2+0.6t. On the y-axis there two horizontal lines above the point at which the the previously discussed line segment begins. The first of these lines is labeled 0.8 the second is labeled 1. To the far right of the line labeled 1 there is line segment extending to the right. Below this figure is the label 'Marginal distribution for X'. ">
+          <image mime-type="image/png" src="../../media/fig8_3_3.png" id="uid10_onlineimage" width="341"><!-- NOTE: attribute width changes image size online (pixels). original width is 341. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_3_3.eps" id="uid10_printimage" print-width="3.3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Marginal distribution for <link target-id="fs-id5943387"/>.</caption></figure>
+    </section>
+    
+  </content>
+</document>

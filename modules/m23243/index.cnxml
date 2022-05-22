@@ -1,0 +1,1075 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+  <title>Likelihood</title>
+  <metadata>
+  <md:content-id>m23243</md:content-id><md:title>Likelihood</md:title>
+  <md:abstract>Early developments of probability as a mathematical discipline came as a response to questions about games of chance played repeatedly. The mathematical formulation
+owes much to the work of Pierre de Fermat and Blaise Pascal in the seventeenth century. The game is described in terms of a well defined trial (a play); the result of any trial is one of a specific set of distinguishable outcomes. Although the result of any play is not predictable, certain “statistical regularities” of results are observed. In classical probability, the possible results are described in ways that make each result seem equally likely. If there are N such possible “equally likely” results, each is assigned a probability 1/N. 
+The developers of mathematical probability also took cues from early work on the analysis of statistical data. To apply these results, one considers the selection of a member of the population on a chance basis. One then assigns the probability that such a person will have a given condition. The trial here is the selection of a person, but the interest is in the condition.  Out of this statistical formulation came an interest not only in probabilities as fractions or relative frequencies but also in averages or expectatons. These averages play an essential role in modern probability. This approach avoided the "equally likely"
+limitation of classical probability.
+Inherent in informal thought, as well as in precise analysis, is the notion of an event to which a probability may be assigned as a measure of the likelihood the event will occur will occur on any trial. A successful mathematical model must formulate these notions with precision. The event corresponding to some characteristic of the possible outcomes is the set of those outcomes having this characteristic. The event occurs if and only if the outcome of the trial is a member of that set (i.e., has the characteristic determining the event).</md:abstract>
+  <md:uuid>ab0fde1e-feb3-4d64-a60c-ae36e67440cf</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title>Introduction</title>
+      <para id="id76731">Probability models and techniques permeate many important areas of
+modern life. A variety of types of random processes, reliability models and
+techniques, and statistical considerations in experimental work play a significant
+role in engineering and the physical sciences. The solutions of management
+decision problems use as aids decision analysis, waiting line theory, inventory
+theory, time series, cost analysis under uncertainty — all rooted in
+applied probability theory. Methods of statistical analysis employ probability
+analysis as an underlying discipline.</para>
+      <para id="id76744">Modern probability developments are increasingly sophisticated mathematically.
+To utilize these, the practitioner needs a sound conceptual basis which, fortunately,
+can be attained at a moderate level of mathematical sophistication. There is need to
+develop a feel for the structure of the underlying mathematical model, for the role
+of various types of assumptions, and for the principal strategies of problem
+formulation and solution.</para>
+      <para id="id76751">Probability has roots that extend far back into antiquity. The notion of
+“chance” played a central role in the ubiquitous practice of gambling. But
+chance acts were often related to magic or religion. For example, there
+are numerous instances in the Hebrew Bible in which decisions were made
+“by lot” or some other chance mechanism, with the understanding that
+the outcome was determined by the will of God. In the New Testament, the
+book of Acts describes the selection of a successor to Judas Iscariot
+as one of “the Twelve.” Two names, Joseph Barsabbas and Matthias, were
+put forward. The group prayed, then drew lots, which fell on Matthias.</para>
+      <para id="id76761">Early developments of probability as a mathematical discipline, freeing
+it from its religious and magical overtones, came as a response to questions
+about games of chance played repeatedly. The mathematical formulation
+owes much to the work of Pierre de Fermat and Blaise Pascal in the
+seventeenth century. The game is described in terms of a well defined trial
+(a play); the result of any trial is one of a specific set of distinguishable
+outcomes. Although the result of any play is not predictable,
+certain “statistical regularities” of results are observed. The possible
+results are described in ways that make each result seem equally likely.
+If there are <emphasis effect="italics">N</emphasis> such possible “equally likely” results, each is assigned a
+probability <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>N</m:mi></m:mrow></m:math>.</para>
+      <para id="id76798">The developers of mathematical probability also took cues from early
+work on the analysis of statistical data. The pioneering work of John Graunt
+in the seventeenth century was directed to the study of “vital statistics,”
+such as records of births, deaths, and various diseases. Graunt determined the
+fractions of people in London who died from various diseases during a period
+in the early seventeenth century. Some thirty years later, in 1693, Edmond Halley (for
+whom the comet is named) published the first life insurance tables. To apply
+these results, one considers the selection of a member of the population on a
+chance basis. One then assigns the probability that such a person will
+have a given disease. The trial here is the selection of a person, but the
+interest is in certain characteristics. We may speak of the event
+that the person selected will die of a certain disease– say “consumption.”
+Although it is a person who is selected, it is death from consumption which is of
+interest. Out of this statistical formulation came an interest not only in
+probabilities as fractions or relative frequencies but also in averages or
+expectatons. These averages play an essential role in modern probability.</para>
+      <para id="id76823">We do not attempt to trace this history, which was long and halting, though marked
+by flashes of brilliance. Certain concepts and patterns which emerged
+from experience and intuition called for clarification. We move
+rather directly to the mathematical formulation (the “mathematical model”) which
+has most successfully captured these essential ideas. This is the model, rooted in the mathematical
+system known as measure theory, is called the <emphasis effect="italics">Kolmogorov model</emphasis>, after the brilliant Russian
+mathematician A.N. Kolmogorov (1903-1987). Kolmogorov succeeded in bringing together various
+developments begun at the turn of the century, principally in the work of E. Borel and H. Lebesgue on
+measure theory. Kolmogorov published his epochal work in German in 1933. It was translated
+into English and published in 1956 by Chelsea Publishing Company.</para>
+    </section>
+    <section id="cid2">
+      <title>Outcomes and events</title>
+      <para id="id76852">Probability applies to situations in which there is a well defined trial
+whose possible outcomes are found among those in a given basic set. The following are typical.</para>
+      <list id="id76856" display="block" list-type="bulleted">
+        <item id="uid1">A pair of dice is rolled;
+the outcome is viewed in terms of the numbers of spots appearing on the top faces of the two
+dice. If the outcome is viewed as an ordered pair, there are thirty six equally
+likely outcomes. If the outcome is characterized by the total number of spots on the two
+die, then there are eleven possible outcomes (not equally likely).
+</item>
+        <item id="uid2">A poll of a voting population is taken. Outcomes are characterized by responses to a question.
+For example, the responses may be categorized as positive (or favorable), negative (or unfavorable), or
+uncertain (or no opinion).
+</item>
+        <item id="uid3">A measurement is made. The outcome is described by a number representing the magnitude of
+the quantity in appropriate units. In some cases, the possible values fall among
+a finite set of integers. In other cases, the possible values may be any real number (usually in some
+specified interval).
+</item>
+        <item id="uid4">Much more sophisticated notions of outcomes are encountered in modern theory. For example,
+in communication or control theory, a communication system experiences only one signal
+stream in its life. But a communication system is not designed for a single signal
+stream. It is designed for one of an infinite <emphasis effect="italics">set</emphasis> of possible signals. The
+likelihood of encountering a certain kind of signal is important in the design. Such
+signals constitute a subset of the larger set of all possible signals.
+</item>
+      </list>
+      <para id="id76923">These considerations show that our probability model must deal with</para>
+      <list id="id76926" display="block" list-type="bulleted">
+        <item id="uid5">A <emphasis effect="italics">trial</emphasis> which results in (selects) an <emphasis effect="italics">outcome</emphasis> from a <emphasis effect="italics">set</emphasis> of conceptually
+possible outcomes. The trial is not successfully completed until one of the outcomes is
+realized.
+</item>
+        <item id="uid6">Associated with each outcome is a certain characteristic (or combination of characteristics)
+pertinent to the problem at hand. In polling for political opinions, it is a person who is
+selected. That person has many features and characteristics (race, age, gender, occupation,
+religious preference, preferences for food, etc.). But the primary feature, which characterizes
+the outcome, is the political opinion on the question asked. Of course, some of the
+other features may be of interest for analysis of the poll.
+</item>
+      </list>
+      <para id="id76635">Inherent in informal thought, as well as in precise analysis, is the notion of an <emphasis effect="italics">event</emphasis>
+to which a <emphasis effect="italics">probability</emphasis> may be assigned as a measure of the <emphasis effect="italics">likelihood</emphasis> the event
+will <emphasis effect="italics">occur</emphasis> on any trial. A successful mathematical model must formulate these
+notions with precision.
+An <emphasis effect="italics">event</emphasis> is identified in terms of the characteristic of the outcome observed.
+The event “a favorable response” to a polling question <emphasis effect="italics">occurs</emphasis> if the outcome observed
+has that characteristic; i.e., iff (if and only if) the respondent replies in the affirmative. A hand of five cards
+is drawn. The event “one or more aces” <emphasis effect="italics">occurs</emphasis> iff the hand actually drawn has at least
+one ace. If that same hand has two cards of the suit of clubs, then the event “two
+clubs” has <emphasis effect="italics">occurred</emphasis>. These considerations lead to the following definition.</para>
+   
+   <para id="id76700"><emphasis effect="bold">Definition.</emphasis> The <emphasis effect="italics">event</emphasis> determined by some characteristic of the possible outcomes
+is the set of those outcomes having this characteristic. The event <emphasis effect="italics">occurs</emphasis> iff
+the outcome of the trial is a member of that set (i.e., has the characteristic determining
+the event).</para>
+      <list id="id77123" display="block" list-type="bulleted"><item id="uid7">The event of throwing a “seven” with a pair of dice (which we call the event
+SEVEN) consists of the set of those possible outcomes with a total of seven spots turned up.
+The event SEVEN occurs iff the outcome is one of those combinations with a total of seven spots
+(i.e., belongs to the event SEVEN). This could be represented as follows. Suppose
+the two dice are distinguished (say by color) and a picture is taken of each of the thirty
+six possible combinations. On the back of each picture, write the number of spots. Now the
+event SEVEN consists of the set of all those pictures with seven on the back. Throwing
+the dice is equivalent to selecting randomly one of the thirty six pictures. The event SEVEN
+occurs iff the picture selected is one of the set of those pictures with seven on the back.
+</item>
+        <item id="uid8">Observing for a very long (theoretically infinite) time the signal passing through
+a communication channel is equivalent to selecting one of the conceptually possible signals.
+Now such signals have many characteristics: the maximum peak value, the frequency spectrum,
+the degree of differentibility, the average value over a given time period, etc. If the
+signal has a peak absolute value less than ten volts, a frequency spectrum essentially
+limited from 60 herz to 10,000 herz, with peak rate of change 10,000 volts per second, then
+it is <emphasis effect="italics">one</emphasis> of the <emphasis effect="italics">set</emphasis> of signals with those characteristics. The event "the signal
+has these characteristics" has occured. This set (event) consists of an uncountable infinity
+of such signals.
+</item>
+      </list>
+      <para id="id77181">One of the advantages of this formulation of an event as a subset of the basic set
+of possible outcomes is that we can use elementary set theory as an aid to
+formulation. And tools, such as <link document="m23246">Venn diagrams and indicator functions</link> for
+studying event combinations, provide powerful aids to establishing and visualizing relationships
+between events. We formalize these ideas as follows:</para>
+      <list id="id77193" display="block" list-type="bulleted"><item id="uid9">Let <m:math>
+<m:mi>Ω</m:mi>
+</m:math> be the set of all possible outcomes of the basic trial or experiment. We
+call this the <emphasis effect="italics">basic space</emphasis> or the <emphasis effect="italics">sure event</emphasis>, since if the trial is carried
+out successfully the outcome will be in <m:math>
+<m:mi>Ω</m:mi>
+</m:math>; hence, the event <m:math>
+<m:mi>Ω</m:mi>
+</m:math> is sure to occur
+on any trial. We must specify unambiguously what outcomes are “possible.” In flipping
+a coin, the only accepted outcomes are “heads” and “tails.” Should the coin stand on
+its edge, say by leaning against a wall, we would ordinarily consider that to be the result of
+an improper trial.
+</item>
+        <item id="uid10">As we note above, each outcome may have several characteristics which are the
+basis for describing events. Suppose we are drawing a single card from an ordinary deck
+of playing cards. Each card is characterized by a “face value” (two through ten, jack, queen,
+king, ace) and a “suit” (clubs, hearts, diamonds, spades). An ace is drawn (the event ACE
+occurs) iff the outcome (card) belongs to the set (event) of four cards with ace as face value.
+A heart is drawn iff the card belongs to the set of thirteen cards with heart as suit. Now
+it may be desirable to specify events which involve various logical combinations of the
+characteristics. Thus, we may be interested in the event the face value is jack <emphasis effect="italics">or</emphasis>
+king <emphasis effect="italics">and</emphasis> the suit is heart  <emphasis effect="italics">or</emphasis> spade. The set for jack  <emphasis effect="italics">or</emphasis> king is represented by
+the union <m:math overflow="scroll"><m:mrow><m:mi>J</m:mi><m:mo>∪</m:mo><m:mi>K</m:mi></m:mrow></m:math> and the set for heart <emphasis effect="italics">or</emphasis> spade is the union <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>∪</m:mo><m:mi>S</m:mi></m:mrow></m:math>. The occurrence
+of both conditions means the outcome is in the intersection (common part) designated by <m:math overflow="scroll"><m:mo>∩</m:mo></m:math>.
+Thus the event referred to is
+<equation id="id77334"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>J</m:mi><m:mo>∪</m:mo><m:mi>K</m:mi><m:mo>)</m:mo><m:mo>∩</m:mo><m:mo>(</m:mo><m:mi>H</m:mi><m:mo>∪</m:mo><m:mi>S</m:mi><m:mo>)</m:mo></m:mrow></m:math></equation>
+The notation of set theory thus makes possible a precise formulation of the event <m:math>
+<m:mi>E</m:mi>
+</m:math>.
+
+</item>
+        <item id="uid11">Sometimes we are interested in the situation in which the outcome does <emphasis effect="italics">not</emphasis> have
+one of the characteristics. Thus the set of cards which does not have suit heart is the
+set of all those outcomes not in event <m:math>
+<m:mi>H</m:mi>
+</m:math>. In set theory, this is the <emphasis effect="italics">complementary</emphasis>
+set (event) <m:math>
+<m:msup>
+<m:mi>H</m:mi>
+<m:mi>c</m:mi>
+</m:msup>
+</m:math>.
+</item>
+        <item id="uid12">Events are <emphasis effect="italics">mutually exclusive</emphasis> iff not more than one can occur on any
+trial. This is the condition that the sets representing the events are disjoint (i.e., have
+no members in common).
+</item>
+        <item id="uid13">The notion of the <emphasis effect="italics">impossible event</emphasis> is useful. The impossible event is, in set terminology,
+the <emphasis effect="italics">empty set</emphasis><m:math>
+<m:mi>∅</m:mi>
+</m:math>. Event <m:math>
+<m:mi>∅</m:mi>
+</m:math>   cannot occur, since it has no members
+(contains no outcomes). One use of <m:math>
+<m:mi>∅</m:mi>
+</m:math> is to provide a simple way of indicating that two sets
+are mutually exclusive. To say <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>=</m:mo><m:mi>∅</m:mi></m:mrow></m:math> (here we use the alternate <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mi>B</m:mi></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>∩</m:mo><m:mi>B</m:mi></m:mrow></m:math>) is to
+assert that events <m:math>
+<m:mi>A</m:mi>
+</m:math> and <m:math>
+<m:mi>B</m:mi>
+</m:math> have no outcome in common, hence cannot both occur on any given trial.
+</item>
+        <item id="uid14">Set <emphasis effect="italics">inclusion</emphasis> provides a convenient way to designate the fact that event <m:math>
+<m:mi>A</m:mi>
+</m:math>
+implies event <m:math>
+<m:mi>B</m:mi>
+</m:math>, in the sense that the occurrence of <m:math>
+<m:mi>A</m:mi>
+</m:math> requires the occurrence of <m:math>
+<m:mi>B</m:mi>
+</m:math>.
+The set relation <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi></m:mrow></m:math> signifies that every element (outcome) in <m:math>
+<m:mi>A</m:mi>
+</m:math> is also
+in <m:math>
+<m:mi>B</m:mi>
+</m:math>. If a trial results in an outcome in <m:math>
+<m:mi>A</m:mi>
+</m:math> (event <m:math>
+<m:mi>A</m:mi>
+</m:math> occurs), then that outcome
+is also in <m:math>
+<m:mi>B</m:mi>
+</m:math> (so that event <m:math>
+<m:mi>B</m:mi>
+</m:math> has occurred).
+</item>
+      </list>
+      <para id="id77845">The language and notaton of sets provide a precise language and notation for events and
+their combinations. We collect below some useful facts about logical (often called Boolean) combinations of
+events (as sets). The notion of Boolean combinations may be applied to arbitrary classes of sets.
+For this reason, it is sometimes useful to use an <emphasis effect="italics">index set</emphasis> to designate membership. We say
+the index <emphasis effect="italics">J</emphasis> is <emphasis effect="italics">countable</emphasis> if it is finite or countably infinite; otherwise it is
+<emphasis effect="italics">uncountable</emphasis>.  In the following it may be arbitrary.</para>
+      <equation id="id77877">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>{</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>:</m:mo>
+            <m:mi>i</m:mi>
+            <m:mo>∈</m:mo>
+            <m:mi>J</m:mi>
+            <m:mo>}</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>class</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>sets</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mtext>,</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>one</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>each</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>index</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>i</m:mi>
+            <m:mspace width="4.pt"/>
+            <m:mtext>in</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>index</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>set</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mi>J</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id78003">For example, if <m:math overflow="scroll"><m:mrow><m:mi>J</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>3</m:mn><m:mo>}</m:mo></m:mrow></m:math> then <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> is the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>3</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math>, and</para>
+      <equation id="id78111">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munder>
+              <m:mo>⋃</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>∪</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>∪</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:munder>
+              <m:mo>⋂</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>∩</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>∩</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id78236">If <m:math overflow="scroll"><m:mrow><m:mi>J</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>}</m:mo></m:mrow></m:math> then <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> is the sequence
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math>. and</para>
+      <equation id="id78328">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munder>
+              <m:mo>⋃</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>⋃</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:munder>
+              <m:mo>⋂</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>⋂</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id78445">If event <emphasis effect="italics">E</emphasis> is the <emphasis effect="italics">union</emphasis> of a class of events, then event <emphasis effect="italics">E</emphasis> occurs iff <emphasis effect="italics">at least one</emphasis>
+event in the class occurs. If <emphasis effect="italics">F</emphasis> is the <emphasis effect="italics">intersection</emphasis> of a class of events, then
+event <emphasis effect="italics">F</emphasis> occurs iff <emphasis effect="italics">all</emphasis> events in the class occur on the trial.</para>
+      <para id="id78510">The role of disjoint unions is so important in probability that it is useful to
+have a symbol indicating the union of a disjoint class. We use the big V
+to indicate that the sets combined in the union are disjoint. Thus, for example, we write</para>
+      <equation id="id78516">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mi>n</m:mi>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>to</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>signify</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>A</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>⋃</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>proviso</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="4.pt"/>
+            <m:mtext>form</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>a</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>disjoint</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>class</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+<example id="fs-id1169062676144"><title>Events derived from a class</title><!--empty paragraphs get left behind.-->
+      <para id="id78703">Consider the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> of events. Let <emphasis effect="italics">A<sub>k</sub></emphasis> be the
+event that exactly <emphasis effect="italics">k</emphasis> occur on a trial and <emphasis effect="italics">B<sub>k</sub></emphasis> be the event that <emphasis effect="italics">k</emphasis> or more
+occur on a trial. Then</para>
+      <equation id="id78802"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋁</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋁</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:mrow>
+        <m:mspace width="10pt"/>
+          <m:mrow>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      
+      </equation>
+      
+      <para id="id79110">The unions are disjoint since each pair of terms has <emphasis effect="italics">E<sub>i</sub></emphasis> in one and <emphasis effect="italics">E<sub>i</sub><sup>c</sup></emphasis>
+in the other, for at least one <emphasis effect="italics">i</emphasis>. Now the <emphasis effect="italics">B<sub>k</sub></emphasis> can be expressed in terms of the <emphasis effect="italics">A<sub>k</sub></emphasis>.
+For example</para>
+      <equation id="id79186">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id79222">The union in this expression for <emphasis effect="italics">B<sub>2</sub></emphasis> is disjoint since we cannot have exactly two
+of the <emphasis effect="italics">E<sub>i</sub></emphasis> occur <emphasis effect="italics">and</emphasis> exactly three of them occur on the same trial. We
+may express <emphasis effect="italics">B<sub>2</sub></emphasis> directly in terms of the <emphasis effect="italics">E<sub>i</sub></emphasis> as follows:</para>
+      <equation id="id79291">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>B</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>∪</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>∪</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id79360">Here the union is <emphasis effect="italics">not</emphasis> disjoint, in general. However, if one pair, say <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math>
+is disjoint, then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo><m:mi>∅</m:mi></m:mrow></m:math> and the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> is
+disjoint (draw a Venn diagram). Suppose <emphasis effect="italics">C</emphasis> is the event the first two occur or
+the last two occur but no other combination. Then</para>
+      <equation id="id79490">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>C</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋁</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id79557">Let <emphasis effect="italics">D</emphasis> be the event that one or three of the events occur.</para>
+      <equation id="id79572">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>D</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋁</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>⋁</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+</example>
+      <para id="id79747">Two important patterns in set theory known as <emphasis effect="italics">DeMorgan's rules</emphasis> are useful in the
+handling of events. For an arbitrary class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> of events,</para>
+      <equation id="id79787">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mfenced separators="" open="[" close="]">
+                <m:munder>
+                  <m:mo>⋃</m:mo>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>∈</m:mo>
+                    <m:mi>J</m:mi>
+                  </m:mrow>
+                </m:munder>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mfenced>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mo>⋂</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msubsup>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mfenced separators="" open="[" close="]">
+                <m:munder>
+                  <m:mo>⋂</m:mo>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>∈</m:mo>
+                    <m:mi>J</m:mi>
+                  </m:mrow>
+                </m:munder>
+                <m:msub>
+                  <m:mi>A</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mfenced>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mo>⋃</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msubsup>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id79945">An outcome is not in the union (i.e., not in at least one) of the <emphasis effect="italics">A<sub>i</sub></emphasis> iff it fails to
+be in all <emphasis effect="italics">A<sub>i</sub></emphasis>, and it is not in the intersection (i.e. not in all) iff it fails to be in at
+least one of the <emphasis effect="italics">A<sub>i</sub></emphasis>.</para>
+<example id="eip-id5839780"><title>Continuation of <link target-id="fs-id1169062676144"/></title><para id="id80013">Express the event of no more than one occurrence of the events in <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math>
+as <emphasis effect="italics">B<sub>2</sub><sup>c</sup></emphasis>.</para>
+      <equation id="id80083">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mi>B</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mfenced separators="" open="[" close="]">
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>∪</m:mo>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msub>
+                <m:mo>∪</m:mo>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:msub>
+                  <m:mi>E</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msub>
+              </m:mfenced>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>∪</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>∪</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+                <m:mn>3</m:mn>
+              </m:msubsup>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>∪</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>1</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:mo>∪</m:mo>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>2</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mi>E</m:mi>
+              <m:mn>3</m:mn>
+              <m:mi>c</m:mi>
+            </m:msubsup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id80325">The last expression shows that not more than one of the <emphasis effect="italics">E<sub>i</sub></emphasis> occurs iff at least two of
+them fail to occur.</para>
+</example>
+    </section>
+  </content>
+</document>

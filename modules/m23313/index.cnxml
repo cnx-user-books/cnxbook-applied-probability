@@ -1,0 +1,1191 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Distribution Approximations</title>
+  <metadata>
+  <md:content-id>m23313</md:content-id><md:title>Distribution Approximations</md:title>
+  <md:abstract>Various approximations for distributions are studied, especially those involving the Binomial, Poisson, gamma, and Gaussian (normal) distributions.  m-procedures are used to make comparisons. A simple approximation to a continuous random variable is obtained by subdividing an interval which includes the range (the set of possible values) into small enough subintervals that the density is approximately constant over each subinterval. A point in each subinterval is selected and is assigned the probability mass in its subinterval. The combination of the selected points and the corresponding probabilities describes the distribution of an approximating simple random variable. Calculations based on this distribution approximate corresponding calculations on the continuous distribution.</md:abstract>
+  <md:uuid>4e7b3303-2d23-4f8d-8377-eafe5793875c</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1"><title>Binomial, Poisson, gamma, and Gaussian distributions</title>
+
+<para id="fs-id6478450"><emphasis effect="bold">The Poisson approximation to the binomial distribution</emphasis></para>
+
+<para id="id209100">The following approximation is a classical one.
+We wish to show that for small <emphasis effect="italics">p</emphasis> and sufficiently large <emphasis effect="italics">n</emphasis></para>
+      <equation id="id209120">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>p</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>≈</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>n</m:mi>
+                <m:mi>p</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mi>p</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id209219">Suppose <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mi>μ</m:mi><m:mo>/</m:mo><m:mi>n</m:mi></m:mrow></m:math> with <emphasis effect="italics">n</emphasis> large and <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>/</m:mo><m:mi>n</m:mi><m:mo>&lt;</m:mo><m:mn>1</m:mn></m:mrow></m:math>. Then,</para>
+      <equation id="id209267">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>μ</m:mi>
+                <m:mo>/</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+                <m:mo>/</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+                <m:mo>⋯</m:mo>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:msup>
+                <m:mi>n</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+            </m:mfrac>
+            <m:msup>
+              <m:mfenced separators="" open="(" close=")">
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mfrac>
+                  <m:mi>μ</m:mi>
+                  <m:mi>n</m:mi>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mfenced separators="" open="(" close=")">
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mfrac>
+                  <m:mi>μ</m:mi>
+                  <m:mi>n</m:mi>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>μ</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id209460">The first factor in the last expression is the ratio of polynomials in <emphasis effect="italics">n</emphasis> of the same degree <emphasis effect="italics">k</emphasis>,
+which must approach one as <emphasis effect="italics">n</emphasis> becomes large. The second factor approaches one as <emphasis effect="italics">n</emphasis> becomes large.
+According to a well known property of the exponential</para>
+      <equation id="id209498"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mfenced separators="" open="(" close=")">
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mfrac>
+                  <m:mi>μ</m:mi>
+                  <m:mi>n</m:mi>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mo>→</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id209563">The result is that for large <emphasis effect="italics">n</emphasis>,  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≈</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>μ</m:mi></m:mrow></m:msup><m:mfrac><m:msup><m:mi>μ</m:mi><m:mi>k</m:mi></m:msup><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math>,
+where <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mi>n</m:mi><m:mi>p</m:mi></m:mrow></m:math>.</para>
+    <para id="eip-id1169925014514"><emphasis effect="bold">The Poisson and gamma distributions</emphasis>
+</para>
+      <para id="id209834">Suppose <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+Now <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math> iff</para>
+      <equation id="id209895">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>λ</m:mi>
+                <m:mi>α</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>α</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mi>α</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mi>x</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>x</m:mi>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>α</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mi>x</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>α</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mi>x</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>λ</m:mi>
+              <m:mi>x</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id210058">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>α</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mrow>
+                <m:mi>α</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id210127">A well known definite integral, obtained by integration by parts, is</para>
+      <equation id="id210133"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mi>a</m:mi>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>Γ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>a</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>a</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Γ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>!</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id210285">Noting that <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mn>1</m:mn><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>a</m:mi></m:mrow></m:msup><m:msup><m:mi>e</m:mi><m:mi>a</m:mi></m:msup><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mi>a</m:mi></m:mrow></m:msup><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mfrac><m:msup><m:mi>a</m:mi><m:mi>k</m:mi></m:msup><m:mrow><m:mi>k</m:mi><m:mo>!</m:mo></m:mrow></m:mfrac></m:mrow></m:mstyle></m:math> we find
+after some simple algebra that</para>
+      <equation id="id210368"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>a</m:mi>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>a</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mi>a</m:mi>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id210473">For <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>=</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>α</m:mi><m:mo>=</m:mo><m:mi>n</m:mi></m:mrow></m:math>, we have the following equality iff
+<m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> gamma <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>α</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>λ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <equation id="id210538"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mi>Γ</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mrow>
+                <m:mi>λ</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msubsup>
+            <m:msup>
+              <m:mi>u</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:msup>
+              <m:mi>d</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id210675">Now</para>
+      <equation id="id210680"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>≥</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>λ</m:mi>
+                <m:mi>t</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mfrac>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>λ</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>k</m:mi>
+              </m:msup>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>!</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>iff</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>Y</m:mi>
+            <m:mo>∼</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>Poisson</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>λ</m:mi>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      
+    <para id="eip-id1169924062778"><emphasis effect="bold">The gaussian (normal) approximation</emphasis>
+</para>
+      <para id="id210815">The central limit theorem, referred to in the discussion of the gaussian or normal distribution
+above, suggests that the binomial and Poisson distributions should be approximated by the gaussian.
+The number of successes in <emphasis effect="italics">n</emphasis> trials has the binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math> distribution. This random
+variable may be expressed</para>
+      <equation id="id210849"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="4.pt"/>
+            <m:mtext>constitute</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>an</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>independent</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>class</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id210944">Since the mean value of <emphasis effect="italics">X</emphasis> is <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi></m:mrow></m:math> and the variance is <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi><m:mi>q</m:mi></m:mrow></m:math>, the
+distribution should be approximately <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>n</m:mi><m:mi>p</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>n</m:mi><m:mi>p</m:mi><m:mi>q</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <figure id="uid1"><media id="uid1_media" alt="A graph of the Gaussian approximation to the binomial: n=300, p=0.1. The x-axis represents the values of k ranging from 10-50, while the y-axis shows range of density from 0.01-0.08. The distribution plotted rises and falls at an equal rate with its peak at (30,0.075). The distribution occurs over a series of vertical bars with their heights roughly approximate to the corresponding position of the distribution. 'The actual distribution looks like a bell curve'.">
+          <image mime-type="image/png" src="../../media/fig7_5_1.png" id="uid1_onlineimage" width="424"><!-- NOTE: attribute width changes image size online (pixels). original width is 424. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_5_1.eps" id="uid1_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Gaussian approximation to the binomial.</caption></figure>
+      <para id="id211024">Use of the generating function shows that the sum of independent Poisson random
+variables is Poisson. Now if <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then <emphasis effect="italics">X</emphasis> may be considered the sum of
+<emphasis effect="italics">n</emphasis> independent random variables, each Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>/</m:mo><m:mi>n</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Since the mean value and the variance
+are both <emphasis effect="italics">μ</emphasis>, it is reasonable to suppose that suppose that <emphasis effect="italics">X</emphasis> is approximately <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id211130">It is generally best to compare distribution functions. Since the binomial and Poisson
+distributions are integer-valued, it turns out that the best gaussian approximaton is obtained
+by making a “continuity correction.” To get an approximation to a density for an integer-valued
+random variable, the probability at <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>k</m:mi></m:mrow></m:math> is represented by a rectangle of height
+<emphasis effect="italics">p<sub>k</sub></emphasis> and unit width, with <emphasis effect="italics">k</emphasis> as the midpoint. Figure 1 shows a plot of the “density”
+and the corresponding gaussian density for <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>300</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  It is apparent that
+the gaussian density is offset by approximately 1/2. To approximate the probability <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>≤</m:mo><m:mi>k</m:mi></m:mrow></m:math>,
+take the area under the curve from <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:mrow></m:math>; this is called the <emphasis effect="italics">continuity correction</emphasis>.</para>
+    
+<para id="eip-id1168090182447"><emphasis effect="bold">Use of m-procedures to compare</emphasis>
+</para>
+      <para id="id211260">We have two m-procedures to make the comparisons. First, we consider approximation of the</para>
+      <figure id="uid2"><media id="uid2_media" alt="A graph of a Gaussian Approximation to Poisson Distribution.The x-axis displays the values for t ranging from 2-16 while the y-axis represents the values of distribution functions ranging from 0-1. There are two plotted distributions. The Poisson approximation is represented stepwise with green circles present near the external right angles indicating the position of the adjusted Gaussian approximation. The Gaussian approximation is represented with a dashed blue line and corresponds roughly to the green circles.">
+          <image mime-type="image/png" src="../../media/fig7_5_2.png" id="uid2_onlineimage" width="418"><!-- NOTE: attribute width changes image size online (pixels). original width is 418. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_5_2.eps" id="uid2_printimage" print-width="4.7in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Gaussian approximation to the Poisson distribution function <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>10</m:mn></m:mrow></m:math>.</caption></figure>
+      <figure id="uid3"><media id="uid3_media" alt="A graph of a Gaussian Approximation to Poisson distribution for  mu=100. The x-axis displays the values for t ranging from 80-120 while the y-axis represents the values of distribution functions ranging from 0-1. There are two plotted distributions. The Poisson approximation is represented stepwise with green circles present near the external right angles indicating the position of the adjusted Gaussian approximation. The Gaussian approximation is represented with a dashed blue line and corresponds roughly to the green circles.">
+          <image mime-type="image/png" src="../../media/fig7_5_3.png" id="uid3_onlineimage" width="421"><!-- NOTE: attribute width changes image size online (pixels). original width is 421. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_5_3.eps" id="uid3_printimage" print-width="4.5in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Gaussian approximation to the Poisson distribution function <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>100</m:mn></m:mrow></m:math>.</caption></figure>
+      <para id="id211323">Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math> distribution. The m-procedure <emphasis effect="italics">poissapp</emphasis> calls for a value of <emphasis effect="italics">μ</emphasis>,
+selects a suitable range about <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mi>μ</m:mi></m:mrow></m:math> and plots the distribution function for the
+Poisson distribution (stairs) and the normal (gaussian) distribution (dash dot) for
+<m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>(</m:mo><m:mi>μ</m:mi><m:mo>,</m:mo><m:mi>μ</m:mi><m:mo>)</m:mo></m:mrow></m:math>. In addition, the continuity correction is applied to the gaussian distribution
+at integer values (circles). <link target-id="uid3"/> shows plots for <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>10</m:mn></m:mrow></m:math>. It is clear that the
+continuity correction provides a much better approximation. The plots in <link target-id="uid4"/> are for
+<m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>100</m:mn></m:mrow></m:math>. Here the continuity correction provides the better approximation, but not
+by as much as for the smaller <emphasis effect="italics">μ</emphasis>.</para>
+      <figure id="uid4"><media id="uid4_media" alt="A graph of a Gaussian Approximation to Poisson distribution for  mu=100. The x-axis displays the values for t ranging from 80-120 while the y-axis represents the values of distribution functions ranging from 0-1. There are two plotted distributions. The Poisson approximation is represented stepwise with green circles present near the external right angles indicating the position of the adjusted Gaussian approximation. The Gaussian approximation is represented with a dashed blue line and corresponds roughly to the green circles.">
+          <image mime-type="image/png" src="../../media/fig7_5_3.png" id="uid4_onlineimage" width="421"><!-- NOTE: attribute width changes image size online (pixels). original width is 421. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_5_3.eps" id="uid4_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Poisson and Gaussian approximation to the binomial: n = 1000, p = 0.03.</caption></figure>
+      <figure id="uid5"><media id="uid5_media" alt="A graph of an Approximation of Binomial by Poisson and Gaussian. The x-axis displays the values for t ranging from 15-40 while the y-axis represents the values of distribution functions ranging from 0-1. There are two plotted distributions. The Binomial approximation is represented stepwise with green circles present near the external right angles indicating the position of the adjusted Gaussian approximation. The Poisson approximation is represented with a dashed blue line and corresponds roughly to the green circles, except at the top right of the graph where the Poisson distribution falls below the Binomial.">
+          <image mime-type="image/png" src="../../media/fig7_5_5.png" id="uid5_onlineimage" width="418"><!-- NOTE: attribute width changes image size online (pixels). original width is 418. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_5_5.eps" id="uid5_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Poisson and Gaussian approximation to the binomial: n = 50, p = 0.6.</caption></figure>
+      <para id="id211464">The m-procedure <emphasis effect="italics">bincomp</emphasis> compares the binomial, gaussian, and Poisson distributions. It
+calls for values of <emphasis effect="italics">n</emphasis> and <emphasis effect="italics">p</emphasis>, selects suitable <emphasis effect="italics">k</emphasis> values, and plots the distribution function
+for the binomial, a continuous approximation to the distribution function for the Poisson,
+and continuity adjusted values of the gaussian distribution function at the integer values.
+<link target-id="uid4"/> shows plots for <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1000</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>03</m:mn></m:mrow></m:math>. The good agreement of all three distribution
+functions is evident. <link target-id="uid5"/> shows plots for <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>50</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn></m:mrow></m:math>. There is still good
+agreement of the binomial and adjusted gaussian. However, the Poisson distribution does not
+track very well. The difficulty, as we see in the unit <link document="m23441">Variance</link>, is the difference in
+variances—<m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi><m:mi>q</m:mi></m:mrow></m:math> for the binomial as compared with <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mi>p</m:mi></m:mrow></m:math> for the Poisson.</para>
+      
+    </section>
+    
+    
+    
+    <section id="cid5">
+      <title> Approximation of a real random variable by simple random variables</title>
+      <para id="id211618">Simple random variables play a significant role, both in theory and applications. In the unit <link document="m23260">Random Variables</link>,
+we show how a simple random variable is determined by the set of points on the real line representing
+the possible values and the corresponding set of probabilities that each of these values is taken on. This
+describes the distribution of the random variable and makes possible calculations of event
+probabilities and parameters for the distribution.</para>
+      <para id="id211631">A continuous random variable is characterized by a set of possible values spread continuously over an
+interval or collection of intervals. In this case, the probability is also spread smoothly. The distribution
+is described by a probability density function, whose value at any point indicates "the probability per
+unit length" near the point. A simple approximation is obtained by subdividing an interval which
+includes the range (the set of possible values) into small enough subintervals that the density is approximately
+constant over each subinterval. A point in each subinterval is selected and is assigned the probability
+mass in its subinterval. The combination of the selected points and the corresponding probabilities
+describes the distribution of an approximating simple random variable. Calculations based on this
+distribution approximate corresponding calculations on the continuous distribution.</para>
+      <para id="id211642">Before examining a general approximation procedure which has significant consequences for later
+treatments, we consider some illustrative examples.</para>
+
+<example id="fs-id1166030075690"><title>Simple approximation to Poisson</title><para id="id211654">A random variable with the Poisson distribution is unbounded. However, for a given
+parameter value <emphasis effect="italics">μ</emphasis>, the probability for <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>≥</m:mo><m:mi>n</m:mi></m:mrow></m:math>, <emphasis effect="italics">n</emphasis> sufficiently large, is
+negligible. Experiment
+indicates <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mi>μ</m:mi><m:mo>+</m:mo><m:mn>6</m:mn><m:msqrt><m:mi>μ</m:mi></m:msqrt></m:mrow></m:math>  (i.e., six standard deviations beyond the mean) is a reasonable
+value for <m:math overflow="scroll"><m:mrow><m:mn>5</m:mn><m:mo>≤</m:mo><m:mi>μ</m:mi><m:mo>≤</m:mo><m:mn>200</m:mn></m:mrow></m:math>.</para>
+      <code id="id211733" display="block">&gt;&gt; mu = [5 10 20 30 40 50 70 100 150 200];
+&gt;&gt; K = zeros(1,length(mu));
+&gt;&gt; p = zeros(1,length(mu));
+&gt;&gt; for i = 1:length(mu)
+     K(i) = floor(mu(i)+ 6*sqrt(mu(i)));
+     p(i) = cpoisson(mu(i),K(i));
+end
+&gt;&gt; disp([mu;K;p*1e6]')
+    5.0000   18.0000    5.4163  % Residual probabilities are 0.000001
+   10.0000   28.0000    2.2535  % times the numbers in the last column.
+   20.0000   46.0000    0.4540  % K is the value of k needed to achieve
+   30.0000   62.0000    0.2140  % the residual shown.
+   40.0000   77.0000    0.1354  
+   50.0000   92.0000    0.0668
+   70.0000  120.0000    0.0359
+  100.0000  160.0000    0.0205
+  150.0000  223.0000    0.0159
+  200.0000  284.0000    0.0133
+</code>
+      </example>
+
+
+      <para id="fs-id6419203"><emphasis effect="bold"> An m-procedure for discrete approximation</emphasis></para>
+
+
+      <para id="id211948">If <emphasis effect="italics">X</emphasis> is bounded, absolutely continuous with density functon <emphasis effect="italics">f<sub>X</sub></emphasis>, the m-procedure
+<emphasis effect="italics">tappr</emphasis> sets up the distribution for an approximating simple random variable. An interval
+containing the range of <emphasis effect="italics">X</emphasis> is divided into a specified number of equal subdivisions.
+The probability mass for each subinterval is assigned to the midpoint. If <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mi>x</m:mi></m:mrow></m:math> is the
+length of the subintervals, then the integral of the density function over the subinterval
+is approximated by <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mi>d</m:mi><m:mi>x</m:mi></m:mrow></m:math>. where <emphasis effect="italics">t<sub>i</sub></emphasis> is the midpoint. In effect, the graph of the
+density over the subinterval is approximated by a rectangle of length <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mi>x</m:mi></m:mrow></m:math> and height <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  Once the approximating simple distribution is established, calculations are carried out as
+for simple random variables.</para>
+
+
+<example id="fs-id1166031944259"><title> A numerical example</title><para id="id212100">Suppose <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>3</m:mn><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id212195">SOLUTION</para>
+      <para id="id212198">In this case, an analytical solution is easy. <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>t</m:mi><m:mn>3</m:mn></m:msup></m:mrow></m:math> on the interval <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>, so</para>
+      <para id="id212256"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:msup><m:mn>9</m:mn><m:mn>3</m:mn></m:msup><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:msup><m:mn>2</m:mn><m:mn>3</m:mn></m:msup><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>7210</m:mn></m:mrow></m:math>.  We use tappr as follows:</para>
+      <code id="id212308" display="block">&gt;&gt; tappr
+Enter matrix [a b] of x-range endpoints  [0 1]
+Enter number of x approximation points  200
+Enter density as a function of t  3*t.^2
+Use row matrices X and PX as in the simple case
+&gt;&gt; M = (X &gt;= 0.2)&amp;(X &lt;= 0.9);
+&gt;&gt; p = M*PX'
+p  =  0.7210
+</code>
+      </example>
+
+
+
+      <para id="id212420">Because of the regularity of the density and the number of
+approximation points, the result agrees quite well with the theoretical value.</para>
+      <para id="id212424">The next example is a more complex one. In particular, the distribution is not bounded.
+However, it is easy to determine a bound beyond which the probability is negligible.
+</para>
+      <figure id="uid6"><media id="uid6_media" alt="A graph of a Distribution figure. The x-axis displays the values for t ranging from 0-8 while the y-axis represents the values of u=F(t) ranging from 0-1. The plotted distribution rises gradually at first but at (4,0.3) the slope changes to be nearly vertical, and at around (5,0.95) the slope begins to plateau.">
+          <image mime-type="image/png" src="../../media/fig7_6_1.png" id="uid6_onlineimage" width="416"><!-- NOTE: attribute width changes image size online (pixels). original width is 416. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_6_1.eps" id="uid6_printimage" print-width="3.6in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution function for <link target-id="fs-id6894240"/>.</caption></figure>
+
+
+<example id="fs-id6894240"><title>Radial tire mileage</title><para id="id212452">The life (in miles) of a certain brand of radial tires may be
+represented by a random variable <emphasis effect="italics">X</emphasis> with density</para>
+      <equation id="id212465">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="{" close="">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:msup>
+                        <m:mi>t</m:mi>
+                        <m:mn>2</m:mn>
+                      </m:msup>
+                      <m:mo>/</m:mo>
+                      <m:msup>
+                        <m:mi>a</m:mi>
+                        <m:mn>3</m:mn>
+                      </m:msup>
+                    </m:mrow>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mn>0</m:mn>
+                      <m:mo>≤</m:mo>
+                      <m:mi>t</m:mi>
+                      <m:mo>&lt;</m:mo>
+                      <m:mi>a</m:mi>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mo>(</m:mo>
+                        <m:mi>b</m:mi>
+                        <m:mo>/</m:mo>
+                        <m:mi>a</m:mi>
+                        <m:mo>)</m:mo>
+                      </m:mrow>
+                      <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mrow>
+                          <m:mo>-</m:mo>
+                          <m:mi>k</m:mi>
+                          <m:mo>(</m:mo>
+                          <m:mi>t</m:mi>
+                          <m:mo>-</m:mo>
+                          <m:mi>a</m:mi>
+                          <m:mo>)</m:mo>
+                        </m:mrow>
+                      </m:msup>
+                    </m:mrow>
+                  </m:mtd>
+                  <m:mtd columnalign="left">
+                    <m:mrow>
+                      <m:mtext>for</m:mtext>
+                      <m:mspace width="0.277778em"/>
+                      <m:mspace width="0.277778em"/>
+                      <m:mi>a</m:mi>
+                      <m:mo>≤</m:mo>
+                      <m:mi>t</m:mi>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id212606">where <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>=</m:mo><m:mn>40</m:mn><m:mo>,</m:mo><m:mn>000</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>b</m:mi><m:mo>=</m:mo><m:mn>20</m:mn><m:mo>/</m:mo><m:mn>3</m:mn></m:mrow></m:math>,  and <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>4000</m:mn></m:mrow></m:math>.  Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≥</m:mo><m:mn>45</m:mn><m:mo>,</m:mo><m:mn>000</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <code id="id212695" display="block">&gt;&gt; a = 40000;
+&gt;&gt; b = 20/3;
+&gt;&gt; k = 1/4000;
+&gt;&gt; % Test shows cutoff point of 80000 should be satisfactory
+&gt;&gt; tappr
+Enter matrix [a b] of x-range endpoints  [0 80000]
+Enter number of x approximation points  80000/20
+Enter density as a function of t  (t.^2/a^3).*(t &lt; 40000) + ...
+(b/a)*exp(k*(a-t)).*(t &gt;= 40000)
+Use row matrices X and PX as in the simple case
+&gt;&gt; P = (X &gt;= 45000)*PX'
+P   =  0.1910             % Theoretical value = (2/3)exp(-5/4) = 0.191003
+&gt;&gt; cdbn
+Enter row matrix of VALUES  X
+Enter row matrix of PROBABILITIES  PX  % See <link target-id="uid7"/> for plot
+</code>
+      <para id="id212883">In this case, we use a rather large number of approximation
+points. As a consequence, the results are quite accurate. In the single-variable case,
+designating a large number of approximating points usually causes no computer memory problem.</para>
+      </example>
+    
+
+      <para id="fs-id5000156"><emphasis effect="bold"> The general approximation procedure</emphasis></para>
+
+
+      <para id="id212915">We show now that any bounded real random variable may be approximated as closely as desired by a
+simple random variable (i.e., one having a finite set of possible values). For the unbounded
+case, the approximation is close except in a portion of the range having arbitrarily small
+total probability.</para>
+      <para id="id212921">We limit our discussion to the bounded case, in which the range of <emphasis effect="italics">X</emphasis> is limited to a bounded
+interval <m:math overflow="scroll"><m:mrow><m:mi>I</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow></m:math>. Suppose <emphasis effect="italics">I</emphasis> is partitioned into <emphasis effect="italics">n</emphasis> subintervals by points
+<emphasis effect="italics">t<sub>i</sub></emphasis>, <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mn>0</m:mn></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>b</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math>.  Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>[</m:mo><m:msub><m:mi>t</m:mi><m:mrow><m:mi>i</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+be the <emphasis effect="italics">i</emphasis>th subinterval, <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>M</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>[</m:mo><m:msub><m:mi>t</m:mi><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:mrow></m:math> (see <link target-id="uid7"/>).
+Now random variable <emphasis effect="italics">X</emphasis> may map into any point in the interval, and hence into any point in
+each subinterval <emphasis effect="italics">M<sub>i</sub></emphasis>.  Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> be the set of points mapped into <emphasis effect="italics">M<sub>i</sub></emphasis>
+by <emphasis effect="italics">X</emphasis>.  Then the <emphasis effect="italics">E<sub>i</sub></emphasis> form a partition of the basic space <emphasis effect="italics">Ω</emphasis>.  For the given
+subdivision, we form a simple random variable <emphasis effect="italics">X<sub>s</sub></emphasis> as follows. In each subinterval, pick
+a point <m:math overflow="scroll"><m:mrow><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mrow><m:mi>i</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>≤</m:mo><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>.  Consider the simple random variable  <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>.</para>
+      <figure id="uid7">
+        <media id="uid7_media" alt="">
+          <image mime-type="image/png" src="../../media/fig7_6_2.png" id="uid7_onlineimage" width="387"><!-- NOTE: attribute width changes image size online (pixels). original width is 387. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_6_2-1dfb.eps" id="uid7_printimage" print-width="4in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        <caption>Partition of the interval <emphasis effect="italics">I</emphasis> including the range of <emphasis effect="italics">X</emphasis></caption>
+      </figure>
+      <figure id="uid8">
+        <media id="uid8_media" alt="">
+          <image mime-type="image/png" src="../../media/fig7_6_3.png" id="uid8_onlineimage" width="205"><!-- NOTE: attribute width changes image size online (pixels). original width is 205. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig7_6_3-e50e.eps" id="uid8_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        <caption>Refinement of the partition by additional subdividion points.</caption>
+      </figure>
+      <para id="id213466">This random variable is in canonical form. If <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>∈</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>
+and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>.  Now the absolute value of the difference satisfies</para>
+      <equation id="id213551">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>ω</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>s</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>ω</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>&lt;</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>the</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>length</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>of</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>subinterval</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>M</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id213658">Since this is true for each <emphasis effect="italics">ω</emphasis> and the corresponding subinterval, we have the
+important fact</para>
+      <equation id="id213674">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>ω</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>s</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>ω</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>&lt;</m:mo>
+              <m:mtext>maximum</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>length</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>of</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:mtext>the</m:mtext>
+              <m:mspace width="4.pt"/>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id213749">By making the subintervals small enough by increasing the number of subdivision points, we
+can make the difference as small as we please.</para>
+      <para id="id213756">While the choice of the <emphasis effect="italics">s<sub>i</sub></emphasis> is arbitrary in each <emphasis effect="italics">M<sub>i</sub></emphasis>, the selection of <m:math overflow="scroll"><m:mrow><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mrow><m:mi>i</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msub></m:mrow></m:math>
+(the left-hand endpoint) leads to the property <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≤</m:mo><m:mi>X</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>∀</m:mo><m:mi>ω</m:mi></m:mrow></m:math>.  In this case, if we add subdivision points to decrease the size of
+some or all of the <emphasis effect="italics">M<sub>i</sub></emphasis>, the new simple approximation <emphasis effect="italics">Y<sub>s</sub></emphasis> satisfies</para>
+      <equation id="id213901">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>s</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>ω</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>≤</m:mo>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>s</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>ω</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>≤</m:mo>
+            <m:mi>X</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>ω</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>ω</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id213974">To see this, consider <m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>t</m:mi><m:mi>i</m:mi><m:mo>*</m:mo></m:msubsup><m:mo>∈</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math> (see <link target-id="uid8"/>). <emphasis effect="italics">M<sub>i</sub></emphasis> is partitioned into
+<m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>M</m:mi><m:mi>i</m:mi><m:mo>'</m:mo></m:msubsup><m:mo>⋁</m:mo><m:msubsup><m:mi>M</m:mi><m:mi>i</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup></m:mrow></m:math> and <emphasis effect="italics">E<sub>i</sub></emphasis> is partitioned into
+<m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mo>'</m:mo></m:msubsup><m:mo>⋁</m:mo><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup></m:mrow></m:math>.  <emphasis effect="italics">X</emphasis> maps <m:math overflow="scroll"><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mo>'</m:mo></m:msubsup></m:math> into <m:math overflow="scroll"><m:msubsup><m:mi>M</m:mi><m:mi>i</m:mi><m:mo>'</m:mo></m:msubsup></m:math>
+and <m:math overflow="scroll"><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup></m:math> into <m:math overflow="scroll"><m:msubsup><m:mi>M</m:mi><m:mi>i</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup></m:math>.  <emphasis effect="italics">Y<sub>s</sub></emphasis> maps <m:math overflow="scroll"><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mo>'</m:mo></m:msubsup></m:math> into
+<emphasis effect="italics">t<sub>i</sub></emphasis> and maps <m:math overflow="scroll"><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup></m:math> into <m:math overflow="scroll"><m:mrow><m:msubsup><m:mi>t</m:mi><m:mi>i</m:mi><m:mo>*</m:mo></m:msubsup><m:mo>&gt;</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>.  <emphasis effect="italics">X<sub>s</sub></emphasis> maps both
+<m:math overflow="scroll"><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mo>'</m:mo></m:msubsup></m:math> and <m:math overflow="scroll"><m:msubsup><m:mi>E</m:mi><m:mi>i</m:mi><m:mrow><m:mo>'</m:mo><m:mo>'</m:mo></m:mrow></m:msubsup></m:math> into <emphasis effect="italics">t<sub>i</sub></emphasis>.  Thus, the asserted inequality
+must hold for each <emphasis effect="italics">ω</emphasis>
+By taking a sequence of partitions in which each succeeding partition
+refines the previous (i.e. adds subdivision points) in such a way that the maximum length
+of subinterval goes to zero, <emphasis effect="italics">we may form a nondecreasing sequence of simple random variables
+<emphasis effect="italics">X<sub>n</sub></emphasis> which increase to <emphasis effect="italics">X</emphasis> for each </emphasis><emphasis effect="italics">ω</emphasis>.</para>
+      <para id="id214404">The latter result may be extended to random variables unbounded above. Simply let <emphasis effect="italics">N</emphasis> th
+set of subdivision points extend from <emphasis effect="italics">a</emphasis> to <emphasis effect="italics">N</emphasis>, making the last subinterval <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mi>N</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>∞</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+Subintervals from <emphasis effect="italics">a</emphasis> to <emphasis effect="italics">N</emphasis> are made increasingly shorter. The result is a nondecreasing
+sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>N</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>N</m:mi><m:mo>}</m:mo></m:mrow></m:math> of simple random variables, with <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>X</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> as <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>→</m:mo><m:mi>∞</m:mi></m:mrow></m:math>, for each <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>Ω</m:mi></m:mrow></m:math>.</para>
+      <para id="id214568">For probability calculations, we simply select an interval <emphasis effect="italics">I</emphasis> large enough that the
+probability outside <emphasis effect="italics">I</emphasis> is negligible and use a simple approximation over <emphasis effect="italics">I</emphasis>.</para>
+    </section>
+  </content>
+</document>

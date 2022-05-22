@@ -1,0 +1,2352 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Random Variables and Probabilities</title>
+  <metadata>
+  <md:content-id>m23260</md:content-id><md:title>Random Variables and Probabilities</md:title>
+  <md:abstract>Often, each outcome of an experiment is characterized by a number. If the
+outcome is observed as a physical quantity, the size of that quantity (in prescribed units)
+is the entity actually observed. In many nonnumerical cases, it is convenient to assign
+a number to each outcome. For example, in a coin flipping experiment, a “head” may be
+represented by a 1 and a “tail” by a 0. In a Bernoulli trial, a success may be represented
+by a 1 and a failure by a 0. In a sequence of trials, we may be interested in the number
+of successes in a sequence of n component trials. One could assign a distinct number to
+each card in a deck of playing cards. Observations of the result of selecting a card
+could be recorded in terms of individual numbers. In each case, the associated number
+becomes a property of the outcome.
+The fundamental idea of a real random variable is the assignment of a real number to each elementary outcome ω in the basic space Ω. Such an assignment amounts to determining a function X, whose domain is Ω and whose range is a subset of the real line R.  Each ω  is mapped into exactly one value t, although several ω may have the same image point.
+Except in special cases, we cannot write a formula for a random variable X. However, random variables share some important general properties of functions which play an essential role in determining their usefulness.
+Associated with a function X as a mapping are the inverse mapping and the inverse images it produces.  By the inverse image of a set of real numbers M under the mapping X, we mean the set of all those ω∈Ω which are mapped into M by X. If X does not take a value in M, the inverse image is the empty set (impossible event). If M includes the range of X, (the set of all possible values of X), the inverse image is the entire basic space Ω.
+The class of inverse images of the Borel sets on the real line play an essential role in probability analysis.</md:abstract>
+  <md:uuid>2d82f475-b667-4f2c-b95d-282fc6cc3526</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title> Introduction</title>
+      <para id="id112742">Probability associates with an event a number which indicates the likelihood of the
+occurrence of that event on any trial. An event is modeled as the set of
+those possible outcomes of an experiment which satisfy a property or proposition
+characterizing the event.
+</para>
+      <para id="id112748">Often, each outcome is characterized by a number. The experiment is performed. If the
+outcome is observed as a physical quantity, the size of that quantity (in prescribed units)
+is the entity actually observed. In many nonnumerical cases, it is convenient to assign
+a number to each outcome. For example, in a coin flipping experiment, a “head” may be
+represented by a 1 and a “tail” by a 0. In a Bernoulli trial, a success may be represented
+by a 1 and a failure by a 0. In a sequence of trials, we may be interested in the number
+of successes in a sequence of <emphasis effect="italics">n</emphasis> component trials. One could assign a distinct number to
+each card in a deck of playing cards. Observations of the result of selecting a card
+could be recorded in terms of individual numbers. In each case, the associated number
+becomes a property of the outcome.</para>
+    </section>
+    <section id="cid2">
+      <title> Random variables as functions</title>
+      <para id="id112780">We consider in this chapter <emphasis effect="italics">real</emphasis> random variables (i.e., real-valued random variables).
+In the chapter <link document="m23318">"Random Vectors and Joint Distributions"</link>, we extend the notion to vector-valued random quantites. The fundamental idea of
+a real <emphasis effect="italics">random variable</emphasis> is the assignment of a real number to
+each elementary outcome <emphasis effect="italics">ω</emphasis> in the basic space <emphasis effect="italics">Ω</emphasis>.  Such an assignment
+amounts to determining a <emphasis effect="italics">function</emphasis> <emphasis effect="italics">X</emphasis>, whose domain is <emphasis effect="italics">Ω</emphasis> and whose range is
+a subset of the real line <emphasis effect="bold">R</emphasis>.  Recall that a real-valued function on a domain (say an
+interval <emphasis effect="italics">I</emphasis> on the real line) is characterized by the assignment of a real number <emphasis effect="italics">y</emphasis> to
+each element <emphasis effect="italics">x</emphasis> (argument) in the domain. For a real-valued function of a real variable,
+it is often possible to write a formula or otherwise state a rule describing the assignment
+of the value to each argument. Except in special cases, we cannot write a formula for a random
+variable <emphasis effect="italics">X</emphasis>.  However, random variables share some important general properties of
+functions which play an essential role in determining their usefulness.</para>
+    
+<para id="fs-id1167294617908"><emphasis effect="bold">Mappings and inverse mappings</emphasis></para>
+
+<para id="id112889">There are various ways of characterizing a function. Probably the most useful for our
+purposes is as a <emphasis effect="italics">mapping</emphasis> from the <emphasis effect="italics">domain Ω</emphasis>  to the <emphasis effect="italics">codomain</emphasis> <emphasis effect="bold">R</emphasis>. We find the mapping
+diagram of Figure 1 extremely useful in visualizing the essential patterns. Random
+variable <emphasis effect="italics">X</emphasis>, as a mapping from basic space <emphasis effect="italics">Ω</emphasis> to the real line <emphasis effect="bold">R</emphasis>, assigns to
+each element <emphasis effect="italics">ω</emphasis> a value <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math>. The object point <emphasis effect="italics">ω</emphasis> is mapped, or carried,
+into the image point <emphasis effect="italics">t</emphasis>.  Each <emphasis effect="italics">ω</emphasis> is mapped into exactly one <emphasis effect="italics">t</emphasis>, although
+several <emphasis effect="italics">ω</emphasis> may have the same image point.
+</para>
+      <figure id="uid1"><media id="uid1_media" alt="A rectangle with an upper case omega in the top left corner and a lower case omega in the middle next to an arrow pointing down and to the right to a line segment situated below the rectangle. On the left hand side of the line there is an upper case R. The arrow points to a lower case t. Below the line segment there is the function: t=X(ω)">
+          <image mime-type="image/png" src="../../media/fig6_1_1.png" id="uid1_onlineimage" width="299"><!-- NOTE: attribute width changes image size online (pixels). original width is 299. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig6_1_1.eps" id="uid1_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      <caption>The basic mapping diagram <m:math overflow="scroll"><m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>t</m:mi><m:mo>=</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</caption></figure>
+      
+      <para id="id113025">Associated with a function <emphasis effect="italics">X</emphasis> as a mapping are the <emphasis effect="italics">inverse mapping </emphasis><m:math overflow="scroll"><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup></m:math> and the
+<emphasis effect="italics">inverse images</emphasis> it produces.  Let <emphasis effect="italics">M</emphasis> be a set of numbers on the real line. By the
+inverse image of <emphasis effect="italics">M</emphasis> under the mapping <emphasis effect="italics">X</emphasis>, we mean the <emphasis effect="italics">set</emphasis> of <emphasis effect="italics">all</emphasis> those <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:mi>Ω</m:mi></m:mrow></m:math> which are mapped into <emphasis effect="italics">M</emphasis> by <emphasis effect="italics">X</emphasis> (see Figure 2). If <emphasis effect="italics">X</emphasis> does not take a value
+in <emphasis effect="italics">M</emphasis>, the inverse image is the empty set (impossible event). If <emphasis effect="italics">M</emphasis> includes the range of
+<emphasis effect="italics">X</emphasis>,  (the set of all possible values of <emphasis effect="italics">X</emphasis>), the inverse image is the entire basic space <emphasis effect="italics">Ω</emphasis>.
+Formally we write</para>
+      <equation id="id113354">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mi>ω</m:mi>
+              <m:mo>:</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>ω</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∈</m:mo>
+              <m:mi>M</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id113410">Now we assume the set <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, a subset of <emphasis effect="italics">Ω</emphasis>, is an event for each <emphasis effect="italics">M</emphasis>. A
+detailed examination of that assertion is a topic in <emphasis effect="italics">measure theory</emphasis>. Fortunately,
+the results of measure theory ensure that we may make the assumption for any <emphasis effect="italics">X</emphasis> and any
+subset <emphasis effect="italics">M</emphasis> of the real line likely to be encountered in practice. The set <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is
+the event that <emphasis effect="italics">X</emphasis> takes a value in <emphasis effect="italics">M</emphasis>.  As an event, it may be assigned a probability.</para>
+      <figure id="uid2"><media id="uid2_media" alt="Diagram with a rectangle in the background. On the upper left-hand corner of the rectangle there is an upper-case omega and in the center there is a shaded oval containing an upper-case E. Line segments extend downwards from the oval to a shaded rectangle, split down the middle horizontally by another line segment. In the middle of the shaded rectangle there is an upper-case M.">
+          <image mime-type="image/png" src="../../media/fig6_1_2.png" id="uid2_onlineimage" width="328"><!-- NOTE: attribute width changes image size online (pixels). original width is 328. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig6_1_2.eps" id="uid2_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      <caption><emphasis effect="italics">E</emphasis> is the inverse image <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</caption></figure>
+      
+<example id="eip-id8467462"><title>Some illustrative examples.</title><list id="id113576" display="block" list-type="enumerated"><item id="uid3"><m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>I</m:mi><m:mi>E</m:mi></m:msub></m:mrow></m:math> where <emphasis effect="italics">E</emphasis> is an event with probability <emphasis effect="italics">p</emphasis>. Now <emphasis effect="italics">X</emphasis> takes on only two
+values, 0 and 1. The event that <emphasis effect="italics">X</emphasis> take on the value 1 is the set
+<equation id="id113641"><m:math overflow="scroll" mode="display"><m:mrow><m:mrow><m:mo>{</m:mo><m:mi>ω</m:mi><m:mo>:</m:mo><m:mspace width="0.166667em"/><m:mi>X</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mrow><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>}</m:mo></m:mrow><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi></m:mrow></m:math></equation>
+so that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>{</m:mo><m:mi>ω</m:mi><m:mo>:</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>}</m:mo><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:math>. This rather ungainly notation is shortened to
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>p</m:mi></m:mrow></m:math>.  Similarly, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>p</m:mi></m:mrow></m:math>. Consider any set <emphasis effect="italics">M</emphasis>.
+          If neither 1 nor 0 is in <emphasis effect="italics">M</emphasis>, then <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>∅</m:mi></m:mrow></m:math>
+          If 0 is in <emphasis effect="italics">M</emphasis>, but 1 is not, then <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>E</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>
+          If 1 is in <emphasis effect="italics">M</emphasis>, but 0 is not, then <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi></m:mrow></m:math>
+          If both 1 and 0 are in <emphasis effect="italics">M</emphasis>, then <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>Ω</m:mi></m:mrow></m:math>
+In this case the class of all events <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> consists of event <emphasis effect="italics">E</emphasis>,
+its complement E<emphasis effect="italics"><sup>c</sup></emphasis>, the impossible event <emphasis effect="italics">∅</emphasis>, and the sure event <emphasis effect="italics">Ω</emphasis>.
+</item>
+        <item id="uid4">Consider a sequence of <emphasis effect="italics">n</emphasis> Bernoulli trials, with probability <emphasis effect="italics">p</emphasis> of success. Let <emphasis effect="italics">S<sub>n</sub></emphasis>
+be the random variable whose value is the number of successes in the sequence of <emphasis effect="italics">n</emphasis>
+component trials. Then, according to the analysis in the section <link document="m23256" target-id="cid2">"Bernoulli Trials and the Binomial Distribution"</link>
+<equation id="id114101"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:msup><m:mi>p</m:mi><m:mi>k</m:mi></m:msup><m:msup><m:mrow><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi></m:mrow></m:msup><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math></equation></item>
+      </list>
+      </example>
+      <para id="id114220">Before considering further examples, we note a general property of inverse images. We state it
+in terms of a random variable, which maps <emphasis effect="italics">Ω</emphasis> to the real line (see Figure 3).</para>
+    
+<para id="fs-id1167296860271"><emphasis effect="bold">Preservation of set operations</emphasis></para>
+
+<para id="id114242">Let <emphasis effect="italics">X</emphasis> be a mapping from <emphasis effect="italics">Ω</emphasis> to the real line <emphasis effect="bold">R</emphasis>.  If <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>,</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi></m:mrow></m:math>, are sets of real numbers, with respective inverse images <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>,</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, then
+      </para>
+      <equation id="id114342">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>M</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>E</m:mi>
+              <m:mi>c</m:mi>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:munder>
+                <m:mo>⋃</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi>J</m:mi>
+                </m:mrow>
+              </m:munder>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mo>⋃</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msup>
+              <m:mi>X</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:munder>
+                <m:mo>⋂</m:mo>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi>J</m:mi>
+                </m:mrow>
+              </m:munder>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mo>⋂</m:mo>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>J</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:msub>
+              <m:mi>E</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <!--empty paragraphs get left behind.-->
+      <para id="id114545">Examination of simple graphical examples exhibits the plausibility of these patterns. Formal
+proofs amount to careful reading of the notation. Central to the structure are the facts that
+each element <emphasis effect="italics">ω</emphasis> is mapped into only one image point <emphasis effect="italics">t</emphasis> and that the inverse image of <emphasis effect="italics">M</emphasis> is the set
+of <emphasis effect="italics">all</emphasis> those <emphasis effect="italics">ω</emphasis> which are mapped into image points in <emphasis effect="italics">M</emphasis>.
+</para>
+      <figure id="uid5"><media id="uid5_media" alt="Diagram with a rectangle in the background. On the upper left-hand corner of the rectangle there is an upper-case omega and in the center there are two shaded ovals creating a venn diagram. The oval on the left is a darker shade and contains the function X^-1(m). The oval on the right is a lighter shade and contains the function X^-1(N). Line segments extend downwards from the oval to two intersecting rectangles, split down the middle horizontally by another line segment. Two line segments connect the left oval to the left rectangle below which there is a M, and two line segments extend from the right oval to right rectangle below which there is a N. A line segment extends from the intersection of the two ovals to the intersection of the two rectangles.">
+          <image mime-type="image/png" src="../../media/fig6_1_3.png" id="uid5_onlineimage" width="287"><!-- NOTE: attribute width changes image size online (pixels). original width is 287. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig6_1_3.eps" id="uid5_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+      <caption>Preservation of set operations by inverse images.</caption></figure>
+      
+      <para id="id114620">An easy, but important, consequence of the general patterns is that the inverse images of disjoint <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>,</m:mo><m:mi>N</m:mi></m:mrow></m:math> 
+are also disjoint. This implies that the inverse of a disjoint union of <emphasis effect="italics">M<sub>i</sub></emphasis> is a disjoint
+union of the separate inverse images.</para>
+
+<example id="eip-id1163892588970"><title> Events determined by a random variable</title><para id="id114666">Consider, again, the random variable <emphasis effect="italics">S<sub>n</sub></emphasis> which counts the number of successes
+in a sequence of <emphasis effect="italics">n</emphasis> Bernoulli trials. Let <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>10</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>33</m:mn></m:mrow></m:math>.  Suppose we want to
+determine the probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>2</m:mn><m:mo>&lt;</m:mo><m:msub><m:mi>S</m:mi><m:mn>10</m:mn></m:msub><m:mo>≤</m:mo><m:mn>8</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>ω</m:mi><m:mo>:</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>S</m:mi><m:mn>10</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math>, which
+we usually shorten to <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:msub><m:mi>S</m:mi><m:mn>10</m:mn></m:msub><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math>.  Now the <emphasis effect="italics">A<sub>k</sub></emphasis> form a partition, since
+we cannot have <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>A</m:mi><m:mi>k</m:mi></m:msub></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>A</m:mi><m:mi>j</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>j</m:mi><m:mo>≠</m:mo><m:mi>k</m:mi></m:mrow></m:math> (i.e., for any <emphasis effect="italics">ω</emphasis>, we cannot have
+two values for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>). Now,</para>
+      <equation id="id114944">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>&lt;</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mn>10</m:mn>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>3</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>4</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>5</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>7</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>8</m:mn>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id115034">since <emphasis effect="italics">S<sub>10</sub></emphasis> takes on a value greater than 2 but no greater than 8 iff it takes one
+of the integer values from 3 to 8. By the additivity of probability,</para>
+      <equation id="id115056"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>&lt;</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mn>10</m:mn>
+              </m:msub>
+              <m:mo>≤</m:mo>
+              <m:mn>8</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+<m:mrow>
+              <m:mo>∑</m:mo>
+</m:mrow>        
+      <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>3</m:mn>
+              </m:mrow>
+              <m:mn>8</m:mn>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mn>10</m:mn>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6927</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+    </section>
+    <section id="cid5">
+      <title> Mass transfer and induced probability distribution</title>
+      <para id="id115167">Because of the abstract nature of the basic space and the class of events, we are limited
+in the kinds of calculations that can be performed meaningfully with the probabilities
+on the basic space. We represent probability as mass distributed
+on the basic space and visualize this with the aid of general Venn diagrams and minterm
+maps. We now think of the mapping from <emphasis effect="italics">Ω</emphasis> to <emphasis effect="bold">R</emphasis> as a producing a point-by-point
+<emphasis effect="italics">transfer of the probability mass</emphasis> to the real line.  This may be done as follows:</para>
+      <para id="id115200">To any set <emphasis effect="italics">M</emphasis> on the real line assign probability mass <m:math overflow="scroll"><m:mrow><m:msub><m:mi>P</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math></para>
+      <para id="id115264">It is apparent that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>P</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>P</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="bold">R</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  And because of the
+preservation of set operations by the inverse mapping</para>
+      <equation id="id115336"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mspace width="0.166667em"/>
+              <m:mrow>
+                <m:munderover>
+                  <m:mo>⋁</m:mo>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>∞</m:mi>
+                </m:munderover>
+                
+              </m:mrow>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mrow>
+                  <m:munderover>
+                    <m:mo>⋁</m:mo>
+                    <m:mrow>
+                      <m:mi>i</m:mi>
+                      <m:mo>=</m:mo>
+                      <m:mn>1</m:mn>
+                    </m:mrow>
+                    <m:mi>∞</m:mi>
+                  </m:munderover>
+                  
+                </m:mrow>
+                <m:mspace width="0.166667em"/>
+                <m:mspace width="0.166667em"/>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mspace width="0.166667em"/>
+              <m:mrow>
+                <m:munderover>
+                  <m:mo>⋁</m:mo>
+                  <m:mrow>
+                    <m:mi>i</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                  <m:mi>∞</m:mi>
+                </m:munderover>
+               
+              </m:mrow>
+              <m:mspace width="0.166667em"/>
+              <m:mspace width="0.166667em"/>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>M</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id115625">This means that <emphasis effect="italics">P<sub>X</sub></emphasis> has the properties of a probability measure defined on the subsets of
+the real line. Some results of measure theory show that this
+probability is defined uniquely on a class of subsets of <emphasis effect="bold">R</emphasis> that includes any set normally
+encountered in applications. We have achieved a point-by-point transfer of the
+probability apparatus to the real line in such a manner that we can make calculations
+about the random variable <emphasis effect="italics">X</emphasis>.  We call <emphasis effect="italics">P<sub>X</sub></emphasis> the <emphasis effect="italics">probability measure induced by</emphasis><emphasis effect="italics">X</emphasis>. Its importance lies in the fact that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>P</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. Thus, <emphasis effect="italics">to determine
+the likelihood that random quantity <emphasis effect="italics">X</emphasis> will take on a value in set <emphasis effect="italics">M</emphasis>, we determine
+how much induced probability mass is in the set <emphasis effect="italics">M</emphasis></emphasis>. This transfer produces what is
+called the <emphasis effect="italics">probability distribution</emphasis> for <emphasis effect="italics">X</emphasis>.
+In the chapter <link document="m23267">"Distribution and Density Functions"</link>, we consider useful ways to describe the probability distribution induced
+by a random variable. We turn first to a special class of random variables.</para>
+    </section>
+    <section id="cid6">
+      <title> Simple random variables</title>
+      <para id="id115794">We consider, in some detail, random variables which have only a finite set of possible
+values. These are called <emphasis effect="italics">simple</emphasis> random variables. Thus the term “simple” is used
+in a special, technical sense. The importance of simple random variables rests on two facts.
+For one thing, in practice we can distinguish only a finite set of possible values for any random variable. In
+addition, any random variable may be approximated as closely as pleased by a simple
+random variable. When the structure and properties of simple random variables have been examined,
+we turn to more general cases. Many properties of simple random variables extend to
+the general case via the approximation procedure.</para>
+    <para id="fs-id1166387954511"><emphasis effect="bold">Representation with the aid of indicator functions</emphasis>
+</para>
+<para id="id115819">In order to deal with simple random variables clearly and precisely, we must find suitable
+ways to express them analytically. We do this with the aid of <link document="m23246" target-id="cid5">indicator functions</link>. Three basic forms of representation are encountered. These are not mutually exclusive
+representatons.</para>
+
+<list id="fs-id1166387954529" list-type="enumerated" number-style="arabic"><item>Standard or <emphasis effect="italics">canonical form</emphasis>, which displays the possible values and the
+corresponding events. If <emphasis effect="italics">X</emphasis> takes on distinct values
+      <equation id="id115854">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>respective</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>probabilities</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>p</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>p</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>p</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>}</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      and if <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math>, for
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is a partition (i.e., on any trial, exactly
+one of these events occurs). We call this the <emphasis effect="italics">partition determined by</emphasis> (or, generated
+by) <emphasis effect="italics">X</emphasis>.  We may write
+      <equation id="id116117"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>⋯</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+<m:mrow>
+              <m:mo>∑</m:mo>
+</m:mrow>        
+      <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      If <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>, so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> and all the other indicator
+functions have value zero. The summation expression thus picks out the correct value
+<emphasis effect="italics">t<sub>i</sub></emphasis>. This is true for any <emphasis effect="italics">t<sub>i</sub></emphasis>, so the expression represents <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math> for all
+<emphasis effect="italics">ω</emphasis>.
+      The distinct set <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> of the values and the corresponding probabilities
+      <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> constitute the <emphasis effect="italics">distribution</emphasis> for <emphasis effect="italics">X</emphasis>.  Probability 
+calculations for <emphasis effect="italics">X</emphasis> are made in terms of its distribution. One of the advantages of the
+canonical form is that it displays the range (set of values), and if the probabilities
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> are known, the distribution is determined.
+      <emphasis effect="italics">Note</emphasis> that in canonical form, if one of the <emphasis effect="italics">t<sub>i</sub></emphasis> has value zero, we include that
+term. For some probability distributions it may be that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> for
+one or more of the <emphasis effect="italics">t<sub>i</sub></emphasis>. In that case, we call these values <emphasis effect="italics">null values</emphasis>, for
+they can only occur with probability zero, and hence are practically impossible. In
+the general formulation, we include possible null values, since they do not affect
+any probabilitiy calculations.
+<example id="eip-id1171498510349"><title>Successes in Bernoulli trials</title><para id="id116636">As the analysis of Bernoulli trials and the binomial distribution shows (see Section 4.8), canonical form
+must be</para>
+      <equation id="id116641"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>k</m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>k</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>k</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>k</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>p</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mi>p</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>n</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+      For many purposes, both theoretical and practical, canonical form is desirable. For one thing,
+it displays directly the range (i.e., set of values) of the random variable. The <emphasis effect="italics">distribution</emphasis>
+consists of the set of values  <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>t</m:mi><m:mi>k</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> paired with the corresponding set of
+probabilities <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>, where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>k</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</item>
+
+
+
+<item>
+       Simple random variable <emphasis effect="italics">X</emphasis> may be represented by a <emphasis effect="italics">primitive form</emphasis>
+      <equation id="id116978">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>⋯</m:mo>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>m</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mo>{</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>:</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>≤</m:mo>
+              <m:mi>j</m:mi>
+              <m:mo>≤</m:mo>
+              <m:mi>m</m:mi>
+              <m:mo>}</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>a</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>partition</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+              <emphasis effect="italics">Remarks</emphasis>
+      
+      <list id="id117152" display="block" list-type="bulleted">
+        <item id="uid6">If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a disjoint class, but <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:munderover><m:mo>⋃</m:mo><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub><m:mo>≠</m:mo><m:mi>Ω</m:mi></m:mrow></m:mstyle></m:math>, we may append the event <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>C</m:mi><m:mrow><m:mi>m</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>=</m:mo><m:msup><m:mfenced separators="" open="[" close="]"><m:munderover><m:mo>⋃</m:mo><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub></m:mfenced><m:mi>c</m:mi></m:msup></m:mrow></m:mstyle></m:math> and assign value zero to it.
+</item>
+        <item id="uid7">We say <emphasis effect="italics">a</emphasis> primitive form, since the representation is not unique. Any of the
+<emphasis effect="italics">C<sub>i</sub></emphasis> may be partitioned, with the same value <emphasis effect="italics">c<sub>i</sub></emphasis> associated with each subset formed.
+</item>
+        <item id="uid8">Canonical form is a special primitive form. Canonical form is unique, and in many ways normative.
+</item>
+      </list>
+
+<example id="eip-id1170314106746"><title>Simple random variables in primitive form</title>
+
+<list id="id117375" display="block" list-type="bulleted">
+        <item id="uid9">A wheel is spun yielding, on a equally likely basis, the integers 1 through 10. Let
+<emphasis effect="italics">C<sub>i</sub></emphasis> be the event the wheel stops at <emphasis effect="italics">i</emphasis>, <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn></m:mrow></m:math>. Each <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn></m:mrow></m:math>.
+If the numbers 1, 4, or 7 turn up, the player loses ten dollars; if the numbers 2, 5,
+or 8 turn up, the player gains nothing; if the numbers 3, 6, or 9 turn up, the player
+gains ten dollars; if the number 10 turns up, the player loses one dollar. The random
+variable expressing the results may be expressed in primitive form as
+<equation id="id117467"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mo>-</m:mo><m:mn>10</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>0</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>2</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>10</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>3</m:mn></m:msub></m:msub><m:mo>-</m:mo><m:mn>10</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>4</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>0</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>5</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>10</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>6</m:mn></m:msub></m:msub><m:mo>-</m:mo><m:mn>10</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>7</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>0</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>8</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>10</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>9</m:mn></m:msub></m:msub><m:mo>-</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>10</m:mn></m:msub></m:msub></m:mrow></m:math></equation></item>
+        <item id="uid10">A store has eight items for sale. The prices are $3.50, $5.00, $3.50, $7.50,
+$5.00, $5.00, $3.50, and $7.50, respectively. A customer comes in. She purchases
+one of the items with probabilities 0.10, 0.15, 0.15, 0.20, 0.10 0.05, 0.10 0.15. The
+random variable expressing the amount of her purchase may be written
+<equation id="id117663"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>5</m:mn><m:mo>.</m:mo><m:mn>0</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>2</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>3</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>7</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>4</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>5</m:mn><m:mo>.</m:mo><m:mn>0</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>5</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>5</m:mn><m:mo>.</m:mo><m:mn>0</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>6</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>3</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>7</m:mn></m:msub></m:msub><m:mo>+</m:mo><m:mn>7</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mn>8</m:mn></m:msub></m:msub></m:mrow></m:math></equation></item>
+      </list>
+      </example>
+</item>
+<item>
+       We commonly have <emphasis effect="italics">X</emphasis> represented in <emphasis effect="italics">affine form</emphasis>, in which the random
+variable is represented as an affine combination of indicator functions (i.e., a linear
+combination of the indicator functions plus a constant, which may be zero).
+      <equation id="id117890"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>⋯</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>m</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+In this form, the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mi>m</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is not necessarily mutually
+exclusive, and the coefficients do not display directly the set of possible values.
+In fact, the <emphasis effect="italics">E<sub>i</sub></emphasis> often form an independent class.
+
+
+      <emphasis effect="italics">Remark</emphasis>.
+  Any primitive form is a special affine form in which <m:math overflow="scroll"><m:mrow><m:msub><m:mi>c</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and the <emphasis effect="italics">E<sub>i</sub></emphasis> form a
+partition.
+
+<example id="eip-id1170314149449">
+
+      <para id="id118161">Consider, again, the random variable <emphasis effect="italics">S<sub>n</sub></emphasis> which counts the number of successes in a sequence of
+<emphasis effect="italics">n</emphasis> Bernoulli trials. If <emphasis effect="italics">E<sub>i</sub></emphasis> is the event of a success on the <emphasis effect="italics">i</emphasis>th trial, then one
+natural way to express the count is</para>
+      <equation id="id118211"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mspace width="0.166667em"/>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>p</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>1</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>i</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mi>n</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id118327">This is affine form, with <m:math overflow="scroll"><m:mrow><m:msub><m:mi>c</m:mi><m:mn>0</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>c</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi></m:mrow></m:math>. In this case,
+the <emphasis effect="italics">E<sub>i</sub></emphasis> cannot form a mutually exclusive class, since they form an independent class.</para>
+    </example>
+
+    <emphasis effect="bold">Events generated by a simple random variable: canonical form</emphasis>
+<newline/>
+We may characterize the class of all inverse images formed by a simple random <emphasis effect="italics">X</emphasis> in terms
+of the partition <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> it determines. Consider any set <emphasis effect="italics">M</emphasis> of real numbers. If <emphasis effect="italics">t<sub>i</sub></emphasis> in
+the range of <emphasis effect="italics">X</emphasis> is in <emphasis effect="italics">M</emphasis>, then every point <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math> maps into <emphasis effect="italics">t<sub>i</sub></emphasis>, hence
+into <emphasis effect="italics">M</emphasis>. If the set <emphasis effect="italics">J</emphasis> is the set of indices <emphasis effect="italics">i</emphasis> such that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>∈</m:mo><m:mi>M</m:mi></m:mrow></m:math>, then
+
+      <newline/>
+Only those points <emphasis effect="italics">ω</emphasis> in <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>M</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi></m:mrow><m:mrow/></m:munderover></m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math> map into <emphasis effect="italics">M</emphasis>.
+
+<newline/>
+      Hence, the class of events (i.e., inverse images) determined by <emphasis effect="italics">X</emphasis> consists of the impossible
+event <emphasis effect="italics">∅</emphasis>, the sure event <emphasis effect="italics">Ω</emphasis>, and the union of any subclass of the <emphasis effect="italics">A<sub>i</sub></emphasis> in
+the partition determined by <emphasis effect="italics">X</emphasis>.
+
+<example id="eip-id1171667892067"><title> Events determined by a simple random variable</title>
+      <para id="id118756">Suppose simple random variable <emphasis effect="italics">X</emphasis> is represented in canonical form by</para>
+      <equation id="id118769">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>-</m:mo>
+            <m:mn>2</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>A</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>B</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>D</m:mi>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id118827">Then the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi><m:mo>,</m:mo><m:mi>D</m:mi><m:mo>}</m:mo></m:mrow></m:math> is the partition determined by <emphasis effect="italics">X</emphasis> and the range of 
+<emphasis effect="italics">X</emphasis> is <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>3</m:mn><m:mo>}</m:mo></m:mrow></m:math>.</para>
+    <list id="id118925" display="block" list-type="enumerated">
+        <item id="uid11">If <emphasis effect="italics">M</emphasis> is the interval <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>, then the values -2, -1, and 0 are in <emphasis effect="italics">M</emphasis> and
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:mi>B</m:mi><m:mo>⋁</m:mo><m:mi>C</m:mi></m:mrow></m:math>.
+</item>
+        <item id="uid12">If <emphasis effect="italics">M</emphasis> is the set <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>2</m:mn><m:mo>,</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>]</m:mo><m:mo>∪</m:mo><m:mo>[</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>]</m:mo></m:mrow></m:math>, then the values -1, 3 are in <emphasis effect="italics">M</emphasis> and
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>B</m:mi><m:mo>⋁</m:mo><m:mi>D</m:mi></m:mrow></m:math>.
+</item>
+        <item id="uid13">The event <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow><m:mo>}</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, where
+<m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>.  Since values -2, -1, 0 are in <emphasis effect="italics">M</emphasis>, the event <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>}</m:mo><m:mo>=</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:mi>B</m:mi><m:mo>⋁</m:mo><m:mi>C</m:mi></m:mrow></m:math>.
+
+</item>
+      </list>
+      </example>
+</item>
+</list> 
+</section>
+   <section id="fs-id1166387957404"><title>Determination of the distribution</title><para id="id119308">Determining the partition generated by a simple random variable amounts to determining
+the canonical form. The distribution is then completed by determining the probabilities of
+each event <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>k</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>k</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math>.</para>
+    <para id="fs-id14097656"><emphasis effect="bold">From a primitive form</emphasis></para>
+<para id="id119357">Before writing down the general pattern, we consider an illustrative example.</para>
+<example id="eip-id1171665362894"><title>The distribution from a primitive form</title><para id="id119369">Suppose one item is selected at random from a group of ten items. The values (in dollars)
+and respective probabilities are</para>
+      <table id="id119373" summary="A 2x12 table comparing value and probability.">
+<tgroup cols="11"><tbody>
+            <row>
+              <entry>
+                <emphasis effect="italics">c<sub>j</sub></emphasis>
+              </entry>
+              <entry>2.00</entry>
+              <entry>1.50</entry>
+              <entry>2.00</entry>
+              <entry>2.50</entry>
+              <entry>1.50</entry>
+              <entry>1.50</entry>
+              <entry>1.00</entry>
+              <entry>2.50</entry>
+              <entry>2.00</entry>
+              <entry>1.50</entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:msub>
+                      <m:mi>C</m:mi>
+                      <m:mi>j</m:mi>
+                    </m:msub>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>0.08</entry>
+              <entry>0.11</entry>
+              <entry>0.07</entry>
+              <entry>0.15</entry>
+              <entry>0.10</entry>
+              <entry>0.09</entry>
+              <entry>0.14</entry>
+              <entry>0.08</entry>
+              <entry>0.08</entry>
+              <entry>0.10</entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table>
+      <!--empty paragraphs get left behind.-->
+      <para id="id119560">By inspection, we find four distinct values: <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>00</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>.</m:mo><m:mn>50</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>00</m:mn></m:mrow></m:math>,
+and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>4</m:mn></m:msub><m:mo>=</m:mo><m:mn>2</m:mn><m:mo>.</m:mo><m:mn>50</m:mn></m:mrow></m:math>.  The value 1.00 is taken on for <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>C</m:mi><m:mn>7</m:mn></m:msub></m:mrow></m:math> , so that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:msub><m:mi>C</m:mi><m:mn>7</m:mn></m:msub></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>C</m:mi><m:mn>7</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>14</m:mn></m:mrow></m:math>.  Value 1.50 is taken on for <m:math overflow="scroll"><m:mrow><m:mi>ω</m:mi><m:mo>∈</m:mo><m:msub><m:mi>C</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>C</m:mi><m:mn>5</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>C</m:mi><m:mn>6</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>C</m:mi><m:mn>10</m:mn></m:msub></m:mrow></m:math>
+so that</para>
+      <equation id="id119811">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>5</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>6</m:mn>
+            </m:msub>
+            <m:mo>⋁</m:mo>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mn>10</m:mn>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>10</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>40</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id119981">Similarly</para>
+      <equation id="id119987">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>9</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>23</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mn>8</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>23</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id120147">The distribution for <emphasis effect="italics">X</emphasis> is thus</para>
+      <table id="id120163" summary="A table showing the distribution for x.">
+<tgroup cols="5"><tbody>
+            <row>
+              <entry>
+                <emphasis effect="italics">k</emphasis>
+              </entry>
+              <entry>1.00</entry>
+              <entry>1.50</entry>
+              <entry>2.00</entry>
+              <entry>2.50</entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo>=</m:mo>
+                    <m:mi>k</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>0.14</entry>
+              <entry>0.40</entry>
+              <entry>0.23</entry>
+              <entry>0.23</entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table>
+     </example>
+
+
+
+      <para id="id120287"><emphasis effect="italics">The general procedure</emphasis> may be formulated as follows:</para>
+      <para id="id120294">If <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>j</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:msub><m:mi>c</m:mi><m:mi>j</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>C</m:mi><m:mi>j</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>, we identify the set of distinct values
+in the set <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>c</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math>.  Suppose these are <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>&lt;</m:mo><m:mo>⋯</m:mo><m:mo>&lt;</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math>.
+For any possible value <emphasis effect="italics">t<sub>i</sub></emphasis> in the range, identify the index set <emphasis effect="italics">J<sub>i</sub></emphasis> of those <emphasis effect="italics">j</emphasis> such
+that <m:math overflow="scroll"><m:mrow><m:msub><m:mi>c</m:mi><m:mi>j</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math>. Then the terms</para>
+      <equation id="id120487"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:msub>
+                <m:mi>J</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:munder>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:msub>
+                <m:mi>J</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:munder>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>t</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:munderover>
+                <m:mo>⋁</m:mo>
+                <m:mrow>
+                  <m:mi>j</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:msub>
+                    <m:mi>J</m:mi>
+                    <m:mi>i</m:mi>
+                  </m:msub>
+                </m:mrow>
+                <m:mrow/>
+              </m:munderover>
+              
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>C</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:mo>,</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id120665">and</para>
+      <equation id="id120670"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>A</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munder>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>∈</m:mo>
+                <m:msub>
+                  <m:mi>J</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:mrow>
+            </m:munder>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>C</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id120752">Examination of this procedure shows that there are two phases:</para>
+      <list id="id120758" display="block" list-type="bulleted">
+        <item id="uid14">Select and sort the distinct values <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:math></item>
+        <item id="uid15">Add all probabilities associated with each value <emphasis effect="italics">t<sub>i</sub></emphasis> to determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math></item>
+      </list>
+      <para id="id120875">We use the m-function <emphasis effect="italics">csort</emphasis> which performs these two
+operations (see <link document="m23248" target-id="fs-id11775206">Example 4</link> from "Minterms and MATLAB Calculations").</para>
+
+<example id="eip-id1172435278074"><title>Use of csort on <link target-id="eip-id1171665362894"/></title><!--empty paragraphs get left behind.-->
+      <code id="id120896" display="block">&gt;&gt; C = [2.00 1.50 2.00 2.50 1.50 1.50 1.00 2.50 2.00 1.50];  % Matrix of c_j
+&gt;&gt; pc = [0.08 0.11 0.07 0.15 0.10 0.09 0.14 0.08 0.08 0.10]; % Matrix of P(C_j)
+&gt;&gt; [X,PX] = csort(C,pc);     % The sorting and consolidating operation
+&gt;&gt; disp([X;PX]')             % Display of results
+    1.0000    0.1400
+    1.5000    0.4000
+    2.0000    0.2300
+    2.5000    0.2300
+</code>
+      <para id="id120992">For a problem this small, use of a tool such as csort is not really needed. But in many problems
+with large sets of data the m-function csort is very useful.</para>
+      </example>
+ <para id="eip-id19713761"><emphasis effect="bold">From affine form</emphasis>
+</para>   
+<para id="id121021">Suppose <emphasis effect="italics">X</emphasis> is in affine form,</para>
+      <equation id="id121034"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>1</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>2</m:mn>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>⋯</m:mo>
+            <m:mspace width="0.166667em"/>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>m</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mn>0</m:mn>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>j</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>m</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>c</m:mi>
+              <m:mi>j</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121182">We determine a particular primitive form by determining the value of <emphasis effect="italics">X</emphasis> on each
+minterm generated by the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>j</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>j</m:mi><m:mo>≤</m:mo><m:mi>m</m:mi><m:mo>}</m:mo></m:mrow></m:math>.  We do this in
+a systematic way by utilizing minterm vectors and properties of indicator functions.</para>
+      <list id="id121231" display="block" list-type="enumerated" number-style="arabic" class="stepwise"><item id="uid16"><emphasis effect="italics">X</emphasis> is constant on each minterm generated by the class
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mi>m</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> since, as noted in the treatment of the minterm expansion,
+each indicator function <m:math overflow="scroll"><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:math> is constant on each minterm. We determine
+the value <emphasis effect="italics">s<sub>i</sub></emphasis> of <emphasis effect="italics">X</emphasis> on each minterm <emphasis effect="italics">M<sub>i</sub></emphasis>. This describes <emphasis effect="italics">X</emphasis> in a special
+primitive form
+<equation id="id121378"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mrow><m:mo>∑</m:mo></m:mrow><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow><m:mrow><m:msup><m:mn>2</m:mn><m:mi>m</m:mi></m:msup><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:munderover><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub><m:msub><m:mi>I</m:mi><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>with</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>M</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:msup><m:mn>2</m:mn><m:mi>m</m:mi></m:msup><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:math></equation></item>
+        <item id="uid17">We apply the csort operation to the matrices of values and minterm probabilities
+to determine the distribution for <emphasis effect="italics">X</emphasis>.
+</item>
+      </list>
+      <para id="id121539">We illustrate with a simple example. Extension to the general case should
+be quite evident. First, we do the problem “by hand” in tabular form. Then we use the
+m-procedures to carry out the desired operations.
+</para>
+<example id="eip-id4648718"><title>Finding the distribution from affine form</title><para id="id121553">A mail order house is featuring three items (limit one of each kind per customer). Let</para>
+      <list id="eip-id16765462" list-type="bulleted" bullet-style="none"><item><m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> the event the customer orders item 1, at a price of 10 dollars.</item>
+      <item><m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> the event the customer orders item 2, at a price of 18 dollars.</item>
+      <item><m:math overflow="scroll"><m:mrow><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>=</m:mo></m:mrow></m:math> the event the customer orders item 3, at a price of 10 dollars.</item></list>
+      <para id="id121625">          There is a mailing charge of 3 dollars per order.</para>
+      <para id="id121631">We suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>E</m:mi><m:mn>3</m:mn></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent with probabilities 0.6, 0.3, 0.5,
+respectively. Let <emphasis effect="italics">X</emphasis> be the amount a customer who orders the special items spends on
+them plus mailing cost. Then, in affine form,</para>
+      <equation id="id121691">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>18</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>10</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>3</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id121767">We seek first the primitive form, using the minterm probabilities, which may calculated in this
+case by using the m-function minprob.</para>
+      <list id="id121774" display="block" list-type="enumerated" number-style="arabic"><item id="uid18">To obtain the value of <emphasis effect="italics">X</emphasis> on each minterm we
+<list id="id121801" display="block" list-type="bulleted"><item id="uid19">Multiply the minterm vector for each generating event by the coefficient for that event
+</item><item id="uid20">Sum the values on each minterm and add the constant
+</item></list>
+      To complete the table, list the corresponding minterm probabilities.
+      <table id="id121835" summary="A list of minterm probabilities">
+<tgroup cols="7"><tbody>
+            <row>
+              <entry>
+                <emphasis effect="italics">i</emphasis>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>10</m:mn>
+                    <m:msub>
+                      <m:mi>I</m:mi>
+                      <m:msub>
+                        <m:mi>E</m:mi>
+                        <m:mi>i</m:mi>
+                      </m:msub>
+                    </m:msub>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>18</m:mn>
+                    <m:msub>
+                      <m:mi>I</m:mi>
+                      <m:msub>
+                        <m:mi>E</m:mi>
+                        <m:mn>2</m:mn>
+                      </m:msub>
+                    </m:msub>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mn>10</m:mn>
+                    <m:msub>
+                      <m:mi>I</m:mi>
+                      <m:msub>
+                        <m:mi>E</m:mi>
+                        <m:mn>3</m:mn>
+                      </m:msub>
+                    </m:msub>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>c</entry>
+              <entry>
+                <emphasis effect="italics">s<sub>i</sub></emphasis>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:msub>
+                      <m:mi>m</m:mi>
+                      <m:mi>i</m:mi>
+                    </m:msub>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>0</entry>
+              <entry>0</entry>
+              <entry>0</entry>
+              <entry>0</entry>
+              <entry>3</entry>
+              <entry>3</entry>
+              <entry>0.14</entry>
+            </row>
+            <row>
+              <entry>1</entry>
+              <entry>0</entry>
+              <entry>0</entry>
+              <entry>10</entry>
+              <entry>3</entry>
+              <entry>13</entry>
+              <entry>0.14</entry>
+            </row>
+            <row>
+              <entry>2</entry>
+              <entry>0</entry>
+              <entry>18</entry>
+              <entry>0</entry>
+              <entry>3</entry>
+              <entry>21</entry>
+              <entry>0.06</entry>
+            </row>
+            <row>
+              <entry>3</entry>
+              <entry>0</entry>
+              <entry>18</entry>
+              <entry>10</entry>
+              <entry>3</entry>
+              <entry>31</entry>
+              <entry>0.06</entry>
+            </row>
+            <row>
+              <entry>4</entry>
+              <entry>10</entry>
+              <entry>0</entry>
+              <entry>0</entry>
+              <entry>3</entry>
+              <entry>13</entry>
+              <entry>0.21</entry>
+            </row>
+            <row>
+              <entry>5</entry>
+              <entry>10</entry>
+              <entry>0</entry>
+              <entry>10</entry>
+              <entry>3</entry>
+              <entry>23</entry>
+              <entry>0.21</entry>
+            </row>
+            <row>
+              <entry>6</entry>
+              <entry>10</entry>
+              <entry>18</entry>
+              <entry>0</entry>
+              <entry>3</entry>
+              <entry>31</entry>
+              <entry>0.09</entry>
+            </row>
+            <row>
+              <entry>7</entry>
+              <entry>10</entry>
+              <entry>18</entry>
+              <entry>10</entry>
+              <entry>3</entry>
+              <entry>41</entry>
+              <entry>0.09</entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table>
+  We then sort on the <emphasis effect="italics">s<sub>i</sub></emphasis>, the values on the various <emphasis effect="italics">M<sub>i</sub></emphasis>, to expose more
+clearly the primitive form for <emphasis effect="italics">X</emphasis>.
+
+      
+      <table id="id122388" summary="table of primitive form values for X"><title>“Primitive form” Values</title>
+<tgroup cols="3"><tbody>
+            <row>
+              <entry>
+                <emphasis effect="italics">i</emphasis>
+              </entry>
+              <entry>
+                <emphasis effect="italics">s<sub>i</sub></emphasis>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:msub>
+                      <m:mi>m</m:mi>
+                      <m:mi>i</m:mi>
+                    </m:msub>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>0</entry>
+              <entry>3</entry>
+              <entry>0.14</entry>
+            </row>
+            <row>
+              <entry>1</entry>
+              <entry>13</entry>
+              <entry>0.14</entry>
+            </row>
+            <row>
+              <entry>4</entry>
+              <entry>13</entry>
+              <entry>0.21</entry>
+            </row>
+            <row>
+              <entry>2</entry>
+              <entry>21</entry>
+              <entry>0.06</entry>
+            </row>
+            <row>
+              <entry>5</entry>
+              <entry>23</entry>
+              <entry>0.21</entry>
+            </row>
+            <row>
+              <entry>3</entry>
+              <entry>31</entry>
+              <entry>0.06</entry>
+            </row>
+            <row>
+              <entry>6</entry>
+              <entry>31</entry>
+              <entry>0.09</entry>
+            </row>
+            <row>
+              <entry>7</entry>
+              <entry>41</entry>
+              <entry>0.09</entry>
+            </row>
+          </tbody>
+        
+
+</tgroup>
+</table>
+      <!--empty paragraphs get left behind.-->
+The primitive form of <emphasis effect="italics">X</emphasis> is thus
+
+
+      <equation id="id122648">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>0</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>13</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>13</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>21</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>23</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>31</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>3</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>31</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>6</m:mn>
+              </m:msub>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:mn>41</m:mn>
+            <m:mspace width="0.166667em"/>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:msub>
+                <m:mi>M</m:mi>
+                <m:mn>7</m:mn>
+              </m:msub>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      We note that the value 13 is taken on on minterms <emphasis effect="italics">M<sub>1</sub></emphasis> and <emphasis effect="italics">M<sub>4</sub></emphasis>. The probability
+<emphasis effect="italics">X</emphasis> has the value 13 is thus <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>p</m:mi><m:mo>(</m:mo><m:mn>4</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Similarly, <emphasis effect="italics">X</emphasis> has value 31 on minterms
+<emphasis effect="italics">M<sub>3</sub></emphasis> and <emphasis effect="italics">M<sub>6</sub></emphasis>.</item>
+     <item id="uid21">To complete the process of determining the distribution, we list the sorted
+values and consolidate by adding together
+the probabilities of the minterms on which each value is taken, as follows:
+<table id="id122949" summary="The probabilities of the minterms on which each value is taken">
+<tgroup cols="3"><tbody><row><entry><emphasis effect="italics">k</emphasis></entry><entry><emphasis effect="italics">t<sub>k</sub></emphasis></entry><entry><emphasis effect="italics">p<sub>k</sub></emphasis></entry></row><row><entry>1</entry><entry>3</entry><entry>0.14</entry></row><row><entry>2</entry><entry>13</entry><entry>0.14 + 0.21 = 0.35</entry></row><row><entry>3</entry><entry>21</entry><entry>0.06</entry></row><row><entry>4</entry><entry>23</entry><entry>0.21</entry></row><row><entry>5</entry><entry>31</entry><entry>0.06 + 0.09 = 0.15</entry></row><row><entry>6</entry><entry>41</entry><entry>0.09</entry></row></tbody>
+</tgroup>
+</table>      
+
+The results may be put in a matrix <emphasis effect="italics">X</emphasis> of possible values
+and a corresponding matrix <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math> of probabilities that <emphasis effect="italics">X</emphasis> takes on each of these
+values. Examination of the table shows that
+      <equation id="id123185">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>13</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>21</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>23</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>31</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>41</m:mn>
+            <m:mo>]</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>14</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>35</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>06</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>21</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>15</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>09</m:mn>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      Matrices <emphasis effect="italics">X</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math> describe the distribution for <emphasis effect="italics">X</emphasis>.
+</item>
+</list>
+</example>
+    </section>
+    
+    <section id="cid12"><title>An m-procedure for determining the distribution from affine form</title><para id="id123388">We now consider suitable MATLAB steps in determining the distribution from affine form, then
+incorporate these in the m-procedure <emphasis effect="italics">canonic</emphasis> for carrying out the transformation.
+We start with the random variable in affine form, and suppose we have available, or
+can calculate, the minterm probabilities.</para>
+      <list id="id123399" display="block" list-type="enumerated" number-style="arabic"><item id="uid22">The procedure uses <emphasis effect="italics">mintable</emphasis> to set
+the basic minterm vector patterns, then uses a matrix of coefficients, including the
+constant term (set to zero if absent), to obtain the values on each minterm.
+The minterm probabilities are included in a row matrix.
+</item>
+        <item id="uid23">Having obtained the values on each minterm, the procedure performs the
+desired consolidation by using the m-function csort.
+</item>
+      </list>
+<example id="eip-id8646668"><title>Steps in determining the distribution for <emphasis effect="italics">X</emphasis> in <link target-id="eip-id4648718"/></title><!--empty paragraphs get left behind.-->
+      <code id="id123466" display="block">&gt;&gt; c = [10 18 10 3];                 % Constant term is listed last
+&gt;&gt; pm = minprob(0.1*[6 3 5]);
+&gt;&gt; M  = mintable(3)                  % Minterm vector pattern
+M =
+     0     0     0     0     1     1     1     1
+     0     0     1     1     0     0     1     1
+     0     1     0     1     0     1     0     1
+% - - - - - - - - - - - - - -        % An approach mimicking ``hand'' calculation
+&gt;&gt; C = colcopy(c(1:3),8)             % Coefficients in position
+C =
+    10    10    10    10    10    10    10    10
+    18    18    18    18    18    18    18    18
+    10    10    10    10    10    10    10    10
+&gt;&gt; CM = C.*M                         % Minterm vector values
+CM =
+     0     0     0     0    10    10    10    10
+     0     0    18    18     0     0    18    18
+     0    10     0    10     0    10     0    10
+&gt;&gt; cM = sum(CM) + c(4)               % Values on minterms
+cM =
+     3    13    21    31    13    23    31    41
+% - - - - - - - - - - - -  -         % Practical MATLAB procedure
+&gt;&gt; s = c(1:3)*M + c(4)
+s =
+     3    13    21    31    13    23    31    41
+&gt;&gt; pm = 0.14  0.14  0.06  0.06  0.21  0.21  0.09  0.09   % Extra zeros deleted
+&gt;&gt; const = c(4)*ones(1,8);}
+</code>
+      
+      <code id="id123838" display="block">&gt;&gt; disp([CM;const;s;pm]')            % Display of primitive form
+     0     0     0   3    3    0.14  % MATLAB gives four decimals
+     0     0    10   3   13    0.14
+     0    18     0   3   21    0.06
+     0    18    10   3   31    0.06
+    10     0     0   3   13    0.21
+    10     0    10   3   23    0.21
+    10    18     0   3   31    0.09
+    10    18    10   3   41    0.09
+&gt;&gt; [X,PX] = csort(s,pm);              % Sorting on s, consolidation of  pm
+&gt;&gt; disp([X;PX]')                      % Display of final result
+     3    0.14
+    13    0.35
+    21    0.06
+    23    0.21
+    31    0.15
+    41    0.09
+</code>
+      </example>
+
+      <para id="id124035">The two basic steps are combined in the m-procedure <emphasis effect="italics">canonic</emphasis>, which we use
+to solve the previous problem.</para>
+<example id="eip-id2957185"><title>Use of canonic on the variables of <link target-id="eip-id8646668"/></title><!--empty paragraphs get left behind.-->
+      <code id="id124056" display="block">&gt;&gt; c = [10 18 10 3]; % Note that the constant term 3 must be included last
+&gt;&gt; pm = minprob([0.6 0.3 0.5]);
+&gt;&gt; canonic
+ Enter row vector of coefficients  c
+ Enter row vector of minterm probabilities  pm
+Use row matrices X and PX for calculations
+Call for XDBN to view the distribution
+&gt;&gt; disp(XDBN)
+    3.0000    0.1400
+   13.0000    0.3500
+   21.0000    0.0600
+   23.0000    0.2100
+   31.0000    0.1500
+   41.0000    0.0900
+</code>
+      </example>
+      <para id="id124218">With the distribution available in the matrices <emphasis effect="italics">X</emphasis> (set of values) and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math> (set of
+probabilities), we may calculate a wide variety of quantities associated with the
+random variable.</para>
+      <para id="id124244">We use two key devices:</para>
+      <list id="id124247" display="block" list-type="enumerated">
+        <item id="uid24">Use relational and logical operations on the matrix of values <emphasis effect="italics">X</emphasis> to determine a
+matrix <emphasis effect="italics">M</emphasis> which has ones for those values which meet a prescribed condition.
+      <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:math>:   PM = M*PX'
+
+</item>
+        <item id="uid25">Determine <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mo>⋯</m:mo><m:mspace width="0.277778em"/><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:math> by using array
+operations on matrix <emphasis effect="italics">X</emphasis>. We have two alternatives:
+<list id="id124420" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid26">Use the matrix <emphasis effect="italics">G</emphasis>, which has values <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> for each possible value <emphasis effect="italics">t<sub>i</sub></emphasis>
+for <emphasis effect="italics">X</emphasis>, or,
+</item><item id="uid27">Apply csort to the pair <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>G</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>P</m:mi><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math> to get the distribution for
+<m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>.  This distribution (in value and probability matrices) may be used
+in exactly the same manner as that for the original random variable <emphasis effect="italics">X</emphasis>.
+</item></list></item>
+      </list>
+
+
+
+<example id="eip-id4618299"><title>Continuation of <link target-id="eip-id2957185"/></title><para id="id124566">Suppose for the random variable <emphasis effect="italics">X</emphasis> in <link target-id="eip-id2957185"/> it is desired to determine the probabilities</para>
+      <para id="id124579"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>15</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>35</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>20</m:mn><m:mo>|</m:mo><m:mo>≤</m:mo><m:mn>7</m:mn><m:mo>)</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>10</m:mn><m:mo>)</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>-</m:mo><m:mn>25</m:mn><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <!--empty paragraphs get left behind.-->
+      <code id="id124681" display="block">&gt;&gt; M = (X&gt;=15)&amp;(X&lt;=35);
+M = 0   0    1    1    1    0    % Ones for minterms on which 15 &lt;= X &lt;= 35
+&gt;&gt; PM = M*PX'                    % Picks out and sums those minterm probs
+PM =  0.4200
+&gt;&gt; N = abs(X-20)&lt;=7;
+N = 0    1    1    1    0    0   % Ones for minterms on which |X - 20| &lt;= 7
+&gt;&gt; PN = N*PX'                    % Picks out and sums those minterm probs
+PN =  0.6200
+&gt;&gt; G = (X - 10).*(X - 25)
+G = 154 -36 -44 -26 126 496      % Value of g(t_i) for each possible value
+&gt;&gt; P1 = (G&gt;0)*PX'                % Total probability for those t_i such that
+P1 =  0.3800                     % g(t_i) &gt; 0
+&gt;&gt; [Z,PZ] = csort(G,PX)          % Distribution for Z = g(X)
+Z =  -44   -36   -26   126   154   496
+PZ =  0.0600    0.3500    0.2100    0.1500    0.1400    0.0900
+&gt;&gt; P2 = (Z&gt;0)*PZ'                % Calculation using distribution for Z
+P2 =  0.3800
+</code>
+      <!--empty paragraphs get left behind.-->
+</example>
+
+
+
+
+<example id="eip-id1163890627796"><title>Alternate formulation of <link document="m23256" target-id="fs-id6459998">Example 3</link> from "Composite Trials"</title><para id="id124962">Ten race cars are involved in time trials to determine pole positions for an
+upcoming race. To qualify, they must post an average speed of 125 mph or more on a
+trial run. Let <emphasis effect="italics">E<sub>i</sub></emphasis> be the event the <emphasis effect="italics">i</emphasis>th car makes qualifying speed. It seems reasonable
+to suppose the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>}</m:mo></m:mrow></m:math> is independent. If the
+respective probabilities for success are 0.90, 0.88, 0.93, 0.77, 0.85, 0.96,
+0.72, 0.83, 0.91, 0.84, what is the probability that <emphasis effect="italics">k</emphasis> or more will qualify
+(<m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>6</m:mn><m:mo>,</m:mo><m:mn>7</m:mn><m:mo>,</m:mo><m:mn>8</m:mn><m:mo>,</m:mo><m:mn>9</m:mn><m:mo>,</m:mo><m:mn>10</m:mn></m:mrow></m:math>)?</para>
+      
+      <para id="id125085"><title>SOLUTION</title>Let <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mn>10</m:mn></m:munderover><m:msub><m:mi>I</m:mi><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub></m:msub></m:mrow></m:mstyle></m:math>.</para>
+      <code id="id125135" display="block">&gt;&gt; c = [ones(1,10) 0];
+&gt;&gt; P = [0.90, 0.88, 0.93, 0.77, 0.85, 0.96, 0.72, 0.83, 0.91, 0.84];
+&gt;&gt; canonic
+ Enter row vector of coefficients  c
+ Enter row vector of minterm probabilities  minprob(P)
+Use row matrices X and PX for calculations
+Call for XDBN to view the distribution
+&gt;&gt; k = 6:10;
+&gt;&gt; for i = 1:length(k)
+    Pk(i) = (X&gt;=k(i))*PX';
+end
+&gt;&gt; disp(Pk)
+    0.9938    0.9628    0.8472    0.5756    0.2114
+</code>
+      </example>
+
+
+
+      <para id="id125307">This solution is not as convenient to write out. However, with the distribution for
+<emphasis effect="italics">X</emphasis> as defined, a great many other probabilities can be determined. This is particularly
+the case when it is desired to compare the results of two independent races or “heats.”
+We consider such problems in the study of <link document="m23321">Independent Classes of Random
+Variables</link>.
+</para>
+    
+
+<para id="eip-id1166385233652"><emphasis effect="bold">A function form for canonic</emphasis></para>
+<para id="id125340">One disadvantage of the procedure canonic is that it always names the output
+<emphasis effect="italics">X</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math>. While these can easily be renamed, frequently it is desirable to use some other
+name for the random variable from the start. A function form, which we call <emphasis effect="bold">canonicf</emphasis>,
+is useful in this case.</para>
+<example id="eip-id4776496"><title>Alternate solution of <link target-id="eip-id1163890627796"/>, using canonicf</title><!--empty paragraphs get left behind.-->
+      <code id="id125384" display="block">&gt;&gt; c = [10 18 10 3];
+&gt;&gt; pm = minprob(0.1*[6 3 5]);
+&gt;&gt; [Z,PZ] = canonicf(c,pm);
+&gt;&gt; disp([Z;PZ]')                % Numbers as before, but the distribution
+    3.0000    0.1400            % matrices are now named Z and PZ
+   13.0000    0.3500
+   21.0000    0.0600
+   23.0000    0.2100
+   31.0000    0.1500
+   41.0000    0.0900
+</code>
+    </example></section>
+    
+    <section id="cid14">
+      <title> General random variables</title>
+      <para id="id125509">The distribution for a simple random variable is easily visualized as point mass
+concentrations at the various values in the range, and the class
+of events determined by a simple random variable is described in terms of the
+partition generated by <emphasis effect="italics">X</emphasis> (i.e., the class of those events of the form <m:math overflow="scroll"><m:mrow><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:mrow></m:math>
+for each <emphasis effect="italics">t<sub>i</sub></emphasis> in the range). The situation is conceptually the same for the
+general case, but the details are more complicated. If the random variable takes on
+a continuum of values, then the probability mass distribution may be spread smoothly
+on the line. Or, the distribution may be a mixture of point mass concentrations and
+smooth distributions on some intervals. The class of events determined by <emphasis effect="italics">X</emphasis> is the
+set of all inverse images <m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> for <emphasis effect="italics">M</emphasis> any member of a general class of subsets
+of subsets of the real line known in the mathematical literature as the <emphasis effect="italics">Borel sets</emphasis>.
+ There are technical mathematical reasons for not saying <emphasis effect="italics">M</emphasis> is <emphasis effect="italics">any</emphasis> subset, but
+the class of Borel sets is general enough to include any set likely to be encountered
+in applications—certainly at the level of this treatment. The Borel sets include any
+interval and any set that can be formed by complements, countable unions, and countable
+intersections of Borel sets. This is a type of class known as a <emphasis effect="italics">sigma algebra</emphasis> of events.
+Because of the preservation of set operations by the inverse image, the class of events
+determined by random variable <emphasis effect="italics">X</emphasis> is also a sigma algebra, and is often designated
+<m:math overflow="scroll"><m:mrow><m:mi>σ</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+There are some technical questions concerning the probability measure <emphasis effect="italics">P<sub>X</sub></emphasis> induced
+by <emphasis effect="italics">X</emphasis>, hence the distribution. These also are settled in such a manner that there is
+no need for concern at this level of analysis. However, some of these questions become
+important in dealing with random processes and other advanced notions increasingly used
+in applications. Two facts provide the freedom we need to proceed with little concern
+for the technical details.</para>
+      <list id="id125708" display="block" list-type="enumerated">
+        <item id="uid28"><m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is an event for every Borel set <emphasis effect="italics">M</emphasis>  iff  for every semi-infinite interval
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math> on the real line
+<m:math overflow="scroll"><m:mrow><m:msup><m:mi>X</m:mi><m:mrow><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup><m:mrow><m:mo>(</m:mo><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math> is an event.
+</item>
+        <item id="uid29">The induced probability distribution is determined uniquely by its assignment to
+all intervals of the form <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>∞</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math>.
+</item>
+      </list>
+      <para id="id125860">These facts point to the importance of the distribution function introduced in the next
+chapter.</para>
+      <para id="id125864">Another fact, alluded to above and discussed in some detail in the next chapter, is that
+any general random variable can be approximated as closely as pleased by a simple random
+variable. We turn in the next chapter to a description of certain commonly encountered
+probability distributions and ways to describe them analytically.
+</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,611 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Matlab files for "Problems" in "Applied Probability"</title>
+  <metadata>
+  <md:content-id>m24179</md:content-id><md:title>Matlab files for "Problems" in "Applied Probability"</md:title>
+  <md:abstract/>
+  <md:uuid>b6b4ddf0-fbe3-4127-b7ff-498d9115d12a</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+    
+    <section id="cid3"><title>npr02_04</title><code id="id86747" display="block">% file npr02_04.m
+% Data for problem P2-4
+pm = [0.0168  0.0392  0.0672  0.1568  0.0072  0.0168  0.0288  0.0672 ...
+      0.0252  0.0588  0.1008  0.2352  0.0108  0.0252  0.0432  0.1008];
+disp('Minterm probabilities are in pm.  Use mintable(4)')
+</code>
+    </section>
+    <section id="cid4"><title>npr02_05</title><code id="id86809" display="block">% file npr02_05.m
+% Data for problem P2-5
+pm = [0.0216  0.0144  0.0504  0.0336  0.0324  0.0216  0.0756  0.0504  0.0216 ...
+      0.0144  0.0504  0.0336  0.0324  0.0216  0.0756  0.0504  0.0144  0.0096 ...
+      0.0336  0.0224  0.0216  0.0144  0.0504  0.0336  0.0144  0.0096  0.0336 ...
+      0.0224  0.0216  0.0144  0.0504  0.0336];
+disp('Minterm probabilities are in pm.  Use mintable(5)')
+</code>
+    </section>
+    <section id="cid5">
+      <title>npr02_06</title>
+      <code id="id86889" display="block">% file npr02_06.m
+% Data for problem P2-6
+minvec3
+DV = [A|Ac; A|(Bc&amp;C); A&amp;C; Ac&amp;B; Ac&amp;Cc; B&amp;Cc];
+DP = [1      0.65     0.20 0.25  0.25   0.30];
+TV = [((A&amp;Cc)|(Ac&amp;C))&amp;Bc; ((A&amp;Bc)|Ac)&amp;Cc; Ac&amp;(B|Cc)];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid6">
+      <title>npr02_07</title>
+      <code id="id86967" display="block">% file npr02_07.m
+% Data for problem P2-7
+minvec3
+DV = [A|Ac; ((A&amp;Bc)|(Ac&amp;B))&amp;C; A&amp;B; Ac&amp;Cc;  A;  C; A&amp;Bc&amp;Cc];
+DP = [ 1        0.4            0.2   0.3   0.6 0.5   0.1];
+TV = [(Ac&amp;Cc)|(A&amp;C); ((A&amp;Bc)|Ac)&amp;Cc; Ac&amp;(B|Cc)];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid7">
+      <title>npr02_08</title>
+      <code id="id87045" display="block">% file npr02_08.m
+% Data for problem P2-8
+minvec3
+DV = [A|Ac; A;  C;  A&amp;C; Ac&amp;B; Ac&amp;Bc&amp;Cc];
+DP = [ 1   0.6 0.4  0.3  0.2     0.1];
+TV = [(A|B)&amp;Cc; (A&amp;Cc)|(Ac&amp;C); (A&amp;Cc)|(Ac&amp;B)];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid8">
+      <title>npr02_09</title>
+      <code id="id87123" display="block">% file npr02_09.m
+% Data for problem P2-9
+minvec3
+DV = [A|Ac;  A; A&amp;B; A&amp;C; A&amp;B&amp;Cc];
+DP = [ 1    0.5 0.3  0.3   0.1];
+TV = [A&amp;(~(B&amp;Cc)); (A&amp;B)|(A&amp;C)|(B&amp;C)];
+disp('Call for mincalc')
+ 
+% Modification for part 2
+% DV = [DV; Ac&amp;Bc&amp;Cc; Ac&amp;B&amp;C];
+% DP = [DP 0.1 0.05];
+</code>
+    </section>
+    <section id="cid9">
+      <title>npr02_10</title>
+      <code id="id87234" display="block">% file npr02_10.m
+% Data for problem P2-10
+minvec4
+DV = [A|Ac;  A;  Ac&amp;Bc; A&amp;Cc; A&amp;C&amp;Dc];
+DP = [1     0.6  0.2    0.4    0.1];
+TV = [(Ac&amp;B)|(A&amp;(Cc|D))];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid10">
+      <title>npr02_11</title>
+      <code id="id87312" display="block">% file npr02_11.m
+% Data for problem P2-11
+% A = male;  B = on campus;  C = active in sports
+minvec3
+DV = [A|Ac;  A;   B;  A|C; B&amp;Cc; A&amp;B&amp;C; A&amp;Bc; A&amp;Cc];
+DP = [ 1    0.52 0.85 0.78 0.30  0.32   0.08 0.17];
+TV = [A&amp;B; A&amp;B&amp;Cc; Ac&amp;C];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid11">
+      <title>npr02_12</title>
+      <code id="id87399" display="block">% file npr02_12.m
+% Data for problem P2-12
+% A = male;  B = party member; C = voted last election
+minvec3
+DV = [A|Ac;  A;  A&amp;Bc;  B;  Bc&amp;C; Ac&amp;Bc&amp;C];
+DP = [  1   0.60 0.30  0.50 0.20  0.10];
+TV = [Bc&amp;Cc];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid12">
+      <title>npr02_13</title>
+      <code id="id87486" display="block">% file npr02_13.m
+% Data for problem P2-13
+% A = rain in Austin;  B = rain in Houston;
+% C = rain in San Antonio
+minvec3
+DV = [A|Ac; A&amp;B; A&amp;Bc; A&amp;C; (A&amp;Bc)|(Ac&amp;B); B&amp;C; Bc&amp;C; Ac&amp;Bc&amp;Cc];
+DP = [  1   0.35 0.15  0.20    0.45        0.30 0.05   0.15];
+TV = [A&amp;B&amp;C; (A&amp;B&amp;Cc)|(A&amp;Bc&amp;C)|(Ac&amp;B&amp;C); (A&amp;Bc&amp;Cc)|(Ac&amp;B&amp;Cc)|(Ac&amp;Bc&amp;C)];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid13">
+      <title>npr02_14</title>
+      <code id="id87582" display="block">% file npr02_14.m
+% Data for problem P2-14
+% A = male;  B = engineering;
+% C = foreign language; D = graduate study
+minvec4
+DV = [A|Ac; A; B; Ac&amp;B; C; Ac&amp;C; A&amp;D; Ac&amp;D; A&amp;B&amp;D; ...
+      Ac&amp;B&amp;D; B&amp;C&amp;D; Bc&amp;Cc&amp;D; Ac&amp;Bc&amp;C&amp;D];
+DP = [1 0.55 0.23 0.10 0.75 0.45 0.26 0.19 0.13 0.08 0.20 0.05 0.11];
+TV = [C&amp;D; Ac&amp;Dc; A&amp;((C&amp;Dc)|(Cc&amp;D))];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid14">
+      <title>npr02_15</title>
+      <code id="id87688" display="block">% file npr02_15.m
+% Data for problem P2-15
+% A = men; B = on campus; C = readers; D = active
+minvec4
+DV = [A|Ac; A;  B;  Ac&amp;B;  C;  Ac&amp;C;  D;  B&amp;D; C&amp;D; ...
+     Ac&amp;B&amp;D; Ac&amp;Bc&amp;D; Ac&amp;B&amp;C&amp;D; Ac&amp;Bc&amp;C&amp;D; A&amp;Bc&amp;Cc&amp;D];
+DP = [1  0.6 0.55 0.25 0.40 0.25 0.70 0.50 0.35 0.25 0.05 0.10 0.05 0.05];
+TV = [A&amp;D&amp;(Cc|Bc); A&amp;Dc&amp;Cc];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid15">
+      <title>npr02_16</title>
+      <code id="id87785" display="block">% file npr02_16.m
+% Data for problem P2-16
+minvec3
+DV = [A|Ac; A;    B;    C; (A&amp;B)|(A&amp;C)|(B&amp;C); A&amp;B&amp;C; A&amp;C; (A&amp;B)-2*(B&amp;C)];
+DP = [ 1  0.221 0.209 0.112   0.197           0.045  0.062      0];
+TV = [A|B|C; (A&amp;Bc&amp;Cc)|(Ac&amp;B&amp;Cc)|(Ac&amp;Bc&amp;C)];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid16">
+      <title>npr02_17</title>
+      <code id="id87866" display="block">% file npr02_17.m
+% Data for problem P2-17
+% A = alignment;  B = brake work;  C = headlight
+minvec3
+DV = [A|Ac; A&amp;B&amp;C; (A&amp;B)|(A&amp;C)|(B&amp;C); B&amp;C;    A  ];
+DP = [ 1    0.100      0.325          0.125 0.550];
+TV = [A&amp;Bc&amp;Cc; Ac&amp;(~(B&amp;C))];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid17">
+      <title>npr02_18</title>
+      <code id="id87953" display="block">% file npr02_18.m
+% Date for problem P2-18
+minvec3
+DV = [A|Ac; A&amp;(B|C); Ac; Ac&amp;Bc&amp;Cc];
+DP = [ 1     0.3     0.6    0.1];
+TV = [B|C; (((A&amp;B)|(Ac&amp;Bc))&amp;Cc)|(A&amp;C); Ac&amp;(B|Cc)];
+disp('Call for mincalc')
+ 
+% Modification
+% DV = [DV; Ac&amp;B&amp;C; Ac&amp;B];
+% DP = [DP   0.2     0.3];
+</code>
+    </section>
+    <section id="cid18">
+      <title>npr02_19</title>
+      <code id="id88064" display="block">% file npr02_19.m
+% Data for problem P2-19
+% A = computer;  B = monitor;  C = printer
+minvec3
+DV = [A|Ac; A&amp;B; A&amp;B&amp;Cc; A&amp;C; B&amp;C; (A&amp;Cc)|(Ac&amp;C); ...
+          (A&amp;Bc)|(Ac&amp;B); (B&amp;Cc)|(Bc&amp;C)];
+DP = [1 0.49 0.17 0.45 0.39 0.50 0.43 0.43];
+TV = [A; B; C; (A&amp;B&amp;Cc)|(A&amp;Bc&amp;C)|(Ac&amp;B&amp;C); (A&amp;B)|(A&amp;C)|(B&amp;C); A&amp;B&amp;C];
+disp('Call for mincalc')
+</code>
+    </section>
+    <section id="cid19">
+      <title>npr02_20</title>
+      <code id="id88161" display="block">% file npr02_20.m
+% Data for problem P2-20
+minvec3
+DV = [A|Ac; A;     B;  A&amp;B&amp;C; A&amp;C; (A&amp;B)|(A&amp;C)|(B&amp;C); B&amp;C - 2*(A&amp;C)];
+DP = [  1  0.232 0.228 0.045 0.062      0.197            0];
+TV = [A|B|C; Ac&amp;Bc&amp;C];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; C];
+% DP = [DP  0.230 ];
+</code>
+    </section>
+    <section id="cid20">
+      <title>npr02_21</title>
+      <code id="id88271" display="block">% file npr02_21.m
+% Data for problem P2-21
+minvec3
+DV = [A|Ac; A;  A&amp;B; A&amp;B&amp;C;  C;  Ac&amp;Cc];
+DP = [ 1   0.4	0.3  0.25   0.65  0.3 ];
+TV = [(A&amp;Cc)|(Ac&amp;C); Ac&amp;Bc; A|B; A&amp;Bc];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+% DP = [DP   0.1      0.3 ];
+</code>
+    </section>
+    <section id="cid21">
+      <title>npr02_22</title>
+      <code id="id88379" display="block">% file npr02_22.m
+% Data for problem P2-22
+minvec3
+DV = [A|Ac; A;  A&amp;B; A&amp;B&amp;C;  C;  Ac&amp;Cc];
+DP = [ 1   0.4	0.5  0.25   0.65  0.3 ];
+TV = [(A&amp;Cc)|(Ac&amp;C); Ac&amp;Bc; A|B; A&amp;Bc];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+% DP = [DP   0.1      0.3 ];
+</code>
+    </section>
+    <section id="cid22">
+      <title>npr02_23</title>
+      <code id="id88488" display="block">% file npr02_23.m
+% Data for problem P2-23
+minvec3
+DV = [A|Ac; A;  A&amp;C; A&amp;B&amp;C;  C;  Ac&amp;Cc];
+DP = [ 1   0.4	0.3  0.25   0.65  0.3 ];
+TV = [(A&amp;Cc)|(Ac&amp;C); Ac&amp;Bc; A|B; A&amp;Bc];
+disp('Call for mincalc')
+% Modification
+% DV = [DV; Ac&amp;B&amp;Cc; Ac&amp;Bc];
+% DP = [DP   0.1      0.3 ];
+</code>
+    </section>
+    <section id="cid23">
+      <title>npr03_01</title>
+      <code id="id88596" display="block">% file npr03_01.m
+% Data for problem P3-1
+minvec3
+DV = [A|Ac; A;  A&amp;B; B&amp;C; Ac|(B&amp;C); Ac&amp;B&amp;Cc];
+DP = [ 1   0.55 0.30 0.20   0.55     0.15  ];
+TV = [Ac&amp;B; B];
+disp('Call for mincalc')
+</code>
+    </section>
+    
+    <section id="cid25">
+      <title>npr04_04</title>
+      <code id="id88817" display="block">% file npr04_04.m
+% Data for problem P4-4
+pm = [0.032 0.016 0.376 0.011 0.364 0.073 0.077 0.051];
+disp('Minterm probabilities for P4-4 are in pm')
+</code>
+    </section>
+    
+    <section id="cid27">
+      <title>npr04_05</title>
+      <code id="id89121" display="block">% file npr04_05.m
+% Data for problem P4-5
+pm = [0.084 0.196 0.036 0.084 0.085 0.196 0.035 0.084 ...
+          0.021 0.049 0.009 0.021 0.020 0.049 0.010 0.021];
+disp('Minterm probabilities for P4-5 are in pm')
+</code>
+    </section>
+    <section id="cid28">
+      <title>npr04_06</title>
+      <code id="id89185" display="block">% file npr04_06.m
+% Data for problem P4-6
+pm =  [0.085 0.195 0.035 0.085 0.080 0.200 0.035 0.085 ...
+        0.020 0.050 0.010 0.020 0.020 0.050 0.015 0.015];
+disp('Minterm probabilities for P4-6 are in pm')
+</code>
+    </section>
+    
+    <section id="cid30">
+      <title>mpr05_16</title>
+      <code id="id89480" display="block">% file mpr05_16.m
+% Data for Problem P5-16
+A = [51 26  7; 42 32 10; 19 54 11; 24 53  7; 27 52  5;
+     49 19 16; 16 59  9; 47 32  5; 55 17 12; 24 53  7];
+B = [27 34  5; 19 43  4; 39 22  5; 38 19  9; 28 33  5;
+     19 41  6; 37 21  8; 19 42  5; 27 33  6; 39 21  6];
+disp('Call for oddsdf')
+</code>
+    </section>
+    <section id="cid31">
+      <title>npr05_17</title>
+      <code id="id89563" display="block">% file npr05_17.m
+% Data for problem P5-17
+PG1 = 84/150;
+PG2 = 66/125;
+A = [0.61 0.31 0.08
+     0.50 0.38 0.12
+     0.23 0.64 0.13
+     0.29 0.63 0.08
+     0.32 0.62 0.06
+     0.58 0.23 0.19
+     0.19 0.70 0.11
+     0.56 0.38 0.06
+     0.65 0.20 0.15
+     0.29 0.63 0.08];
+B = [0.41 0.51 0.08
+     0.29 0.65 0.06
+     0.59 0.33 0.08
+     0.57 0.29 0.14
+     0.42 0.50 0.08
+     0.29 0.62 0.09
+     0.56 0.32 0.12
+     0.29 0.64 0.08
+     0.41 0.50 0.09
+     0.59 0.32 0.09];
+disp('Call for oddsdp')
+</code>
+    </section>
+    <section id="cid32">
+      <title>npr06_10</title>
+      <code id="id89802" display="block">% file npr06_10.m
+% Data for problem P6-10
+pm = [ 0.072 0.048 0.018 0.012 0.168 0.112 0.042 0.028 ...
+       0.062 0.048 0.028 0.010 0.170 0.110 0.040 0.032];
+c  = [-5.3 -2.5 2.3 4.2 -3.7];
+disp('Minterm probabilities are in pm, coefficients in c')
+</code>
+    </section>
+    <section id="cid33">
+      <title>npr06_12</title>
+      <code id="id89882" display="block">% file npr06_12.m
+% Data for problem P6-12
+pm = 0.001*[5 7 6 8 9 14 22 33 21 32 50 75 86 129 201 302];
+c = [1 1 1 1 0];
+disp('Minterm probabilities in pm, coefficients in c')
+</code>
+    </section>
+    <section id="cid34">
+      <title>npr06_18.m</title>
+      <code id="id89946" display="block">% file npr06_18.m
+% Data for problem P6-18
+cx = [5 17 21 8 15 0];
+cy = [8 15 12 18 15 12 0];
+pmx = minprob(0.01*[37 22 38 81 63]);
+pmy = minprob(0.01*[77 52 23 41 83 58]);
+disp('Data in cx, cy, pmx, pmy')
+</code>
+    </section>
+    
+    
+    <section id="eip-40"><title>npr07_01</title><code id="eip-id14790700" display="block">
+\begin{verbatim}
+% file npr07_01.m
+% Data for problem P7-1
+T  = [1 3 2 3 4 2 1 3 5 2];
+pc = 0.01*[ 8 13  6  9 14 11 12  7 11  9];
+disp('Data are in T and pc')
+\end{verbatim}
+</code>
+</section><section id="eip-440"><title>npr07_02</title><code id="eip-id1166238161664" display="block">
+% file npr07_02.m
+% Data for problem P7-2
+T = [3.5 5.0 3.5 7.5 5.0 5.0 3.5 7.5];
+pc = 0.01*[10 15 15 20 10  5 10 15];
+disp('Data are in T, pc')
+</code>
+</section><section id="cid37">
+      <title>npr08_01</title>
+      <code id="id90347" display="block">% file npr08_01.m
+% Solution for problem P8-1
+X = 0:2;
+Y = 0:2;
+Pn = [132  24   0; 864 144  6; 1260 216 6];
+P = Pn/(52*51);
+disp('Data in Pn, P, X, Y')
+</code>
+    </section>
+    <section id="cid38">
+      <title>npr08_02</title>
+      <code id="id90427" display="block">% file npr08_02.m
+% Solution for problem P8-2
+X = 0:2;
+Y = 0:2;
+Pn = [6 0 0; 18 12 0; 6 12 2];
+P = Pn/56;
+disp('Data are in X, Y,Pn, P')
+</code>
+    </section>
+    <section id="cid39">
+      <title>npr08_03</title>
+      <code id="id90507" display="block">% file npr08_03.m
+% Solution for problem  P8-3
+X = 1:6;
+Y = 0:6;
+P0 = zeros(6,7);       % Initialize
+for i = 1:6            % Calculate rows of Y probabilities
+    P0(i,1:i+1) = (1/6)*ibinom(i,1/2,0:i);
+end
+P = rot90(P0);         % Rotate to orient as on the plane
+PY = fliplr(sum(P'));  % Reverse to put in normal order
+disp('Answers are in X, Y, P, PY')
+</code>
+    </section>
+    <section id="cid40">
+      <title>npr08_04</title>
+      <code id="id90629" display="block">% file npr08_04.m
+% Solution for problem P8-4
+X = 2:12;
+Y = 0:12;
+PX = (1/36)*[1 2 3 4 5 6 5 4 3 2 1];
+P0 = zeros(11,13);
+for i = 1:11
+    P0(i,1:i+2) = PX(i)*ibinom(i+1,1/2,0:i+1);
+end
+P = rot90(P0);
+PY = fliplr(sum(P'));
+disp('Answers are in X, Y, PY, P')
+</code>
+    </section>
+    <section id="cid41">
+      <title>npr08_05</title>
+      <code id="id90757" display="block">% file npr08_05.m
+% Data and basic calculations for P8-5
+PX = (1/36)*[1 2 3 4 5 6 5 4 3 2 1];
+X = 2:12;
+Y = 0:12;
+P0 = zeros(11,13);
+for i = 1:11
+  P0(i,1:i+2) = PX(i)*ibinom(i+1,1/6,0:i+1);
+end
+P = rot90(P0);
+PY = fliplr(sum(P'));
+disp('Answers are in X, Y, P, PY')
+</code>
+    </section>
+    <section id="cid42">
+      <title>npr08_06</title>
+      <code id="id90884" display="block">% file  Newprobs/pr08_06.m
+% Data for problem P8-6 (from Exam 2, 95f)
+P = [0.0483    0.0357    0.0420    0.0399    0.0441
+     0.0437    0.0323    0.0380    0.0361    0.0399
+     0.0713    0.0527    0.0620    0.0609    0.0551
+     0.0667    0.0493    0.0580    0.0651    0.0589];
+X = [-2.3 -0.7 1.1 3.9 5.1];
+Y = [ 1.3  2.5 4.1 5.3];
+disp('Data are in X, Y, P')
+</code>
+    </section>
+    <section id="cid43">
+      <title>npr08_07</title>
+      <code id="id90990" display="block">% file pr08_07.m  (from Exam3, 96s)
+% Data for problem P8-7
+X = [-3.1 -0.5  1.2  2.4  3.7 4.9];
+Y = [-3.8 -2.0  4.1  7.5];
+P = [ 0.0090    0.0396    0.0594    0.0216    0.0440    0.0203;
+      0.0495         0    0.1089    0.0528    0.0363    0.0231;
+      0.0405    0.1320    0.0891    0.0324    0.0297    0.0189;
+      0.0510    0.0484    0.0726    0.0132         0    0.0077];
+disp('Data are in X, Y, P')
+</code>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <section id="cid64">
+      <title>npr08_08</title>
+      <code id="id94271" display="block">% file Newprobs/pr08_08.m (from Exam 4 96s)
+% Data for problem P8-8
+P = [0.0156  0.0191  0.0081  0.0035  0.0091  0.0070  0.0098  0.0056  0.0091  0.0049;
+     0.0064  0.0204  0.0108  0.0040  0.0054  0.0080  0.0112  0.0064  0.0104  0.0056;
+     0.0196  0.0256  0.0126  0.0060  0.0156  0.0120  0.0168  0.0096  0.0056  0.0084;
+     0.0112  0.0182  0.0108  0.0070  0.0182  0.0140  0.0196  0.0012  0.0182  0.0038;
+     0.0060  0.0260  0.0162  0.0050  0.0160  0.0200  0.0280  0.0060  0.0160  0.0040;
+     0.0096  0.0056  0.0072  0.0060  0.0256  0.0120  0.0268  0.0096  0.0256  0.0084;
+     0.0044  0.0134  0.0180  0.0140  0.0234  0.0180  0.0252  0.0244  0.0234  0.0126;
+     0.0072  0.0017  0.0063  0.0045  0.0167  0.0090  0.0026  0.0172  0.0217  0.0223];
+ 
+X = 1:2:19;
+Y = [-5  -3  -1  3  5 9 10 12];
+disp('Data are in X, Y, P')
+</code>
+    </section>
+    <section id="cid65">
+      <title>npr08_09</title>
+      <code id="id94428" display="block">% file pr08_09.m   (from Exam3 95f)
+% Data for problem P8-9
+P = [0.0390    0.0110    0.0050    0.0010    0.0010;
+     0.0650    0.0700    0.0500    0.0150    0.0100;
+     0.0310    0.0610    0.1370    0.0510    0.0330;
+     0.0120    0.0490    0.1630    0.0580    0.0390;
+     0.0030    0.0090    0.0450    0.0250    0.0170];
+X = [1 1.5 2 2.5 3];
+Y = [1 2 3 4 5];
+disp('Data are in X, Y, P')
+</code>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    <section id="eip-744"><title>npr09_02</title><code id="eip-id1164847696311" display="block">
+\begin{verbatim}
+% file Newprobs/npr09_02.m
+% Data for problem P9-2
+P = [0.0589    0.0342    0.0304    0.0456    0.0209;
+     0.0961    0.0556    0.0498    0.0744    0.0341;
+     0.0682    0.0398    0.0350    0.0528    0.0242;
+     0.0868    0.0504    0.0448    0.0672    0.0308];
+X = [-3.9 -1.7 1.5 2.8 4.1];
+Y = [-2 1 2.6 5.1];
+disp('Data are in X, Y, P')
+\end{verbatim}
+
+</code></section><section id="eip-87"><title>npr10_16</title><code id="eip-id1163951210799" display="block">
+\begin{verbatim}
+% file npr10_16.m
+% Data for problem P10-16
+cx = [-2 1 3 0];
+pmx = 0.001*[255  25 375  45 108  12 162  18];
+cy = [1 3 1 -3];
+pmy = minprob(0.01*[32 56 40]);
+Z = [-1.3 1.2 2.7 3.4 5.8];
+PZ = 0.01*[12 24 43 13  8];
+disp('Data are in cx, pmx, cy, pmy, Z, PZ')
+\end{verbatim}
+</code></section><section id="eip-939"><title>npr12_10</title><code id="id93946" display="block">% file npr12_10.m
+% Data for problems P12-10, P12_11
+cx = [-3.3 -1.7 2.3 7.6 -3.4];
+pmx = 0.0001*[475 725 120 180 1125 1675  280 420 480 720 130 170 1120 1680 270 430];
+cy = [10 17 20 -10];
+pmy = 0.01*[6 14 9 21 6 14 9 21];
+disp('Data are in cx, cy, pmx and pmy')
+</code>
+    </section><section id="eip-704"><title>npr16_07</title><code id="eip-id4384863" display="block">
+\begin{verbatim}
+% file npr16_07.m
+% Transition matrix for problem P16-7
+
+P = [0.23    0.32    0.02    0.22    0.21;
+     0.29    0.41    0.10    0.08    0.12;
+     0.22    0.07    0.31    0.14    0.26;
+     0.32    0.15    0.05    0.33    0.15;
+     0.08    0.23    0.31    0.09    0.29];
+
+disp('Transition matrix is P')
+\end{verbatim}
+</code></section><section id="cid73">
+      <title>npr16_09</title>
+      <code id="id96521" display="block">% file npr16_09.m
+% Transition matrix for problem P16-9
+P = [0.2 0.5 0.3  0   0   0   0;
+     0.6 0.1 0.3  0   0   0   0;
+     0.2 0.7 0.1  0   0   0   0;
+      0   0   0  0.6 0.4  0   0;
+      0   0   0  0.5 0.5  0   0;
+     0.1 0.3  0  0.2 0.1 0.1 0.2;
+     0.1 0.2 0.1 0.2 0.2 0.2  0 ];
+disp('Transition matrix is P')
+</code>
+    </section>
+    
+  </content>
+</document>

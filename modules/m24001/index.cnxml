@@ -1,0 +1,325 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Appendix F to Applied Probability: Properties of conditional expectation, given a random vector</title>
+  <metadata>
+  <md:content-id>m24001</md:content-id><md:title>Appendix F to Applied Probability: Properties of conditional expectation, given a random vector</md:title>
+  <md:abstract>A compilation of key properties of this concept, which plays a central role in many areas of theoretical and applied probability.  Many topics which are often approached intuitively and informally can be given precise formulation and analysis.</md:abstract>
+  <md:uuid>77f33db2-128f-4c02-8c8f-a4e58f75e6fc</md:uuid>
+</metadata>
+
+<content>
+    
+    <para id="id230228">We suppose, without repeated assertion, that the random variables and
+functions of random vectors are integrable, as needed.</para>
+    
+
+<list id="fs-id5302077" list-type="labeled-item"><item><label>(CE1)</label>   <emphasis effect="bold">Defining condition</emphasis>.  <m:math overflow="scroll"><m:mrow><m:mi>e</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s. iff
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mi>e</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math>
+for each Borel set <emphasis effect="italics">M</emphasis> on the codomain of <emphasis effect="italics">X</emphasis>.</item>
+
+<item><label>(CE1a)</label>  If <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mi>e</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>]</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math></item>
+
+
+<item><label>(CE1b)</label>  <emphasis effect="bold">Law of total probability</emphasis>. <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>{</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>}</m:mo></m:mrow></m:math></item>
+    
+    <item><label>(CE2)</label><emphasis effect="bold">Linearity</emphasis>. For any constants <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>b</m:mi></m:mrow></m:math><newline/>      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>+</m:mo>
+          <m:mi>b</m:mi>
+          <m:mi>h</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Z</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>a</m:mi>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>+</m:mo>
+          <m:mi>b</m:mi>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>h</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Z</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi>s</m:mi>
+          <m:mo>.</m:mo>
+        </m:mrow>
+      </m:math>
+   <newline/>(Extends to any finite linear combination)</item>
+
+    <item><label>(CE3)</label>   <emphasis effect="bold">Positivity; monotonicity</emphasis>.
+    <list id="fs-id8619096" list-type="enumerated" number-style="lower-alpha">
+
+<item><m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math> a.s. implies <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math> a.s.</item>
+
+    <item><m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>≥</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo></m:mrow></m:math> a.s. implies <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>≥</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>Z</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s.</item></list></item>
+
+
+    <item><label>(CE4)</label><emphasis effect="bold">Monotone convergence</emphasis>. <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>→</m:mo><m:mi>Y</m:mi></m:mrow></m:math> a.s. monotonically implies      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>Y</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mo>→</m:mo>
+          <m:mi>E</m:mi>
+          <m:mrow>
+            <m:mo>[</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>X</m:mi>
+            <m:mo>]</m:mo>
+          </m:mrow>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi>s</m:mi>
+          <m:mo>.</m:mo>
+        </m:mrow>
+      </m:math>
+    </item>
+    
+    <item id="uid5"><label>(CE5)</label><emphasis effect="bold">Independence</emphasis>. <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is an independent pair
+
+<list id="fs-id4442400" list-type="bulleted">
+    <item>iff <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> a.s. for all Borel functions <emphasis effect="italics">g</emphasis></item>
+
+    <item>iff <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math> a.s. for all Borel sets <emphasis effect="italics">N</emphasis>
+on the codomain of <emphasis effect="italics">Y</emphasis></item></list></item>
+    
+    <item><label>(CE6)</label><m:math overflow="scroll"><m:mrow><m:mi>e</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s. iff      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>h</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>)</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>h</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>)</m:mo>
+          <m:mi>e</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi>s</m:mi>
+          <m:mo>.</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mtext>for</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>any</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>Borel</m:mtext>
+          <m:mspace width="4.pt"/>
+          <m:mtext>function</m:mtext>
+          <m:mspace width="0.277778em"/>
+          <m:mi>h</m:mi>
+        </m:mrow>
+      </m:math>
+    </item>
+
+    <item><label>(CE7)</label><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math> a.s. for any Borel function <emphasis effect="italics">h</emphasis></item>
+
+    <item id="uid8"><label>(CE8)</label><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s. for any Borel function <emphasis effect="italics">h</emphasis></item>
+
+    <item id="uid9"><label>(CE9)</label>If <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>)</m:mo></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>{</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>|</m:mo><m:mi>W</m:mi><m:mo>}</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>{</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>W</m:mi><m:mo>]</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>}</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, a.s.</item>
+
+    <item id="uid9a"><label>(CE9a)</label>  <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>{</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>}</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>{</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Z</m:mi><m:mo>]</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>}</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s.</item>
+
+    <item><label>(CE9b)</label>If <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>h</m:mi><m:mo>(</m:mo><m:mi>W</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>, with <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>k</m:mi></m:mrow></m:math> Borel functions,
+then      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>=</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>W</m:mi>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi>s</m:mi>
+          <m:mo>.</m:mo>
+        </m:mrow>
+      </m:math>
+    </item>
+
+    <item id="uid10"><label>(CE10)</label>If <emphasis effect="italics">g</emphasis> is a Borel function such that <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> is finite for all <emphasis effect="italics">t</emphasis> on
+the range of <emphasis effect="italics">X</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> is finite, then
+
+<list id="fs-id5955728" list-type="enumerated" number-style="lower-alpha">
+    <item><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s. <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:msub><m:mi>P</m:mi><m:mi>X</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math></item>
+
+    <item>If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> is independent, then <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> a.s. <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:msub><m:mi>P</m:mi><m:mi>X</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math></item></list></item>
+
+
+    <item><label>(CE11)</label>Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>:</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi>T</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a real-valued, measurable random
+process whose parameter set <emphasis effect="italics">T</emphasis> is a
+Borel subset of the real line and <emphasis effect="italics">S</emphasis>
+is a random variable whose range is a subset of <emphasis effect="italics">T</emphasis>, so that
+<m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>S</m:mi><m:mo>)</m:mo></m:mrow></m:math> is a random variable.<newline/>
+If <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> is finite for all <emphasis effect="italics">t</emphasis> in <emphasis effect="italics">T</emphasis> and
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>S</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> is finite, then
+
+<list id="fs-id8384091" list-type="enumerated" number-style="lower-alpha">
+    <item><m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>S</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>S</m:mi><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>S</m:mi><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s. <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:msub><m:mi>P</m:mi><m:mi>S</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math></item>
+
+    <item>If, in addition, <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>S</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:msub><m:mi>X</m:mi><m:mi>T</m:mi></m:msub><m:mo>}</m:mo></m:mrow></m:math> is independent, then
+<m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>S</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>S</m:mi><m:mo>=</m:mo><m:mi>t</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo><m:mo>]</m:mo></m:mrow></m:math> a.s. <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:msub><m:mi>P</m:mi><m:mi>S</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math></item></list></item>
+    
+    <item><label>(CE12)</label><emphasis effect="bold">Countable additivity and countable sums</emphasis>.
+
+<list id="fs-id8793216" list-type="enumerated" number-style="lower-alpha"><item>If <emphasis effect="italics">Y</emphasis> is integrable on <emphasis effect="italics">A</emphasis> and <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:mspace width="0.166667em"/><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover></m:mrow><m:mspace width="0.166667em"/><m:mspace width="0.166667em"/><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:mrow></m:mstyle></m:math>,
+<newline/> then <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:mi>A</m:mi></m:msub><m:mi>Y</m:mi><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>I</m:mi><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:msub><m:mi>Y</m:mi><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:mstyle></m:math> a.s.</item>
+
+    <item>If <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mo>|</m:mo></m:mrow><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>|</m:mo><m:mo>]</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mi>∞</m:mi></m:mrow></m:mstyle></m:math> ,  then
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>E</m:mi><m:mfenced separators="" open="[" close="]"><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mspace width="0.277778em"/><m:mo>|</m:mo><m:mspace width="0.166667em"/><m:mi>X</m:mi></m:mrow></m:mfenced><m:mo>=</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>n</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msub><m:mi>Y</m:mi><m:mi>n</m:mi></m:msub><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:mrow></m:mstyle></m:math> a.s.</item></list></item>
+
+    <item><label>(CE13)</label><emphasis effect="bold">Triangle inequality</emphasis>. <m:math overflow="scroll"><m:mrow><m:mo>|</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>|</m:mo><m:mo>≤</m:mo><m:mi>E</m:mi><m:mo>[</m:mo><m:mo>|</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>|</m:mo><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math> a.s.</item>
+
+    <item><label>(CE14)</label><emphasis effect="bold">Jensen's inequality</emphasis>. If <emphasis effect="italics">g</emphasis> is a convex function on an interval <emphasis effect="italics">I</emphasis>
+which contains the range of a real random variable <emphasis effect="italics">Y</emphasis>, then      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>g</m:mi>
+          <m:mo>{</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mo>}</m:mo>
+          <m:mo>≤</m:mo>
+          <m:mi>E</m:mi>
+          <m:mo>[</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo>(</m:mo>
+          <m:mi>Y</m:mi>
+          <m:mo>)</m:mo>
+          <m:mo>|</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>a</m:mi>
+          <m:mo>.</m:mo>
+          <m:mi>s</m:mi>
+          <m:mo>.</m:mo>
+        </m:mrow>
+      </m:math>
+    </item>
+
+    <item><label>(CE15)</label>Suppose <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mo>|</m:mo><m:mi>Y</m:mi><m:msup><m:mo>|</m:mo><m:mi>p</m:mi></m:msup><m:mo>]</m:mo><m:mo>&lt;</m:mo><m:mi>∞</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mo>|</m:mo><m:mi>Z</m:mi><m:msup><m:mo>|</m:mo><m:mi>p</m:mi></m:msup><m:mo>]</m:mo><m:mo>&lt;</m:mo><m:mi>∞</m:mi></m:mrow></m:math> for
+<m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>p</m:mi><m:mo>&lt;</m:mo><m:mi>∞</m:mi></m:mrow></m:math>. Then      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msup>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>{</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>Y</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+              <m:mi>E</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>Z</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>|</m:mo>
+            </m:mrow>
+            <m:mi>p</m:mi>
+          </m:msup>
+          <m:msup>
+            <m:mrow>
+              <m:mo>}</m:mo>
+              <m:mo>≤</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>Z</m:mi>
+              <m:mo>|</m:mo>
+            </m:mrow>
+            <m:mi>p</m:mi>
+          </m:msup>
+          <m:mrow>
+            <m:mo>]</m:mo>
+            <m:mo>&lt;</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </item></list>
+    <!--empty paragraphs get left behind.-->
+  </content>
+</document>

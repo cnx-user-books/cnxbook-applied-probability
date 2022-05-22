@@ -1,0 +1,1280 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Convergence and the central Limit Theorem</title>
+  <metadata>
+  <md:content-id>m23475</md:content-id><md:title>Convergence and the central Limit Theorem</md:title>
+  <md:abstract>The central limit theorem (CLT) asserts that the sum of a large class of independent random variables, each with reasonable distributions,is approximately normally distributed. Various versions of this theorem have been studied intensively. On the other hand, certain common forms serve as the basis of an extraordinary amount of applied work. In the statistics of large samples, the sample average is approximately normal—whether or not the population distribution is normal. In much of the theory of errors of measurement, the observed error is the sum of a large number of independent random quantities which contribute additively to the result. Similarly, in the theory of noise, the noise signal is the sum of a large number of random components, independently produced. In such situations, the assumption of a normal population distribution is frequently quite appropriate</md:abstract>
+  <md:uuid>ae593c5b-5d61-43f8-bf49-98fcf2feec04</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title> The Central Limit Theorem</title>
+      <para id="id2258270">The <emphasis effect="italics">central limit theorem</emphasis> (CLT) asserts that if random variable <emphasis effect="italics">X</emphasis>
+is the sum of a large class of independent random variables, each with reasonable
+distributions, then <emphasis effect="italics">X</emphasis> is approximately normally distributed. This celebrated theorem
+has been the object of extensive theoretical research directed toward the discovery
+of the most general conditions under which it is valid. On the other hand,
+this theorem serves as the basis of an extraordinary amount of applied work.
+In the statistics of large samples, the sample average is a constant times the
+sum of the random variables in the sampling process . Thus, for large samples,
+the sample average is approximately normal—whether or not the population
+distribution is normal. In much of the theory of errors of measurement,
+the observed error is the sum of a large number of independent random quantities which
+contribute additively to the result. Similarly, in the theory of noise, the
+noise signal is the sum of a large number of random components, independently produced.
+In such situations, the assumption of a normal population distribution is frequently
+quite appropriate.</para>
+      <para id="id2258969">We consider a form of the CLT under hypotheses which are reasonable
+assumptions in many practical situations. We sketch a proof of this version of the CLT,
+known as the Lindeberg-Lévy theorem, which utilizes the limit theorem on
+characteristic functions, above, along with certain elementary facts from analysis. It
+illustrates the kind of argument used in more sophisticated proofs required for more
+general cases.</para>
+      <para id="id2258986">Consider an independent sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables. Form the
+sequence of partial sums</para>
+      <equation id="id2259017"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>i</m:mi>
+            </m:msub>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∀</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>≥</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>with</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>S</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mrow><m:mo>∑</m:mo></m:mrow>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2259220">Let <m:math overflow="scroll"><m:msubsup><m:mi>S</m:mi><m:mi>n</m:mi><m:mo>*</m:mo></m:msubsup></m:math> be the standardized sum and let <emphasis effect="italics">F<sub>n</sub></emphasis> be the distribution function for
+<m:math overflow="scroll"><m:msubsup><m:mi>S</m:mi><m:mi>n</m:mi><m:mo>*</m:mo></m:msubsup></m:math>.  The CLT asserts that under appropriate conditions, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>
+as <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>→</m:mo><m:mi>∞</m:mi></m:mrow></m:math> for all <emphasis effect="italics">t</emphasis>.  We sketch a proof of the theorem under the
+condition the <emphasis effect="italics">X<sub>i</sub></emphasis> form an iid class.</para>
+      
+<para id="id2259350"><emphasis effect="bold"><emphasis effect="italics">Central Limit Theorem</emphasis> (Lindeberg-Lévy form)</emphasis></para>
+
+      <para id="id2259358">If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid, with</para>
+      <equation id="id2259390">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>μ</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi> Var </m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>X</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>σ</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msubsup>
+              <m:mi>S</m:mi>
+              <m:mi>n</m:mi>
+              <m:mo>*</m:mo>
+            </m:msubsup>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msub>
+                  <m:mi>S</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>-</m:mo>
+                <m:mi>n</m:mi>
+                <m:mi>μ</m:mi>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>σ</m:mi>
+                <m:msqrt>
+                  <m:mi>n</m:mi>
+                </m:msqrt>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2258203">then</para>
+      <equation id="id2258208">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>→</m:mo>
+            <m:mi>Φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+
+      <para id="id2259843">IDEAS OF A PROOF</para>
+
+      <para id="id2259850">There is no loss of generality in assuming <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  Let <emphasis effect="italics">φ</emphasis> be the common
+characteristic function for the <emphasis effect="italics">X<sub>i</sub></emphasis>, and for each <emphasis effect="italics">n</emphasis> let <emphasis effect="italics">φ<sub>n</sub></emphasis> be the characteristic
+function for <m:math overflow="scroll"><m:msubsup><m:mi>S</m:mi><m:mi>n</m:mi><m:mo>*</m:mo></m:msubsup></m:math>.  We have</para>
+
+      <equation id="id2259931">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>φ</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>E</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msup>
+                <m:mi>e</m:mi>
+                <m:mrow>
+                  <m:mi>i</m:mi>
+                  <m:mi>t</m:mi>
+                  <m:msubsup>
+                    <m:mi>S</m:mi>
+                    <m:mi>n</m:mi>
+                    <m:mo>*</m:mo>
+                  </m:msubsup>
+                </m:mrow>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>φ</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>σ</m:mi>
+              <m:msqrt>
+                <m:mi>n</m:mi>
+              </m:msqrt>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2260065">Using the power series expansion of <emphasis effect="italics">φ</emphasis> about the origin noted above, we have</para>
+      <equation id="id2260079">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>σ</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:mfrac>
+            <m:mo>+</m:mo>
+            <m:mi>β</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>where</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>β</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>o</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+            <m:mo>→</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2260202">This implies</para>
+      <equation id="id2260207">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mi>φ</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>σ</m:mi>
+              <m:msqrt>
+                <m:mi>n</m:mi>
+              </m:msqrt>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>=</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>β</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>σ</m:mi>
+              <m:msqrt>
+                <m:mi>n</m:mi>
+              </m:msqrt>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>=</m:mo>
+              <m:mi>o</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:msup>
+                <m:mi>σ</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2260319">so that</para>
+      <equation id="id2260324">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mi>n</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>φ</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>σ</m:mi>
+              <m:msqrt>
+                <m:mi>n</m:mi>
+              </m:msqrt>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>→</m:mo>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>as</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>n</m:mi>
+              <m:mo>→</m:mo>
+              <m:mi>∞</m:mi>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2260413">A standard lemma of analysis ensures</para>
+      <equation id="id2260418">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>φ</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>σ</m:mi>
+              <m:msqrt>
+                <m:mi>n</m:mi>
+              </m:msqrt>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:msup>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+                <m:mi>n</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>≤</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>φ</m:mi>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>σ</m:mi>
+              <m:msqrt>
+                <m:mi>n</m:mi>
+              </m:msqrt>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:msup>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>/</m:mo>
+              <m:mn>2</m:mn>
+              <m:mi>n</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>→</m:mo>
+              <m:mn>0</m:mn>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mtext>as</m:mtext>
+              <m:mspace width="0.277778em"/>
+              <m:mspace width="0.277778em"/>
+              <m:mi>n</m:mi>
+              <m:mo>→</m:mo>
+              <m:mi>∞</m:mi>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2260568">It is a well known property of the exponential that</para>
+      <equation id="id2260575">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mfenced separators="" open="(" close=")">
+                <m:mn>1</m:mn>
+                <m:mo>-</m:mo>
+                <m:mfrac>
+                  <m:msup>
+                    <m:mi>t</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msup>
+                  <m:mrow>
+                    <m:mn>2</m:mn>
+                    <m:mi>n</m:mi>
+                  </m:mrow>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mo>→</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2260662">so that</para>
+      <equation id="id2260667">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>φ</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>σ</m:mi>
+              <m:msqrt>
+                <m:mi>n</m:mi>
+              </m:msqrt>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>→</m:mo>
+            <m:msup>
+              <m:mi>e</m:mi>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:msup>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+            </m:msup>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>for</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>all</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mi>t</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2260759">By the convergence theorem on characteristic functions, above, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>Φ</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</para>
+      <para id="id2260799">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+      <para id="id2260813">The theorem says that the distribution functions for sums of increasing numbers of the <emphasis effect="italics">X<sub>i</sub></emphasis>
+converge to the normal distribution function, but it does not tell how fast. It is instructive
+to consider some examples, which are easily worked out with the aid of our m-functions.</para>
+   
+      <para id="fs-id1168697098351"><emphasis effect="bold"> Demonstration of the central limit theorem</emphasis></para>
+
+      <para id="id2260844">
+        <emphasis effect="italics">Discrete examples</emphasis>
+      </para>
+      <para id="id2260850">We first examine the gaussian approximation in two cases. We take the sum of five iid simple
+random variables in each case. The first variable has six distinct values; the
+second has only three. The discrete character of the sum is more evident in the second
+case. Here we use not only the gaussian approximation, but the gaussian approximation
+shifted one half unit (the so called continuity correction for integer-values random
+variables). The fit is remarkably good in either case with only five terms.</para>
+      <para id="id2260862">A principal tool is the m-function <emphasis effect="italics">diidsum</emphasis> (sum of discrete iid random variables).
+It uses a designated number of iterations of mgsum.</para>
+
+<example id="fs-id4884928"><title>First random variable</title><code id="id2260881" display="block">X = [-3.2 -1.05 2.1 4.6 5.3 7.2];
+PX = 0.1*[2 2 1 3 1 1];
+EX = X*PX'
+EX =  1.9900
+VX = dot(X.^2,PX) - EX^2
+VX = 13.0904
+[x,px] = diidsum(X,PX,5);            % Distribution for the sum of 5 iid rv
+F = cumsum(px);                      % Distribution function for the sum
+stairs(x,F)                          % Stair step plot
+hold on
+plot(x,gaussian(5*EX,5*VX,x),'-.')   % Plot of gaussian distribution function
+% Plotting details                   (see <link target-id="uid1"/>)
+</code>
+      
+      <figure id="uid1"><media id="uid1_media" alt="Figure one is a distribution graph. It is titled, distribution for the sum of five iid random variables. The horizontal axis is labeled, X values, and the vertical axis is labeled PX. The values on the horizontal axis range from -20 in increments of 10 to 40. The values on the vertical axis begin at 0 and increase in increments of 0.2 to 1.4.  There are two captions inside the graph. The first reads, X = [-3.2 -1.05 2.1 4.6 5.3 7.2]. The second reads, PX = 0.1*[2 2 1 3 1 1]. There are two graphs, one, a solid blue line, listed as a sum and the other a dashed and dotted line, listed as gaussian, but they both follow the same path and are nearly indistinguishable as they lay on top of one another. The path begins at the bottom-right corner of the graph. It begins completely flat, but increases in slope at an increasing rate until it is halfway across the graph, at approximately the point (10, 0). At this point, it begins decreasing its positive slope until by the far right side of the graph, approximately the point (35, 1), it has again reduced in slope enough to be a horizontal line.">
+          <image mime-type="image/png" src="../../media/fig13_3_1.png" id="uid1_onlineimage" width="418"><!-- NOTE: attribute width changes image size online (pixels). original width is 418. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig13_3_1.eps" id="uid1_printimage" print-width="4.5in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for the sum of five iid random variables.</caption></figure>
+</example>
+
+<example id="fs-id4379162"><title>Second random variable</title><code id="id2261053" display="block">X = 1:3;
+PX = [0.3 0.5 0.2];
+EX = X*PX'
+EX = 1.9000
+EX2 = X.^2*PX'
+EX2 =  4.1000
+VX = EX2 - EX^2
+VX =  0.4900
+[x,px] = diidsum(X,PX,5);            % Distribution for the sum of 5 iid rv
+F = cumsum(px);                      % Distribution function for the sum
+stairs(x,F)                          % Stair step plot
+hold on
+plot(x,gaussian(5*EX,5*VX,x),'-.')   % Plot of gaussian distribution function
+plot(x,gaussian(5*EX,5*VX,x+0.5),'o')  % Plot with continuity correction
+% Plotting details                   (see <link target-id="uid2"/>)
+</code>
+      <figure id="uid2"><media id="uid2_media" alt="Figure two is a distribution graph. It is titled, distribution for the sum of five iid random variables. The horizontal axis is labeled, X values, and the vertical axis is labeled PX. The values on the horizontal axis range from 5 in increments of 1 to 15. The values on the vertical axis begin at 0 and increase in increments of 0.2 to 1.2.  There are two captions inside the graph. The first reads, X = [1 2 3]. The second reads, PX = [0.3 0.5 0.2]. There are two graphs, one, a solid blue line, labeled step dbn fn, and the other a dashed and dotted line, labeled gaussian, but they both follow the same path. The step dbn fn is a series of horizontal line segments followed by vertical line segments in varying sizes that fit the shape of the smoother curve, the gaussian curve. A third labeled item is a series of small blue circles that sit at the upper corners of the steps of the solid lined curve, labeled, shifted gaussian. The path begins at the bottom-right corner of the graph. It begins completely flat, but increases in slope at an increasing rate until it is halfway across the graph, at approximately the point (5, 0). At this point, it begins decreasing its positive slope until by the far right side of the graph, approximately the point (14, 1), it has again reduced in slope enough to be a horizontal line.">
+          <image mime-type="image/png" src="../../media/fig13_3_2.png" id="uid2_onlineimage" width="403"><!-- NOTE: attribute width changes image size online (pixels). original width is 403. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig13_3_2.eps" id="uid2_printimage" print-width="4.5in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for the sum of five iid random variables.</caption></figure>
+</example>
+
+      <para id="id2261232">As another example, we take the sum of twenty one iid simple random variables with
+integer values. We examine only part of the distribution function where most of the
+probability is concentrated. This effectively enlarges the x-scale, so that the
+nature of the approximation is more readily apparent.</para>
+
+<example id="fs-id3536095"><title>Sum of twenty-one iid random variables</title><code id="id2261248" display="block">X = [0 1 3 5 6];
+PX = 0.1*[1 2 3 2 2];
+EX = dot(X,PX)
+EX =  3.3000
+VX = dot(X.^2,PX) - EX^2
+VX =  4.2100
+[x,px] = diidsum(X,PX,21);
+F = cumsum(px);
+FG = gaussian(21*EX,21*VX,x);
+stairs(40:90,F(40:90))
+hold on
+plot(40:90,FG(40:90))
+% Plotting details               (see <link target-id="uid3"/>)
+</code>
+      <figure id="uid3"><media id="uid3_media" alt="Figure three is a distribution graph. It is titled, partial distribution for sum of 21 iid random variables. The horizontal axis is labeled, x-values, and the vertical axis is labeled PX. The values on the horizontal axis range in value from 40 to 90 at increments of 5, and the vertical axis ranges from 0 to 1 in increments of .1. There are two labeled equations. The first reads, X = [0 1 3 5 6]. The second reads, PX = 0.1*[1 2 3 2 2]. There are two graphs, one a smooth curve, labeled gaussian dbn, and the other a series of steps closely following the smooth curve, labeled Dbn for sum. Both graphs begin at the point (40, 0) at the bottom-left of the graph. The slope of the smooth curve is flat, and increases until approximately (70, 0.5). At this point, the graph continues increasing, but its slope begins decreasing until at approximately (90, 0.99), the path is again nearly flat. The steps follow the smooth curve along the same path.">
+          <image mime-type="image/png" src="../../media/fig13_3_3.png" id="uid3_onlineimage" width="403"><!-- NOTE: attribute width changes image size online (pixels). original width is 403. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig13_3_3.eps" id="uid3_printimage" print-width="3.8in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for the sum of twenty one iid random variables.</caption></figure>
+</example>
+
+      <para id="id2261401">
+        <emphasis effect="italics">Absolutely continuous examples</emphasis>
+      </para>
+      <para id="id2261408">By use of the discrete approximation, we may get approximations to the sums of
+absolutely continuous random variables. The results on discrete variables indicate
+that the more values the more quickly the conversion seems to occur. In our
+next example, we start with a random variable uniform on <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+
+<example id="fs-id10915859"><title>Sum of three iid, uniform random variables.</title><para id="id2261462">Suppose <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>∼</m:mo></m:mrow></m:math> uniform <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Then <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>12</m:mn></m:mrow></m:math>.</para>
+      <code id="id2261554" display="block">tappr
+Enter matrix [a b] of x-range endpoints  [0 1]
+Enter number of x approximation points  100
+Enter density as a function of t  t&lt;=1
+Use row matrices X and PX as in the simple case
+EX = 0.5;
+VX = 1/12;
+[z,pz] = diidsum(X,PX,3);
+F = cumsum(pz);
+FG = gaussian(3*EX,3*VX,z);
+length(z)
+ans = 298
+a = 1:5:296;                     % Plot every fifth point
+plot(z(a),F(a),z(a),FG(a),'o')
+% Plotting details               (see <link target-id="uid4"/>)
+</code>
+
+<figure id="uid4"><media id="uid4_media" alt="Figure four is a distribution graph. It is titled, distribution for the sum of three iid uniform random variables. The horizontal axis is labeled, x-values, and the vertical axis is labeled PX. The values on the horizontal axis range from 0 to 3, in increments of 0.5. The values on the vertical axis range from 0 to 1, in increments of  0.1. There is one labeled statement inside the graph, that reads, X uniform on  (0,1). There is one smooth curve in the graph, labeled sum, and one set of many small circles, labeled Gaussian. They follow the same path, which begins at the bottom-left at the point (0, 0). The graph begins increasing at an increasing rate until approximately the point (1.5, 0.5), where it begins increasing at a decreasing rate until it has become a flat line at the top-right of the graph, at approximately point (3, 1).">
+          <image mime-type="image/png" src="../../media/fig13_3_4.png" id="uid4_onlineimage" width="401"><!-- NOTE: attribute width changes image size online (pixels). original width is 401. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig13_3_4.eps" id="uid4_printimage" print-width="4in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for the sum of three iid uniform random variables.</caption></figure>
+
+      </example>
+
+
+      <para id="id2261725">For the sum of only three random variables, the fit is remarkably good. This is
+not entirely surprising, since the sum of two gives a symmetric triangular
+distribution on <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>)</m:mo></m:mrow></m:math>. Other distributions may take many more terms to get
+a good fit. Consider the following example.</para>
+     
+
+<example id="fs-id9996447"><title>Sum of eight iid random variables</title><para id="id2261762">Suppose the density is one on the intervals <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mo>-</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.  Although the density is symmetric, it has two separate regions of probability.
+From symmetry, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  Calculations show <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mrow><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mi>E</m:mi><m:mrow><m:mo>[</m:mo><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>]</m:mo></m:mrow><m:mo>=</m:mo><m:mn>7</m:mn><m:mo>/</m:mo><m:mn>12</m:mn></m:mrow></m:math>. The
+MATLAB computations are:</para>
+      <code id="id2261893" display="block">tappr
+Enter matrix [a b] of x-range endpoints  [-1 1]
+Enter number of x approximation points  200
+Enter density as a function of t  (t&lt;=-0.5)|(t&gt;=0.5)
+Use row matrices X and PX as in the simple case
+[z,pz] = diidsum(X,PX,8);
+VX = 7/12;
+F = cumsum(pz);
+FG = gaussian(0,8*VX,z);
+plot(z,F,z,FG)
+% Plottting details                (see <link target-id="uid5"/>)
+</code>
+      
+
+
+      <figure id="uid5"><media id="uid5_media" alt="Figure five is a distribution graph. It is titled, distribution for sum of eight iid random variables. The horizontal axis is labeled, x-values, and the vertical axis is unlabeled. The values on the horizontal axis range from -8 to 8 in increments of 2, and the values on the vertical axis range from 0 to 1 in increments of 0.1. The figure contains a second title inside the graph, which reads, Density  = 1 on (-1, -0.5) and (0.5, 1). There are two plots in this figure. The first is a solid line, labeled sum. the second is a dashed, smooth line, labeled gaussian. Both follow the same general shape, except that the solid line is not as smooth, with multiple places along its plot where it is wiggly, as if it is attempting to follow the same path as the gaussian plot but does so only with some imperfection. The gaussian pot is smooth and consistent. The shape of both plots can be described as the following. The plots begin at the bottom-left corner of the graph, at point (-8, 0) and continue to the right horizontally with negligible slope, until point (-6, 0), where the plot begins increasing at an increasing rate. It does so until the midpoint in the graph, approximately (0, 0.5), where it begins to increase at a decreasing rate as it approaches the top-right corner of the graph. By approximately (6, 1) the plot continues horizontally to the top-right corner, (8, 1).">
+          <image mime-type="image/png" src="../../media/fig13_3_5.png" id="uid5_onlineimage" width="401"><!-- NOTE: attribute width changes image size online (pixels). original width is 401. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig13_3_5.eps" id="uid5_printimage" print-width="4in">
+<!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for the sum of eight iid uniform random variables.</caption></figure>
+
+</example>
+
+      <para id="id2262044">Although the sum of eight random variables is used, the fit to the gaussian is not
+as good as that for the sum of three in <link target-id="fs-id10915859">Example 4</link>. In either case, the convergence
+is remarkable fast—only a few terms are needed for good approximation.
+</para>
+    </section>
+    <section id="cid3">
+      <title>Convergence phenomena in probability theory</title>
+      <para id="id2262067">The central limit theorem exhibits one of several kinds of convergence important in
+probability theory, namely convergence <emphasis effect="italics">in distribution</emphasis> (sometimes called <emphasis effect="italics">weak</emphasis>
+convergence). The increasing concentration of values of the sample average random variable
+<emphasis effect="italics">A<sub>n</sub></emphasis> with increasing <emphasis effect="italics">n</emphasis> illustrates convergence <emphasis effect="italics">in probability</emphasis>. The convergence
+of the sample average is a form of the so-called <emphasis effect="italics">weak law of large numbers</emphasis>. For
+large enough <emphasis effect="italics">n</emphasis> the probability that <emphasis effect="italics">A<sub>n</sub></emphasis> lies within a given distance of the population
+mean can be made as near one as desired. The fact that the variance of
+<emphasis effect="italics">A<sub>n</sub></emphasis> becomes small for large <emphasis effect="italics">n</emphasis> illustrates convergence <emphasis effect="italics">in the mean</emphasis> (of order 2).</para>
+      <equation id="id2262178">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:mo>|</m:mo>
+            <m:msub>
+              <m:mi>A</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mo>-</m:mo>
+            <m:mi>μ</m:mi>
+            <m:msup>
+              <m:mo>|</m:mo>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>]</m:mo>
+            <m:mo>→</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2262246">In the calculus, we deal with sequences of numbers. If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>a</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a sequence
+of real numbers, we say the sequence converges iff for <emphasis effect="italics">N</emphasis> sufficiently large <emphasis effect="italics">a<sub>n</sub></emphasis> approximates
+arbitrarily closely some number <emphasis effect="italics">L</emphasis> for all <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>≥</m:mo><m:mi>N</m:mi></m:mrow></m:math>. This unique number <emphasis effect="italics">L</emphasis> is called
+the limit of the sequence. Convergent sequences are characterized by the fact that for large
+enough <emphasis effect="italics">N</emphasis>, the distance <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>|</m:mo></m:mrow><m:msub><m:mi>a</m:mi><m:mi>n</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>a</m:mi><m:mi>m</m:mi></m:msub><m:mrow><m:mo>|</m:mo></m:mrow></m:mrow></m:math> between any two terms is arbitrarily small for all
+<m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>m</m:mi><m:mo>≥</m:mo><m:mi>N</m:mi></m:mrow></m:math>. Such a sequence is said to be <emphasis effect="italics">fundamental</emphasis> (or <emphasis effect="italics">Cauchy</emphasis>).  To be
+precise, if we let <m:math overflow="scroll"><m:mrow><m:mi>ϵ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> be the error of approximation, then the sequence is</para>
+
+      <list id="id2262435" display="block" list-type="bulleted">
+        <item id="uid6">Convergent iff there exists a number <emphasis effect="italics">L</emphasis> such that for any <m:math overflow="scroll"><m:mrow><m:mi>ϵ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> there is an <emphasis effect="italics">N</emphasis>
+such that
+<equation id="id2262485"><m:math overflow="scroll" mode="display"><m:mrow><m:mrow><m:mo>|</m:mo><m:mi>L</m:mi><m:mo>-</m:mo></m:mrow><m:msub><m:mi>a</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>|</m:mo><m:mo>≤</m:mo><m:mi>ϵ</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>for</m:mtext><m:mspace width="4.pt"/><m:mtext>all</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>≥</m:mo><m:mi>N</m:mi></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid7">Fundamental iff for any <m:math overflow="scroll"><m:mrow><m:mi>ϵ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> there is an <emphasis effect="italics">N</emphasis> such that
+<equation id="id2262585"><m:math overflow="scroll" mode="display"><m:mrow><m:mrow><m:mo>|</m:mo></m:mrow><m:msub><m:mi>a</m:mi><m:mi>n</m:mi></m:msub><m:mo>-</m:mo><m:msub><m:mi>a</m:mi><m:mi>m</m:mi></m:msub><m:mrow><m:mo>|</m:mo><m:mo>≤</m:mo><m:mi>ϵ</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>for</m:mtext><m:mspace width="4.pt"/><m:mtext>all</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>n</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>m</m:mi><m:mo>≥</m:mo><m:mi>N</m:mi></m:mrow></m:mrow></m:math></equation></item>
+      </list>
+
+      <para id="id2262663">As a result of the completeness of the real numbers, it is true that any fundamental
+sequence converges (i.e., has a limit). And such convergence has certain desirable
+properties. For example the limit of a linear combination of sequences is that linear combination
+of the separate limits; and limits of products are the products of the limits.</para>
+
+      <para id="id2262672">The notion of convergent and fundamental sequences applies to sequences of real-valued
+functions with a common domain. For each <emphasis effect="italics">x</emphasis> in the domain, we have a sequence</para>
+
+      <para id="id2262687"><m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>f</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>)</m:mo></m:mrow><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of real numbers. The sequence may converge for some <emphasis effect="italics">x</emphasis> and
+fail to converge for others.</para>
+
+      <para id="id2262739">A somewhat more restrictive condition (and often a more
+desirable one) for sequences of functions is <emphasis effect="italics">uniform</emphasis> convergence. Here the
+uniformity is over values of the argument <emphasis effect="italics">x</emphasis>. In this case, for any <m:math overflow="scroll"><m:mrow><m:mi>ϵ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>
+there exists an <emphasis effect="italics">N</emphasis> which works for all <emphasis effect="italics">x</emphasis> (or for some suitable prescribed set of <emphasis effect="italics">x</emphasis>).</para>
+
+      <para id="id2262803"><emphasis effect="italics">These concepts may be applied to a sequence of random variables</emphasis>, which are real-valued
+functions with domain <emphasis effect="italics">Ω</emphasis> and argument <emphasis effect="italics">ω</emphasis>. Suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a
+sequence of real random variables. For each argument <emphasis effect="italics">ω</emphasis> we have a sequence
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of real numbers. It is quite possible that such a sequence
+converges for some <emphasis effect="italics">ω</emphasis> and diverges (fails to converge) for others. As a matter of fact,
+in many important cases the sequence converges for all <emphasis effect="italics">ω</emphasis> except possibly a set (event)
+of probability zero. In this case, we say the seqeunce converges <emphasis effect="italics">almost surely</emphasis>
+(abbreviated a.s.). The notion of uniform convergence also applies. In probability theory we
+have the notion of <emphasis effect="italics">almost uniform</emphasis> convergence. This is the case that the sequence
+converges uniformly for all <emphasis effect="italics">ω</emphasis> except for a set of arbitrarily small probability.</para>
+
+      <para id="id2262955">The notion of convergence <emphasis effect="italics">in probability</emphasis> noted above is a quite different kind of
+convergence. Rather than deal with the sequence on a pointwise basis, it deals with
+the random variables as such. In the case of sample average, the “closeness” to a limit
+is expressed in terms of the probability that the observed value <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> should lie close
+the the value <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math> of the limiting random variable. We may state this precisely as follows:</para>
+      <para id="id2263016">A sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> converges to <emphasis effect="italics">X</emphasis><emphasis effect="italics">in probability</emphasis>, designated
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mover><m:mo>→</m:mo><m:mi>P</m:mi></m:mover><m:mi>X</m:mi></m:mrow></m:math> iff for any <m:math overflow="scroll"><m:mrow><m:mi>ϵ</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math>,
+      </para>
+      <equation id="id2263105">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munder>
+              <m:mo movablelimits="true" form="prefix">lim</m:mo>
+              <m:mi>n</m:mi>
+            </m:munder>
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>X</m:mi>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>&gt;</m:mo>
+              <m:mi>ϵ</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+<!--empty paragraphs get left behind.-->
+      <para id="id2263167">There is a corresponding notion of a sequence fundamental in probability.</para>
+      <para id="id2263171">The following schematic representation may help to visualize the difference between almost-sure
+convergence and convergence in probability. In setting up the basic probability model, we think
+in terms of “balls” drawn from a jar or box. Instead of balls, consider for each possible
+outcome <emphasis effect="italics">ω</emphasis> a “tape” on which there is the sequence of values
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:msub><m:mi>X</m:mi><m:mn>3</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>,</m:mo><m:mo>⋯</m:mo></m:mrow></m:math>.</para>
+      <list id="id2263258" display="block" list-type="bulleted">
+        <item id="uid8">If the sequence of random variable converges a.s. to a random variable <emphasis effect="italics">X</emphasis>, then there is
+an set of “exceptional tapes” which has zero probability. For all other tapes,
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>→</m:mo><m:mi>X</m:mi><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. This means that by going far enough out on <emphasis effect="italics">any</emphasis>
+such tape, the values <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> beyond that point all lie within a prescribed distance of
+the value <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math> of the limit random variable.
+</item>
+        <item id="uid9">If the sequence converges in probability, the situation may be quite different. A tape
+is selected. For <emphasis effect="italics">n</emphasis> sufficiently large, the probability is arbitrarily near one that the observed
+value <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> lies within a prescribed distance of <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:math>. This says nothing
+about the values <m:math overflow="scroll"><m:mrow><m:msub><m:mi>X</m:mi><m:mi>m</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>ω</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math> on the selected tape for any larger <emphasis effect="italics">m</emphasis>. In fact, the sequence on
+the selected tape may very well diverge.
+</item>
+      </list>
+
+      <para id="id2263471">It is not difficult to construct examples for which there is convergence in probability but
+pointwise convergence for <emphasis effect="italics">no</emphasis> <emphasis effect="italics">ω</emphasis>. It is easy to confuse these two types of
+convergence. The kind of convergence noted for the sample average is convergence in
+probability (a “weak” law of large numbers). What is really desired in most cases
+is a.s. convergence (a “strong” law of large numbers). It turns out that for a sampling
+process of the kind used in simple statistics, the convergence of the sample average is
+almost sure (i.e., the strong law holds). To establish
+this requires much more detailed and sophisticated analysis than we are prepared to make in
+this treatment.</para>
+
+      <para id="id2263505">The notion of mean convergence illustrated by the reduction of <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math> with increasing
+<emphasis effect="italics">n</emphasis> may be expressed more generally and more precisely as follows. A sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math>
+converges in the mean of order <emphasis effect="italics">p</emphasis> to <emphasis effect="italics">X</emphasis> iff</para>
+
+      <equation id="id2263593">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+              <m:mo>|</m:mo>
+              <m:mi>X</m:mi>
+            </m:mrow>
+            <m:mo>-</m:mo>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:msup>
+                <m:mo>|</m:mo>
+                <m:mi>p</m:mi>
+              </m:msup>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>→</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>designated</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>n</m:mi>
+            </m:msub>
+            <m:mrow>
+             <m:mover>
+<m:mrow>
+<m:mo>→</m:mo>
+</m:mrow>
+<m:mrow>
+<m:msup>
+<m:mi mathvariant="bold">L</m:mi>
+<m:mi>p</m:mi>
+</m:msup>
+</m:mrow>
+</m:mover>
+            </m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>;</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>n</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+
+
+      <para id="id2263735">If the order <emphasis effect="italics">p</emphasis> is one, we simply say the sequence converges in the mean. For
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>, we speak of <emphasis effect="italics">mean-square convergence</emphasis>.</para>
+      <para id="id2263772">The introduction of a new type of convergence raises a number of questions.</para>
+      <list id="id2263779" display="block" list-type="enumerated">
+        <item id="uid10">There is the question of fundamental (or Cauchy) sequences and convergent
+sequences.
+</item>
+        <item id="uid11">Do the various types of limits have the usual properties of limits? Is
+the limit of a linear combination of sequences the linear combination of the limits? Is
+the limit of products the product of the limits?
+</item>
+        <item id="uid12">What conditions imply the various kinds of convergence?
+</item>
+        <item id="uid13">What is the relation between the various kinds of convergence?
+</item>
+      </list>
+
+
+      <para id="id2263844">Before sketching briefly some of the relationships between convergence types, we consider
+one important condition known as <emphasis effect="italics">uniform integrability</emphasis>.  According to the property
+<link document="m23998" target-id="uid19">(E9b)</link> for integrals</para>
+      <equation id="id2263856">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>is</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>integrable</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>iff</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>E</m:mi>
+            <m:mo>[</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>t</m:mi>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:mo>&gt;</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>t</m:mi>
+            </m:msub>
+            <m:mo>|</m:mo>
+            <m:mo>]</m:mo>
+            <m:mo>→</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>a</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2263967">Roughly speaking, to be integrable a random variable cannot be too large on too large a set.
+We use this characterization of the integrability of a single random variable to define the
+notion of the uniform integrability of a class.</para>
+      <para id="id2263977"><emphasis effect="bold">Definition</emphasis>.  An arbitrary class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>t</m:mi></m:msub><m:mo>:</m:mo><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi>T</m:mi><m:mo>}</m:mo></m:mrow></m:math> is <emphasis effect="italics">uniformly integrable</emphasis>
+(abbreviated u.i.) with respect to probability measure <emphasis effect="italics">P</emphasis> iff</para>
+      <equation id="id2264031">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:munder>
+              <m:mo movablelimits="true" form="prefix">sup</m:mo>
+              <m:mrow>
+                <m:mi>t</m:mi>
+                <m:mo>∈</m:mo>
+                <m:mi>T</m:mi>
+              </m:mrow>
+            </m:munder>
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>[</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mrow>
+                <m:mo>{</m:mo>
+                <m:mo>|</m:mo>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>t</m:mi>
+                </m:msub>
+                <m:mo>|</m:mo>
+                <m:mo>&gt;</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo>}</m:mo>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>|</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>X</m:mi>
+              <m:mi>t</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>|</m:mo>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>→</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>as</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>a</m:mi>
+            <m:mo>→</m:mo>
+            <m:mi>∞</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2264134">This condition plays a key role in many aspects of theoretical probability.</para>
+      <para id="id2264141">The relationships between types of convergence are important. Sometimes only one kind can
+be established. Also, it may be
+easier to establish one type which implies another of more immediate interest. We simply state
+informally some of the important relationships. A somewhat more detailed summary
+is given in PA, Chapter 17. But for a complete treatment it is necessary to consult more
+advanced treatments of probability and measure.</para>
+      <para id="id2264159">
+        <emphasis effect="italics">Relationships between types of convergence for probability measures</emphasis>
+      </para>
+      <para id="id2264166">Consider a sequence <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables.</para>
+      <list id="id2264200" display="block" list-type="enumerated">
+        <item id="uid14">It converges almost surely iff it converges almost uniformly.
+</item>
+        <item id="uid15">If it converges almost surely, then it converges in probability.
+</item>
+        <item id="uid16">It converges in mean, order <emphasis effect="italics">p</emphasis>, iff it is uniformly integrable and converges
+in probability.
+</item>
+        <item id="uid17">If it converges in probability, then it converges in distribution (i.e. weakly).
+</item>
+      </list>
+      <para id="id2264272">Various chains of implication can be traced. For example</para>
+      <list id="id2264276" display="block" list-type="bulleted">
+        <item id="uid18">Almost sure convergence <emphasis effect="italics">implies</emphasis> convergence in probability <emphasis effect="italics">implies</emphasis>
+convergence in distribution.
+</item>
+        <item id="uid19">Almost sure convergence and uniform integrability <emphasis effect="italics">implies</emphasis> convergence in mean <emphasis effect="italics">p</emphasis>.
+</item>
+      </list>
+      <para id="id2264334">We do not develop the underlying theory. While much of it could be treated with elementary
+ideas, a complete treatment requires considerable development of the underlying measure
+theory. However, it is important to be aware of these various types of convergence, since they
+are frequently utilized in advanced treatments of applied probability and of statistics.
+</para>
+    </section>
+  </content>
+</document>

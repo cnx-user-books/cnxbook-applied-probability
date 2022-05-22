@@ -1,0 +1,1669 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Conditional Independence</title>
+  <metadata>
+  <md:content-id>m23258</md:content-id><md:title>Conditional Independence</md:title>
+  <md:abstract>The idea of stochastic (probabilistic) independence is approached as lack of conditioning: P(A|B)=P(A). This is equivalent to the product rule P(AB)=P(A)P(B). We consider an extension to conditional independence. Using the facts on repeated conditioning and the equivalent conditions for independence, we may produce a similar table of equivalent conditions for conditional independence. In a given problem, one or the other of these conditions may seem a reasonable assumption. As soon as one of these patterns is recognized, then all are equally valid assumptions. Because of its simplicity and symmetry, we take as the defining condition the product rule P(AB|C)=P(A|C)P(B|C). As in the case of simple independence, the replacement rule extends.</md:abstract>
+  <md:uuid>c388324c-429b-441d-80a2-1cac4d294bc7</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <para id="id267798">The idea of stochastic (probabilistic) independence is explored in the unit
+<link document="m23253">Independence of Events</link>. The
+concept is approached as lack of conditioning:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math>. This is
+equivalent to the product rule <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math> . We consider an extension to
+conditional independence.</para>
+    <section id="cid1">
+      <title> The concept</title>
+      <para id="id267883">Examination of the independence concept reveals two important mathematical facts:</para>
+      <list id="id267887" display="block" list-type="bulleted">
+        <item id="uid1">Independence of a class of non mutually exclusive events depends upon the probability
+measure, and not on the relationship between the events. Independence cannot be displayed
+on a Venn diagram, unless probabilities are indicated. For one probability measure
+a pair may be independent while for another probability measure the pair may not be
+independent.
+</item>
+        <item id="uid2">Conditional probability is a probability measure, since it has the three
+defining properties and all those properties derived therefrom.
+</item>
+      </list>
+      <para id="id267918">This raises the question: is there a useful conditional independence—i.e., independence
+with respect to a conditional probability measure? In this chapter we explore that
+question in a fruitful way.
+</para>
+      <para id="eip-580">Among the simple examples of “operational independence" in the unit on independence
+of events, which lead
+naturally to an assumption of “probabilistic independence” are the following:</para><list id="id267927" display="block" list-type="bulleted">
+        <item id="uid3">If customers come into a well stocked shop at different times, each unaware of the
+choice made by the other, the the item purchased by one should not be affected by
+the choice made by the other.
+</item>
+        <item id="uid4">If two students are taking exams in different courses, the grade one makes
+should not affect the grade made by the other.
+</item>
+      </list>
+
+
+<example id="fs-id1872365"><title>Buying umbrellas and the weather</title><para id="id267964">A department store has a nice stock of umbrellas. Two customers come into the
+store “independently.” Let <emphasis effect="italics">A</emphasis> be the event the first buys an umbrella and
+<emphasis effect="italics">B</emphasis> the event the second buys an umbrella. Normally, we should think the events
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> form an independent pair. But consider the effect of weather on
+the purchases. Let <emphasis effect="italics">C</emphasis> be the event the weather is rainy (i.e., is raining or
+threatening to rain). Now we should think
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. The weather has a decided effect
+on the likelihood of buying an umbrella. But given the fact the weather is rainy
+(event <emphasis effect="italics">C</emphasis> has occurred), it would seem reasonable that purchase of an umbrella
+by one should not affect the likelihood of such a purchase by the other. Thus,
+it may be reasonable to suppose</para>
+      <equation id="id268112">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>or,</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>in</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>another</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>notation,</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id268225">An examination of the sixteen equivalent conditions for independence, with probability
+measure <emphasis effect="italics">P</emphasis> replaced by probability measure <emphasis effect="italics">P<sub>C</sub></emphasis>, shows that we have independence
+of the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> with respect to the conditional probability measure
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>P</m:mi><m:mi>C</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mo>·</m:mo><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mo>·</m:mo><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. Thus, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>. For this example,
+we should also expect that
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, so that there is independence with respect to the
+conditional probability measure <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>·</m:mo><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:math>. Does this make the pair
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> independent (with respect to the prior probability measure <emphasis effect="italics">P</emphasis>)? Some
+numerical examples make it plain that only in the most unusual cases would the
+pair be independent. Without calculations, we can see why this should be so. If
+the first customer buys an umbrella, this indicates a higher than normal likelihood
+that the weather is rainy, in which case the second customer is likely to buy.
+The condition leads to <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Consider the following numerical case.
+Suppose
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and</para>
+      <equation id="eip-893"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>60</m:mn><m:mo>,</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>20</m:mn></m:mrow><m:mo>,</m:mo>
+<m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>50</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>15</m:mn></m:mrow><m:mo>,</m:mo>
+<m:mtext>with</m:mtext>
+<m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>30</m:mn></m:mrow><m:mo>.</m:mo></m:math>
+</equation><para id="eip-387">Then</para><equation id="id268941"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3200</m:mn>
+          </m:mrow>
+
+<m:mspace width="5pt"/>
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>2550</m:mn>
+          </m:mrow>
+      
+        </m:math>
+      </equation>
+      
+      <equation id="id269119"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="21.68121pt"/>
+          </m:mrow>
+
+<m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1110</m:mn>
+          </m:mrow>
+        </m:math>
+      
+      </equation>
+      
+      <para id="id269324">As a result,</para>
+      <equation id="id269329">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>0816</m:mn>
+            <m:mo>≠</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>1110</m:mn>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id269385">The product rule fails, so that the pair is <emphasis effect="italics">not</emphasis> independent. An examination
+of the pattern of computation shows that independence would require very special
+probabilities which are not likely to be encountered.</para>
+      </example>
+
+
+<example id="fs-id2888676"><title>Students and exams</title><para id="id269418">Two students take exams in different courses, Under normal circumstances, one
+would suppose their performances form an independent pair. Let <emphasis effect="italics">A</emphasis> be the event the
+first student makes grade 80 or better and <emphasis effect="italics">B</emphasis> be the event the second has a grade
+of 80 or better. The exam is given on Monday morning. It is the fall semester. There
+is a probability 0.30 that there was a football game on Saturday, and both students
+are enthusiastic fans. Let <emphasis effect="italics">C</emphasis> be the event of a game on the previous Saturday. Now
+it is reasonable to suppose</para>
+      <equation id="id269450">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>B</m:mi>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>B</m:mi>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id269554">If we know that there was a Saturday game, additional knowledge that <emphasis effect="italics">B</emphasis> has occurred
+does not affect the lielihood that <emphasis effect="italics">A</emphasis> occurs. Again, use of equivalent conditions
+shows that the situation may be expressed</para>
+      <equation id="id269576">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id269714">Under these conditions, we should suppose that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. If we knew that one did poorly on the exam, this would
+increase the likelihoood there was a Saturday game and hence increase the
+likelihood that the other did poorly. The failure to be independent arises from
+a common chance factor that affects both. Although their performances are “operationally”
+independent, they are not independent in the probability sense. As a numerical example, suppose</para>
+      <equation id="id269810">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>9</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>6</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>C</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>8</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>C</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id269974">Straightforward calculations show <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8400</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>7400</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6300</m:mn></m:mrow></m:math>.  Note that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8514</m:mn><m:mo>&gt;</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:math> as would be expected.</para>
+</example>
+
+    </section>
+    <section id="cid2">
+      <title> Sixteen equivalent conditions</title>
+      <para id="id270117">Using the facts on <link document="m23252" target-id="cid10">repeated conditioning</link> and the <link document="m23253" target-id="id280329">equivalent conditions
+for independence</link>, we may produce a similar table of equivalent conditions
+for conditional independence. In the hybrid notation we use for repeated
+conditioning, we write</para>
+      <equation id="id270123">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:msub>
+              <m:mi>P</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>B</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id270231">This translates into</para>
+      <equation id="id270236">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>B</m:mi>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>or</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mi>B</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>A</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mi>B</m:mi>
+            <m:mo>|</m:mo>
+            <m:mi>C</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id270332">If it is known that <emphasis effect="italics">C</emphasis> has occurred, then additional knowledge of the
+occurrence of <emphasis effect="italics">B</emphasis> does not change the likelihood of <emphasis effect="italics">A</emphasis>.</para>
+      <para id="id270362">If we write the sixteen equivalent conditions for independence in terms of the
+conditional probability measure <m:math overflow="scroll"><m:mrow><m:msub><m:mi>P</m:mi><m:mi>C</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mspace width="0.166667em"/><m:mo>·</m:mo><m:mspace width="0.166667em"/><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, then translate as
+above, we have the following equivalent conditions.</para>
+    
+    
+      <table id="id270404" summary="The first 12 of sixteen equivalent conditions in terms of conditional probability."><title>Sixteen equivalent conditions</title>
+<tgroup cols="3"><tbody>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mi>C</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mi>C</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mi>B</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo>|</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+          </tbody>
+        
+</tgroup>
+</table>
+      <!--empty paragraphs get left behind.-->
+      <table id="id271126" summary="sixteen equivalent conditions">
+<tgroup cols="4"><tbody>
+            <row>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+    
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:mi>B</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+              <entry>
+                <m:math overflow="scroll">
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:mi>A</m:mi>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mo>(</m:mo>
+                      <m:msup>
+                        <m:mi>B</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mo>|</m:mo>
+                      <m:msup>
+                        <m:mi>A</m:mi>
+                        <m:mi>c</m:mi>
+                      </m:msup>
+                      <m:mi>C</m:mi>
+                      <m:mo>)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:math>
+              </entry>
+            </row>
+          </tbody>
+        
+
+</tgroup>
+</table>
+      <!--empty paragraphs get left behind.-->
+      <para id="id271378">The patterns of conditioning in the examples above belong
+to this set. In a given problem, one or the other of these conditions may seem a reasonable
+assumption. As soon as <emphasis effect="italics">one</emphasis> of these patterns is recognized, then
+<emphasis effect="italics">all</emphasis> are equally valid assumptions. Because of its simplicity and
+symmetry, we take as the defining condition
+the <emphasis effect="italics">product rule</emphasis><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id271451"><emphasis effect="bold">Definition</emphasis>. A pair of events <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:math> is said to be
+<emphasis effect="italics">conditionally independent, given</emphasis><emphasis effect="italics">C</emphasis>, designated <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>C</m:mi></m:mrow></m:math>
+iff the following product rule holds:  <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <para id="id271575">The equivalence of the four entries in the
+right hand column of the upper part of the table, establish</para>
+    
+
+      <para id="fs-id13986768"> <emphasis effect="bold">The replacement rule</emphasis></para>
+      <para id="id271588">If any of the pairs <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>}</m:mo></m:mrow><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mrow><m:mo>{</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow></m:mrow></m:math>, or <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>,</m:mo><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>}</m:mo></m:mrow></m:math>
+is conditionally independent, given <emphasis effect="italics">C</emphasis>, then so are the others.</para>
+      <para id="id271697">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+      <para id="id271712">This may be expressed by saying that if a pair is conditionally independent, we may replace
+either or both by their complements and still have a conditionally independent pair.</para>
+      <para id="id271716">To illustrate further the usefulness of this concept, we note some other common
+examples in which similar conditions hold: there is
+operational independence, but some chance factor which affects both.</para>
+      <list id="id271721" display="block" list-type="bulleted"><item id="uid5">Two contractors work quite independently on jobs in the same city. The
+operational independence suggests probabilistic independence. However, both
+jobs are outside and subject to delays due to bad weather. Suppose <emphasis effect="italics">A</emphasis> is the
+event the first contracter completes his job on time and <emphasis effect="italics">B</emphasis> is the event the
+second completes on time. If <emphasis effect="italics">C</emphasis> is the event of “good” weather, then arguments
+similar to those in Examples 1 and 2 make it
+seem reasonable to suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>C</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mrow><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo></m:mrow><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>. <emphasis effect="italics">                            Remark</emphasis>.  In formal probability theory, an event must be sharply defined:
+on any trial it occurs or it does not. The event of “good weather” is not
+so clearly defined. Did a trace of rain or thunder in the area constitute
+bad weather? Did rain delay on one day in a month long project constitute
+bad weather? Even with this ambiguity, the pattern of probabilistic analysis
+may be useful.
+</item>
+        <item id="uid6">A patient goes to a doctor. A preliminary examination leads the doctor
+to think there is a thirty percent chance the patient has a certain disease.
+The doctor orders two independent tests for conditions that indicate the
+disease. Are results of these tests really independent? There is certainly
+operational independence—the tests may be done by different laboratories,
+neither aware of the testing by the others. Yet, if the tests are
+meaningful, they must both be affected by the actual condition of the patient.
+Suppose <emphasis effect="italics">D</emphasis> is the event the patient has the disease, <emphasis effect="italics">A</emphasis> is the event the
+first test is positive (indicates the conditions associated with the disease)
+and <emphasis effect="italics">B</emphasis> is the event the second test is positive. Then it would seem
+reasonable to suppose <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>D</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mrow><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo></m:mrow><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>.
+</item>
+      </list>
+      <para id="id271988">In the examples considered so far, it has been reasonable to assume
+conditional independence, given an event <emphasis effect="italics">C</emphasis>, and conditional independence,
+given the complementary event. But there are cases in which the effect of
+the conditioning event is asymmetric. We consider several examples.</para>
+      <list id="id272003" display="block" list-type="bulleted">
+        <item id="uid7">Two students are working on a term paper. They work quite separately. They
+both need to borrow a certain book from the library. Let <emphasis effect="italics">C</emphasis> be the event
+the library has two copies available. If <emphasis effect="italics">A</emphasis> is the event the first completes
+on time and <emphasis effect="italics">B</emphasis> the event the second is successful, then it seems reasonable
+to assume <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>C</m:mi></m:mrow></m:math>. However, if only one book is available, then
+the two conditions would <emphasis effect="italics">not</emphasis> be conditionally independent. In general
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:mi>A</m:mi><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>&lt;</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>|</m:mo><m:msup><m:mi>C</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, since if the first student completes on time, then
+he or she must have been successful in getting the book, to the detriment
+of the second.
+</item>
+        <item id="uid8">If the two contractors of the example above both need material which may be
+in scarce supply, then successful completion would be conditionally independent,
+give an adequate supply, whereas they would not be conditionally independent,
+given a short supply.
+</item>
+        <item id="uid9">Two students in the same course take an exam. If they prepared separately,
+the event of both getting good grades should be conditionally independent. If
+they study together, then the likelihoods of good grades would not be independent.
+With neither cheating or collaborating on the test itself, if one does well, the
+other should also.
+</item>
+      </list>
+      <para id="id272169">Since conditional independence is ordinary independence with respect to a conditional
+probability measure, it should be clear how to extend the concept to larger classes of sets.</para>
+   
+      
+      <para id="id272184"><emphasis effect="bold"> Definition</emphasis>.  A class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math>, where <emphasis effect="italics">J</emphasis> is an arbitrary index set,
+is <emphasis effect="italics">conditionally independent, given</emphasis> event <emphasis effect="italics">C</emphasis>, denoted <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>C</m:mi></m:mrow></m:math>,
+iff the product rule holds for every finite subclass of two or more.</para>
+      <para id="id272283">As in the case of simple independence, the replacement rule extends.</para>
+
+   <para id="fs-id23152324"><emphasis effect="bold">The replacement rule</emphasis></para>
+      <para id="id272297">If the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>C</m:mi></m:mrow></m:math>, then any or all of the events <emphasis effect="italics">A<sub>i</sub></emphasis> may
+be replaced by their complements and still have a conditionally independent class.</para>
+  </section>
+<section id="fs-id23765400">
+    <title> The use of independence techniques</title>
+      <para id="id272368">Since conditional independence is independence, we may use independence techniques
+in the solution of problems. We consider two types of problems: an inference problem
+and a conditional Bernoulli sequence.</para>
+
+<example id="fs-id2441278"><title>Use of independence techniques</title><para id="id272381">Sharon is investigating a business venture which she thinks has probability
+0.7 of being successful. She checks with five “independent” advisers. If the
+prospects are sound, the probabilities are 0.8, 0.75, 0.6, 0.9, and 0.8 that the advisers
+will advise her to proceed; if the venture is not sound, the respective probabilities
+are 0.75, 0.85, 0.7, 0.9, and 0.7 that the advice will be negative. Given the
+quality of the project, the advisers are independent of one another in the
+sense that no one is affected by the others. Of course, they are not independent,
+for they are all related to the soundness of the venture. We may
+reasonably assume conditional independence of the advice, given that the venture
+is sound and also given that the venture is not sound. If Sharon goes with the majority
+of advisers, what is the probability she will make the right decision?</para>
+      
+      <para id="id272404"><title>SOLUTION</title>If the project is sound, Sharon makes the right choice if three or more of the five advisors
+are positive. If the venture is unsound, she makes the right choice if three or more
+of the five advisers are negative. Let  <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event the project is sound, <m:math overflow="scroll"><m:mrow><m:mi>F</m:mi><m:mo>=</m:mo></m:mrow></m:math> the
+event three or more advisers are positive, <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mo>=</m:mo><m:msup><m:mi>F</m:mi><m:mi>c</m:mi></m:msup><m:mo>=</m:mo></m:mrow></m:math> the event three or more are
+negative, and <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>=</m:mo></m:mrow></m:math> the event of the correct decision. Then</para>
+      <equation id="id272469">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>E</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>F</m:mi>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:msup>
+                <m:mi>H</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>F</m:mi>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>G</m:mi>
+              <m:mo>|</m:mo>
+              <m:msup>
+                <m:mi>H</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>H</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id272582">Let <emphasis effect="italics">E<sub>i</sub></emphasis> be the event the <emphasis effect="italics">i</emphasis>th adviser is positive.
+Then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>F</m:mi><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>)</m:mo><m:mo>=</m:mo></m:mrow></m:math> the sum of probabilities of the form <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>M</m:mi><m:mi>k</m:mi></m:msub><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>)</m:mo></m:mrow></m:math>, where <emphasis effect="italics">M<sub>k</sub></emphasis> are minterms
+generated by the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mn>5</m:mn><m:mo>}</m:mo></m:mrow></m:math>. Because of the assumed conditional
+independence,</para>
+      <equation id="id272711">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>2</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msubsup>
+                <m:mi>E</m:mi>
+                <m:mn>3</m:mn>
+                <m:mi>c</m:mi>
+              </m:msubsup>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>4</m:mn>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>E</m:mi>
+                <m:mn>5</m:mn>
+              </m:msub>
+              <m:mo>|</m:mo>
+              <m:mi>H</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id272881">with similar expressions for each <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>M</m:mi><m:mi>k</m:mi></m:msub><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>M</m:mi><m:mi>k</m:mi></m:msub><m:mo>|</m:mo><m:msup><m:mi>H</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:math>. This means that
+if we want the probability of three or more successes, given <emphasis effect="italics">H</emphasis>, we can use ckn with
+the matrix of conditional probabilities. The following MATLAB solution of the
+investment problem is indicated.</para>
+      <code id="id272955" display="block">P1 = 0.01*[80 75 60 90 80];
+P2 = 0.01*[75 85 70 90 70];
+PH = 0.7;
+PE = ckn(P1,3)*PH + ckn(P2,3)*(1 - PH)
+PE =    0.9255
+</code>
+      </example>
+
+
+      <para id="id273018">Often a Bernoulli sequence is related to some conditioning event <emphasis effect="italics">H</emphasis>. In this
+case it is reasonable to assume the sequence
+<m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mspace width="0.277778em"/><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>≤</m:mo><m:mi>n</m:mi><m:mo>}</m:mo><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo><m:mi>H</m:mi></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mrow><m:mspace width="0.166667em"/><m:mi> ci </m:mi><m:mspace width="0.166667em"/><m:mo>|</m:mo></m:mrow><m:msup><m:mi>H</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>. We consider a simple example.</para>
+
+<example id="fs-id3498006"><title>Test of a claim</title><para id="id273116">A race track regular claims he can pick the winning horse in any race 90 percent of
+the time. In order to test his claim, he picks a horse to win in each of ten races.
+There are five horses in each race. If he is simply guessing, the probability of
+success on each race is 0.2. Consider the trials to constitute a Bernoulli sequence.
+Let <emphasis effect="italics">H</emphasis> be the event he is correct in his claim. If <emphasis effect="italics">S</emphasis> is the number of successes in
+picking the winners in the ten races, determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>H</m:mi><m:mo>|</m:mo><m:mi>S</m:mi><m:mo>=</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> for various numbers
+<emphasis effect="italics">k</emphasis> of correct picks. Suppose it is equally likely that his claim is valid or that
+he is merely guessing. We assume two conditional Bernoulli trials:</para>
+      <para id="id273177">Claim is valid:       Ten trials, probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:mi>H</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>9</m:mn></m:mrow></m:math>.</para>
+      <para id="id273219">Guessing at random: Ten trials, probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>E</m:mi><m:mi>i</m:mi></m:msub><m:mo>|</m:mo><m:msup><m:mi>H</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>2</m:mn></m:mrow></m:math>.</para>
+      <para id="id273269">Let <m:math overflow="scroll"><m:mrow><m:mi>S</m:mi><m:mo>=</m:mo></m:mrow></m:math> number of correct picks in ten trials. Then</para>
+      <equation id="id273285">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>S</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>H</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>|</m:mo>
+                <m:mi>S</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>H</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>·</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>S</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>|</m:mo>
+                <m:mi>H</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>P</m:mi>
+                <m:mo>(</m:mo>
+                <m:mi>S</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>|</m:mo>
+                <m:msup>
+                  <m:mi>H</m:mi>
+                  <m:mi>c</m:mi>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>k</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>10</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id273436">Giving him the benefit of the doubt, we suppose <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>H</m:mi><m:mo>)</m:mo></m:mrow><m:mo>/</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>H</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> and calculate the
+conditional odds.</para>
+      <code id="id273481" display="block">k = 0:10;
+Pk1 = ibinom(10,0.9,k);    % Probability of k successes, given H
+Pk2 = ibinom(10,0.2,k);    % Probability of k successes, given H^c
+OH  = Pk1./Pk2;            % Conditional odds-- Assumes P(H)/P(H^c) = 1
+e   = OH &gt; 1;              % Selects favorable odds
+disp(round([k(e);OH(e)]'))
+           6           2      % Needs at least six to have creditability
+           7          73      % Seven would be creditable,
+           8        2627      % even if P(H)/P(H^c) = 0.1
+           9       94585
+          10     3405063
+</code>
+      <para id="id273594">Under these assumptions, he would have to pick at least seven correctly to
+give reasonable validation of his claim.</para>
+      </example>
+    </section>
+  </content>
+</document>

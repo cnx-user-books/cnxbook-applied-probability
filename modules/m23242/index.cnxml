@@ -1,0 +1,136 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Preface to Pfeiffer Applied Probability</title>
+  <metadata>
+  <md:content-id>m23242</md:content-id><md:title>Preface to Pfeiffer Applied Probability</md:title>
+  <md:abstract>In addition to an introduction to the essential features of basic probability in terms of a precise mathematical model, the work describes and employs user defined MATLAB procedures and functions (which we refer to as m-programs, or simply programs) to solve many important problems in basic probability. This should make the work useful as a stand alone exposition as well as a supplement to any of several current textbooks. Some  key contributors are acknowledged.</md:abstract>
+  <md:uuid>c2c390e8-7b47-4c71-a319-8ccc5a61066b</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title>The course</title>
+      <para id="id84958">This is a "first course" in the sense that it presumes no previous course in probability. The units are
+modules taken from the unpublished text: Paul E. Pfeiffer, ELEMENTS OF APPLIED PROBABILITY,
+USING MATLAB. The units are numbered as they appear in the text, although of course they may
+be used in any desired order. For those who wish to use the order of the text, an outline is
+provided, with indication of which modules contain the material.</para>
+      <para id="id84965">The mathematical prerequisites are ordinary calculus and the elements of matrix algebra. A few standard series and integrals are used, and double integrals are evaluated as iterated integrals. The reader who can evaluate simple integrals can learn quickly from the examples how to deal with the iterated integrals used in the theory of expectation and conditional expectation. <link document="m23990">Appendix B</link> provides a convenient compendium of mathematical facts used frequently in this work. And the symbolic toolbox, implementing MAPLE, may be used to evaluate integrals, if desired.</para>
+      <para id="id84973">In addition to an introduction to the essential features of basic probability in terms of a precise mathematical
+model, the work describes and employs user defined MATLAB procedures and functions (which we
+refer to as <emphasis effect="italics">m-programs</emphasis>, or simply <emphasis effect="italics">programs</emphasis>) to solve many important problems in basic probability.
+This should make the work useful as a stand alone exposition as well as a supplement to any of several
+current textbooks.</para>
+      <para id="id84990">Most of the programs developed here were written in earlier versions of MATLAB, but have been
+revised slightly to make them quite compatible with MATLAB 7. In a few cases, alternate
+implementations are available in the Statistics Toolbox, but are  implemented here directly from the basic
+MATLAB program, so that students need only that program (and the symbolic mathematics toolbox,
+if they desire its aid in evaluating integrals).</para>
+      <para id="id84997">Since machine methods require precise formulation of problems in appropriate mathematical form, it is necessary
+to provide some supplementary analytical material, principally the so-called <emphasis effect="italics">minterm analysis</emphasis>. This
+material is not only important for computational purposes, but is also useful in displaying some of
+the structure of the relationships among events.</para>
+    </section>
+    <section id="cid2">
+      <title>A probability model</title>
+      <para id="id85018">Much of "real world" probabilistic thinking is an amalgam of intuitive, plausible reasoning and of
+statistical knowledge and insight. Mathematical probability attempts to to lend precision to such
+probability analysis by employing a suitable <emphasis effect="italics">mathematical model</emphasis>, which embodies the central
+underlying principles and structure. A successful model serves as an aid (and sometimes corrective)
+to this type of thinking.</para>
+      <para id="id85030">Certain concepts and patterns have emerged from experience and intuition. The mathematical
+formulation (the mathematical model) which has most successfully captured these essential ideas is rooted
+in measure theory, and is known as the <emphasis effect="italics">Kolmogorov model</emphasis>, after the brilliant Russian
+mathematician A.N. Kolmogorov (1903-1987).</para>
+      <para id="id85041">One cannot prove that a model is <emphasis effect="italics">correct</emphasis>. Only experience may show whether it is <emphasis effect="italics">useful</emphasis> (and
+not incorrect). The usefulness of the Kolmogorov model is established
+by examining its structure and showing that patterns of uncertainty and likelihood in
+any practical situation can be represented adequately. Developments, such as in this course, have
+given ample evidence of such usefulness.</para>
+      <para id="id85057">The most fruitful approach is characterized by an interplay of</para>
+      <list id="id85060" display="block" list-type="bulleted">
+        <item id="uid1">A formulation of the problem in precise terms of the model and careful mathematical analysis
+of the problem so formulated.
+</item>
+        <item id="uid2">A grasp of the problem based on experience and insight. This underlies both problem
+formulation and interpretation of analytical results of the model. Often such insight suggests
+approaches to the analytical solution process.
+</item>
+      </list>
+    </section>
+    <section id="cid3">
+      <title>MATLAB: A tool for learning</title>
+      <para id="id85100">In this work, we make extensive use of MATLAB as an aid to analysis.
+I have tried to write the MATLAB programs in such a way that they constitute useful,
+ready-made tools for problem solving. Once the user understands the problems they
+are designed to solve, the solution strategies used, and the manner in which these
+strategies are implemented, the collection of programs should provide a useful
+resource.</para>
+      <para id="id85106">However, my primary aim in exposition and illustration is to <emphasis effect="italics">aid the learning process</emphasis>
+and to deepen insight into the structure of the problems considered and the strategies
+employed in their solution. Several features contribute to that end.</para>
+      <list id="id85117" display="block" list-type="enumerated"><item id="uid3">Application of machine methods of solution requires precise formulation. The
+data available and the fundamental assumptions must be organized in an appropriate fashion.
+The requisite <emphasis effect="italics">discipline</emphasis> for such formulation often contributes to enhanced understanding
+of the problem.
+</item>
+        <item id="uid4">The development of a MATLAB program for solution requires careful attention to
+possible solution strategies. One cannot instruct the machine without a clear grasp of what is
+to be done.
+</item>
+        <item id="uid5">I give attention to the tasks performed by a program, with a general description of
+how MATLAB carries out the tasks. The reader is not required to trace out all the
+programming details. However, it is often the case that available MATLAB resources suggest
+alternative solution strategies. Hence, for those so inclined, attention to the details may
+be fruitful. I have included, as a separate collection, the m-files written for this work. These
+may be used as patterns for extensions as well as programs in MATLAB for computations.
+<link document="m23942">Appendix A</link> provides a directory of these m-files.
+</item>
+        <item id="uid6">Some of the details in the MATLAB script are presentation details. These are
+refinements which are not essential to the solution of the problem. But they make
+the programs more readily usable. And they provide illustrations of MATLAB techniques
+for those who may wish to write their own programs. I hope many will be inclined to
+go beyond this work, modifying current programs or writing new ones.
+</item>
+      </list>
+    </section>
+    <section id="cid4">
+      <title>An Invitation to Experiment and Explore</title>
+      <para id="id85194">Because the programs provide considerable freedom from the burden of computation
+and the tyranny of tables (with their limited ranges and parameter values), standard
+problems may be approached with a new spirit of experiment and discovery. When a
+program is selected (or written), it embodies one method of solution.
+There may be others which are readily implemented. The reader is invited, even urged,
+to explore! The user may experiment to whatever degree he or she
+finds useful and interesting. The possibilities are endless.</para>
+    </section>
+    <section id="cid5">
+      <title>Acknowledgments</title>
+      <para id="id85211">After many years of teaching probability, I have long since lost track of
+all those authors and books which have contributed to the treatment
+of probability in this work. I am
+aware of those contributions and am most eager to acknowledge my indebtedness, although
+necessarily without specific attribution.</para>
+      <para id="id85216">The power and utility of MATLAB must be attributed to to the long-time commitment of
+Cleve Moler, who made the package available in the public domain for several years. The appearance
+of the professional versions, with extended power and improved documentation, led to further appreciation and utilization of its potential in applied probability.</para>
+      <para id="id85223">The Mathworks continues to develop MATLAB and many powerful "tool boxes," and to provide
+leadership in many phases of modern computation. They have generously made available MATLAB 7
+to aid in checking for compatibility the programs written with earlier versions.
+I have not utilized the full potential of this version for developing professional quality user interfaces, since I
+believe the simpler implementations used herein bring the student closer to the formulation and solution of
+the problems studied.</para>
+      <!--empty paragraphs get left behind.-->
+      <para id="eip-828"><title>CONNEXIONS</title>The development and organization of the CONNEXIONS modules has been achieved principally by two people:  C.S.(Sid) Burrus a former student and later a faculty colleague, then Dean of Engineering, and most importantly a long time friend; and Daniel Williamson, a music major whose keyboard skills have enabled him to set up the text (especially the mathematical expressions) with great accuracy, and whose dedication to the task has led to improvements in presentation. I thank them and others of the CONNEXIONS team who have contributed to the publication of this work.</para><para id="id85234">  Paul E. Pfeiffer</para>
+      <para id="id85242">  Rice University</para>
+    </section>
+  </content>
+</document>

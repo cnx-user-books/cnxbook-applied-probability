@@ -1,0 +1,1211 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Random Vectors and MATLAB</title>
+  <metadata>
+  <md:content-id>m23320</md:content-id><md:title>Random Vectors and MATLAB</md:title>
+  <md:abstract>The systematic formulation in the previous module Minterms shows that each Boolean combination, as a union of minterms, can be designated by a vector of zero-one coefficients. A coefficient one in the ith position (numbering from zero) indicates the inclusion of minterm Mi in the union. We formulate this pattern carefully below and show how MATLAB logical operations may be utilized in problem setup and solution.</md:abstract>
+  <md:uuid>fc881dea-5a83-4c85-89dc-e8d408d6b924</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1"><title>m-procedures for a pair of simple random variables</title><para id="id66833">We examine, first, calculations on a pair of simple random variables <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi></m:mrow></m:math>, considered jointly.
+These are, in effect, two components of a random vector <m:math overflow="scroll"><m:mrow><m:mi>W</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo></m:mrow></m:math>, which maps from
+the basic space <emphasis effect="italics">Ω</emphasis> to the plane. The induced distribution is on the
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:math>-plane. Values on the horizontal axis (<emphasis effect="italics">t</emphasis>-axis) correspond to values of
+the first coordinate random variable <emphasis effect="italics">X</emphasis> and values on the vertical axis (<emphasis effect="italics">u</emphasis>-axis)
+correspond to values of <emphasis effect="italics">Y</emphasis>. We extend the computational strategy used for a single
+random variable.</para>
+      <para id="id66940">First, let us review the one-variable strategy. In this case, data consist of values <emphasis effect="italics">t<sub>i</sub></emphasis>
+and corresponding probabilities <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> arranged in matrices</para>
+      <equation id="id66331">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mi>X</m:mi>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>=</m:mo>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mn>1</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>=</m:mo>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mo>⋯</m:mo>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>P</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>=</m:mo>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>n</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id67340">To perform calculations on <m:math overflow="scroll"><m:mrow><m:mi>Z</m:mi><m:mo>=</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo></m:mrow></m:math>, we we use array operations on <emphasis effect="italics">X</emphasis> to form a matrix</para>
+      <equation id="id67373">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>G</m:mi>
+            <m:mo>=</m:mo>
+            <m:mo>[</m:mo>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mo>⋯</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>n</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>]</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id67446">which has <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> in a position corresponding to
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> in matrix <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math>.</para>
+      <para id="id67508"><emphasis effect="italics">Basic problem</emphasis>. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>g</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>M</m:mi><m:mo>)</m:mo></m:mrow></m:math>, where <emphasis effect="italics">M</emphasis> is some prescribed set of
+values.</para>
+      <list id="id67549" display="block" list-type="bulleted">
+        <item id="uid1">Use relational operations to determine the <emphasis effect="italics">positions</emphasis> for which <m:math overflow="scroll"><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>M</m:mi></m:mrow></m:math>.
+These will be in a zero-one matrix <emphasis effect="italics">N</emphasis>, with ones in the desired positions.
+</item>
+        <item id="uid2">Select the <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> in the corresponding positions and sum. This is
+accomplished by one of the MATLAB operations to determine the inner product of <emphasis effect="italics">N</emphasis> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>X</m:mi></m:mrow></m:math></item>
+      </list>
+      <para id="id67659">We extend these techniques and strategies to a pair of simple random variables, considered
+jointly.</para>
+      <list id="id67664" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid3">The data for a pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> of random variables are the values of <emphasis effect="italics">X</emphasis>
+and <emphasis effect="italics">Y</emphasis>, which we may put in row matrices
+<equation id="id67716"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mrow><m:mo>[</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋯</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow><m:mtext>and</m:mtext><m:mi>Y</m:mi><m:mo>=</m:mo><m:mrow><m:mo>[</m:mo><m:msub><m:mi>u</m:mi><m:mn>1</m:mn></m:msub><m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub><m:mo>⋯</m:mo><m:msub><m:mi>u</m:mi><m:mi>m</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:mrow></m:math></equation>
+and the joint probabilities <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> in a matrix <emphasis effect="italics">P</emphasis>.
+We usually represent the distribution graphically by putting probability mass
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> at the point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> on the plane. This joint probability
+may is represented by the matrix <emphasis effect="italics">P</emphasis> with elements arranged corresponding to the mass points
+on the plane. Thus
+<equation id="id67977"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mtext>has</m:mtext><m:mspace width="4.pt"/><m:mtext>element</m:mtext><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mtext>at</m:mtext><m:mtext>the</m:mtext><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mtext>position</m:mtext></m:mrow></m:math></equation></item>
+        <item id="uid4">To perform calculations, we form computational matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis> such that
+— <emphasis effect="italics">t</emphasis> has element <emphasis effect="italics">t<sub>i</sub></emphasis> at each <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> position (i.e., at each point on
+the <emphasis effect="italics">i</emphasis>th column from the left)
+— <emphasis effect="italics">u</emphasis> has element <emphasis effect="italics">u<sub>j</sub></emphasis> at each <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> position (i.e., at each point on
+the <emphasis effect="italics">j</emphasis>th row from the bottom)
+MATLAB array and logical operations on <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>,</m:mo><m:mi>P</m:mi></m:mrow></m:math> perform the specified operations
+on <m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> at each <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> position, in a manner analogous
+to the operations in the single-variable case.
+</item>
+        <item id="uid5">Formation of the <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis> matrices is achieved by a basic setup m-procedure
+called <emphasis effect="italics">jcalc</emphasis>. The data for this procedure are in three matrices:
+          <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mi>n</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math> is the set of values for random variable <emphasis effect="italics">X</emphasis>
+          <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>u</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mn>2</m:mn></m:msub><m:mo>,</m:mo><m:mo>⋯</m:mo><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>m</m:mi></m:msub><m:mo>]</m:mo></m:mrow></m:math> is the set of values for random variable <emphasis effect="italics">Y</emphasis>, and
+          <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:msub><m:mi>p</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:msub><m:mo>]</m:mo></m:mrow></m:math>, where <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mi>i</m:mi><m:mi>j</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>=</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>=</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.
+We arrange the joint probabilities as on the plane, with <emphasis effect="italics">X</emphasis>-values increasing to the right
+and <emphasis effect="italics">Y</emphasis>-values increasing upward. This is different from the usual arrangement in a matrix, in
+which values of the second variable increase downward. The m-procedure takes care of this
+inversion.
+The m-procedure forms the matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis>, utilizing the MATLAB function <emphasis effect="italics">meshgrid</emphasis>,
+and computes the marginal distributions for <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis>.
+In the following example, we display the various steps utilized in the setup procedure.
+Ordinarily, these intermediate steps would not be displayed.
+<example id="fs-id6263545"><title>Setup and basic calculations</title><para id="fs-id1168084988551"><code id="id68728" display="block">&gt;&gt; jdemo4                         % Call for data in file jdemo4.m
+&gt;&gt; jcalc                          % Call for setup procedure
+Enter JOINT PROBABILITIES (as on the plane)  P
+Enter row matrix of VALUES of X  X
+Enter row matrix of VALUES of Y  Y
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+&gt;&gt; disp(P)                        % Optional call for display of P
+    0.0360    0.0198    0.0297    0.0209    0.0180
+    0.0372    0.0558    0.0837    0.0589    0.0744
+    0.0516    0.0774    0.1161    0.0817    0.1032
+    0.0264    0.0270    0.0405    0.0285    0.0132
+&gt;&gt; PX                             % Optional call for display of PX
+PX =  0.1512    0.1800    0.2700    0.1900    0.2088
+&gt;&gt; PY                             % Optional call for display of PY
+PY =  0.1356    0.4300    0.3100    0.1244
+- - - - - - - - - -               % Steps performed by jcalc
+&gt;&gt; PX = sum(P)                    % Calculation of PX as performed by jcalc
+PX =  0.1512    0.1800    0.2700    0.1900    0.2088
+&gt;&gt; PY = fliplr(sum(P'))           % Calculation of PY (note reversal)
+PY = 0.1356    0.4300    0.3100    0.1244
+&gt;&gt; [t,u] = meshgrid(X,fliplr(Y)); % Formation of t, u matrices (note reversal)
+&gt;&gt; disp(t)                        % Display of calculating matrix t
+    -3     0     1     3     5    % A row of X-values for each value of Y
+    -3     0     1     3     5
+    -3     0     1     3     5
+    -3     0     1     3     5
+&gt;&gt; disp(u)                        % Display of calculating matrix u
+     2     2     2     2     2    % A column of Y-values (increasing
+     1     1     1     1     1    % upward) for each value of X
+     0     0     0     0     0
+    -2    -2    -2    -2    -2
+</code>Suppose we wish to determine the probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>X</m:mi><m:mn>2</m:mn></m:msup><m:mo>-</m:mo><m:mn>3</m:mn><m:mi>Y</m:mi><m:mo>≥</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+Using array operations on <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis>, we obtain the matrix <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mi>g</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:math>.
+<code id="id69220" display="block">&gt;&gt; G = t.^2 - 3*u                 % Formation of G = [g(t_i,u_j)] matrix
+G  = 3    -6    -5     3    19
+     6    -3    -2     6    22
+     9     0     1     9    25
+    15     6     7    15    31
+&gt;&gt; M = G &gt;=  1                    % Positions where G &gt;= 1
+M =  1     0     0     1     1
+     1     0     0     1     1
+     1     0     1     1     1
+     1     1     1     1     1
+&gt;&gt; pM = M.*P                    % Selection of probabilities
+pM =
+    0.0360         0         0    0.0209    0.0180
+    0.0372         0         0    0.0589    0.0744
+    0.0516         0    0.1161    0.0817    0.1032
+    0.0264    0.0270    0.0405    0.0285    0.0132
+&gt;&gt; PM = total(pM)               % Total of selected probabilities
+PM =  0.7336                    % P(g(X,Y) &gt;= 1)
+</code></para>
+</example>
+</item>
+
+
+        <item id="uid6">In <link document="m23318" target-id="fs-id1171300420813">Example 3</link> from "Random Vectors and Joint Distributions" we note that the joint distribution function <m:math overflow="scroll"><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math>
+is constant over any grid cell, including the left-hand and lower boundaries, at
+the value taken on at the lower left-hand corner of the cell. These lower left-hand
+corner values may be obtained systematically from the joint probability matrix <emphasis effect="italics">P</emphasis> by
+a two step operation.
+<list id="id69483" display="block" list-type="bulleted"><item id="uid7">Take cumulative sums upward of the columns of <emphasis effect="italics">P</emphasis>.
+</item><item id="uid8">Take cumulative sums of the rows of the resultant matrix.
+</item></list>
+This can be done with the MATLAB function cumsum, which takes column cumulative
+sums downward. By flipping the matrix and transposing, we can achieve the desired
+results.
+
+
+<example id="fs-id1169354382494"><title>Calculation of <m:math overflow="scroll"><m:msub><m:mi>F</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math> values for <link document="m23318" target-id="fs-id1171300420813">Example 3</link> from "Random Vectors and Joint Distributions"</title><code id="id69553" display="block">&gt;&gt; P = 0.1*[3 0 0; 0 6 0; 0 0 1];
+&gt;&gt; FXY = flipud(cumsum(flipud(P)))  % Cumulative column sums upward
+FXY =
+    0.3000    0.6000    0.1000
+         0    0.6000    0.1000
+         0         0    0.1000
+&gt;&gt; FXY = cumsum(FXY')'              % Cumulative row sums
+FXY =
+    0.3000    0.9000    1.0000
+         0    0.6000    0.7000
+         0         0    0.1000
+</code>
+      </example>
+
+
+      <figure id="uid9"><media id="uid9_media" alt="A graph creating a 2x2 grid with three points indicated by black dots. the upper most of these dots is present on the y axis and is labeled 3/10 the next highest point is in the center of the grid and is labeled 6/10 and finally the lowest point is on the far bottom right of the grid on the x-axis and is labeled 1/10.">
+          <image mime-type="image/png" src="../../media/fig8_2_2.png" id="uid9_onlineimage" width="236"><!-- NOTE: attribute width changes image size online (pixels). original width is 236. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_2_2-0d59.eps" id="uid9_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>The joint distribution for <link document="m23318" target-id="fs-id1171300420813">Example 3</link> in "Random Vectors and Joint Distributions'.</caption></figure>
+      Comparison with <link document="m23318" target-id="fs-id1171300420813">Example 3</link> from "Random Vectors and Joint Distributions" shows agreement with values obtained by
+hand.<newline/>
+      The two step procedure has been incorprated into an m-procedure <emphasis effect="italics">jddbn</emphasis>.  As
+an example, return to the distribution in Example <link target-id="fs-id6263545"/><newline/>
+
+<example id="fs-id6083060"><title>Joint distribution function for <link target-id="fs-id6263545"/></title><code id="id69723" display="block">&gt;&gt; jddbn
+Enter joint probability matrix (as on the plane)  P
+To view joint distribution function, call for FXY
+&gt;&gt; disp(FXY)
+    0.1512    0.3312    0.6012    0.7912    1.0000
+    0.1152    0.2754    0.5157    0.6848    0.8756
+    0.0780    0.1824    0.3390    0.4492    0.5656
+    0.0264    0.0534    0.0939    0.1224    0.1356
+</code>
+      <para id="id69807">These values may be put on a grid, in the same manner as in <link document="m23318" target-id="uid2">Figure 2</link> for <link document="m23318" target-id="fs-id1171300420813">Example 3</link> in "Random Vectors and Joint Distributions".</para>
+      </example>
+</item>
+
+        <item id="uid10">As in the case of canonic for a single random variable, it is often useful
+to have a function version of the procedure jcalc to provide the freedom to name the
+outputs conveniently.
+<emphasis effect="italics">function</emphasis><code display="inline">[x,y,t,u,px,py,p] = jcalcf(X,Y,P)</code>
+The quantities <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mi>u</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>p</m:mi><m:mi>y</m:mi><m:mo>,</m:mo></m:mrow></m:math> and <emphasis effect="italics">p</emphasis> may be given any desired names.
+</item>
+      
+</list>
+    </section>
+    <section id="cid2"><title>Joint absolutely continuous random variables</title><para id="id69942">In the single-variable case, the condition that there are no point mass concentrations on the line
+ensures the existence of a probability density function, useful in probability calculations.
+A similar situation exists for a joint distribution for two (or more) variables. For any joint
+mapping to the plane which assigns zero probability to each
+set with zero area (discrete points, line or curve segments, and countable unions of these)
+there is a density function.</para>
+    <para id="eip-id3153204"><emphasis effect="bold">Definition</emphasis></para>
+      <para id="id69959">If the joint probability distribution for the pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> assigns
+zero probability to every set of points with zero area, then there exists a <emphasis effect="italics">joint density
+function</emphasis> <m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math>  with the property</para>
+      <equation id="id70008">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>X</m:mi>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:mi>Y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>∈</m:mo>
+              <m:mi>Q</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mo>∫</m:mo>
+              <m:mi>Q</m:mi>
+            </m:msub>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id70068">We have three properties analogous to those for the single-variable case:</para>
+      <equation id="id70074">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mtext>(f1)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>≥</m:mo>
+            <m:mn>0</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(f2)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mo>∫</m:mo>
+              <m:msup>
+                <m:mi mathvariant="bold">R</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+            </m:msub>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>(f3)</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>u</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id70270">At every continuity point for <m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math>, the density is the second partial</para>
+      <equation id="id70295">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:msup>
+                  <m:mi>∂</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:msub>
+                  <m:mi>F</m:mi>
+                  <m:mrow>
+                    <m:mi>X</m:mi>
+                    <m:mi>Y</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mspace width="0.166667em"/>
+                  <m:mi>u</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>∂</m:mi>
+                <m:mi>t</m:mi>
+                <m:mspace width="0.166667em"/>
+                <m:mi>∂</m:mi>
+                <m:mi>u</m:mi>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id70381">Now</para>
+      <equation id="id70387">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>F</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>∞</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>s</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>r</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id70509">A similar expression holds for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>. Use of the fundamental theorem of calculus to
+obtain the derivatives gives the result</para>
+      <equation id="id70538">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>s</m:mi>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>and</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:msubsup>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>r</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id70700"><emphasis effect="italics">Marginal densities</emphasis>.  Thus, to obtain the marginal density for the first variable,
+integrate out the second variable
+in the joint density, and similarly for the marginal for the second variable.</para>
+
+<example id="fs-id1169354154230"><title>Marginal density functions</title><para id="id70717">Let <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>8</m:mn><m:mi>t</m:mi><m:mi>u</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>u</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>.  This region is the triangle
+bounded by <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> (see <link target-id="uid11"/>)</para>
+      <equation id="id70832">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>8</m:mn>
+            <m:mi>t</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mn>0</m:mn>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:mi>u</m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>4</m:mn>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>3</m:mn>
+            </m:msup>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>t</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <equation id="id70956">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>Y</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo>∫</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>8</m:mn>
+            <m:mi>u</m:mi>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mi>u</m:mi>
+              <m:mn>1</m:mn>
+            </m:msubsup>
+            <m:mi>t</m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>4</m:mn>
+            <m:mi>u</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>-</m:mo>
+              <m:msup>
+                <m:mi>u</m:mi>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id71092"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>≤</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>75</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>[</m:mo><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>)</m:mo><m:mo>∈</m:mo><m:mi>Q</m:mi><m:mo>]</m:mo></m:mrow></m:math> where <emphasis effect="italics">Q</emphasis> is the common part of the
+triangle with the strip between <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>75</m:mn></m:mrow></m:math> and above the line <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math>.  This is the small triangle bounded by <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mi>t</m:mi></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>75</m:mn></m:mrow></m:math>.  Thus</para>
+      <equation id="id71290">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>p</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>8</m:mn>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>3</m:mn>
+                <m:mo>/</m:mo>
+                <m:mn>4</m:mn>
+              </m:mrow>
+            </m:msubsup>
+            <m:msubsup>
+              <m:mo>∫</m:mo>
+              <m:mrow>
+                <m:mn>1</m:mn>
+                <m:mo>/</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+              <m:mi>t</m:mi>
+            </m:msubsup>
+            <m:mi>t</m:mi>
+            <m:mi>u</m:mi>
+            <m:mspace width="0.166667em"/>
+            <m:mi>d</m:mi>
+            <m:mi>u</m:mi>
+            <m:mi>d</m:mi>
+            <m:mi>t</m:mi>
+            <m:mo>=</m:mo>
+            <m:mn>25</m:mn>
+            <m:mo>/</m:mo>
+            <m:mn>256</m:mn>
+            <m:mo>≈</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>0977</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+
+      <figure id="uid11"><media id="uid11_media" alt="A graph with a line rising from point (0,0) to (1,1) and another line rising perpendicularly from point (1,0) forming a corner with the other line at point (1,1). The resulting triangle is contains the function f_xy(t,u)=8tu. Along the diagonal line at point (0.5,0.5) a line extends to the right to another point (0.5, 0.75). Line segments extend upward from both of these points and the resulting triangle is shaded with the letter Q in the middle.">
+          <image mime-type="image/png" src="../../media/fig8_5_1.png" id="uid11_onlineimage" width="392"><!-- NOTE: attribute width changes image size online (pixels). original width is 392. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_5_1.eps" id="uid11_printimage" print-width="3.6in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Distribution for <link target-id="fs-id1169354154230"/>.</caption></figure>
+
+
+<example id="fs-id1169358726296"><title>Marginal distribution with compound expression</title><para id="id71416">The pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> has joint density <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>6</m:mn><m:mn>37</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>
+on the region bounded by <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>2</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mo movablelimits="true" form="prefix">max</m:mo><m:mo>{</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>t</m:mi><m:mo>}</m:mo></m:mrow></m:math> (see <link target-id="uid14"/>).
+Determine the marginal density <emphasis effect="italics">f<sub>X</sub></emphasis>.</para>
+      <para id="id71593">SOLUTION</para>
+      <para id="id71596">Examination of the figure shows that we have different limits for the integral with respect
+to <emphasis effect="italics">u</emphasis> for <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math> and for <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math>.</para>
+      <list id="id71647" display="block" list-type="bulleted">
+        <item id="uid12">For <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math><equation id="id71680"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>6</m:mn><m:mn>37</m:mn></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mn>0</m:mn><m:mn>1</m:mn></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>u</m:mi><m:mo>=</m:mo><m:mfrac><m:mn>6</m:mn><m:mn>37</m:mn></m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid13">For <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>&lt;</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>2</m:mn></m:mrow></m:math><equation id="id71795"><m:math overflow="scroll" mode="display"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>X</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mn>6</m:mn><m:mn>37</m:mn></m:mfrac><m:msubsup><m:mo>∫</m:mo><m:mn>0</m:mn><m:mi>t</m:mi></m:msubsup><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>+</m:mo><m:mn>2</m:mn><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.166667em"/><m:mi>d</m:mi><m:mi>u</m:mi><m:mo>=</m:mo><m:mfrac><m:mn>12</m:mn><m:mn>37</m:mn></m:mfrac><m:mspace width="0.166667em"/><m:msup><m:mi>t</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id71881">We may combine these into a single expression in a manner used extensively in subsequent
+treatments. Suppose <m:math overflow="scroll"><m:mrow><m:mi>M</m:mi><m:mo>=</m:mo><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mn>1</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>2</m:mn><m:mo>]</m:mo></m:mrow></m:math>.  Then <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>M</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi>M</m:mi></m:mrow></m:math>
+(i.e., <m:math overflow="scroll"><m:mrow><m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>) and zero elsewhere. Likewise, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>I</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi>N</m:mi></m:mrow></m:math> and
+zero elsewhere. We can, therefore express <emphasis effect="italics">f<sub>X</sub></emphasis> by</para>
+      <equation id="id72054">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mi>X</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>M</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mfrac>
+              <m:mn>6</m:mn>
+              <m:mn>37</m:mn>
+            </m:mfrac>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>+</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>I</m:mi>
+              <m:mi>N</m:mi>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mfrac>
+              <m:mn>12</m:mn>
+              <m:mn>37</m:mn>
+            </m:mfrac>
+            <m:mspace width="0.166667em"/>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation>
+      </example>
+
+
+
+      <figure id="uid14"><media id="uid14_media" alt="A graph with a horizontal line extending from the point (0,1) to (1,1) and is labeled u=1. Then another line proceeds at a diagonal from (1,1) to (2,2) and is labeled u=t. Another line rises to this point, (2,2) from point (2,0) and is labeled t=2. this figure contains the equation f_xy(t,u)=(6/37)(t+2u).">
+          <image mime-type="image/png" src="../../media/fig8_5_2.png" id="uid14_onlineimage" width="365"><!-- NOTE: attribute width changes image size online (pixels). original width is 365. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_5_2.eps" id="uid14_printimage" print-width="3in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Marginal distribution for <link target-id="fs-id1169358726296"/>.</caption></figure>
+    </section>
+    
+    <section id="cid4">
+      <title>Discrete approximation in the continuous case</title>
+      <para id="id72186">For a pair <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:mi>X</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>}</m:mo></m:mrow></m:math> with joint density <m:math overflow="scroll"><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub></m:math>, we approximate the distribution
+in a manner similar to that for a single random variable. We then utilize the techniques
+developed for a pair of simple random variables. If we have <emphasis effect="italics">n</emphasis> approximating values
+<emphasis effect="italics">t<sub>i</sub></emphasis> for <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">m</emphasis> approximating values <emphasis effect="italics">u<sub>j</sub></emphasis> for <emphasis effect="italics">Y</emphasis>, we then have <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>·</m:mo><m:mi>m</m:mi></m:mrow></m:math> pairs
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math>, corresponding to points on the plane. If we subdivide the horizontal axis
+for values of <emphasis effect="italics">X</emphasis>, with constant increments <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mi>x</m:mi></m:mrow></m:math>, as in the single-variable case, and the
+vertical axis for values of <emphasis effect="italics">Y</emphasis>, with constant increments <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mi>y</m:mi></m:mrow></m:math>, we have a grid structure
+consisting of rectangles of size <m:math overflow="scroll"><m:mrow><m:mi>d</m:mi><m:mi>x</m:mi><m:mo>·</m:mo><m:mi>d</m:mi><m:mi>y</m:mi></m:mrow></m:math>. We select <emphasis effect="italics">t<sub>i</sub></emphasis> and <emphasis effect="italics">u<sub>j</sub></emphasis> at the
+midpoint of its increment, so that the point <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:msub><m:mi>t</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msub><m:mi>u</m:mi><m:mi>j</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:math> is at the midpoint of the
+rectangle. If we let the approximating pair be <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msup><m:mi>X</m:mi><m:mo>*</m:mo></m:msup><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:msup><m:mi>Y</m:mi><m:mo>*</m:mo></m:msup><m:mo>}</m:mo></m:mrow></m:math>, we assign</para>
+      <equation id="id72498">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>p</m:mi>
+              <m:mrow>
+                <m:mi>i</m:mi>
+                <m:mi>j</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mfenced separators="" open="(" close=")">
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msup>
+                  <m:mi>X</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:msup>
+                  <m:mi>Y</m:mi>
+                  <m:mo>*</m:mo>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:msub>
+                  <m:mi>t</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+                <m:mo>,</m:mo>
+                <m:mspace width="0.166667em"/>
+                <m:msub>
+                  <m:mi>u</m:mi>
+                  <m:mi>j</m:mi>
+                </m:msub>
+                <m:mo>)</m:mo>
+              </m:mrow>
+            </m:mfenced>
+            <m:mo>=</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>X</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.277778em"/>
+              <m:msup>
+                <m:mi>Y</m:mi>
+                <m:mo>*</m:mo>
+              </m:msup>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>=</m:mo>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>in</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mrow>
+              <m:mi>i</m:mi>
+              <m:mi>j</m:mi>
+            </m:mrow>
+            <m:mtext>th</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>rectangle)</m:mtext>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id72677">As in the one-variable case, if the increments are small enough,</para>
+      <equation id="id72683">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mo>(</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>Y</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>∈</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mrow>
+              <m:mi>i</m:mi>
+              <m:mi>j</m:mi>
+            </m:mrow>
+            <m:mtext>th</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>rectangle)</m:mtext>
+            <m:mo>≈</m:mo>
+            <m:mi>d</m:mi>
+            <m:mi>x</m:mi>
+            <m:mo>·</m:mo>
+            <m:mi>d</m:mi>
+            <m:mi>y</m:mi>
+            <m:mo>·</m:mo>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>i</m:mi>
+              </m:msub>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:msub>
+                <m:mi>u</m:mi>
+                <m:mi>j</m:mi>
+              </m:msub>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id72783">The m-procedure <emphasis effect="italics">tuappr</emphasis> calls for endpoints of intervals which include the
+ranges of <emphasis effect="italics">X</emphasis> and <emphasis effect="italics">Y</emphasis> and for the numbers of subintervals on each. It then
+prompts for an expression for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, from which it determines
+the joint probability distribution. It calculates the marginal approximate
+distributions and sets up the calculating matrices <emphasis effect="italics">t</emphasis> and <emphasis effect="italics">u</emphasis> as does the
+m-process jcalc for simple random variables. Calculations are then carried out
+as for any joint simple pair.</para>
+
+
+<example id="fs-id4669853"><title>Approximation to a joint continuous distribution</title><equation id="id72876">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mi>X</m:mi>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:msub>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo>,</m:mo>
+              <m:mspace width="0.166667em"/>
+              <m:mi>u</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>3</m:mn>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>on</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mn>0</m:mn>
+            <m:mo>≤</m:mo>
+            <m:mi>u</m:mi>
+            <m:mo>≤</m:mo>
+            <m:msup>
+              <m:mi>t</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>≤</m:mo>
+            <m:mn>1</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id72951">Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>≤</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>Y</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+      <code id="id72998" display="block">&gt;&gt; tuappr
+Enter matrix [a b] of X-range endpoints  [0 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  200
+Enter number of Y approximation points  200
+Enter expression for joint density  3*(u &lt;= t.^2)
+Use array operations on X, Y, PX, PY, t, u, and P
+&gt;&gt; M = (t &lt;= 0.8)&amp;(u &gt; 0.1);
+&gt;&gt; p = total(M.*P)          % Evaluation of the integral with
+p =   0.3355                % Maple gives 0.3352455531
+</code>
+      </example>
+
+
+      <para id="id73135">The discrete approximation may be used to obtain approximate plots of marginal
+distribution and density functions.</para>
+      
+      <figure id="uid15"><media id="uid15_media" alt="A graph of marginal density and distribution for X. The line for fx extends from point (-1,0) to a sharp apex at (0,1.5 and then the line declines mirroring the previous side to a point (1,0). The line for FX is dashed and begins at (-0.8,0) and ascends gently and plateaus around (0.8,1).">
+          <image mime-type="image/png" src="../../media/fig8_6_1.png" id="uid15_onlineimage" width="399"><!-- NOTE: attribute width changes image size online (pixels). original width is 399. --></image>
+          <image for="pdf" mime-type="application/postscript" src="../../media/fig8_6_1.eps" id="uid15_printimage" print-width="4.1in">
+            <!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)-->
+          </image>
+        </media>
+        
+      <caption>Marginal density and distribution function for <link target-id="fs-id7412545"/>.</caption></figure>
+
+
+<example id="fs-id7412545"><title>Approximate plots of marginal density and distribution functions</title><para id="id73167"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>f</m:mi><m:mrow><m:mi>X</m:mi><m:mi>Y</m:mi></m:mrow></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>3</m:mn><m:mi>u</m:mi></m:mrow></m:math> on the triangle bounded by <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>+</m:mo><m:mi>t</m:mi></m:mrow></m:math>, and
+<m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>≤</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>t</m:mi></m:mrow></m:math>.</para>
+      <code id="id73261" display="block">&gt;&gt; tuappr
+Enter matrix [a b] of X-range endpoints  [-1 1]
+Enter matrix [c d] of Y-range endpoints  [0 1]
+Enter number of X approximation points  400
+Enter number of Y approximation points  200
+Enter expression for joint density  3*u.*(u&lt;=min(1+t,1-t))
+Use array operations on X, Y, PX, PY, t, u, and P
+&gt;&gt; fx = PX/dx;                % Density for X  (see <link target-id="uid15"/>)
+                              % Theoretical (3/2)(1 - |t|)^2
+&gt;&gt; fy = PY/dy;                % Density for Y
+&gt;&gt; FX = cumsum(PX);           % Distribution function for X (<link target-id="uid15"/>)
+&gt;&gt; FY = cumsum(PY);           % Distribution function for Y
+&gt;&gt; plot(X,fx,X,FX)            % Plotting details omitted
+</code>
+      </example>
+
+
+      <para id="id73441">These approximation techniques useful in dealing with functions of random variables,
+expectations, and conditional expectation and regression.
+</para>
+    </section>
+  </content>
+</document>

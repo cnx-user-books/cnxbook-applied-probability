@@ -1,0 +1,469 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Probability Systems</title>
+  <metadata>
+  <md:content-id>m23244</md:content-id><md:title>Probability Systems</md:title>
+  <md:abstract>In the module "Likelihood" we introduce the notion of a basic space Ω of all possible outcomes of a trial or experiment; events as subsets of the basic space determined by appropriate characteristics of the outcomes; and logical or Boolean combinations of the events (unions, intersections, and complements) corresponding to logical combinations of the defining characteristics. Probability is a number assigned to an event indicating the likelihood of the occurrence of that event on any trial.
+Classical probability:  the basic space Ω consists of a finite number N of possible outcomes;  each possible outcome is assigned a probability 1/N;  if event (subset) A has NA elements, then the probability assigned event A is P(A) = NA/N. Three properties are easily determined; several other elementary properties may be derived from these three.
+A general probability system consists of a basic set Ω of elementary outcomes of a trial or experiment, a class of events as subsets of the basic space, and a probability measure P which assigns values to the events in accordance with three basic rules from which several other essential rules are derived.</md:abstract>
+  <md:uuid>4b0ce827-0a55-4c4c-899c-b1b8166ede20</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of Useful Matlab Files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    <section id="cid1">
+      <title>Probability measures</title>
+      <para id="id2258270">In the module <link document="m23243">"Likelihood"</link> we introduce the notion of a basic space
+<m:math>
+<m:mi>Ω</m:mi>
+</m:math> of all possible outcomes of a trial or experiment, events as subsets of the basic space
+determined by appropriate characteristics of the outcomes, and logical or Boolean combinations
+of the events (unions, intersections, and complements) corresponding to logical combinations of
+the defining characteristics.</para>
+      <para id="id2258938">Occurrence or nonoccurrence of an event is determined by characteristics or attributes of the
+outcome observed on a trial. Performing the trial is visualized as selecting an outcome from the basic set.
+An event occurs whenever the selected outcome is a member of the subset representing the event.
+As described so far, the selection process could be quite deliberate, with a prescribed outcome,
+or it could involve the uncertainties associated with “chance.” Probability enters the picture
+only in the latter situation. Before the trial is performed, there is <emphasis effect="italics">uncertainty</emphasis> about which of these
+latent possibilities will be realized.
+<emphasis effect="italics">Probability</emphasis> traditionally is a number assigned to an event indicating the <emphasis effect="italics">likelihood</emphasis> of
+the occurrence of that event on any trial.</para>
+      <para id="id2258979">We begin by looking at the <emphasis effect="italics">classical</emphasis> model which first successfully formulated
+probability ideas in mathematical form. We use modern terminology and notation to
+describe it.</para>
+      
+<!--empty paragraphs get left behind.-->
+      <list id="id2259000" display="block" list-type="enumerated"><title>Classical probability</title><item id="uid1">The basic space <emphasis effect="italics">Ω</emphasis> consists of a finite number <emphasis effect="italics">N</emphasis> of possible outcomes. 
+<list id="eip-id6815803" list-type="bulleted" bullet-style="dash"><item>There are thirty six possible outcomes of throwing two dice.</item>
+<item>There are <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>C</m:mi><m:mrow><m:mo>(</m:mo><m:mn>52</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mfrac><m:mrow><m:mn>52</m:mn><m:mo>!</m:mo></m:mrow><m:mrow><m:mn>5</m:mn><m:mo>!</m:mo><m:mn>47</m:mn><m:mo>!</m:mo></m:mrow></m:mfrac><m:mo>=</m:mo><m:mn>2598960</m:mn></m:mrow></m:mstyle></m:math> different hands of five
+cards
+     (order not important).</item>
+<item> There are <m:math overflow="scroll"><m:mrow><m:msup><m:mn>2</m:mn><m:mn>5</m:mn></m:msup><m:mo>=</m:mo><m:mn>32</m:mn></m:mrow></m:math> results (sequences of heads or tails) of flipping five coins.</item></list>
+</item>
+        <item id="uid2">Each possible outcome is assigned a probability <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>/</m:mo><m:mi>N</m:mi></m:mrow></m:math></item>
+        <item id="uid3">If event (subset) <emphasis effect="italics">A</emphasis> has <emphasis effect="italics">N<sub>A</sub></emphasis> elements, then the probability assigned event <emphasis effect="italics">A</emphasis> is
+<equation id="id2259203"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>N</m:mi><m:mi>A</m:mi></m:msub><m:mo>/</m:mo><m:mi>N</m:mi><m:mspace width="4pt"/><m:mspace width="4pt"/><m:mtext>(i.e.,</m:mtext><m:mspace width="4.pt"/><m:mtext>the</m:mtext><m:mspace width="4.pt"/><m:mtext>fraction</m:mtext><m:mspace width="4.pt"/><m:mtext>favorable</m:mtext><m:mspace width="4.pt"/><m:mtext>to</m:mtext><m:mspace width="4.pt"/><m:mi>A</m:mi><m:mtext>)</m:mtext></m:mrow></m:math></equation></item>
+      </list>
+      
+      <para id="id2259286">With this definition of probability, each event <emphasis effect="italics">A</emphasis> is assigned a unique probability, which may
+be determined by counting <emphasis effect="italics">N<sub>A</sub></emphasis>, the number of elements in <emphasis effect="italics">A</emphasis> (in the classical language, the
+number of outcomes "favorable" to the event) and <emphasis effect="italics">N</emphasis> the total number of possible outcomes in the
+<emphasis effect="italics">sure</emphasis> event <emphasis effect="italics">Ω</emphasis>.</para>
+
+
+<example id="fs-id1166420814364">
+<title>Probabilities for hands of cards</title>
+
+      <para id="id2259354">Consider the experiment of drawing a hand of five cards from an ordinary deck
+of 52 playing cards. The number of outcomes, as noted above, is <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>=</m:mo><m:mi>C</m:mi><m:mo>(</m:mo><m:mn>52</m:mn><m:mo>,</m:mo><m:mn>5</m:mn><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>2598960</m:mn></m:mrow></m:math>.
+What is the probability of drawing a hand with exactly two aces? What is the
+probability of drawing a hand with two or more aces? What is the probability of
+not more than one ace?</para>
+      <para id="id2259393">SOLUTION</para>
+      <para id="id2259396">Let <emphasis effect="italics">A</emphasis> be the event of exactly two aces, <emphasis effect="italics">B</emphasis> be the event of exactly three aces, and
+<emphasis effect="italics">C</emphasis> be the event of exactly four aces. In the first problem, we must count the number
+<emphasis effect="italics">N<sub>A</sub></emphasis> of ways of drawing a hand with two aces. We select
+two aces from the four, and select the other three cards from the 48 non aces. Thus</para>
+      <equation id="id2259443">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mi>A</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>48</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>103776</m:mn>
+            <m:mo>,</m:mo>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mtext>so</m:mtext>
+            <m:mspace width="4.pt"/>
+            <m:mtext>that</m:mtext>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mspace width="0.277778em"/>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>A</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>A</m:mi>
+              </m:msub>
+              <m:mi>N</m:mi>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mn>103776</m:mn>
+              <m:mn>2598960</m:mn>
+            </m:mfrac>
+            <m:mo>≈</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>0399</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id2259802">There are two or more aces iff there are exactly two or exactly three or
+exactly four. Thus the event <emphasis effect="italics">D</emphasis> of two or more is <m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:mi>B</m:mi><m:mo>⋁</m:mo><m:mi>C</m:mi></m:mrow></m:math>. Since
+<m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>B</m:mi><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mi>C</m:mi></m:mrow></m:math> are mutually exclusive,</para>
+      <equation id="id2259864"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mi>D</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mi>A</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mi>B</m:mi>
+            </m:msub>
+            <m:mo>+</m:mo>
+            <m:msub>
+              <m:mi>N</m:mi>
+              <m:mi>C</m:mi>
+            </m:msub>
+            <m:mo>=</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>48</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>48</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mi>C</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>48</m:mn>
+              <m:mo>,</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+          </m:mrow>
+<m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>103776</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>4512</m:mn>
+            <m:mo>+</m:mo>
+            <m:mn>48</m:mn>
+            <m:mo>=</m:mo>
+            <m:mn>108336</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation>
+      
+      <para id="id2260026">so that <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>)</m:mo><m:mo>≈</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>0417</m:mn></m:mrow></m:math>.  There is one ace or none iff there are not two or more aces. We thus want
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msup><m:mi>D</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:math>. Now the number in <emphasis effect="italics">D<sup>c</sup></emphasis> is the number not in <emphasis effect="italics">D</emphasis> which is <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>-</m:mo><m:msub><m:mi>N</m:mi><m:mi>D</m:mi></m:msub></m:mrow></m:math>, so that</para>
+      <equation id="id2260121">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:msup>
+                <m:mi>D</m:mi>
+                <m:mi>c</m:mi>
+              </m:msup>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mi>N</m:mi>
+                <m:mo>-</m:mo>
+                <m:msub>
+                  <m:mi>N</m:mi>
+                  <m:mi>D</m:mi>
+                </m:msub>
+              </m:mrow>
+              <m:mi>N</m:mi>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mfrac>
+              <m:msub>
+                <m:mi>N</m:mi>
+                <m:mi>D</m:mi>
+              </m:msub>
+              <m:mi>N</m:mi>
+            </m:mfrac>
+            <m:mo>=</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>-</m:mo>
+            <m:mi>P</m:mi>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>D</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>9583</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation></example>
+<!--empty paragraphs get left behind.-->
+      <para id="id2260213">— <m:math overflow="scroll"><m:mo>□</m:mo></m:math></para>
+      <para id="id2260227">This example illustrates several important properties of the classical probability.</para>
+<!--empty paragraphs get left behind.-->
+      <list id="id2260236" display="block" list-type="enumerated"><item id="uid4"><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>N</m:mi><m:mi>A</m:mi></m:msub><m:mo>/</m:mo><m:mi>N</m:mi></m:mrow></m:math> is a nonnegative quantity.
+</item>
+        <item id="uid5">
+          <m:math overflow="scroll">
+            <m:mrow>
+              <m:mi>P</m:mi>
+              <m:mo>(</m:mo>
+              <m:mi>Ω</m:mi>
+              <m:mo>)</m:mo>
+              <m:mo>=</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>/</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>=</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+          </m:math>
+        </item>
+        <item id="uid6">If <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>,</m:mo><m:mi>B</m:mi><m:mo>,</m:mo><m:mi>C</m:mi></m:mrow></m:math>  are <emphasis effect="italics"> mutually exclusive</emphasis>, then the number in the disjoint union is the sum of the numbers in the individual events, so that
+<equation id="id2260361"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:mi>B</m:mi><m:mo>⋁</m:mo><m:mi>C</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>C</m:mi><m:mo>)</m:mo></m:mrow></m:math></equation></item>
+      </list>
+      <para id="id2260421">Several other elementary properties of the classical probability may be identified. It turns out
+that they can be derived from these three. Although the classical model is highly useful, and
+an extensive theory has been developed, it is not really satisfactory for many applications
+(the communications problem, for example). We seek a more general model which includes
+classical probability as a special case and is thus an extension of it. We adopt the
+<emphasis effect="italics">Kolmogorov model</emphasis> (introduced by the Russian mathematician A. N. Kolmogorov) which
+captures the essential ideas in a remarkably successful way.
+Of course, no model is ever completely successful. Reality always seems to escape our
+logical nets.</para>
+      <para id="id2260441">The Kolmogorov model is grounded in abstract measure theory. A full explication requires a
+level of mathematical sophistication inappropriate for a treatment such as this.
+But most of the concepts and many of the results are elementary and easily grasped. And
+many technical mathematical considerations are not important for applications at the level
+of this introductory treatment and may be disregarded. We borrow from measure theory a few
+key facts which are either very plausible or which can be understood at a practical level.
+<emphasis effect="italics">This enables us to utilize a very powerful mathematical system for representing practical
+problems in a manner that leads to both insight and useful strategies of solution</emphasis>.</para>
+      <para id="id2260460">Our approach is to begin with the notion of events as sets introduced above, then to introduce
+probability as a number assigned to events subject to certain conditions which become
+definitive properties. Gradually
+we introduce and utilize additional concepts to build progressively a powerful and useful
+discipline. The <emphasis effect="italics">fundamental properties needed</emphasis> are just those illustrated in <link target-id="fs-id1166420814364"/>
+for the classical case.</para>
+    
+      <para id="fs-id1166087484733"><emphasis effect="bold">Definition</emphasis></para>
+      <para id="id2260485">A probability system consists of a basic set <emphasis effect="italics">Ω</emphasis> of <emphasis effect="italics">elementary
+outcomes</emphasis> of a trial or experiment, a class of <emphasis effect="italics">events</emphasis> as subsets of the basic space,
+and a <emphasis effect="italics">probability measure </emphasis><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mo>⋅</m:mo><m:mo>)</m:mo></m:mrow></m:math> which assigns values to the events in
+accordance with the following rules:</para>
+      <list id="id2260533" display="block" list-type="labeled-item">
+        <item id="uid7"><label>(P1)</label>For any event <emphasis effect="italics">A</emphasis>, the probability <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid8"><label>(P2)</label>The probability of the sure event <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Ω</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math>.
+</item>
+        <item id="uid9"><label>(P3)</label><emphasis effect="italics">Countable additivity</emphasis>.  If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a mutually exclusive,
+countable class of events, then the probability of the disjoint union is the sum of the
+individual probabilities.
+</item>
+      </list>
+      <para id="id2260662">The necessity of the mutual exclusiveness (disjointedness) is illustrated in <link target-id="fs-id1166420814364"/>.
+If the sets were not disjoint, probability would be counted more than once in the sum.
+A probability, as defined, is abstract—simply a number assigned to each set representing
+an event. But we can give it an
+interpretation which helps to visualize the various patterns and relationships encountered. We may
+think of <emphasis effect="italics">probability</emphasis> as <emphasis effect="italics">mass</emphasis> assigned to an event. The total unit mass is
+assigned to the basic set <emphasis effect="italics">Ω</emphasis>. The additivity property for disjoint sets makes
+the mass interpretation consistent. We can use this interpretation as a precise representation.
+Repeatedly we refer to the probability mass assigned a given set. The mass is proportional
+to the weight, so sometimes we speak informally of the weight rather than the mass.
+Now a mass assignment with three properties does not seem a very promising beginning. But
+we soon expand this rudimentary list of properties. We use the mass interpretation to help
+visualize the properties, but are primarily concerned to interpret them in terms of
+likelihoods.</para>
+      <list id="id2260710" display="block" list-type="labeled-item"><item id="uid10"><label>(P4)</label><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.  This follows from additivity and the fact that
+<equation id="id2260764"><m:math overflow="scroll" mode="display"><m:mrow><m:mn>1</m:mn><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Ω</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid11"><label>(P5)</label><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>∅</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>.  The empty set represents an impossible event. It has
+no members, hence cannot occur. It seems reasonable that it should be assigned zero probability
+(mass). Since <m:math overflow="scroll"><m:mrow><m:mi>∅</m:mi><m:mo>=</m:mo><m:msup><m:mi>Ω</m:mi><m:mi>c</m:mi></m:msup></m:mrow></m:math>, this follows logically from <link target-id="uid10">(P4)</link> and <link target-id="uid8">(P2)</link>.
+<figure id="uid12"><media id="uid12_media" alt="There are two venn diagrams in this picture. The first venn diagram is a union between a light blue circle containing the variable A and a purple circle containing the variable 'A to the C power B'. The area of the union is a light blue green color and does not contain a variable. The second venn diagram shos a union between a light blue circle containing the variable 'AB to the C power' and a red circle containing the variable 'A to the C power B' with the area of the union being purple and containing the variable 'AB'"><image mime-type="image/png" src="../../media/fig1_2_1.png" id="uid12_onlineimage" width="298"><!-- NOTE: attribute width changes image size online (pixels). original width is 298. --></image><image for="pdf" mime-type="application/postscript" src="../../media/fig1_2_1.eps" id="uid12_printimage" print-width="3in"><!--NOTE: attribute width changes image size in printed PDF (if specified in .tex file)--></image></media>
+<caption>Partitions of the union <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi></m:mrow></m:math>.
+</caption></figure>
+</item>
+        <item id="uid13"><label>(P6)</label>If <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi></m:mrow></m:math>, then <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>≤</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:math>. From the mass point of view, every
+point in <emphasis effect="italics">A</emphasis> is also in <emphasis effect="italics">B</emphasis>, so that <emphasis effect="italics">B</emphasis> must have at least as much mass as <emphasis effect="italics">A</emphasis>. Now the
+relationship <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>⊂</m:mo><m:mi>B</m:mi></m:mrow></m:math> means that if <emphasis effect="italics">A</emphasis> occurs, <emphasis effect="italics">B</emphasis> must also. Hence <emphasis effect="italics">B</emphasis> is at least
+as likely to occur as <emphasis effect="italics">A</emphasis>. From a purely formal point of view, we have
+<equation id="id2261072"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>B</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>so</m:mtext><m:mspace width="4.pt"/><m:mtext>that</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≥</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>since</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math></equation></item>
+        <item id="uid14"><label>(P7)</label>
+
+<m:math overflow="scroll">
+<m:mtable>
+<m:mtr>
+<m:mtd>
+<m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow><m:mo>+</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mtd>
+</m:mtr>
+<m:mtr>
+<m:mtd>
+<m:mrow><m:mo>=</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo><m:mo>+</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>B</m:mi><m:mo>)</m:mo><m:mo>-</m:mo><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>)</m:mo></m:mrow></m:mtd>
+</m:mtr>
+</m:mtable>
+</m:math>
+<newline/>
+
+
+
+The first three expressions follow from additivity and partitioning of <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi></m:mrow></m:math>
+as follows (see <link target-id="uid12"/>).
+<equation id="id2261431"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi><m:mo>=</m:mo><m:mi>A</m:mi><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi><m:mo>=</m:mo><m:mi>B</m:mi><m:mo>⋁</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>=</m:mo><m:mi>A</m:mi><m:msup><m:mi>B</m:mi><m:mi>c</m:mi></m:msup><m:mo>⋁</m:mo><m:mi>A</m:mi><m:mi>B</m:mi><m:mo>⋁</m:mo><m:msup><m:mi>A</m:mi><m:mi>c</m:mi></m:msup><m:mi>B</m:mi></m:mrow></m:math></equation>
+If we add the first two expressions and subtract the third, we get the last expression.
+In terms of probability mass, the first expression says the probability in <m:math overflow="scroll"><m:mrow><m:mi>A</m:mi><m:mo>∪</m:mo><m:mi>B</m:mi></m:mrow></m:math> is
+the probability mass in <emphasis effect="italics">A</emphasis> plus the additional probability mass in the part of <emphasis effect="italics">B</emphasis> which
+is not in <emphasis effect="italics">A</emphasis>. A similar interpretation holds for the second expression. The third is
+the probability in the common part plus the extra in <emphasis effect="italics">A</emphasis> and the extra in <emphasis effect="italics">B</emphasis>. If we add
+the mass in <emphasis effect="italics">A</emphasis> and <emphasis effect="italics">B</emphasis> we have counted the mass in the common part twice. The last expression
+shows that we correct this by taking away the extra common mass.
+</item>
+        <item id="uid15"><label>(P8)</label>If <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi><m:mo>}</m:mo></m:mrow></m:math> is a countable, disjoint class and
+<emphasis effect="italics">A</emphasis> is contained in the union, then
+<equation id="id2261649"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:mspace width="0.166667em"/><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi></m:mrow><m:mrow/></m:munderover></m:mrow><m:mspace width="0.166667em"/><m:mspace width="0.166667em"/><m:mi>A</m:mi><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>so</m:mtext><m:mspace width="4.pt"/><m:mtext>that</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:munder><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>∈</m:mo><m:mi>J</m:mi></m:mrow></m:munder><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math></equation></item>
+        <item id="uid16"><label>(P9)</label><emphasis effect="italics">Subadditivity</emphasis>.  If <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:munderover><m:mo>⋃</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mstyle></m:math>, then
+<m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>)</m:mo></m:mrow><m:mo>≤</m:mo><m:munderover><m:mo>∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math>.
+This follows from countable additivity, property <link target-id="uid13">(P6)</link>, and the fact (<emphasis effect="underline">Partitions</emphasis>)
+<equation id="id2261906"><m:math overflow="scroll" mode="display"><m:mrow><m:mi>A</m:mi><m:mo>=</m:mo><m:munderover><m:mo>⋃</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:mspace width="0.166667em"/><m:mrow><m:munderover><m:mo>⋁</m:mo><m:mrow><m:mi>i</m:mi><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>∞</m:mi></m:munderover></m:mrow><m:mspace width="0.166667em"/><m:mspace width="0.166667em"/><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mtext>where</m:mtext><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:msub><m:mi>B</m:mi><m:mi>i</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub><m:msubsup><m:mi>A</m:mi><m:mn>1</m:mn><m:mi>c</m:mi></m:msubsup><m:msubsup><m:mi>A</m:mi><m:mn>2</m:mn><m:mi>c</m:mi></m:msubsup><m:mo>⋯</m:mo><m:msubsup><m:mi>A</m:mi><m:mrow><m:mi>i</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow><m:mi>c</m:mi></m:msubsup><m:mo>⊂</m:mo><m:msub><m:mi>A</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:math></equation>
+This includes as a special case the union of a finite number of events.
+</item>
+      </list>
+      <para id="id2262085">Some of these properties, such as <link target-id="uid10">(P4)</link>, <link target-id="uid11">(P5)</link>, and <link target-id="uid13">(P6)</link>, are so elementary that it seems
+they should be included in the defining statement. This would not be incorrect, but would
+be inefficient. If we have an assignment of numbers to the events, we need only establish
+<link target-id="uid7">(P1)</link>, <link target-id="uid8">(P2)</link>, and <link target-id="uid9">(P3)</link> to be able to assert that the assignment constitutes a probability
+measure. And the other properties follow as logical consequences.</para>
+    
+      <para id="fs-id1166091160782"><emphasis effect="bold"> Flexibility at a price</emphasis></para>
+      <para id="id2262106">In moving beyond the classical model, we have gained great flexibility and adaptability
+of the model. It may be used for systems in which the number of outcomes is infinite
+(countably or uncountably). It does not require a uniform distribution of the probability
+mass among the outcomes. For example, the dice problem may be handled directly by
+assigning the appropriate probabilities to the various numbers of total spots, 2 through 12.
+As we see in the treatment of <link document="m23252">conditional probability</link>, we make new probability
+assignments (i.e., introduce new
+probability measures) when partial information about the outcome is obtained.</para>
+      <para id="id2262126">But this freedom is obtained at a price. In the classical case, the probability value
+to be assigned an event is clearly defined (although it may be very difficult to perform
+the required counting). In the general case, we must resort to experience, structure
+of the system studied, experiment, or statistical studies to assign probabilities.</para>
+      <para id="id2262135">The existence of uncertainty due to “chance” or “randomness” does not necessarily
+imply that the act of performing the trial is haphazard. The trial may be quite carefully
+planned; the contingency may be the result of factors beyond the control or knowledge of the
+experimenter. The mechanism of chance (i.e., the source of the
+uncertainty) may depend upon the nature of the actual process or system observed. For example,
+in taking an hourly temperature profile on a given day at a weather station, the principal
+variations are not due to experimental error but rather to unknown factors which converge to
+provide the specific weather pattern experienced. In the case of an uncorrected digital
+transmission error, the cause of uncertainty lies in the intricacies of the correction
+mechanisms and the perturbations produced by a very complex environment. A patient at a clinic
+may be self selected. Before his or her appearance and the result of a test, the physician may
+not know which patient with which condition will appear. In each case, from the point of view
+of the experimenter, the cause is simply attributed to “chance.” Whether one sees this as
+an “act of the gods” or simply the result of a configuration of physical or behavioral causes
+too complex to analyze, the situation is one of uncertainty, before the trial, about which
+outcome will present itself.</para>
+      <para id="id2262170">If there were complete uncertainty, the situation would be chaotic. But this is not usually the
+case. While there is an extremely large number of possible hourly temperature profiles, a substantial
+subset of these has very little likelihood of occurring. For example, profiles in which successive
+hourly temperatures alternate between very high then very low values throughout the day constitute
+an unlikely subset (event). One normally expects trends in temperatures over the 24 hour period.
+Although a traffic engineer does not know exactly how many vehicles will be observed in a given
+time period, experience provides some idea what range of values to expect. While there is
+uncertainty about which patient, with which symptoms, will appear at a clinic, a physician
+certainly knows approximately what fraction of the clinic's patients have the disease in question.
+In a game of chance, analyzed into “equally likely” outcomes, the assumption of equal likelihood
+is based on knowledge of symmetries and structural regularities in the mechanism by which the game
+is carried out. And the number of outcomes associated with a given event is known, or may be
+determined.</para>
+      <para id="id2262204">In each case, there is some basis in statistical data on past experience or knowledge of structure,
+regularity, and symmetry in the system under observation which makes it possible to assign
+likelihoods to the occurrence of various events. It is this ability to assign likelihoods to
+the various events which characterizes applied probability. However determined, <emphasis effect="italics">probability
+is a number assigned to events to indicate their likelihood of occurrence</emphasis>. The assignments must
+be consistent with the defining properties <link target-id="uid7">(P1)</link>, <link target-id="uid8">(P2)</link>, <link target-id="uid9">(P3)</link> along with
+derived properties <link target-id="id2260710">(P4) through (P9)</link> (plus others which may also be derived from these). Since
+the probabilities are not “built in,” as in the classical case, a prime role of
+probability theory is to <emphasis effect="italics">derive other probabilities</emphasis> from a set of <emphasis effect="italics">given
+probabilites</emphasis>.</para>
+    </section>
+  </content>
+</document>

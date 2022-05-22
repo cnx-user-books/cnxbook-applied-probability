@@ -1,0 +1,1604 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Problems on Random Selection</title>
+  <metadata>
+  <md:content-id>m24531</md:content-id><md:title>Problems on Random Selection</md:title>
+  <md:abstract/>
+  <md:uuid>abe7aa97-8bb7-44a7-a22c-33b3fc5fb12c</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="supplemental">
+      <link url="http://www.caam.rice.edu/software/PEP_Matlab/Mprobcalc/" strength="3">Catalogue of useful matlab files</link>
+      <link url="mfile-suite.zip" strength="3">Download Matlab File Suite</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+    
+
+
+<exercise id="fs-id1164203060836" print-placement="end">
+<problem id="fs-id1164196515307">
+    <para id="id340102">(See <link document="m24244" target-id="fs-id6471511">Exercise 3</link> from "Problems on Random Variables and Joint Distributions") A die is rolled. Let <emphasis effect="italics">X</emphasis> be the number of spots that turn up.
+A coin is flipped <emphasis effect="italics">X</emphasis> times. Let <emphasis effect="italics">Y</emphasis> be the number of heads that turn up.
+Determine the distribution for <emphasis effect="italics">Y</emphasis>.</para>
+</problem>
+<solution id="fs-id1164203356187">
+    <!--empty paragraphs get left behind.-->
+    <code id="id166880" display="block">PX = [0 (1/6)*ones(1,6)];
+PY = [0.5 0.5];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  PX
+Enter gen fn COEFFICIENTS for gY  PY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+disp(gD)             % Compare with P8-3
+         0    0.1641
+    1.0000    0.3125
+    2.0000    0.2578
+    3.0000    0.1667
+    4.0000    0.0755
+    5.0000    0.0208
+    6.0000    0.0026
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164203371450" print-placement="end">
+<problem id="fs-id1164203278589">
+    <para id="id340138">(See <link document="m24244" target-id="fs-id6021368">Exercise 4</link> from "Problems on Random Variables and Joint Distributions") As a variation of <link target-id="fs-id1164203060836"/>, suppose a pair of dice is
+rolled instead of a single die. Determine the distribution for <emphasis effect="italics">Y</emphasis>.</para>
+    </problem>
+<solution id="fs-id1164203502164">
+    <!--empty paragraphs get left behind.-->
+    <code id="id167037" display="block">PN = (1/36)*[0 0 1 2 3 4 5 6 5 4 3 2 1];
+PY = [0.5 0.5];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  PN
+Enter gen fn COEFFICIENTS for gY  PY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+disp(gD)
+         0    0.0269
+    1.0000    0.1025
+    2.0000    0.1823
+    3.0000    0.2158
+    4.0000    0.1954
+    5.0000    0.1400
+    6.0000    0.0806
+    7.0000    0.0375
+    8.0000    0.0140     % (Continued next page)
+    9.0000    0.0040
+   10.0000    0.0008
+   11.0000    0.0001
+   12.0000    0.0000
+</code>
+    </solution>
+</exercise>
+
+
+<exercise id="fs-id1164203519862" print-placement="end">
+<problem id="fs-id1164203520271">
+<para id="id340151">(See <link document="m24244" target-id="fs-id4193468">Exercise 5</link> from "Problems on Random Variables and Joint Distributions") Suppose a pair of dice is rolled. Let <emphasis effect="italics">X</emphasis> be the total
+number of spots which turn up. Roll the pair an additional <emphasis effect="italics">X</emphasis> times. Let <emphasis effect="italics">Y</emphasis> be the number
+of sevens that are thrown on the <emphasis effect="italics">X</emphasis> rolls. Determine the distribution for <emphasis effect="italics">Y</emphasis>.
+What is the probability of three or more sevens?</para>
+</problem>
+<solution id="fs-id1164198402476">
+    <!--empty paragraphs get left behind.-->
+    <code id="id167243" display="block">PX = (1/36)*[0 0 1 2 3 4 5 6 5 4 3 2 1];
+PY = [5/6 1/6];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  PX
+Enter gen fn COEFFICIENTS for gY  PY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+disp(gD)
+         0    0.3072
+    1.0000    0.3660
+    2.0000    0.2152
+    3.0000    0.0828
+    4.0000    0.0230
+    5.0000    0.0048
+    6.0000    0.0008
+    7.0000    0.0001
+    8.0000    0.0000
+    9.0000    0.0000
+   10.0000    0.0000
+   11.0000    0.0000
+   12.0000    0.0000
+   P = (D&gt;=3)*PD'
+P =  0.1116
+</code>
+   </solution>
+</exercise>
+
+
+<exercise id="fs-id1164196546200" print-placement="end">
+<problem id="fs-id1164201053625">
+    <para id="id340196">(See <link document="m23634" target-id="fs-id1171023229475">Example 7</link> from "Conditional Expectation, Regression") A number <emphasis effect="italics">X</emphasis> is chosen by a random selection from the
+integers 1 through 20 (say by drawing a card from a box). A pair of dice is thrown <emphasis effect="italics">X</emphasis> times.
+Let <emphasis effect="italics">Y</emphasis> be the number of “matches” (i.e., both ones, both twos, etc.). Determine the
+distribution for <emphasis effect="italics">Y</emphasis>.</para>
+</problem>
+<solution id="fs-id1164196582118">
+    <!--empty paragraphs get left behind.-->
+    <code id="id167468" display="block">gN = (1/20)*[0 ones(1,20)];
+gY = [5/6 1/6];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+ 
+disp(gD)
+         0    0.2435
+    1.0000    0.2661
+    2.0000    0.2113
+    3.0000    0.1419
+    4.0000    0.0795
+    5.0000    0.0370
+    6.0000    0.0144
+    7.0000    0.0047
+    8.0000    0.0013
+    9.0000    0.0003
+   10.0000    0.0001
+   11.0000    0.0000
+   12.0000    0.0000
+   13.0000    0.0000
+   14.0000    0.0000
+   15.0000    0.0000
+   16.0000    0.0000
+   17.0000    0.0000
+   18.0000    0.0000
+   19.0000    0.0000
+   20.0000    0.0000
+</code>
+    </solution>
+</exercise>
+
+
+<exercise id="fs-id1164196227616" print-placement="end">
+<problem id="fs-id1164196540049">
+    <para id="id340233">(See <link document="m24441" target-id="fs-id7541837">Exercise 20</link> from "Problems on Conditional Expectation, Regression") A number <emphasis effect="italics">X</emphasis> is selected randomly from the integers 1
+through 100. A pair
+of dice is thrown <emphasis effect="italics">X</emphasis> times. Let <emphasis effect="italics">Y</emphasis> be the number of sevens thrown on the <emphasis effect="italics">X</emphasis> tosses.
+Determine the distribution for <emphasis effect="italics">Y</emphasis>. Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mn>20</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1164196556122">
+    <!--empty paragraphs get left behind.-->
+    <code id="id167746" display="block">gN = 0.01*[0 ones(1,100)];
+gY = [5/6 1/6];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+EY = dot(D,PD)
+EY =   8.4167
+P20 = (D&lt;=20)*PD'
+P20 =  0.9837
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196558635" print-placement="end">
+<problem id="fs-id1164196534417">
+    <para id="id340312">(See <link document="m24441" target-id="fs-id4056501">Exercise 21</link> from "Problems on Conditional Expectation, Regression") A number <emphasis effect="italics">X</emphasis> is selected randomly from the integers 1
+through 100. Each
+of two people draw <emphasis effect="italics">X</emphasis> times independently and randomly a number from 1 to 10. Let <emphasis effect="italics">Y</emphasis> be
+the number of matches (i.e., both draw ones, both draw twos, etc.). Determine the
+distribution for <emphasis effect="italics">Y</emphasis>. Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>Y</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1164196507235">
+    <!--empty paragraphs get left behind.-->
+    <code id="id167877" display="block">gN = 0.01*[0 ones(1,100)];
+gY = [0.9 0.1];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+EY = dot(D,PD)
+EY =  5.0500
+P10 = (D&lt;=10)*PD'
+P10 = 0.9188
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196581676" print-placement="end">
+<problem id="fs-id1164196524922">
+    <para id="id340384">Suppose the number of entries in a contest is <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math>
+binomial (20, 0.4). There are four questions. Let <emphasis effect="italics">Y<sub>i</sub></emphasis> be the number of questions
+answered correctly by the <emphasis effect="italics">i</emphasis>th contestant. Suppose the <emphasis effect="italics">Y<sub>i</sub></emphasis> are iid, with common
+distribution</para>
+    <equation id="id340434">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>1</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>2</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>3</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>4</m:mn>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>2</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>4</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>3</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id340718">Let <emphasis effect="italics">D</emphasis> be the total number of correct answers. Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>]</m:mo><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mspace width="0.277778em"/><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>]</m:mo></m:mrow></m:math>,
+ <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>15</m:mn><m:mo>≤</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mn>25</m:mn><m:mo>)</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>≤</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mn>30</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    </problem>
+<solution id="fs-id1164196438577">
+    <!--empty paragraphs get left behind.-->
+    <code id="id168002" display="block">gN = ibinom(20,0.4,0:20);
+gY = 0.1*[0 2 4 3 1];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+ED = dot(D,PD)
+ED =  18.4000
+VD = (D.^2)*PD' - ED^2
+VD =  31.8720
+P1 = ((15&lt;=D)&amp;(D&lt;=25))*PD'
+P1 =   0.6386
+P2 = ((10&lt;=D)&amp;(D&lt;=30))*PD'
+P2 =   0.9290
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164201174206" print-placement="end">
+<problem id="fs-id1164196215950">
+<para id="id340815">Game wardens are making an aerial survey of the number of deer in
+a park. The number of herds to be sighted is assumed to be a random variable <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math>
+binomial (20, 0.5). Each herd is assumed to be from 1 to 10 in size, with
+probabilities</para>
+    <table id="id340832" summary="Table contains a header column describing the content to its right. The first row is a set of values, and the second is its corresponding probability.">
+<tgroup cols="11"><tbody>
+          <row>
+            <entry>Value</entry>
+            <entry>1</entry>
+            <entry>2</entry>
+            <entry>3</entry>
+            <entry>4</entry>
+            <entry>5</entry>
+            <entry>6</entry>
+            <entry>7</entry>
+            <entry>8</entry>
+            <entry>9</entry>
+            <entry>10</entry>
+          </row>
+          <row>
+            <entry>Probability</entry>
+            <entry>0.05</entry>
+            <entry>0.10</entry>
+            <entry>0.15</entry>
+            <entry>0.20</entry>
+            <entry>0.15</entry>
+            <entry>0.10</entry>
+            <entry>0.10</entry>
+            <entry>0.05</entry>
+            <entry>0.05</entry>
+            <entry>0.05</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+    <para id="id341009">Let <emphasis effect="italics">D</emphasis> be the number of deer sighted under this model. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for
+<m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>25</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>50</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>75</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>100</m:mn></m:mrow></m:math> <newline/>and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≥</m:mo><m:mn>90</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    </problem>
+<solution id="fs-id1164196433606">
+    <!--empty paragraphs get left behind.-->
+    <code id="id168178" display="block">gN = ibinom(20,0.5,0:20);
+gY = 0.01*[0 5 10 15 20 15 10 10 5 5 5];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+k = [25 50 75 100];
+P = zeros(1,4);
+for i = 1:4
+    P(i) = (D&lt;=k(i))*PD';
+end
+disp(P)
+    0.0310    0.5578    0.9725    0.9998
+</code>
+   </solution>
+</exercise>
+
+
+<exercise id="fs-id1164196610175" print-placement="end">
+<problem id="fs-id1164196661056">
+<para id="id341095">A supply house stocks seven popular items. The table below shows the
+values of the items and the probability of each being selected by a customer.</para>
+    <table id="id341100" summary="Table contains a header column describing the content to its right. The first row is a set of values, and the second is its corresponding probability.">
+<tgroup cols="8"><tbody>
+          <row>
+            <entry>Value</entry>
+            <entry>12.50</entry>
+            <entry>25.00</entry>
+            <entry>30.50</entry>
+            <entry>40.00</entry>
+            <entry>42.50</entry>
+            <entry>50.00</entry>
+            <entry>60.00</entry>
+          </row>
+          <row>
+            <entry>Probability</entry>
+            <entry>0.10</entry>
+            <entry>0.15</entry>
+            <entry>0.20</entry>
+            <entry>0.20</entry>
+            <entry>0.15</entry>
+            <entry>0.10</entry>
+            <entry>0.10</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+    <para id="id341235">Suppose the purchases of customers are iid, and the number of customers in a day
+is binomial (10,0.5). Determine the distribution for the total demand <emphasis effect="italics">D</emphasis>.</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id341252" display="block" list-type="enumerated" number-style="lower-alpha"><item id="uid1">How many different possible values are there? What is the maximum possible
+total sales?
+</item>
+      <item id="uid2">Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>]</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>100</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>150</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>200</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>250</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>300</m:mn></m:mrow></m:math>. <newline/>
+Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mn>100</m:mn><m:mo>&lt;</m:mo><m:mi>D</m:mi><m:mo>≤</m:mo><m:mn>200</m:mn><m:mo>)</m:mo></m:mrow></m:math>.
+
+</item>
+    </list>
+</problem>
+<solution id="fs-id1164196656691">
+    <!--empty paragraphs get left behind.-->
+    <code id="id168336" display="block">gN = ibinom(10,0.5,0:10);
+Y  = [12.5 25 30.5 40 42.5 50 60];
+PY = 0.01*[10 15 20 20 15 10 10];
+mgd
+Enter gen fn COEFFICIENTS for gN  gN
+Enter VALUES for Y  Y
+Enter PROBABILITIES for Y  PY
+Values are in row matrix D; probabilities are in PD.
+To view the distribution, call for mD.
+s = size(D)
+s =    1   839
+M = max(D)
+M =    590
+t = [100 150 200 250 300];
+P = zeros(1,5);
+for i = 1:5
+    P(i) = (D&lt;=t(i))*PD';
+end
+disp(P)
+    0.1012    0.3184    0.6156    0.8497    0.9614
+P1 = ((100&lt;D)&amp;(D&lt;=200))*PD'
+P1 =   0.5144
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196235701" print-placement="end">
+<problem id="fs-id1164198176845">
+    <para id="id341391">A game is played as follows:</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id341398" display="block" list-type="enumerated">
+      <item id="uid3">A wheel is spun, giving one of the integers 0 through 9 on an equally likely basis.
+</item>
+      <item id="uid4">A single die is thrown the number of times indicated by the result of the spin of
+the wheel. The number of points made is the total of the numbers turned up on the sequence of
+throws of the die.
+</item>
+      <item id="uid5">A player pays sixteen dollars to play; a dollar is returned for each point made.
+
+</item>
+    </list>
+    <para id="id341446">Let <emphasis effect="italics">Y</emphasis> represent the number of points made and <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mi>Y</m:mi><m:mo>-</m:mo><m:mn>16</m:mn></m:mrow></m:math>  be the net gain (possibly negative)
+of the player. Determine the maximum value of</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id341482"><emphasis effect="italics">X</emphasis>, <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>X</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mo>=</m:mo><m:mn>10</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>X</m:mi><m:mo>&gt;</m:mo><m:mo>=</m:mo><m:mn>16</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1164196447872">
+    <!--empty paragraphs get left behind.-->
+    <code id="id168553" display="block">gn = 0.1*ones(1,10);
+gy = (1/6)*[0 ones(1,6)];
+[Y,PY] = gendf(gn,gy);
+[X,PX] = csort(Y-16,PY);
+M = max(X)
+M =  38
+EX = dot(X,PX)               % Check EX = En*Ey - 16 = 4.5*3.5
+EX  =  -0.2500               % 4.5*3.5 - 16 = -0.25
+VX = dot(X.^2,PX) - EX^2
+VX =  114.1875
+Ppos = (X&gt;0)*PX'
+Ppos =  0.4667
+P10 = (X&gt;=10)*PX'
+P10 =   0.2147
+P16 = (X&gt;=16)*PX'
+P16 =   0.0803
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196509282" print-placement="end">
+<problem id="fs-id1164201112940">
+    <para id="id341598">Marvin calls on four customers. With probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>1</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn></m:mrow></m:math> he makes a
+sale in each case. Geraldine calls on five customers, with probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mn>2</m:mn></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>5</m:mn></m:mrow></m:math> of
+a sale in each case. Customers who buy do so on an iid basis, and order an amount <emphasis effect="italics">Y<sub>i</sub></emphasis>
+(in dollars) with common distribution:</para>
+    <equation id="id341665">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>200</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>220</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>240</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>260</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>280</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>300</m:mn>
+          <m:mo>]</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mi>Y</m:mi>
+          <m:mo>=</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>10</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>15</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>25</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>25</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>15</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>10</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id341797">Let <emphasis effect="italics">D<sub>1</sub></emphasis> be the total sales for Marvin and <emphasis effect="italics">D<sub>2</sub></emphasis> the total sales for Geraldine. Let
+<m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>=</m:mo><m:msub><m:mi>D</m:mi><m:mn>1</m:mn></m:msub><m:mo>+</m:mo><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub></m:mrow></m:math>. Determine the distribution and mean and variance for <emphasis effect="italics">D<sub>1</sub></emphasis>, <emphasis effect="italics">D<sub>2</sub></emphasis>, and <emphasis effect="italics">D</emphasis>.
+Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>D</m:mi><m:mn>1</m:mn></m:msub><m:mo>≥</m:mo><m:msub><m:mi>D</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≥</m:mo><m:mn>1500</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≥</m:mo><m:mn>1000</m:mn><m:mo>)</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≥</m:mo><m:mn>750</m:mn><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    </problem>
+<solution id="fs-id1164203570104">
+    <!--empty paragraphs get left behind.-->
+    <code id="id168731" display="block">gnM = ibinom(4,0.6,0:4);
+gnG = ibinom(5,0.5,0:5);
+Y = 200:20:300;
+PY = 0.01*[10 15 25 25 15 10];
+[D1,PD1] = mgdf(gnM,Y,PY);
+[D2,PD2] = mgdf(gnG,Y,PY);
+ED1 = dot(D1,PD1)
+ED1 =  600.0000              % Check: ED1 = EnM*EY = 2.4*250
+VD1 = dot(D1.^2,PD1) - ED1^2
+VD1 =    6.1968e+04
+ED2 = dot(D2,PD2)
+ED2 =  625.0000              % Check: ED2 = EnG*EY = 2.5*250
+VD2 = dot(D2.^2,PD2) - ED2^2
+VD2 =    8.0175e+04
+[D1,D2,t,u,PD1,PD2,P] = icalcf(D1,D2,PD1,PD2);
+Use array opertions on matrices X, Y, PX, PY, t, u, and P
+[D,PD] = csort(t+u,P);
+ED = dot(D,PD)
+ED =   1.2250e+03
+eD = ED1 + ED2              % Check: ED = ED1 + ED2
+eD =   1.2250e+03           % (Continued next page)
+ 
+VD = dot(D.^2,PD) - ED^2
+VD =   1.4214e+05
+vD = VD1 + VD2            % Check: VD = VD1 + VD2
+vD =   1.4214e+05
+P1g2 = total((t&gt;u).*P)
+P1g2 = 0.4612
+k = [1500 1000 750];
+PDk = zeros(1,3);
+for i = 1:3
+   PDk(i) = (D&gt;=k(i))*PD';
+end
+disp(PDk)
+    0.2556    0.7326    0.8872
+</code>
+    </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1164196721631" print-placement="end">
+<problem id="fs-id1164202993675">
+<para id="id341992">A questionnaire is sent to twenty persons. The number who reply
+is a random number <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (20, 0.7). If each respondent has probability
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>8</m:mn></m:mrow></m:math> of favoring a certain proposition, what is the probability of ten or
+more favorable replies? Of fifteen or more?</para>
+</problem>
+<solution id="fs-id1164196199556">
+    <!--empty paragraphs get left behind.-->
+    <code id="id169076" display="block">gN = ibinom(20,0.7,0:20);
+gY = [0.2 0.8];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+P10 = (D&gt;=10)*PD'
+P10 =   0.7788
+P15 = (D&gt;=15)*PD'
+P15 =   0.0660
+pD = ibinom(20,0.7*0.8,0:20);  % Alternate: use D binomial (pp0)
+D = 0:20;
+p10 = (D&gt;=10)*pD'
+p10 =  0.7788
+p15 = (D&gt;=15)*pD'
+p15 =  0.0660
+</code>
+   </solution>
+</exercise>   
+
+
+
+
+<exercise id="fs-id1164203572282" print-placement="end">
+<problem id="fs-id1164196703094">
+<para id="id342029">A random number <emphasis effect="italics">N</emphasis> of students take a qualifying exam. A grade of 70 or
+more earns a pass. Suppose <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (20, 0.3). If each student has probability
+<m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>7</m:mn></m:mrow></m:math> of making 70 or more, what is the probability all will pass? Ten or more will pass?</para>
+    </problem>
+<solution id="fs-id1164196700016">
+    <!--empty paragraphs get left behind.-->
+    <code id="id169277" display="block">gN = ibinom(20,0.3,0:20);
+gY = [0.3 0.7];
+gend
+Do not forget zero coefficients for missing powers
+Enter gen fn COEFFICIENTS for gN  gN
+Enter gen fn COEFFICIENTS for gY  gY
+Results are in N, PN, Y, PY, D, PD, P
+May use jcalc or jcalcf on N, D, P
+To view the distribution, call for gD.
+Pall = (D==20)*PD'
+Pall =  2.7822e-14
+pall = (0.3*0.7)^20    % Alternate: use D binomial (pp0)
+pall =  2.7822e-14
+P10 = (D &gt;= 10)*PD'
+P10 = 0.0038
+</code>
+   </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1164201173312" print-placement="end">
+<problem id="fs-id1164196432094">
+<para id="id342073">Five hundred questionnaires are sent out. The probability of a reply is 0.6.
+The probability that a reply will be favorable is 0.75. What is the probability of at least
+200, 225, 250 favorable replies?</para>
+    </problem>
+<solution id="fs-id1164196589990">
+    <!--empty paragraphs get left behind.-->
+    <code id="id169433" display="block">n = 500;
+p = 0.6;
+p0 = 0.75;
+D = 0:500;
+PD = ibinom(500,p*p0,D);
+k = [200 225 250];
+P = zeros(1,3);
+for i = 1:3
+   P(i) = (D&gt;=k(i))*PD';
+end
+disp(P)
+    0.9893    0.5173    0.0140
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196552660" print-placement="end">
+<problem id="fs-id1164196651718">
+<para id="id342078">Suppose the number of Japanese visitors to Florida in a week is
+<m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> Poisson (500) and the number of German visitors is <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mn>2</m:mn><m:mo>∼</m:mo></m:mrow></m:math> Poisson (300).
+If 25 percent of the Japanese and 20 percent of the Germans visit Disney World,
+what is the distribution for the total number <emphasis effect="italics">D</emphasis> of German and Japanese visitors
+to the park? Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>D</m:mi><m:mo>≥</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>150</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>155</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mo>⋯</m:mo><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>245</m:mn><m:mo>,</m:mo><m:mspace width="0.277778em"/><m:mn>250</m:mn></m:mrow></m:math>.</para>
+    </problem>
+<solution id="fs-id1164196501089">
+ <para id="id169543"><m:math overflow="scroll"><m:mrow><m:mi>J</m:mi><m:mi>D</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (500*0.25 = 125); <m:math overflow="scroll"><m:mrow><m:mi>G</m:mi><m:mi>D</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (300*0.20 = 60);
+<m:math overflow="scroll"><m:mrow><m:mi>D</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (185).</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id169594" display="block">k = 150:5:250;
+PD = cpoisson(185,k);
+disp([k;PD]')
+  150.0000    0.9964
+  155.0000    0.9892
+  160.0000    0.9718
+  165.0000    0.9362
+  170.0000    0.8736
+  175.0000    0.7785
+  180.0000    0.6532  
+  185.0000    0.5098
+  190.0000    0.3663
+  195.0000    0.2405
+  200.0000    0.1435
+  205.0000    0.0776
+  210.0000    0.0379
+  215.0000    0.0167
+  220.0000    0.0067
+  225.0000    0.0024
+  230.0000    0.0008
+  235.0000    0.0002
+  240.0000    0.0001
+  245.0000    0.0000
+  250.0000    0.0000
+</code>
+   </solution>
+</exercise>
+
+
+<exercise id="fs-id1164203008727" print-placement="end">
+<problem id="fs-id1164203370720">
+<para id="id342186">A junction point in a network has two incoming lines and two outgoing lines.
+The number of incoming messages <emphasis effect="italics">N<sub>1</sub></emphasis> on line one in one hour is Poisson (50); on line 2 the
+number is <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson (45). On incoming line 1 the messages have probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mi>a</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>33</m:mn></m:mrow></m:math> of leaving on outgoing line a and <m:math overflow="scroll"><m:mrow><m:mn>1</m:mn><m:mo>-</m:mo><m:msub><m:mi>p</m:mi><m:mrow><m:mn>1</m:mn><m:mi>a</m:mi></m:mrow></m:msub></m:mrow></m:math> of leaving on line b. The messages
+coming in on line 2 have probability <m:math overflow="scroll"><m:mrow><m:msub><m:mi>p</m:mi><m:mrow><m:mn>2</m:mn><m:mi>a</m:mi></m:mrow></m:msub><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>47</m:mn></m:mrow></m:math> of leaving on line a. Under the
+usual independence assumptions, what is the distribution of outgoing messages on line a?
+What are the probabilities of at least 30, 35, 40 outgoing messages on line a?</para>
+</problem>
+<solution id="fs-id1164196622188">
+    <!--empty paragraphs get left behind.-->
+    <code id="id169828" display="block">m1a = 50*0.33;  m2a = 45*0.47; ma = m1a + m2a;
+PNa = cpoisson(ma,[30 35 40])
+PNa =   0.9119    0.6890    0.3722
+</code>
+   </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1164196664498" print-placement="end"><problem id="fs-id1164196242882">
+    <para id="id342303">A computer store sells Macintosh, HP, and various other IBM compatible personal
+computers. It has two major sources of customers: </para>
+
+<list id="eip-id1167111850746" list-type="enumerated">
+<item>Students and faculty from a nearby
+university</item>
+<item>General customers for home and business computing. Suppose
+the following assumptions are reasonable for monthly purchases.</item></list>
+    <list id="id342309" display="block" list-type="bulleted"><item id="uid6">The number of university buyers <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> Poisson (30). The probabilities for Mac, HP, others
+are 0.4, 0.2, 0.4, respectively.
+</item>
+      <item id="uid7">The number of non-university buyers <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mn>2</m:mn><m:mo>∼</m:mo></m:mrow></m:math> Poisson (65). The respective probabilities for Mac,
+HP, others are 0.2, 0.3, 0.5.
+</item>
+      <item id="uid8">For each group, the composite demand assumptions are reasonable, and the two groups
+buy independently.
+</item>
+    </list>
+    <para id="id342380">What is the distribution for the number of Mac sales? What is the distribution for the total
+number of Mac and Dell sales?</para>
+    </problem>
+<solution id="fs-id1164196614725">
+<para id="id169858">Mac sales Poisson (30*0.4 + 65*0.2 = 25); HP sales Poisson
+(30*0.2 + 65*0.3 = 25.5); total Mac plus HP sales Poisson(50.5).</para>
+    
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164203414838" print-placement="end">
+<problem id="fs-id1164200873939">
+<para id="id342384">The number <emphasis effect="italics">N</emphasis> of “hits” in a day on a Web site on the internet is
+Poisson (80). Suppose the probability is 0.10 that any hit results in a sale, is 0.30
+that the result is a request for information, and is 0.60 that the inquirer just browses
+but does not identify an interest. What is the probability of 10 or more sales? What
+is the probability that the number of sales is at least half the number of information
+requests (use suitable simple approximations)?</para>
+    </problem>
+<solution id="fs-id1164196685023">
+    <!--empty paragraphs get left behind.-->
+    <code id="id169870" display="block">X = 0:30;
+Y = 0:80;
+PX = ipoisson(80*0.1,X);
+PY = ipoisson(80*0.3,Y);
+icalc:  X  Y  PX  PY
+- - - - - - - - - - - -
+PX10 = (X&gt;=10)*PX'    % Approximate calculation
+PX10 =  0.2834
+pX10 = cpoisson(8,10)   % Direct calculation
+pX10 =  0.2834
+M = t&gt;=0.5*u;
+PM = total(M.*P)
+PM =    0.1572
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164197902839" print-placement="end">
+<problem id="fs-id1164196598132">
+<para id="id342402">The number <emphasis effect="italics">N</emphasis> of orders sent to the shipping department of a mail order house
+is Poisson (700). Orders require one of seven kinds of boxes, which with packing costs have
+distribution</para>
+    <table id="id342416" summary="Table contains a header column describing the content to its right. The first row is a set of dollar values, and the second is the corresponding probability.">
+<tgroup cols="8"><tbody>
+          <row>
+            <entry>Cost (dollars)</entry>
+            <entry>0.75</entry>
+            <entry>1.25</entry>
+            <entry>2.00</entry>
+            <entry>2.50</entry>
+            <entry>3.00</entry>
+            <entry>3.50</entry>
+            <entry>4.00</entry>
+          </row>
+          <row>
+            <entry>Probability</entry>
+            <entry>0.10</entry>
+            <entry>0.15</entry>
+            <entry>0.15</entry>
+            <entry>0.25</entry>
+            <entry>0.20</entry>
+            <entry>0.10</entry>
+            <entry>0.05</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+    <para id="id342564">What is the probability the total cost of the $2.50 boxes is no greater than $475? What
+is the probability the cost of the $2.50 boxes is greater than the cost of the $3.00 boxes?
+What is the probability the cost of the $2.50 boxes is not more than $50.00 greater than
+the cost of the $3.00 boxes? <emphasis effect="italics">Suggestion</emphasis>. Truncate the Poisson distributions at about
+twice the mean value.</para>
+    </problem>
+<solution id="fs-id1164200886434">
+    <!--empty paragraphs get left behind.-->
+    <code id="id170036" display="block">X = 0:400;
+Y = 0:300;
+PX = ipoisson(700*0.25,X);
+PY = ipoisson(700*0.20,Y);
+icalc
+Enter row matrix of X-values  X
+Enter row matrix of Y-values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+ Use array operations on matrices X, Y, PX, PY, t, u, and P
+P1 = (2.5*X&lt;=475)*PX'
+P1 =   0.8785
+M = 2.5*t&lt;=(3*u + 50);
+PM = total(M.*P)
+PM =   0.7500
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164203364588" print-placement="end">
+<problem id="fs-id1164197921894">
+<para id="id342576">One car in 5 in a certain community is a Volvo. If the number of cars passing a
+traffic check point in an hour is Poisson (130), what is the expected number of Volvos? What
+is the probability of at least 30 Volvos? What is the probability the number of Volvos is
+between 16 and 40 (inclusive)?</para>
+    </problem>
+<solution id="fs-id1164197922036">
+    <!--empty paragraphs get left behind.-->
+    <code id="id170191" display="block">P1 = cpoisson(130*0.2,30) = 0.2407
+P2 = cpoisson(26,16) - cpoisson(26,41) = 0.9819
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196193688" print-placement="end"><problem id="fs-id1164196427406">
+<para id="id342582">A service center on an interstate highway experiences customers in a one-hour
+period as follows:</para>
+    <!--empty paragraphs get left behind.-->
+    <list id="id342590" display="block" list-type="bulleted">
+      <item id="uid9">Northbound: Total vehicles: Poisson (200). Twenty percent are trucks.
+
+</item>
+      <item id="uid10">Southbound: Total vehicles: Poisson (180). Twenty five percent are trucks.
+
+</item>
+    </list>
+    <list id="eip-id6058315" list-type="bulleted" bullet-style="dash"><item> Each truck has one or two persons, with respective probabilities 0.7 and 0.3.</item>
+    <item>Each car has 1, 2, 3, 4, or 5 persons, with probabilities 0.3, 0.3, 0.2, 0.1, 0.1, respectively</item></list>
+    <!--empty paragraphs get left behind.-->
+    <para id="id342643">Under the usual independence assumptions, let <emphasis effect="italics">D</emphasis> be the number of persons to be served.
+Determine <m:math overflow="scroll"><m:mrow><m:mi>E</m:mi><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>]</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi> Var </m:mi><m:mspace width="0.166667em"/><m:mo>[</m:mo><m:mi>D</m:mi><m:mo>]</m:mo></m:mrow></m:math>, and the generating function <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>D</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1164196224840">
+<para id="id170213"><m:math overflow="scroll"><m:mrow><m:mi>T</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson (200*0.2 + 180*0.25 = 85), <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>∼</m:mo></m:mrow></m:math> Poisson
+(200*0.8 + 180*0.75 = 295).</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id170247" display="block">a =   85
+b = 200*0.8 + 180*0.75
+b =  295
+YT = [1 2];
+PYT = [0.7 0.3];
+EYT = dot(YT,PYT)
+EYT =  1.3000
+VYT = dot(YT.^2,PYT) - EYT^2
+VYT =  0.2100
+YP = 1:5;
+PYP = 0.1*[3 3 2 1 1];
+EYP = dot(YP,PYP)
+EYP =  2.4000
+VYP = dot(YP.^2,PYP) - EYP^2
+VYP =   1.6400
+EDT = 85*EYT
+EDT =  110.5000  
+EDP = 295*EYP
+EDP =  708.0000
+ED = EDT + EDP
+ED =  818.5000
+VT = 85*(VYT + EYT^2)
+VT =  161.5000
+VP = 295*(VYP + EYP^2)
+VP =    2183
+VD = VT + VP
+VD =   2.2705e+03
+ 
+NT = 0:180;                   % Possible alternative
+gNT = ipoisson(85,NT);
+gYT = 0.1*[0 7 3];
+[DT,PDT] = gendf(gNT,gYT);
+EDT = dot(DT,PDT)
+EDT =  110.5000
+VDT = dot(DT.^2,PDT) - EDT^2
+VDT =  161.5000
+NP = 0:500;
+gNP = ipoisson(295,NP);
+gYP = 0.1*[0 3 2 2 1 1];
+[DP,PDP] = gendf(gNP,gYP);     %  Requires too much memory
+</code>
+    <equation id="id170626"><m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mi>D</m:mi>
+              <m:mi>T</m:mi>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>s</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mo form="prefix">exp</m:mo>
+            <m:mo>(</m:mo>
+            <m:mn>85</m:mn>
+          </m:mrow>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>7</m:mn>
+            <m:mi>s</m:mi>
+            <m:mo>+</m:mo>
+            <m:mn>0</m:mn>
+            <m:mo>.</m:mo>
+            <m:mn>3</m:mn>
+            <m:msup>
+              <m:mi>s</m:mi>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>-</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>))</m:mo>
+          </m:mrow>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:msub>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mi>D</m:mi>
+              <m:mi>P</m:mi>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mo form="prefix">exp</m:mo>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>295</m:mn>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo>.</m:mo>
+              <m:mn>1</m:mn>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mn>3</m:mn>
+                <m:mi>s</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>3</m:mn>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>2</m:mn>
+                </m:msup>
+                <m:mn>2</m:mn>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>3</m:mn>
+                </m:msup>
+                <m:mo>+</m:mo>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>4</m:mn>
+                </m:msup>
+                <m:mo>+</m:mo>
+                <m:msup>
+                  <m:mi>s</m:mi>
+                  <m:mn>5</m:mn>
+                </m:msup>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <equation id="id170988">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:msub>
+            <m:mi>g</m:mi>
+            <m:mi>D</m:mi>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:msub>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mi>D</m:mi>
+              <m:mi>T</m:mi>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:msub>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mi>D</m:mi>
+              <m:mi>P</m:mi>
+            </m:mrow>
+          </m:msub>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>s</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+        </m:mrow>
+      </m:math>
+    </equation>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196210114" print-placement="end">
+<problem id="fs-id1164196620983">
+    <para id="id342718">The number <emphasis effect="italics">N</emphasis> of customers in a shop in a given day is Poisson (120). Customers
+pay with cash or by MasterCard or Visa charge cards, with respective probabilties 0.25, 0.40, 0.35.
+Make the usual independence assumptions. Let <emphasis effect="italics">N<sub>1</sub></emphasis>, <emphasis effect="italics">N<sub>2</sub></emphasis>, <emphasis effect="italics">N<sub>3</sub></emphasis> be the numbers of cash sales,
+MasterCard charges, Visa card charges, respectively. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub><m:mo>≥</m:mo><m:mn>30</m:mn><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>≥</m:mo><m:mn>60</m:mn><m:mo>)</m:mo></m:mrow></m:math>,
+<m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>N</m:mi><m:mn>3</m:mn></m:msub><m:mo>≥</m:mo><m:mn>50</m:mn><m:mo>)</m:mo></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:msub><m:mi>N</m:mi><m:mn>2</m:mn></m:msub><m:mo>&gt;</m:mo><m:msub><m:mi>N</m:mi><m:mn>3</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    </problem>
+<solution id="fs-id1164196397251">
+    <!--empty paragraphs get left behind.-->
+    <code id="id171058" display="block">X = 0:120;
+PX = ipoisson(120*0.4,X);
+Y = 0:120;
+PY = ipoisson(120*0.35,Y);
+icalc
+Enter row matrix of X values  X
+Enter row matrix of Y values  Y
+Enter X probabilities  PX
+Enter Y probabilities  PY
+Use array opertions on matrices X, Y, PX, PY, t, u, and P
+M = t &gt; u;
+PM = total(M.*P)
+PM =    0.7190
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196440840" print-placement="end">
+<problem id="fs-id1164196482313">
+<para id="id342883">A discount retail store has two outlets in Houston, with a common
+warehouse. Customer requests are phoned to the warehouse for pickup. Two items, a and b,
+are featured in a special sale. The number of orders in a day from store A is
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>A</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson (30); from store B, the nember of orders is <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>B</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math>
+Poisson (40).</para>
+    <!--empty paragraphs get left behind.-->
+    <para id="id342928">For store A, the probability an order for a is 0.3, and for b is 0.7.</para>
+    <para id="id342934">For store B, the probability an order for a is 0.4, and for b is 0.6.
+What is the probability the total order for item b in a day is 50 or more?</para>
+    </problem>
+<solution id="fs-id1164196575313">
+ <para id="id171180"><code display="inline"> P = cpoisson(30*0.7+40*0.6,50) = 0.2468</code></para>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196321391" print-placement="end">
+<problem id="fs-id1164196556782">
+<para id="id342941">The number of bids on a job is a random variable <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial (7, 0.6).
+Bids (in thousands of dollars) are iid with <emphasis effect="italics">Y</emphasis> uniform on <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>3</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>5</m:mn><m:mo>]</m:mo></m:mrow></m:math>. What is the
+probability of at least one bid of $3,500 or less? <emphasis effect="italics">Note</emphasis> that “no bid” is not
+a bid of 0.
+</para>
+    </problem>
+<solution id="fs-id1164196575102">
+    <!--empty paragraphs get left behind.-->
+    <code id="id171196" display="block">% First solution ---  FY(t) = 1 - gN[P(Y&gt;t)]
+P = 1-(0.4 + 0.6*0.75)^7
+P  =    0.6794
+% Second solution --- Positive number of satisfactory bids,
+% i.e. the outcome is indicator for event E, with P(E) = 0.25
+pN = ibinom(7,0.6,0:7);
+gY = [3/4 1/4];         % Generator function for indicator
+[D,PD] = gendf(pN,gY);  % D is number of successes
+Pa = (D&gt;0)*PD'          % D&gt;0 means at least one successful bid
+Pa =    0.6794
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196575272" print-placement="end">
+<problem id="fs-id1164197908508">
+<para id="id342996">The number of customers during the noon hour at a bank teller's station is
+a random number <emphasis effect="italics">N</emphasis> with distribution</para>
+    <equation id="id343010">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>N</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>1</m:mn>
+          <m:mo>:</m:mo>
+          <m:mn>10</m:mn>
+          <m:mo>,</m:mo>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mspace width="0.277778em"/>
+          <m:mi>P</m:mi>
+          <m:mi>N</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>01</m:mn>
+          <m:mo>*</m:mo>
+          <m:mo>[</m:mo>
+          <m:mn>5</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>7</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>10</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>11</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>12</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>13</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>12</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>11</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>10</m:mn>
+          <m:mspace width="0.277778em"/>
+          <m:mn>9</m:mn>
+          <m:mo>]</m:mo>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <para id="id343115">The amounts they want to withdraw can be represented by an iid class having the
+common distribution <m:math overflow="scroll"><m:mrow><m:mi>Y</m:mi><m:mo>∼</m:mo></m:mrow></m:math> exponential (0.01). Determine the probabilities that
+the maximum withdrawal is less than or equal to <emphasis effect="italics">t</emphasis> for <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:mn>100</m:mn><m:mo>,</m:mo><m:mn>200</m:mn><m:mo>,</m:mo><m:mn>300</m:mn><m:mo>,</m:mo><m:mn>400</m:mn><m:mo>,</m:mo><m:mn>500</m:mn></m:mrow></m:math>.</para>
+</problem>
+<solution id="fs-id1164196506050">
+    <para id="id171322">Use <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>W</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>T</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math></para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id171383" display="block">gN = 0.01*[0 5 7 10 11 12 13 12 11 10 9];
+t = 100:100:500;
+PY = 1 - exp(-0.01*t);
+FW = polyval(fliplr(gN),PY)  % fliplr puts coeficients in
+                             % descending order of powers
+FW =    0.1330    0.4598    0.7490    0.8989    0.9615
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196615230" print-placement="end">
+<problem id="fs-id1164196415053">
+    <para id="id343188">A job is put out for bids. Experience indicates the number <emphasis effect="italics">N</emphasis>
+of bids is a random variable having values 0 through 8, with respective probabilities</para>
+    <table id="id343203" summary="Table contains a header column describing the content to its right. The first row is a set of values, and the second is its corresponding probability.">
+<tgroup cols="10"><tbody>
+          <row>
+            <entry>Value</entry>
+            <entry>0</entry>
+            <entry>1</entry>
+            <entry>2</entry>
+            <entry>3</entry>
+            <entry>4</entry>
+            <entry>5</entry>
+            <entry>6</entry>
+            <entry>7</entry>
+            <entry>8</entry>
+          </row>
+          <row>
+            <entry>Probability</entry>
+            <entry>0.05</entry>
+            <entry>0.10</entry>
+            <entry>0.15</entry>
+            <entry>0.20</entry>
+            <entry>0.20</entry>
+            <entry>0.10</entry>
+            <entry>0.10</entry>
+            <entry>0.07</entry>
+            <entry>0.03</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+    <para id="id343380">The market is such that bids (in thousands of dollars) are iid, uniform [100, 200].
+Determine the probability of at least one bid of $125,000 or less.</para>
+    </problem>
+<solution id="fs-id1164196190158">
+    <para id="id171449">Probability of a successful bid <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mi>Y</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mn>125</m:mn><m:mo>-</m:mo><m:mn>100</m:mn><m:mo>)</m:mo><m:mo>/</m:mo><m:mn>100</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>25</m:mn></m:mrow></m:math></para>
+    <code id="id171492" display="block">PY =0.25;
+gN = 0.01*[5 10 15 20 20 10 10 7 3];
+P = 1 - polyval(fliplr(gN),PY)
+P =  0.9116
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164196357911" print-placement="end">
+<problem id="fs-id1164196407403">
+<para id="id343385">A property is offered for sale. Experience indicates the number <emphasis effect="italics">N</emphasis>
+of bids is a random variable having values 0 through 10, with respective probabilities</para>
+    <table id="id343399" summary="Table contains a header column describing the content to its right. The first row is a set of values, and the second is its corresponding probability.">
+<tgroup cols="12"><tbody>
+          <row>
+            <entry>Value</entry>
+            <entry>0</entry>
+            <entry>1</entry>
+            <entry>2</entry>
+            <entry>3</entry>
+            <entry>4</entry>
+            <entry>5</entry>
+            <entry>6</entry>
+            <entry>7</entry>
+            <entry>8</entry>
+            <entry>9</entry>
+            <entry>10</entry>
+          </row>
+          <row>
+            <entry>Probability</entry>
+            <entry>0.05</entry>
+            <entry>0.15</entry>
+            <entry>0.15</entry>
+            <entry>0.20</entry>
+            <entry>0.10</entry>
+            <entry>0.10</entry>
+            <entry>0.05</entry>
+            <entry>0.05</entry>
+            <entry>0.05</entry>
+            <entry>0.05</entry>
+            <entry>0.05</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+    <para id="id343608">The market is such that bids (in thousands of dollars) are iid, uniform [150, 200] Determine the
+probability of at least one bid of $180,000 or more.</para>
+    </problem>
+<solution id="fs-id1164198031412">
+    <para id="id171534">Consider a sequence of <emphasis effect="italics">N</emphasis> trials with probabiliy <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mo>(</m:mo><m:mn>180</m:mn><m:mo>-</m:mo><m:mn>150</m:mn><m:mo>)</m:mo><m:mo>/</m:mo><m:mn>50</m:mn><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>6</m:mn></m:mrow></m:math>.</para>
+    <code id="id171585" display="block">gN = 0.01*[5 15 15 20 10 10 5 5 5 5 5];
+gY = [0.4 0.6];
+[D,PD] = gendf(gN,gY);
+P = (D&gt;0)*PD'
+P =   0.8493
+</code>
+   </solution>
+</exercise>
+
+
+
+
+<exercise id="fs-id1164196401407" print-placement="end">
+<problem id="fs-id1164196670842">
+<para id="id343613">A property is offered for sale. Experience indicates the number <emphasis effect="italics">N</emphasis>
+of bids is a random variable having values 0 through 8, with respective probabilities</para>
+    <table id="id343627" summary="Table contains a header column describing the content to its right. The first row is a set of values, and the second is its corresponding probability.">
+<tgroup cols="10"><tbody>
+          <row>
+            <entry>Number</entry>
+            <entry>0</entry>
+            <entry>1</entry>
+            <entry>2</entry>
+            <entry>3</entry>
+            <entry>4</entry>
+            <entry>5</entry>
+            <entry>6</entry>
+            <entry>7</entry>
+            <entry>8</entry>
+          </row>
+          <row>
+            <entry>Probability</entry>
+            <entry>0.05</entry>
+            <entry>0.15</entry>
+            <entry>0.15</entry>
+            <entry>0.20</entry>
+            <entry>0.15</entry>
+            <entry>0.10</entry>
+            <entry>0.10</entry>
+            <entry>0.05</entry>
+            <entry>0.05</entry>
+          </row>
+        </tbody>
+      
+</tgroup>
+</table>
+    <!--empty paragraphs get left behind.-->
+    <para id="id343805">The market is such that bids (in thousands of dollars) are iid symmetric triangular on [150 250].
+Determine the probability of at least one bid of $210,000 or more.</para>
+    </problem>
+<solution id="fs-id1164203371690">
+    <!--empty paragraphs get left behind.-->
+    <code id="id171647" display="block">gN = 0.01*[5 15 15 20 15 10 10 5 5];
+PY = 0.5 + 0.5*(1 - (4/5)^2)
+PY = 0.6800
+&gt;&gt; PW = 1 - polyval(fliplr(gN),PY)
+PW = 0.6536
+%alternate
+gY = [0.68 0.32];
+[D,PD] = gendf(gN,gY);
+P = (D&gt;0)*PD'
+P = 0.6536
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164203494113" print-placement="end">
+<problem id="fs-id1164203514867">
+<para id="id343810">Suppose <m:math overflow="scroll"><m:mrow><m:mi>N</m:mi><m:mo>∼</m:mo></m:mrow></m:math> binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math> and the <emphasis effect="italics">Y<sub>i</sub></emphasis> are iid, uniform on
+<m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>20</m:mn><m:mo>]</m:mo></m:mrow></m:math>. Let <emphasis effect="italics">V</emphasis> be the minimum of the <emphasis effect="italics">N</emphasis> values of the <emphasis effect="italics">Y<sub>i</sub></emphasis>. Determine <m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mo>(</m:mo><m:mi>V</m:mi><m:mo>&gt;</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math> for
+integer values from 10 to 20.</para>
+    </problem>
+<solution id="fs-id1164197896565">
+    <!--empty paragraphs get left behind.-->
+    <code id="id171759" display="block">gN = ibinom(10,0.3,0:10);
+t = 10:20;
+p = 0.1*(20 - t);
+P = polyval(fliplr(gN),p) - 0.7^10
+P =
+  Columns 1 through 7
+    0.9718    0.7092    0.5104    0.3612    0.2503    0.1686    0.1092
+  Columns 8 through 11
+    0.0664    0.0360    0.0147         0
+Pa = (0.7 + 0.3*p).^10 - 0.7^10     % Alternate form of gN
+Pa =
+  Columns 1 through 7
+    0.9718    0.7092    0.5104    0.3612    0.2503    0.1686    0.1092
+  Columns 8 through 11
+    0.0664    0.0360    0.0147         0
+</code>
+    </solution>
+</exercise>
+
+<exercise id="fs-id1164194002362" print-placement="end">
+<problem id="fs-id1164194000968">
+<para id="id343941">Suppose a teacher is equally likely to have 0, 1, 2, 3 or 4 students come in
+during office hours on a given day. If the lengths of the individual visits, in minutes, are
+iid exponential (0.1), what is the probability that no visit will last more than 20 minutes.</para>
+    </problem>
+<solution id="fs-id1164193964833">
+    <!--empty paragraphs get left behind.-->
+    <code id="id171912" display="block">gN = 0.2*ones(1,5);
+p = 1 - exp(-2);
+FW = polyval(fliplr(gN),p)
+FW =    0.7635
+gY = [p 1-p];               % Alternate
+[D,PD] = gendf(gN,gY);
+PW = (D==0)*PD'
+PW =    0.7635
+</code>
+    
+    </solution>
+</exercise>
+
+<exercise id="fs-id1164194129006" print-placement="end">
+<problem id="fs-id1164194104676">
+<para id="id343947">Twelve solid-state modules are installed in a control system. If the modules
+are not defective, they have practically unlimited life. However, with probability <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>05</m:mn></m:mrow></m:math>
+any unit could have a defect which results in a lifetime (in hours) exponential (0.0025).
+Under the usual independence assumptions, what is the probability the unit does not fail
+because of a defective module in the first 500 hours after installation?</para>
+    </problem>
+<solution id="fs-id1164198184222">
+    <!--empty paragraphs get left behind.-->
+    <code id="id172007" display="block">p = 1 - exp(-0.0025*500);
+FW = (0.95 + 0.05*p)^12
+FW =   0.8410
+gN = ibinom(12,0.05,0:12);
+gY = [p 1-p];
+[D,PD] = gendf(gN,gY);
+PW = (D==0)*PD'
+PW =   0.8410
+</code>
+    </solution>
+</exercise>
+
+
+<exercise id="fs-id1164193969982" print-placement="end">
+<problem id="fs-id1164197872759">
+<para id="id343972">The number <emphasis effect="italics">N</emphasis> of bids on a painting is binomial <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>10</m:mn><m:mo>,</m:mo><m:mspace width="0.166667em"/><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>3</m:mn><m:mo>)</m:mo></m:mrow></m:math>. The
+bid amounts (in thousands of dollars) <emphasis effect="italics">Y<sub>i</sub></emphasis> form an iid class, with common density
+function <m:math overflow="scroll"><m:mstyle scriptlevel="0" displaystyle="true"><m:mrow><m:msub><m:mi>f</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>005</m:mn><m:mrow><m:mo>(</m:mo><m:mn>37</m:mn><m:mo>-</m:mo><m:mn>2</m:mn><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:mstyle></m:math><m:math overflow="scroll"><m:mrow><m:mn>2</m:mn><m:mo>≤</m:mo><m:mi>t</m:mi><m:mo>≤</m:mo><m:mn>10</m:mn></m:mrow></m:math>. What
+is the probability that the maximum amount bid is greater than $5,000?</para>
+    </problem>
+<solution id="fs-id1164193996502">
+    <!--empty paragraphs get left behind.-->
+    <equation id="id172095">
+      <m:math overflow="scroll" mode="display">
+        <m:mrow>
+          <m:mi>P</m:mi>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mi>Y</m:mi>
+            <m:mo>≤</m:mo>
+            <m:mn>5</m:mn>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>005</m:mn>
+          <m:msubsup>
+            <m:mo>∫</m:mo>
+            <m:mn>2</m:mn>
+            <m:mn>5</m:mn>
+          </m:msubsup>
+          <m:mrow>
+            <m:mo>(</m:mo>
+            <m:mn>37</m:mn>
+            <m:mo>-</m:mo>
+            <m:mn>2</m:mn>
+            <m:mi>t</m:mi>
+            <m:mo>)</m:mo>
+          </m:mrow>
+          <m:mspace width="0.166667em"/>
+          <m:mi>d</m:mi>
+          <m:mi>t</m:mi>
+          <m:mo>=</m:mo>
+          <m:mn>0</m:mn>
+          <m:mo>.</m:mo>
+          <m:mn>45</m:mn>
+        </m:mrow>
+      </m:math>
+    </equation>
+    <!--empty paragraphs get left behind.-->
+    <code id="id172176" display="block">p = 0.45;
+P = 1 - (0.7 + 0.3*p)^10
+P =   0.8352
+gN = ibinom(10,0.3,0:10);
+gY = [p 1-p];
+[D,PD] = gendf(gN,gY);  % D is number of "successes"
+Pa = (D&gt;0)*PD'
+Pa =  0.8352
+</code>
+    </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164193962618" print-placement="end">
+<problem id="fs-id1164196338978">
+<para id="id344095">A computer store offers each customer who makes a purchase of $500 or more
+a free chance at a drawing for a prize. The probability of winning on a draw is 0.05.
+Suppose the times, in hours, between sales qualifying for a drawing is exponential (4).
+Under the usual independence assumptions, what is the expected time between a winning draw?
+What is the probability of three or more winners in a ten hour day? Of five or more?</para>
+    </problem>
+<solution id="fs-id1164197928198">
+ <para id="id172257"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mrow><m:mi>D</m:mi><m:mi>t</m:mi></m:mrow></m:msub><m:mo>∼</m:mo></m:mrow></m:math> Poisson
+<m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>p</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>, <m:math overflow="scroll"><m:msub><m:mi>W</m:mi><m:mrow><m:mi>D</m:mi><m:mi>t</m:mi></m:mrow></m:msub></m:math> exponential <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>λ</m:mi><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>.</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id172372" display="block">p = 0.05;
+t = 10;
+lambda = 4;
+EW = 1/(lambda*p)
+EW =    5
+PND10 = cpoisson(lambda*p*t,[3 5])
+PND10 =  0.3233    0.0527
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164198043174" print-placement="end">
+<problem id="fs-id1164194140554">
+<para id="id344102">Noise pulses arrrive on a data phone line according to an arrival process such
+that for each <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> the number <emphasis effect="italics">N<sub>t</sub></emphasis> of arrivals in time interval <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math>, in hours, is
+Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>7</m:mn><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>.
+The <emphasis effect="italics">i</emphasis>th pulse has an “intensity” <emphasis effect="italics">Y<sub>i</sub></emphasis> such that the class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> is iid,
+with the common distribution function <m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>Y</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>u</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mo>-</m:mo><m:mn>2</m:mn><m:msup><m:mi>u</m:mi><m:mn>2</m:mn></m:msup></m:mrow></m:msup></m:mrow></m:math> for <m:math overflow="scroll"><m:mrow><m:mi>u</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>. Determine
+the probability that in an eight-hour day the intensity will not exceed two.</para>
+    </problem>
+<solution id="fs-id1164196730356">
+ <para id="id172436"><emphasis effect="italics">N<sub>8</sub></emphasis> is Poisson (7*8 = 56)   <m:math overflow="scroll"><m:mrow><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msup><m:mi>e</m:mi><m:mrow><m:mn>56</m:mn><m:mo>(</m:mo><m:mi>s</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>)</m:mo></m:mrow></m:msup></m:mrow></m:math>.</para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id172502" display="block">t = 2;
+FW2 = exp(56*(1 - exp(-t^2) - 1))
+FW2 =   0.3586
+</code>
+   </solution>
+</exercise>
+
+
+
+<exercise id="fs-id1164194011902" print-placement="end">
+<problem id="fs-id1164194151825">
+<para id="id344285">The number <emphasis effect="italics">N</emphasis> of noise bursts on a data transmission line in a period <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>t</m:mi><m:mo>]</m:mo></m:mrow></m:math> is
+Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>μ</m:mi><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math>. The number of digit errors caused by the <emphasis effect="italics">i</emphasis>th burst is <emphasis effect="italics">Y<sub>i</sub></emphasis>, with the
+class <m:math overflow="scroll"><m:mrow><m:mo>{</m:mo><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>:</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>i</m:mi><m:mo>}</m:mo></m:mrow></m:math> iid, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>Y</m:mi><m:mi>i</m:mi></m:msub><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>∼</m:mo></m:mrow></m:math> geometric <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mi>p</m:mi><m:mo>)</m:mo></m:mrow></m:math>. An error correcting system
+is capable or correcting five or fewer errors in any burst. Suppose <m:math overflow="scroll"><m:mrow><m:mi>μ</m:mi><m:mo>=</m:mo><m:mn>12</m:mn></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn><m:mo>.</m:mo><m:mn>35</m:mn></m:mrow></m:math>.
+What is the probability of no uncorrected error in two hours of operation?</para>
+</problem>
+<solution id="fs-id1164194110679">
+ <para id="id172537"><m:math overflow="scroll"><m:mrow><m:msub><m:mi>F</m:mi><m:mi>W</m:mi></m:msub><m:mrow><m:mo>(</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:msub><m:mi>g</m:mi><m:mi>N</m:mi></m:msub><m:mrow><m:mo>[</m:mo><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>]</m:mo></m:mrow></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:mi>P</m:mi><m:mrow><m:mo>(</m:mo><m:mi>Y</m:mi><m:mo>≤</m:mo><m:mi>k</m:mi><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>-</m:mo><m:msup><m:mi>q</m:mi><m:mrow><m:mi>k</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:mrow></m:msup></m:mrow></m:math><m:math overflow="scroll"><m:mrow><m:msub><m:mi>N</m:mi><m:mi>t</m:mi></m:msub><m:mo>∼</m:mo></m:mrow></m:math>
+Poisson <m:math overflow="scroll"><m:mrow><m:mo>(</m:mo><m:mn>12</m:mn><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow></m:math></para>
+    <!--empty paragraphs get left behind.-->
+    <code id="id172671" display="block">q = 1 - 0.35;
+k = 5;
+t = 2;
+mu = 12;
+FW = exp(mu*t*(1 - q^(k-1) - 1))
+FW =  0.0138
+</code>
+</solution>
+</exercise>
+
+  </content>
+</document>
